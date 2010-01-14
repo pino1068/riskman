@@ -6,13 +6,6 @@ import static java.text.MessageFormat.*;
 
 public class Equity {
 
-	@Override
-	public boolean equals(Object obj) {
-		if(!Equity.class.isInstance(obj)) return false;
-		Equity equity = (Equity)obj;
-		return equity.name.equals(name);
-	}
-
 	private final String name;
 
 	public Equity(String name) {
@@ -26,6 +19,13 @@ public class Equity {
 	@Override
 	public String toString() {
 		return format("{0}", name);
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if(!Equity.class.isInstance(obj)) return false;
+		Equity equity = (Equity)obj;
+		return equity.name.equals(name);
 	}
 	
 	@Override
