@@ -85,16 +85,16 @@ public class PositionMatcherTestCase {
 		assertThat(position, not(USDorEUR));
 	}
 	
-	@Test
-	public void shouldMatchOnePositionInORtypeCondition() {
+	@SuppressWarnings("unchecked")
+	@Test public void shouldMatchOnePositionInORtypeCondition() {
 		Matcher<Position> equityOrCHF = anyOf(currency("CHF"), equity());
 		Position position = IBM(5);
 		
 		assertThat(position, equityOrCHF);
 	}
 	
-	@Test
-	public void shouldNotMatchOneUSDPositionInANDtypeCondition() {
+	@SuppressWarnings("unchecked")
+	@Test public void shouldNotMatchOneUSDPositionInANDtypeCondition() {
 		Matcher<Position> equityInUSD = allOf(currency("USD"), equity());
 		Position position = IBM(5);
 		
@@ -117,10 +117,4 @@ public class PositionMatcherTestCase {
 	private Matcher<Position> currency(String currency) {
 		return new IsCurrencyMatcher(currency);
 	}
-	
-//
-//	@Test
-//	public void shouldMatchPositionsMax30Percent() {
-//		
-//	}
 }
