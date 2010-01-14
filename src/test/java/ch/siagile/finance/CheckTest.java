@@ -1,120 +1,156 @@
 package ch.siagile.finance;
 
+import static ch.siagile.finance.fixtures.Fixtures.*;
+import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.*;
-import static ch.siagile.finance.fixtures.Fixtures.CHF;
 
-import org.junit.Test;
-
+import org.junit.*;
 
 public class CheckTest {
-	
+
+	private Check check;
+
 	@Test
 	public void shouldEquityContaint() {
-		Check test = new MaxCheck(0.5);
- 		
-		assertTrue(test.check(percentRatio(10)));
-		assertTrue(test.check(percentRatio(20)));
-		assertFalse(test.check(percentRatio(51)));
+		Check check = new MaxCheck(0.5);
+
+		assertTrue(check.check(percentRatio(10)));
+		assertTrue(check.check(percentRatio(20)));
+		assertFalse(check.check(percentRatio(51)));
 	}
-	
+
+	@Test
+	public void shouldBeMax() {
+		assertThat(Check.from("max: 20%"), is(instanceOf(MaxCheck.class)));
+	}
+
 	@Test
 	public void shouldCreateMax20Percent() {
-		Check test = Check.from("max: 20%");
-		
-		assertEquals(MaxCheck.class, test.getClass());
-		assertTrue(test.check(percentRatio(10)));
-		assertTrue(test.check(percentRatio(20)));
-		assertFalse(test.check(percentRatio(30)));
+		Check check = Check.from("max: 20%");
+
+		assertRatio(check, 10);
+		assertRatio(check, 20);
+		assertNotRatio(check, 30);
 	}
 	
+	@Test
+	public void shouldEqBeEqualsCheck() {
+		assertThat(Check.from("eq: 20%"), is(instanceOf(EqualsCheck.class)));
+	}
+
+	@Test
+	public void shouldEqualBeEqualsCheck() {
+		assertThat(Check.from("equal: 20%"), is(instanceOf(EqualsCheck.class)));
+	}
+
 	@Test
 	public void shouldEq20Percent() {
-		Check test = Check.from("eq: 20%");
-		
-		assertEquals(EqualsCheck.class, test.getClass());
-		assertFalse(test.check(percentRatio(10)));
-		assertTrue(test.check(percentRatio(20)));
-		assertFalse(test.check(percentRatio(30)));
+		Check check = Check.from("eq: 20%");
+
+		assertNotRatio(check, 10);
+		assertRatio(check, 20);
+		assertNotRatio(check, 30);
 	}
-	
+
+	@Test
+	public void shouldEqualsBeEqualsCheck() {
+		assertThat(Check.from("equals: 20%"), is(instanceOf(EqualsCheck.class)));
+	}
+
+	@Test
+	public void shouldEqualsSignBeEqualsCheck() {
+		assertThat(Check.from("=: 20%"), is(instanceOf(EqualsCheck.class)));
+	}
+
 	@Test
 	public void shouldEquals20Percent() {
-		Check test = Check.from("equals: 20%");
+		Check check = Check.from("equals: 20%");
 		
-		assertEquals(EqualsCheck.class, test.getClass());
-		assertFalse(test.check(percentRatio(10)));
-		assertTrue(test.check(percentRatio(20)));
-		assertFalse(test.check(percentRatio(30)));
+		assertNotRatio(check, 10);
+		assertRatio(check, 20);
+		assertNotRatio(check, 30);
 	}
-	
+
 	@Test
 	public void shouldEqual20Percent() {
-		Check test = Check.from("equal: 20%");
-		
-		assertEquals(EqualsCheck.class, test.getClass());
-		assertFalse(test.check(percentRatio(10)));
-		assertTrue(test.check(percentRatio(20)));
-		assertFalse(test.check(percentRatio(30)));
+		Check check = Check.from("equal: 20%");
+
+		assertNotRatio(check, 10);
+		assertRatio(check, 20);
+		assertNotRatio(check, 30);
 	}
-	
+
 	@Test
 	public void shouldEqualsTo20Percent() {
-		Check test = Check.from("equalsTo: 20%");
-		
-		assertEquals(EqualsCheck.class, test.getClass());
-		assertFalse(test.check(percentRatio(10)));
-		assertTrue(test.check(percentRatio(20)));
-		assertFalse(test.check(percentRatio(30)));
+		Check check = Check.from("equalsTo: 20%");
+
+		assertNotRatio(check, 10);
+		assertRatio(check, 20);
+		assertNotRatio(check, 30);
 	}
-	
+
 	@Test
 	public void shouldEqualsSymbol20Percent() {
-		Check test = Check.from("=: 20%");
-		
-		assertEquals(EqualsCheck.class, test.getClass());
-		assertFalse(test.check(percentRatio(10)));
-		assertTrue(test.check(percentRatio(20)));
-		assertFalse(test.check(percentRatio(30)));
+		Check check = Check.from("=: 20%");
+
+		assertNotRatio(check, 10);
+		assertRatio(check, 20);
+		assertNotRatio(check, 30);
 	}
-	
+
+	@Test
+	public void shouldMinBeMinCheck() {
+		assertThat(Check.from("min: 20%"), is(instanceOf(MinCheck.class)));
+	}
+
 	@Test
 	public void shouldCreateMin20Percent() {
-		Check test = Check.from("min:20%");
+		Check check = Check.from("min: 20%");
 		
-		assertEquals(MinCheck.class, test.getClass());
-		assertTrue(test.check(percentRatio(30)));
-		assertTrue(test.check(percentRatio(20)));
-		assertFalse(test.check(percentRatio(10)));
+		assertRatio(check, 30);
+		assertRatio(check, 20);
+		assertNotRatio(check, 10);
 	}
-	
-	@Test
-	public void shouldCreateRangeFrom20To30Percent(){
-		Check test = Check.from("range:20%, 29.997%");
-		
-		assertEquals(RangeCheck.class, test.getClass());
-		truePercent(test, 25);
-		truePercent(test, 20);
-		truePercent(test, 29.9d);
-		falsePercent(test, 10);
-		falsePercent(test, 40);
+
+	private void assertNotRatio(Check check, int percent3) {
+		assertFalse(check.check(percentRatio(percent3)));
 	}
-	
+
+	private void assertRatio(Check check, int percent) {
+		assertTrue(check.check(percentRatio(percent)));
+	}
+
 	@Test
-	public void shouldCheckInvalidRange(){
+	public void shouldRangteBeRangeCheck() {
+		assertThat(Check.from("range: 20%, 29.997%"), is(instanceOf(RangeCheck.class)));
+	}
+
+	@Test
+	public void shouldCreateRangeFrom20To30Percent() {
+		Check check = Check.from("range: 20%, 29.997%");
+
+		truePercent(check, 25);
+		truePercent(check, 20);
+		truePercent(check, 29.9d);
+		falsePercent(check, 10);
+		falsePercent(check, 40);
+	}
+
+	@Test
+	public void shouldCheckInvalidRange() {
 		try {
 			Check.from("range: 30%, 20%");
 			fail("expecting to get an InvalidParameterException here");
-		} catch (Exception e) {
-			//it's ok!
+		} catch (Exception expectedBehaivor) {
 		}
 	}
 
- 	private void falsePercent(Check test, double percent) {
-		assertFalse(test.check(percentRatio(percent)));
+	private void falsePercent(Check check, double percent) {
+		assertFalse(check.check(percentRatio(percent)));
 	}
 
-	private void truePercent(Check test, double percent) {
-		assertTrue(test.check(percentRatio(percent)));
+	private void truePercent(Check check, double percent) {
+		assertTrue(check.check(percentRatio(percent)));
 	}
 
 	private Ratio percentRatio(double percent) {

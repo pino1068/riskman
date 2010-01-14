@@ -1,5 +1,6 @@
 package ch.siagile.finance;
 
+
 import org.junit.Test;
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
