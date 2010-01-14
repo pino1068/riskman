@@ -1,0 +1,26 @@
+CODE CONVENTION
+
+* don't commit commented code
+
+* use only 1 nested if per method
+
+* use only 2 attributes per class
+
+* use only 1 attribute when is a collection
+
+* use at least 3 parameter per method
+
+* avoid using this. declaring attributes
+
+* do not use + to concatenate string
+  prefer using format (MessageFormat)
+    format("some words {0} {1}", value0, value1);
+
+* use other as name of object with same type
+    class Money
+      void sum(Money other)
+
+* use a/an type passing a parameter
+    class Money
+      void something(Position aPosition)
+      void something(Position... somePositions)
