@@ -101,6 +101,7 @@ public class PositionMatcherTestCase {
 		assertThat(position, not(equityInUSD));
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Test
 	public void shouldMatchOneCHFPositionInANDtypeCondition() {
 		Matcher<Position> equityInCHF = allOf(currency("CHF"), equity());

@@ -14,9 +14,9 @@ public class CheckParser {
 		String type = extractType(definition);
 		String value = extractValue(definition);
 		if(isMax(type))
-			return new MAXCheck(percent(value));
+			return new MaxCheck(percent(value));
 		if(isMin(type))
-			return new MINCheck(percent(value));
+			return new MinCheck(percent(value));
 		if(isEquals(type))
 			return new EqualsCheck(percent(value));
 		if(isRange(type))

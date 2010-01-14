@@ -25,7 +25,6 @@ public class Areas implements Iterable<Area> {
 		return areas.size();
 	}
 
-	@Override
 	public Iterator<Area> iterator() {
 		return areas.iterator();
 	}
