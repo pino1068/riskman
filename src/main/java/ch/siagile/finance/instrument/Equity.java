@@ -1,5 +1,9 @@
 package ch.siagile.finance.instrument;
 
+import static java.text.MessageFormat.*;
+
+
+
 public class Equity {
 
 	@Override
@@ -17,6 +21,11 @@ public class Equity {
 
 	public static Equity from(String name) {
 		return new Equity(name);
+	}
+	
+	@Override
+	public String toString() {
+		return format("{0}", name);
 	}
 
 }

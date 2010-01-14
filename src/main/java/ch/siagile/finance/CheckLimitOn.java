@@ -6,12 +6,10 @@ public class CheckLimitOn {
 
 	private final boolean valid;
 
-	public CheckLimitOn(Positions positions, Matcher<Position> matcher,
-			Check limit) {
-		Positions selectedPortfolio = positions.selectBasedOn(matcher);
-		Ratio ratio = selectedPortfolio.value().divideBy(positions.value());
-		this.valid = limit.check(ratio);
-
+	public CheckLimitOn(Positions allPositions, Matcher<Position> matcher, Check check) {
+		Positions selectedPositions = allPositions.select(matcher);
+		Ratio ratio = selectedPositions.divideBy(allPositions);
+		valid = check.check(ratio);
 	}
 
 	public boolean isValid() {

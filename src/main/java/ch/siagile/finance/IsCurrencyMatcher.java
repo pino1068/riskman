@@ -14,7 +14,7 @@ public class IsCurrencyMatcher extends BaseMatcher<Position> {
 	public boolean matches(Object obj) {
 		if(!Position.class.isInstance(obj)) return false;
 		Position position = (Position)obj;
-		return position.balance().compatible(this.currency);
+		return position.balance().compatible(currency);
 	}
 
 	public void describeTo(Description description) {

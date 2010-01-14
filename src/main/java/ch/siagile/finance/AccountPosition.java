@@ -1,5 +1,9 @@
 package ch.siagile.finance;
 
+
+import static java.text.MessageFormat.*;
+
+
 public class AccountPosition extends BasePosition {
 
 	public AccountPosition(String name, Money balance) {
@@ -8,6 +12,6 @@ public class AccountPosition extends BasePosition {
 
 	@Override
 	public String toString() {
-		return "account with balance: "+balance();
+		return format("account with balance: {1}", balance());
 	}
 }

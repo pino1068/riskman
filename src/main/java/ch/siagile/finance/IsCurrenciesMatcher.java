@@ -5,28 +5,25 @@ import org.hamcrest.BaseMatcher;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 
-
 public class IsCurrenciesMatcher extends BaseMatcher<Position> {
-	
-	private Matcher<Position> delegate;
+
 	private final String[] currencies;
 
-	public IsCurrenciesMatcher(String... currencies) {
-		this.currencies = currencies;
-		this.delegate = anyOf(toMatchers(currencies));
-	}
-
-	private Matcher<Position>[] toMatchers(String... currencies) {
+	public Matcher<Position>[] toMatchers(String[] currencies) {
 		@SuppressWarnings("unchecked")
 		Matcher<Position>[] matchers = new Matcher[currencies.length];
-		for (int i = 0; i<currencies.length; i++) {
+		for (int i = 0; i < currencies.length; i++) {
 			matchers[i] = new IsCurrencyMatcher(currencies[i]);
 		}
 		return matchers;
 	}
 
+	public IsCurrenciesMatcher(String... currencies) {
+		this.currencies = currencies;
+	}
+
 	public boolean matches(Object position) {
-		return this.delegate.matches(position);
+		return anyOf(toMatchers(currencies)).matches(position);
 	}
 
 	public void describeTo(Description description) {

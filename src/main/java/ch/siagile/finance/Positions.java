@@ -14,23 +14,24 @@ public class Positions {
 			add(position);
 		}
 	}
+
 	@Deprecated
 	public void add(Position position) {
 		this.positions.add(position);
 	}
 
 	public Money value() {
-		Money totalAmount = Money.from(0,"CHF");
+		Money totalAmount = Money.from(0, "CHF");
 		for (Position position : positions) {
 			totalAmount = totalAmount.plus(position.balance());
 		}
 		return totalAmount;
 	}
 
-	public Positions selectBasedOn(Matcher<Position> matcher) {
+	public Positions select(Matcher<Position> matcher) {
 		Positions result = new Positions();
 		for (Position position : positions) {
-			if(matcher.matches(position))
+			if (matcher.matches(position))
 				result.add(position);
 		}
 		return result;
@@ -41,5 +42,8 @@ public class Positions {
 		return this.positions.toString();
 	}
 
-	
-} 
+	public Ratio divideBy(Positions other) {
+		return value().divideBy(other.value());
+	}
+
+}

@@ -1,4 +1,6 @@
 package ch.siagile.finance;
+import static java.text.MessageFormat.*;
+
 
 public class Area {
 
@@ -11,20 +13,23 @@ public class Area {
 	public static Area from(String name) {
 		return new Area(name);
 	}
-	
-	
 
 	@Override
 	public String toString() {
-		return "Area: "+name;
+		return format("area: {0}", name);
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		if(!Area.class.isInstance(obj)) return false;
-		Area area = (Area)obj;
+		if (!Area.class.isInstance(obj))
+			return false;
+		Area area = (Area) obj;
 		return area.name.equals(name);
+	}
+	
+	@Override
+	public int hashCode() {
+		return name.hashCode();
 	}
 
 }
-  

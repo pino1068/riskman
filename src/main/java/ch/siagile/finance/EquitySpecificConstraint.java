@@ -11,6 +11,6 @@ public class EquitySpecificConstraint extends Constraint {
 
 	@Override
 	protected IsSpecificEquityMatcher matcher() {
-		return new IsSpecificEquityMatcher(this.equity);
+		return new IsSpecificEquityMatcher(equity);
 	}
 }

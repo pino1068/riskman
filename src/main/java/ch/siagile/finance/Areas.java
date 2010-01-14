@@ -1,22 +1,32 @@
 package ch.siagile.finance;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
-public class Areas {
+public class Areas implements Iterable<Area> {
 
 	private Set<Area> areas = new HashSet<Area>();
 
-	public static Areas list() {
-		return Factory.repository().allAreas();
-	}
+	public static Areas defaultAreas = new Areas() {
+		{
+			add("CH");
+			add("GBP");
+			add("NORD AMERICA");
+			add("PACIFICO");
+			add("UE");
+			add("USA");
+		}
+	};
 
 	public void add(String name) {
-		this.areas.add(Area.from(name));
+		areas.add(Area.from(name));
 	}
 
 	public int size() {
-		return this.areas.size();
+		return areas.size();
 	}
 
+	@Override
+	public Iterator<Area> iterator() {
+		return areas.iterator();
+	}
 }

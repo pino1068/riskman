@@ -14,7 +14,7 @@ public class IsSpecificEquityMatcher extends BaseMatcher<Position> {
 
 	public void describeTo(Description description) {
 		description.appendText("exptected specified equity: ");
-		description.appendValue(this.equity);
+		description.appendValue(equity);
 	}
 
 	public boolean matches(Object item) {

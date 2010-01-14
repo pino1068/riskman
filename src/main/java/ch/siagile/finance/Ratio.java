@@ -1,6 +1,7 @@
 package ch.siagile.finance;
+import static java.text.MessageFormat.*;
 
-import java.math.BigDecimal;
+import java.math.*;
 
 public class Ratio {
 
@@ -41,5 +42,9 @@ public class Ratio {
 		return this.divide().compareTo(value) == 0;
 	}
 
+	@Override
+	public String toString() {
+		return format("{0}/{1}", numerator, denominator);
+	}
 }
  

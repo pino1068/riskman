@@ -1,8 +1,9 @@
 package ch.siagile.finance;
 
-import ch.siagile.finance.instrument.Equity;
+import static java.text.MessageFormat.*;
+import ch.siagile.finance.instrument.*;
 
-public class EquityPosition extends Position{
+public class EquityPosition extends Position {
 	private final Equity equity;
 	private final int quantity;
 	private final Money price;
@@ -14,17 +15,16 @@ public class EquityPosition extends Position{
 	}
 
 	public Money balance() {
-		return this.price.times(this.quantity);
+		return price.times(quantity);
 	}
 
-	public boolean isEquity(String equity) {
-		return this.equity.equals(Equity.from(equity));
+	public boolean isEquity(String other) {
+		return equity.equals(Equity.from(other));
 	}
 
 	@Override
 	public String toString() {
-		return "Equity:"+equity+" - "+quantity+ " with price:"+price +" = "+balance();
+		return format("Equity: {0} - {1} with price:{2} = {3}", equity, quantity, price, balance());
 	}
 
-	
 }
