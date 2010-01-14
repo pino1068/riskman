@@ -27,5 +27,10 @@ public class Equity {
 	public String toString() {
 		return format("{0}", name);
 	}
+	
+	@Override
+	public int hashCode() {
+		return name.hashCode();
+	}
 
 }

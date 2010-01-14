@@ -15,9 +15,8 @@ public class Positions {
 		}
 	}
 
-	@Deprecated
-	public void add(Position position) {
-		this.positions.add(position);
+	private void add(Position aPosition) {
+		positions.add(aPosition);
 	}
 
 	public Money value() {
@@ -39,7 +38,7 @@ public class Positions {
 
 	@Override
 	public String toString() {
-		return this.positions.toString();
+		return positions.toString();
 	}
 
 	public Ratio divideBy(Positions other) {

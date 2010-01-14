@@ -3,6 +3,7 @@ package ch.siagile.finance;
 import java.math.BigDecimal;
 
 public abstract class SingleCheck extends Check {
+	
 	private BigDecimal value;
 	
 	public SingleCheck(double value) {
@@ -10,7 +11,7 @@ public abstract class SingleCheck extends Check {
 	}
 	
 	public BigDecimal value(){
-		return this.value;
+		return value;
 	}
 
 }

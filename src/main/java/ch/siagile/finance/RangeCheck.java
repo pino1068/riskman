@@ -1,22 +1,19 @@
 package ch.siagile.finance;
 
-import java.math.BigDecimal;
-import java.security.InvalidParameterException;
+import static java.text.MessageFormat.*;
+
+import java.security.*;
 
 public class RangeCheck extends Check {
 
-	private final BigDecimal from;
-	private final BigDecimal to;
+	private final Check from;
+	private final Check to;
 
 	public RangeCheck(double from, double to) {
-		this.from = BigDecimal.valueOf(from);
-		this.to = BigDecimal.valueOf(to);
-		checkValues();
-	}
-
-	private void checkValues() {
-		if(this.from.compareTo(this.to) >= 0)
-			throw new InvalidParameterException("Invalid parameter values: from="+this.from.doubleValue()+" and to:"+this.to.doubleValue());
+		if (from > to)
+			throw new InvalidParameterException(format("Invalid parameter values: from={0} and to:{1}", from, to));
+		this.from = new MinCheck(from);
+		this.to = new MaxCheck(to);
 	}
 
 	public RangeCheck(String value) {
@@ -24,16 +21,16 @@ public class RangeCheck extends Check {
 	}
 
 	private static double toPercent(String limit) {
-		return Double.valueOf(limit.split("%|,")[2])/100;
+		return Double.valueOf(limit.split("%|,")[2]) / 100;
 	}
 
-	private static double fromPercent(String limit){
-		return Double.valueOf(limit.split("%")[0])/100;
+	private static double fromPercent(String limit) {
+		return Double.valueOf(limit.split("%")[0]) / 100;
 	}
 
 	@Override
 	public boolean check(Ratio value) {
-		return value.isGreaterTheOrEqualsTo(this.from) && value.isLowerOrEqualsTo(this.to) ;
+		return from.check(value) && to.check(value);
 	}
 
 }
