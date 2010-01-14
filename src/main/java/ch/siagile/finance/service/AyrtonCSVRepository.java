@@ -1,17 +1,19 @@
 package ch.siagile.finance.service;
 
-import java.io.*;
-import java.util.*;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.util.Scanner;
 
-import ch.siagile.finance.*;
+import ch.siagile.finance.Areas;
+import ch.siagile.finance.Repository;
 
-public class AyrtonCSVRepository implements Repository {
+public class AyrtonCSVRepository implements Repository{
 
 	public Areas allAreas() {
 		Areas areas = new Areas();
 		Scanner scanner = scanner();
-		scanner.nextLine();// skip header
-		while (scanner.hasNext()) {
+		scanner.nextLine();//skip header
+		while(scanner.hasNext()){
 			areas.add(extractAreaName(scanner.next()));
 		}
 		return areas;

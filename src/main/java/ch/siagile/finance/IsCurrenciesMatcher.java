@@ -1,11 +1,13 @@
 package ch.siagile.finance;
 
 import static org.hamcrest.Matchers.*;
+import org.hamcrest.BaseMatcher;
+import org.hamcrest.Description;
+import org.hamcrest.Matcher;
 
-import org.hamcrest.*;
 
 public class IsCurrenciesMatcher extends BaseMatcher<Position> {
-
+	
 	private Matcher<Position> delegate;
 	private final String[] currencies;
 
@@ -17,7 +19,7 @@ public class IsCurrenciesMatcher extends BaseMatcher<Position> {
 	private Matcher<Position>[] toMatchers(String... currencies) {
 		@SuppressWarnings("unchecked")
 		Matcher<Position>[] matchers = new Matcher[currencies.length];
-		for (int i = 0; i < currencies.length; i++) {
+		for (int i = 0; i<currencies.length; i++) {
 			matchers[i] = new IsCurrencyMatcher(currencies[i]);
 		}
 		return matchers;

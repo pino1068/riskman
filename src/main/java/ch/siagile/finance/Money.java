@@ -1,10 +1,10 @@
 package ch.siagile.finance;
 
-import java.math.*;
+import java.math.BigDecimal;
 
 public class Money {
-	private String currency;
-	private BigDecimal amount;
+	private final String currency;
+	private final BigDecimal amount;
 
 	public Money(BigDecimal amount, String currency) {
 		this.amount = amount;
@@ -21,12 +21,10 @@ public class Money {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (!Money.class.isInstance(obj))
-			return false;
-		Money other = (Money) obj;
-		if (!this.currency.equals(other.currency))
-			return false;
-		return this.amount.compareTo(other.amount) == 0;
+		if(!Money.class.isInstance(obj)) return false;
+		Money other = (Money)obj;
+		if(!this.currency.equals(other.currency)) return false;
+		return this.amount.compareTo(other.amount)==0;
 	}
 
 	public Money times(BigDecimal quantity) {
@@ -38,18 +36,18 @@ public class Money {
 	}
 
 	public Money plus(Money balance) {
-		if (this.currency != balance.currency)
+		if(this.currency != balance.currency)
 			throw new RuntimeException("adding differing currencies is not allowed");
 		return Money.from((amount.add(balance.amount)), currency);
 	}
 
 	@Override
 	public String toString() {
-		return "Money: " + this.amount + " " + this.currency;
+		return "Money: "+this.amount+" "+this.currency;
 	}
 
 	public Ratio divideBy(Money other) {
-		return Ratio.from(this, other);
+		return Ratio.from(this,other);
 	}
 
 	public boolean compatible(Money other) {
@@ -68,4 +66,7 @@ public class Money {
 		return this.currency.equals(currency);
 	}
 
+	public Money divideBy(double amount) {
+		return divideBy(BigDecimal.valueOf(amount));
+	}
 }

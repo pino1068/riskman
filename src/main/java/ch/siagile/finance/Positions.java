@@ -1,8 +1,9 @@
 package ch.siagile.finance;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
-import org.hamcrest.*;
+import org.hamcrest.Matcher;
 
 public class Positions {
 
@@ -13,14 +14,13 @@ public class Positions {
 			add(position);
 		}
 	}
-
 	@Deprecated
 	public void add(Position position) {
 		this.positions.add(position);
 	}
 
 	public Money value() {
-		Money totalAmount = Money.from(0, "CHF");
+		Money totalAmount = Money.from(0,"CHF");
 		for (Position position : positions) {
 			totalAmount = totalAmount.plus(position.balance());
 		}
@@ -30,7 +30,7 @@ public class Positions {
 	public Positions selectBasedOn(Matcher<Position> matcher) {
 		Positions result = new Positions();
 		for (Position position : positions) {
-			if (matcher.matches(position))
+			if(matcher.matches(position))
 				result.add(position);
 		}
 		return result;
@@ -41,4 +41,5 @@ public class Positions {
 		return this.positions.toString();
 	}
 
-}
+	
+} 

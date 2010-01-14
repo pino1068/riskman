@@ -1,8 +1,8 @@
 package ch.siagile.finance;
 
-import ch.siagile.finance.instrument.*;
+import ch.siagile.finance.instrument.Equity;
 
-public class EquityPosition extends Position {
+public class EquityPosition extends Position{
 	private final Equity equity;
 	private final int quantity;
 	private final Money price;
@@ -23,7 +23,8 @@ public class EquityPosition extends Position {
 
 	@Override
 	public String toString() {
-		return "Equity:" + equity + " - " + quantity + " with price:" + price + " = " + balance();
+		return "Equity:"+equity+" - "+quantity+ " with price:"+price +" = "+balance();
 	}
 
+	
 }

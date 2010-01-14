@@ -8,6 +8,6 @@ public class AccountPosition extends BasePosition {
 
 	@Override
 	public String toString() {
-		return "account with balance: " + balance();
+		return "account with balance: "+balance();
 	}
 }

@@ -2,10 +2,10 @@ package ch.siagile.finance;
 
 import static ch.siagile.finance.fixtures.Fixtures.*;
 import static org.junit.Assert.*;
+import java.math.BigDecimal;
 
-import java.math.*;
+import org.junit.Test;
 
-import org.junit.*;
 
 public class RatioTest {
 

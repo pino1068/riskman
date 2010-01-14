@@ -1,6 +1,6 @@
 package ch.siagile.finance;
-
-import java.security.*;
+ 
+import java.security.InvalidParameterException;
 
 public class CheckParser {
 
@@ -13,25 +13,24 @@ public class CheckParser {
 	public Check parse() {
 		String type = extractType(definition);
 		String value = extractValue(definition);
-		if (isMax(type))
+		if(isMax(type))
 			return new MAXCheck(percent(value));
-		if (isMin(type))
+		if(isMin(type))
 			return new MINCheck(percent(value));
-		if (isEquals(type))
+		if(isEquals(type))
 			return new EqualsCheck(percent(value));
-		if (isRange(type))
+		if(isRange(type))
 			return new RangeCheck(value);
-		throw new InvalidParameterException("invalid check definition set: " + this.definition);
+		throw new InvalidParameterException("invalid check definition set: "+this.definition);
 	}
 
 	private double percent(String limit) {
-		return Double.valueOf(extractPercent(limit)) / 100;
+		return Double.valueOf(extractPercent(limit))/100;
 	}
 
 	private static String extractPercent(String limit) {
 		return limit.split("%")[0];
 	}
-
 	/*
 	 * i.e. "range:<value>%"
 	 */
@@ -43,11 +42,15 @@ public class CheckParser {
 	 * i.e. "eq:<value>%" or "equals:<value>%" "equal:<value>%" or "=<value>%"
 	 */
 	private boolean isEquals(String type) {
-		return checkType(type, "eq") || checkType(type, "equals") || checkType(type, "equal") || checkType(type, "equalsTo") || checkType(type, "=");
+		return 	checkType(type, "eq") 		|| 
+				checkType(type, "equals") 	|| 
+				checkType(type, "equal") 	|| 
+				checkType(type, "equalsTo") 	|| 
+				checkType(type, "=");
 	}
 
 	private boolean checkType(String type, String target) {
-		return target.equalsIgnoreCase(type);
+		return target	.equalsIgnoreCase(type);
 	}
 
 	/*

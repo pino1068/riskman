@@ -1,12 +1,28 @@
 package ch.siagile.finance;
 
-public class BondPosition extends BasePosition {
+import ch.siagile.finance.instrument.Bond;
+import ch.siagile.finance.instrument.rating.Rating;
 
-	private final String name;
+public class BondPosition extends Position{
+	private Bond bond;
+	
+	//for bonds the prices is espress in % and the quantity (nominal value) in Money
+	private final Money quantity;
+	private final double price;
 
-	public BondPosition(String name, Money balance) {
-		super(balance);
-		this.name = name;
+	public BondPosition(Bond bond, Money quantity, String price) {
+		this.bond = bond;
+		this.quantity = quantity;
+		String percent = price.split("%")[0];
+		this.price = Double.valueOf(percent);
 	}
 
+	@Override
+	public Money balance() {
+		return this.quantity.times(price).divideBy(100);
+	}
+
+	public Rating rating() {
+		return bond.rating();
+	}
 }

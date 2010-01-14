@@ -4,9 +4,8 @@ public class Equity {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (!Equity.class.isInstance(obj))
-			return false;
-		Equity equity = (Equity) obj;
+		if(!Equity.class.isInstance(obj)) return false;
+		Equity equity = (Equity)obj;
 		return equity.name.equals(name);
 	}
 

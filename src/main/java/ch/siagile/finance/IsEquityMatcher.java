@@ -1,6 +1,7 @@
 package ch.siagile.finance;
 
-import org.hamcrest.*;
+import org.hamcrest.BaseMatcher;
+import org.hamcrest.Description;
 
 public class IsEquityMatcher extends BaseMatcher<Position> {
 
@@ -9,9 +10,9 @@ public class IsEquityMatcher extends BaseMatcher<Position> {
 	}
 
 	public boolean matches(Object item) {
-		if (EquityPosition.class.isInstance(item))
-			return true;
+		if(EquityPosition.class.isInstance(item)) return true;
 		return false;
 	}
+
 
 }

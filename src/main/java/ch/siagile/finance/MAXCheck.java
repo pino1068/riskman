@@ -1,7 +1,8 @@
 package ch.siagile.finance;
 
-public class MAXCheck extends SingleCheck {
 
+public class MAXCheck extends SingleCheck {
+	
 	public MAXCheck(double bigDecimal) {
 		super(bigDecimal);
 	}

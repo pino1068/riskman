@@ -15,7 +15,7 @@ public class ExchangeRate {
 	}
 
 	public Money change(Money source) {
-		if (source.compatible(from))
+		if(source.compatible(from))
 			return to.times(source.amount()).divideBy(from.amount());
 		return from.times(source.amount()).divideBy(to.amount());
 	}

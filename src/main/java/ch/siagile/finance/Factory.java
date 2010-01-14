@@ -1,6 +1,6 @@
 package ch.siagile.finance;
 
-import ch.siagile.finance.service.*;
+import ch.siagile.finance.service.AyrtonCSVRepository;
 
 public class Factory {
 

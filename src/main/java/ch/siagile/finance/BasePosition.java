@@ -1,7 +1,7 @@
 package ch.siagile.finance;
 
 public class BasePosition extends Position {
-
+	
 	private final Money balance;
 
 	public BasePosition(Money balance) {

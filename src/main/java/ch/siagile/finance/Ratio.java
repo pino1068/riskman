@@ -1,6 +1,6 @@
 package ch.siagile.finance;
 
-import java.math.*;
+import java.math.BigDecimal;
 
 public class Ratio {
 
@@ -30,13 +30,10 @@ public class Ratio {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (!Ratio.class.isInstance(obj))
-			return false;
-		Ratio other = (Ratio) obj;
-		if (!this.numerator.equals(other.numerator))
-			return false;
-		if (!this.denominator.equals(other.denominator))
-			return false;
+		if(!Ratio.class.isInstance(obj)) return false;
+		Ratio other = (Ratio)obj;
+		if(!this.numerator.equals(other.numerator)) return false;
+		if(!this.denominator.equals(other.denominator)) return false;
 		return true;
 	}
 
@@ -45,3 +42,4 @@ public class Ratio {
 	}
 
 }
+ 

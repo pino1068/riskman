@@ -1,6 +1,7 @@
 package ch.siagile.finance;
 
-import org.hamcrest.*;
+import org.hamcrest.BaseMatcher;
+import org.hamcrest.Description;
 
 public class IsCurrencyMatcher extends BaseMatcher<Position> {
 
@@ -11,9 +12,8 @@ public class IsCurrencyMatcher extends BaseMatcher<Position> {
 	}
 
 	public boolean matches(Object obj) {
-		if (!Position.class.isInstance(obj))
-			return false;
-		Position position = (Position) obj;
+		if(!Position.class.isInstance(obj)) return false;
+		Position position = (Position)obj;
 		return position.balance().compatible(this.currency);
 	}
 
