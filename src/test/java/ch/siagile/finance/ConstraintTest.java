@@ -5,6 +5,8 @@ import static org.junit.Assert.*;
 
 import org.junit.*;
 
+import ch.siagile.finance.instrument.*;
+
 public class ConstraintTest {
 
 	private Constraint constraint;
@@ -76,16 +78,18 @@ public class ConstraintTest {
 		assertFalse(constraint.checkLimitOn(positions));
 	}
 
-	// @Test
-	// public void shouldUSDInCHFMax30PercentOfPortfolio() {
-	// Portfolio positions = new Portfolio();
-	// positions.add( account("pluto", CHF(1)));
-	// positions.add( account("dollar account", USD(CHF(290))));
-	// positions.add( UBS(1));
-	// positions.add( IBM(10));
-	// Constraint constraint = new CurrencyConstraint("USD","min", 0.01);
-	//		
-	// assertFalse(constraint.checkLimitOn(positions));
-	// }
+	@Test
+	public void shouldCheckOnlyValidAreaOnPositions() {
+		positions = new Positions(){
+			{
+				add(account("pluto", CHF(10)));
+				add(UBS(10));
+				add(bond(Bond.from("GECC", "UE"), CHF(1000),"100%"));
+			}
+		};
+		Constraint constraint = new AreaConstraint("UE", "min:20%");
+
+		assertTrue(constraint.checkLimitOn(positions));
+	}
 
 }

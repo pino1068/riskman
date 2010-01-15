@@ -15,6 +15,10 @@ public class AreaMatcher<T> extends BaseMatcher<T> {
 	}
 
 	public boolean matches(Object obj) {
+		if (BondPosition.class.isInstance(obj)) {
+			BondPosition position = (BondPosition) obj;
+			return position.isLocated(area);
+		}
 		if (!Bond.class.isInstance(obj))
 			return false;
 		Bond bond = (Bond) obj;

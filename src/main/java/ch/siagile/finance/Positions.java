@@ -14,7 +14,7 @@ public class Positions {
 		}
 	}
 
-	private void add(Position aPosition) {
+	protected void add(Position aPosition) {
 		positions.add(aPosition);
 	}
 
