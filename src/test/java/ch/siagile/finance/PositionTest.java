@@ -44,7 +44,7 @@ public class PositionTest {
 	}
 
 	private Bond interAmericaDevBankBond() {
-		return Bond.from("Inter American Dev. Bank",MoodyRatings.find("AAA"));
+		return Bond.from("Inter American Dev. Bank",MoodyRatings.find("AAA"), Area.from("UE"));
 	}
 	
 	@Test

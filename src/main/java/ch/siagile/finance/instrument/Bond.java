@@ -9,16 +9,12 @@ public class Bond {
 	private final Rating rating;
 	private final Area area;
 
-	public static Bond from(String name, Rating rating) {
-		return new Bond(name, rating, Area.from(null));
+	public static Bond from(String name, Rating rating, Area anArea) {
+		return new Bond(name, rating, anArea);
 	}
 
-	public static Bond from(String name) {
-		return new Bond(name, Rating.NotRated(), Area.from(null));
-	}
-
-	public Bond(String name, Area area) {
-		this(name, Rating.NotRated(), area);
+	public static Bond from(String name, String area) {
+		return new Bond(name, Rating.NotRated(), Area.from(area));
 	}
 
 	public Bond(String name, Rating rating, Area area) {
@@ -42,10 +38,6 @@ public class Bond {
 	@Override
 	public int hashCode() {
 		return name.hashCode();
-	}
-
-	public static Bond from(String name, String area) {
-		return new Bond(name, Area.from(area));
 	}
 
 	public boolean isLocated(String someAreas) {
