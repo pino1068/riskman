@@ -1,6 +1,5 @@
 package ch.siagile.finance;
 
-import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.*;
 
 import org.junit.*;
@@ -15,11 +14,4 @@ public class BondTest {
 		assertTrue(bond.isLocated("UE"));
 	}
 	
-	@SuppressWarnings("unchecked")
-	@Test public void shouldMatchAnArea() {
-		Bond bond = Bond.from("EIB 02", "UE");
-		
-		assertThat(bond, is(new AreaMatcher("UE")));
-	}
-
 }

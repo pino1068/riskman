@@ -12,7 +12,7 @@ public class Bond {
 	public static Bond from(String name, Rating rating) {
 		return new Bond(name, rating, Area.from(null));
 	}
-	
+
 	public static Bond from(String name) {
 		return new Bond(name, Rating.NotRated(), Area.from(null));
 	}
@@ -33,22 +33,27 @@ public class Bond {
 
 	@Override
 	public boolean equals(Object obj) {
-		if(!Bond.class.isInstance(obj)) return false;
-		Bond bond = (Bond)obj;
+		if (!Bond.class.isInstance(obj))
+			return false;
+		Bond bond = (Bond) obj;
 		return bond.name.equals(name);
 	}
-	
+
 	@Override
 	public int hashCode() {
 		return name.hashCode();
 	}
 
 	public static Bond from(String name, String area) {
-		return new Bond(name,Area.from(area));
+		return new Bond(name, Area.from(area));
 	}
 
-	public boolean isLocated(String anArea) {
-		return Area.from(anArea).equals(area);
+	public boolean isLocated(String someAreas) {
+		for (String anArea : someAreas.split(",")) {
+			if (Area.from(anArea).equals(area))
+				return true;
+		}
+		return false;
 	}
 
 }
