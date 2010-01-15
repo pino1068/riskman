@@ -12,7 +12,7 @@ public class CheckTest {
 
 	@Test
 	public void shouldEquityContaint() {
-		Check check = new MaxCheck(0.5);
+		Check check = new MaxCheck(1.0 / 2.0);
 
 		assertTrue(check.check(percentRatio(10)));
 		assertTrue(check.check(percentRatio(20)));
@@ -32,7 +32,7 @@ public class CheckTest {
 		assertRatio(check, 20);
 		assertNotRatio(check, 30);
 	}
-	
+
 	@Test
 	public void shouldEqBeEqualsCheck() {
 		assertThat(Check.from("eq: 20%"), is(instanceOf(EqualsCheck.class)));
@@ -65,7 +65,7 @@ public class CheckTest {
 	@Test
 	public void shouldEquals20Percent() {
 		Check check = Check.from("equals: 20%");
-		
+
 		assertNotRatio(check, 10);
 		assertRatio(check, 20);
 		assertNotRatio(check, 30);
@@ -106,7 +106,7 @@ public class CheckTest {
 	@Test
 	public void shouldCreateMin20Percent() {
 		Check check = Check.from("min: 20%");
-		
+
 		assertRatio(check, 30);
 		assertRatio(check, 20);
 		assertNotRatio(check, 10);
