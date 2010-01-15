@@ -36,8 +36,8 @@ public class ConstraintTest {
 
 	@Test
 	public void shouldEquityConstraintMinMatchOnPortofolioWithMoreEquity() {
-		positions = new Positions(account("pluto", CHF(1000)), IBM(10));
 		constraint = new EquityConstraint("min:50%");
+		positions = new Positions(account("pluto", CHF(1000)), IBM(10));
 
 		assertTrue(constraint.checkLimitOn(positions));
 	}

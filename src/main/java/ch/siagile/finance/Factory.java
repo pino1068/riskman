@@ -1,6 +1,6 @@
 package ch.siagile.finance;
 
-import ch.siagile.finance.service.CsvRepository;
+import ch.siagile.finance.service.*;
 
 public class Factory {
 

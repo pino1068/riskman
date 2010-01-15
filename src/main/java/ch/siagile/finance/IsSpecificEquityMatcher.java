@@ -1,12 +1,11 @@
 package ch.siagile.finance;
 
-import org.hamcrest.BaseMatcher;
-import org.hamcrest.Description;
+import org.hamcrest.*;
 
-public class IsSpecificEquityMatcher extends BaseMatcher<Position> {
+public class IsSpecificEquityMatcher<T> extends BaseMatcher<T> {
 
 	private final String equity;
-	private IsEquityMatcher equityMatcher = new IsEquityMatcher();
+	private IsEquityMatcher<T> equityMatcher = new IsEquityMatcher<T>();
 
 	public IsSpecificEquityMatcher(String equity) {
 		this.equity = equity;

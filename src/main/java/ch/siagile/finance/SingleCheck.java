@@ -1,6 +1,6 @@
 package ch.siagile.finance;
 
-import java.math.BigDecimal;
+import java.math.*;
 
 public abstract class SingleCheck extends Check {
 

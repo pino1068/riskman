@@ -1,6 +1,6 @@
 package ch.siagile.finance;
  
-import java.security.InvalidParameterException;
+import java.security.*;
 
 public class CheckParser {
 

@@ -1,13 +1,11 @@
 package ch.siagile.finance;
 
-import static ch.siagile.finance.fixtures.Fixtures.CHF;
-import static ch.siagile.finance.fixtures.Fixtures.IBM;
-import static ch.siagile.finance.fixtures.Fixtures.account;
-import static org.hamcrest.MatcherAssert.assertThat;
+import static ch.siagile.finance.fixtures.Fixtures.*;
+import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
 
-import org.hamcrest.Matcher;
-import org.junit.Test;
+import org.hamcrest.*;
+import org.junit.*;
 
 
 public class PositionMatcherTestCase {

@@ -1,7 +1,7 @@
 package ch.siagile.finance.instrument;
 
-import ch.siagile.finance.Area;
-import ch.siagile.finance.instrument.rating.Rating;
+import ch.siagile.finance.*;
+import ch.siagile.finance.instrument.rating.*;
 
 public class Bond {
 

@@ -1,13 +1,12 @@
 package ch.siagile.finance;
 
 import static ch.siagile.finance.fixtures.Fixtures.*;
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
-import org.junit.Test;
+import org.junit.*;
 
-import ch.siagile.finance.instrument.Bond;
-import ch.siagile.finance.instrument.Equity;
-import ch.siagile.finance.instrument.rating.MoodyRatings;
+import ch.siagile.finance.instrument.*;
+import ch.siagile.finance.instrument.rating.*;
 
 
 public class PositionTest {

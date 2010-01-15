@@ -1,12 +1,7 @@
 package ch.siagile.finance.fixtures;
 
-import ch.siagile.finance.AccountPosition;
-import ch.siagile.finance.BondPosition;
-import ch.siagile.finance.EquityPosition;
-import ch.siagile.finance.Money;
-import ch.siagile.finance.Position;
-import ch.siagile.finance.instrument.Bond;
-import ch.siagile.finance.instrument.Equity;
+import ch.siagile.finance.*;
+import ch.siagile.finance.instrument.*;
 
 public class Fixtures {
 	public static final int IBM_PRICE = 100;

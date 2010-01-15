@@ -7,7 +7,7 @@ public class EqualsCheck extends SingleCheck {
 	}
 
 	public boolean check(Ratio value) {
-		return value.isEqualsTo(this.value());
+		return value.isEqualsTo(value());
 	}
 
 

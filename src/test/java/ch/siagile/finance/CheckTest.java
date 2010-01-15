@@ -12,11 +12,11 @@ public class CheckTest {
 
 	@Test
 	public void shouldEquityContaint() {
-		Check check = new MaxCheck(0.5);
+		check = new MaxCheck(1.0 / 2.0);
 
-		assertTrue(check.check(percentRatio(10)));
-		assertTrue(check.check(percentRatio(20)));
-		assertFalse(check.check(percentRatio(51)));
+		assertRatio(check, 10);
+		assertRatio(check, 20);
+		assertNotRatio(check, 51);
 	}
 
 	@Test
@@ -26,13 +26,13 @@ public class CheckTest {
 
 	@Test
 	public void shouldCreateMax20Percent() {
-		Check check = Check.from("max: 20%");
+		check = Check.from("max: 20%");
 
 		assertRatio(check, 10);
 		assertRatio(check, 20);
 		assertNotRatio(check, 30);
 	}
-	
+
 	@Test
 	public void shouldEqBeEqualsCheck() {
 		assertThat(Check.from("eq: 20%"), is(instanceOf(EqualsCheck.class)));
@@ -45,7 +45,7 @@ public class CheckTest {
 
 	@Test
 	public void shouldEq20Percent() {
-		Check check = Check.from("eq: 20%");
+		check = Check.from("eq: 20%");
 
 		assertNotRatio(check, 10);
 		assertRatio(check, 20);
@@ -64,8 +64,8 @@ public class CheckTest {
 
 	@Test
 	public void shouldEquals20Percent() {
-		Check check = Check.from("equals: 20%");
-		
+		check = Check.from("equals: 20%");
+
 		assertNotRatio(check, 10);
 		assertRatio(check, 20);
 		assertNotRatio(check, 30);
@@ -73,7 +73,7 @@ public class CheckTest {
 
 	@Test
 	public void shouldEqual20Percent() {
-		Check check = Check.from("equal: 20%");
+		check = Check.from("equal: 20%");
 
 		assertNotRatio(check, 10);
 		assertRatio(check, 20);
@@ -82,7 +82,7 @@ public class CheckTest {
 
 	@Test
 	public void shouldEqualsTo20Percent() {
-		Check check = Check.from("equalsTo: 20%");
+		check = Check.from("equalsTo: 20%");
 
 		assertNotRatio(check, 10);
 		assertRatio(check, 20);
@@ -91,7 +91,7 @@ public class CheckTest {
 
 	@Test
 	public void shouldEqualsSymbol20Percent() {
-		Check check = Check.from("=: 20%");
+		check = Check.from("=: 20%");
 
 		assertNotRatio(check, 10);
 		assertRatio(check, 20);
@@ -105,15 +105,15 @@ public class CheckTest {
 
 	@Test
 	public void shouldCreateMin20Percent() {
-		Check check = Check.from("min: 20%");
-		
+		check = Check.from("min: 20%");
+
 		assertRatio(check, 30);
 		assertRatio(check, 20);
 		assertNotRatio(check, 10);
 	}
 
-	private void assertNotRatio(Check check, int percent3) {
-		assertFalse(check.check(percentRatio(percent3)));
+	private void assertNotRatio(Check check, int percent) {
+		assertFalse(check.check(percentRatio(percent)));
 	}
 
 	private void assertRatio(Check check, int percent) {
@@ -127,7 +127,7 @@ public class CheckTest {
 
 	@Test
 	public void shouldCreateRangeFrom20To30Percent() {
-		Check check = Check.from("range: 20%, 29.997%");
+		check = Check.from("range: 20%, 29.997%");
 
 		truePercent(check, 25);
 		truePercent(check, 20);

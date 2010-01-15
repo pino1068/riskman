@@ -1,6 +1,6 @@
 package ch.siagile.finance;
 
-import org.hamcrest.Matcher;
+import org.hamcrest.*;
 
 public class CheckLimitOn {
 

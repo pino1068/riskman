@@ -1,10 +1,9 @@
 package ch.siagile.finance;
 
-import static ch.siagile.finance.fixtures.Fixtures.CHF;
-import static ch.siagile.finance.fixtures.Fixtures.USD;
-import static org.junit.Assert.assertEquals;
+import static ch.siagile.finance.fixtures.Fixtures.*;
+import static org.junit.Assert.*;
 
-import org.junit.Test;
+import org.junit.*;
 
 
 public class MoneyTest {

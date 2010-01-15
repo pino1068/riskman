@@ -1,9 +1,8 @@
 package ch.siagile.finance;
 
-import org.hamcrest.BaseMatcher;
-import org.hamcrest.Description;
+import org.hamcrest.*;
 
-public class IsEquityMatcher extends BaseMatcher<Position> {
+public class IsEquityMatcher<T> extends BaseMatcher<T> {
 
 	public void describeTo(Description description) {
 		description.appendText("matches when the position is an entity position");

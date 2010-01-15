@@ -1,9 +1,8 @@
 package ch.siagile.finance;
 
-import org.hamcrest.BaseMatcher;
-import org.hamcrest.Description;
+import org.hamcrest.*;
 
-public class IsCurrencyMatcher extends BaseMatcher<Position> {
+public class IsCurrencyMatcher<T> extends BaseMatcher<T> {
 
 	private String currency;
 

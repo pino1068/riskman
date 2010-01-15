@@ -1,12 +1,13 @@
 package ch.siagile.finance;
 
-import ch.siagile.finance.instrument.Bond;
-import ch.siagile.finance.instrument.rating.Rating;
+import ch.siagile.finance.instrument.*;
+import ch.siagile.finance.instrument.rating.*;
 
-public class BondPosition extends Position{
+public class BondPosition extends Position {
 	private Bond bond;
-	
-	//for bonds the prices is espress in % and the quantity (nominal value) in Money
+
+	// for bonds the prices is espress in % and the quantity (nominal value) in
+	// Money
 	private final Money quantity;
 	private final double price;
 
