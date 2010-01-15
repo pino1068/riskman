@@ -12,7 +12,7 @@ public class IsCurrenciesMatcher<T> extends BaseMatcher<T> {
 		@SuppressWarnings("unchecked")
 		Matcher<Position>[] matchers = new Matcher[currencies.length];
 		for (int i = 0; i < currencies.length; i++) {
-			matchers[i] = new IsCurrencyMatcher(currencies[i]);
+			matchers[i] = new IsCurrencyMatcher<Position>(currencies[i]);
 		}
 		return matchers;
 	}

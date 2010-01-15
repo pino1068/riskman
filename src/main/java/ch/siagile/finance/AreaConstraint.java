@@ -13,7 +13,7 @@ public class AreaConstraint extends Constraint {
 
 	@Override
 	protected Matcher<Position> matcher() {
-		return new IsLocatedMatcher(area);
+		return new IsLocatedMatcher<Position>(area);
 	}
 
 }

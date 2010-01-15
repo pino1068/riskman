@@ -24,6 +24,7 @@ public class Area {
 		if (!Area.class.isInstance(obj))
 			return false;
 		Area area = (Area) obj;
+		if(area.name==null) return false;
 		return area.name.equals(name);
 	}
 	

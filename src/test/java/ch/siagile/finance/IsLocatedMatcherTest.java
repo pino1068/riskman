@@ -39,4 +39,11 @@ public class IsLocatedMatcherTest {
 
 		assertThat(position, is(not(located("USA"))));
 	}
+	
+	@Test public void shouldNotMatchBondAreaNull() {
+		BondPosition position = new BondPosition(Bond.from("name", null), Money.from(100, "CHF"), "100%");
+
+		assertThat(position, is(not(located("USA"))));
+	}
+	
 }

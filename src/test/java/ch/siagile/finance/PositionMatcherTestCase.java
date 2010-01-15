@@ -12,7 +12,7 @@ public class PositionMatcherTestCase {
 	
 	@Test
 	public void shouldMatchOneGeneralEquityPosition() {
-		Matcher<Position> isEquity = new IsEquityMatcher();
+		Matcher<Position> isEquity = new IsEquityMatcher<Position>();
 		Position position = IBM(5);
 		
 		assertThat(position, isEquity);
@@ -20,7 +20,7 @@ public class PositionMatcherTestCase {
 
 	@Test
 	public void shouldMatchOneSpecificEquityPosition() {
-		Matcher<Position> isIBMEquity = new IsSpecificEquityMatcher("IBM");
+		Matcher<Position> isIBMEquity = new IsSpecificEquityMatcher<Position>("IBM");
 		Position position = IBM(5);
 		
 		
@@ -29,7 +29,7 @@ public class PositionMatcherTestCase {
 
 	@Test
 	public void shouldNotMatchOneAccountPosition() {
-		Matcher<Position> isIBMEquity = new IsSpecificEquityMatcher("IBM");
+		Matcher<Position> isIBMEquity = new IsSpecificEquityMatcher<Position>("IBM");
 		Position position = account("adsf",CHF(300));
 		
 		assertThat(position, not(isIBMEquity));
@@ -37,7 +37,7 @@ public class PositionMatcherTestCase {
 
 	@Test
 	public void shouldNotMatchOneOtherEquityPosition() {
-		Matcher<Position> isOracleEquity = new IsSpecificEquityMatcher("Oracle");
+		Matcher<Position> isOracleEquity = new IsSpecificEquityMatcher<Position>("Oracle");
 		Position position = IBM(300);
 		
 		assertThat(position, not(isOracleEquity));
@@ -45,7 +45,7 @@ public class PositionMatcherTestCase {
 
 	@Test
 	public void shouldMatchOnePositionInCHF() {
-		Matcher<Position> inCHF = new IsCurrencyMatcher("CHF");
+		Matcher<Position> inCHF = new IsCurrencyMatcher<Position>("CHF");
 		Position position = IBM(5);
 		
 		assertThat(position, inCHF);
@@ -53,7 +53,7 @@ public class PositionMatcherTestCase {
 
 	@Test
 	public void shouldNotMatchOnePositionInUSD() {
-		Matcher<Position> inUSD = new IsCurrencyMatcher("USD");
+		Matcher<Position> inUSD = new IsCurrencyMatcher<Position>("USD");
 		Position position = IBM(5);
 		
 		assertThat(position, not(inUSD));
@@ -61,7 +61,7 @@ public class PositionMatcherTestCase {
 
 	@Test
 	public void shouldMatchOnePositionInUSDOrCHF() {
-		Matcher<Position> USDorCHF = new IsCurrenciesMatcher("USD", "CHF");
+		Matcher<Position> USDorCHF = new IsCurrenciesMatcher<Position>("USD", "CHF");
 		Position position = IBM(5);
 		
 		assertThat(position, USDorCHF);
@@ -69,7 +69,7 @@ public class PositionMatcherTestCase {
 
 	@Test
 	public void shouldMatchOnePositionInUSDOrCHFOrEUR() {
-		Matcher<Position> USDorCHForEUR = new IsCurrenciesMatcher("USD", "CHF", "EUR");
+		Matcher<Position> USDorCHForEUR = new IsCurrenciesMatcher<Position>("USD", "CHF", "EUR");
 		Position position = IBM(5);
 		
 		assertThat(position, USDorCHForEUR);
@@ -77,7 +77,7 @@ public class PositionMatcherTestCase {
 	
 	@Test
 	public void shouldNotMatchOnePositionInUSDOrEUR() {
-		Matcher<Position> USDorEUR = new IsCurrenciesMatcher("USD", "EUR");
+		Matcher<Position> USDorEUR = new IsCurrenciesMatcher<Position>("USD", "EUR");
 		Position position = IBM(5);
 		
 		assertThat(position, not(USDorEUR));
@@ -109,10 +109,10 @@ public class PositionMatcherTestCase {
 	}
 
 	private Matcher<Position> equity() {
-		return new IsEquityMatcher();
+		return new IsEquityMatcher<Position>();
 	}
 
 	private Matcher<Position> currency(String currency) {
-		return new IsCurrencyMatcher(currency);
+		return new IsCurrencyMatcher<Position>(currency);
 	}
 }
