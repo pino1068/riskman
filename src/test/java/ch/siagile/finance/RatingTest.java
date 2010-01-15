@@ -14,17 +14,31 @@ public class RatingTest {
 	}
 
 	private MoodyRating rating(String value) {
-		return MoodyRating.from(value);
+		return MoodyRatings.find(value);
 	}
-	
-	@Test public void shouldAaaIsGreaterThenAa1() {
-		assertThat(rating("Aaa"), is(greaterThan(rating("Aa1"))));
+
+	private void should(String string) {
+		if(string.contains("<")){
+			String[] split = string.split(" < ");
+			assertThat(rating(split[0]), is(lessThan(rating(split[1]))));
+		}
+		else{
+			String[] split = string.split(" > ");
+			assertThat(rating(split[0]), is(greaterThan(rating(split[1]))));
+		}
 	}
-	
-	@Ignore
-	@Test public void shouldAa1IsLowerThenAaa() {
-		assertThat(rating("Aaa"), is(lessThan(rating("Aa1"))));
+
+	@Test public void shouldB2IsLowerThenB1() {
+		should("Aaa > Aa1");
+		should("Aa1 < Aaa");
+		should("A2 < Aaa");
+		should("A2 < A1");
+		should("B2 < A1");
+		should("B2 < B1");
+		should("B1 > B2");
+		should("Baa1 > Ca");
+		should("A2 > C");
+		should("C < A2");
 	}
-	
 	
 }
