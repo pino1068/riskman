@@ -25,4 +25,8 @@ public class BondPosition extends Position{
 	public Rating rating() {
 		return bond.rating();
 	}
+
+	public boolean isLocated(String anArea) {
+		return bond.isLocated(anArea);
+	}
 }
