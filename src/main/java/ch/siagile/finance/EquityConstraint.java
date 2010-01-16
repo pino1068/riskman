@@ -2,13 +2,13 @@ package ch.siagile.finance;
 
 public class EquityConstraint extends Constraint {
 
-	public EquityConstraint(String limit) {
-		super(Check.from(limit));
+	public EquityConstraint(String check) {
+		super(Check.from(check));
 	}
 
 	@Override
-	protected IsEquityMatcher matcher() {
-		return new IsEquityMatcher();
+	protected IsEquityMatcher<Position> matcher() {
+		return new IsEquityMatcher<Position>();
 	}
 
 }

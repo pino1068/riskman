@@ -28,6 +28,6 @@ public class BondPosition extends Position {
 	}
 
 	public boolean isLocated(String anArea) {
-		return bond.isLocated(anArea);
+		return bond.isLocatedIn(anArea);
 	}
 }

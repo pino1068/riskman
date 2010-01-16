@@ -12,6 +12,6 @@ public class AccountPosition extends BasePosition {
 
 	@Override
 	public String toString() {
-		return format("account with balance: {1}", balance());
+		return format("account with {1}", super.toString());
 	}
 }

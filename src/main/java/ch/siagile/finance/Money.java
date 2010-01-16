@@ -78,4 +78,8 @@ public class Money {
 	public int hashCode() {
 		return 13 * amount.hashCode() + 17 * currency.hashCode();
 	}
+
+	public static Money CHF(double amount) {
+		return Money.from(amount, "CHF");
+	}
 }

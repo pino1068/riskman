@@ -1,5 +1,7 @@
 package ch.siagile.finance;
 
+import static java.text.MessageFormat.*;
+
 public class BasePosition extends Position {
 	
 	private final Money balance;
@@ -11,6 +13,11 @@ public class BasePosition extends Position {
 	@Override
 	public Money balance() {
 		return balance;
+	}
+
+	@Override
+	public String toString() {
+		return format("with {1}", balance);
 	}
 
 }

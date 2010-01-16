@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 
 import org.junit.*;
 
-import ch.siagile.finance.instrument.*;
+import ch.siagile.finance.fixtures.*;
 
 public class ConstraintTest {
 
@@ -84,12 +84,11 @@ public class ConstraintTest {
 			{
 				add(account("pluto", CHF(10)));
 				add(UBS(10));
-				add(bond(Bond.from("GECC", "UE"), CHF(1000),"100%"));
+				add(bondPosition(Fixtures.bond("GECC", "UE"), CHF(1000),"100%"));
 			}
 		};
 		Constraint constraint = new AreaConstraint("UE", "min:20%");
 
 		assertTrue(constraint.checkLimitOn(positions));
 	}
-
 }

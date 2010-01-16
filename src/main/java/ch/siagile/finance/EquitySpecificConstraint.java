@@ -10,7 +10,7 @@ public class EquitySpecificConstraint extends Constraint {
 	}
 
 	@Override
-	protected IsSpecificEquityMatcher matcher() {
-		return new IsSpecificEquityMatcher(equity);
+	protected IsSpecificEquityMatcher<Position> matcher() {
+		return new IsSpecificEquityMatcher<Position>(equity);
 	}
 }
