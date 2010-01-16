@@ -31,8 +31,7 @@ public class PositionTest {
 
 		Positions positions = new Positions(account, equity);
 
-		Money totalAmount = account.sumBalance(equity);
-		assertEquals(totalAmount, positions.value());
+		assertEquals(account.sumBalance(equity), positions.value());
 	}
 
 	@Test
@@ -59,10 +58,10 @@ public class PositionTest {
 	}
 
 	@Test
-	public void shouldBondPositionHaveRating() {
+	public void shouldBondPositionHasRating() {
 		BondPosition bondPosition = bondPosition(interAmericaDevBankBond(),
 				CHF(5000), "102 %");
 
-		assertEquals(bondPosition.rating(), MoodyRatings.find("AAA"));
+		assertEquals(MoodyRatings.find("AAA"), bondPosition.rating());
 	}
 }
