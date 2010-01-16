@@ -41,7 +41,8 @@ public class Money {
 
 	public Money plus(Money other) {
 		if (currency != other.currency)
-			throw new RuntimeException("adding differing currencies is not allowed");
+			throw new RuntimeException(
+					"adding differing currencies is not allowed");
 		return Money.from((amount.add(other.amount)), currency);
 	}
 
@@ -81,5 +82,13 @@ public class Money {
 
 	public static Money CHF(double amount) {
 		return Money.from(amount, "CHF");
+	}
+
+	public Money times(Percent percent) {
+		return Money.from(percent.times(amount), currency);
+	}
+
+	public Money plus(Percent percent) {
+		return plus(times(percent));
 	}
 }

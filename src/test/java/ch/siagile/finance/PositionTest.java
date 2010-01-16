@@ -1,6 +1,7 @@
 package ch.siagile.finance;
 
 import static ch.siagile.finance.fixtures.Fixtures.*;
+
 import static org.junit.Assert.*;
 
 import org.junit.*;

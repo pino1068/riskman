@@ -17,7 +17,7 @@ public class BasePosition extends Position {
 
 	@Override
 	public String toString() {
-		return format("with {1}", balance);
+		return format("position with {1}", balance);
 	}
 
 }

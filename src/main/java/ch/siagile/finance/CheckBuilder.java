@@ -26,12 +26,8 @@ public class CheckBuilder {
 		throw new InvalidParameterException(format("invalid check definition set: {0}",this.definition));
 	}
 
-	private double percent(String limit) {
-		return Double.valueOf(extractPercent(limit))/100;
-	}
-
-	private static String extractPercent(String limit) {
-		return limit.split("%")[0];
+	private Percent percent(String percent) {
+		return Percent.from(percent);
 	}
 	/*
 	 * i.e. "range:<value>%"

@@ -9,8 +9,8 @@ public class RangeCheck extends Check {
 	private final Check from;
 	private final Check to;
 
-	public RangeCheck(double from, double to) {
-		if (from > to)
+	public RangeCheck(Percent from, Percent to) {
+		if (from.isGreaterThen(to))
 			throw new InvalidParameterException(format("Invalid parameter values: from={0} and to:{1}", from, to));
 		this.from = new MinCheck(from);
 		this.to = new MaxCheck(to);
@@ -20,12 +20,12 @@ public class RangeCheck extends Check {
 		this(fromPercent(value), toPercent(value));
 	}
 
-	private static double toPercent(String limit) {
-		return Double.valueOf(limit.split("%|,")[2]) / 100;
+	private static Percent toPercent(String limit) {
+		return Percent.from(limit.split(",")[1]);
 	}
 
-	private static double fromPercent(String limit) {
-		return Double.valueOf(limit.split("%")[0]) / 100;
+	private static Percent fromPercent(String limit) {
+		return Percent.from(limit.split(",")[0]);
 	}
 
 	@Override

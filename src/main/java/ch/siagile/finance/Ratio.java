@@ -4,7 +4,6 @@ import static java.text.MessageFormat.*;
 import java.math.*;
 
 public class Ratio {
-
 	private final Money numerator;
 	private final Money denominator;
 
@@ -38,7 +37,7 @@ public class Ratio {
 		return true;
 	}
 
-	public boolean isEqualsTo(BigDecimal aValue) {
+	public boolean isEqualTo(BigDecimal aValue) {
 		return divide().compareTo(aValue) == 0;
 	}
 
