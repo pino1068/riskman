@@ -44,7 +44,7 @@ public class PositionTest {
 	}
 
 	private Bond interAmericaDevBankBond() {
-		return Bond.from("Inter American Dev. Bank",MoodyRatings.find("AAA"), Area.from("UE"));
+		return Bond.from("Inter American Dev. Bank",MoodyRatings.find("Aaa"), Area.from("UE"));
 	}
 	
 	@Test
@@ -61,6 +61,6 @@ public class PositionTest {
 	public void shouldBondPositionHaveRating() {
 		BondPosition bondPosition = bond(interAmericaDevBankBond(), CHF(5000), "102 %");
 		
-		assertEquals(bondPosition.rating(), MoodyRatings.find("AAA"));
+		assertEquals(bondPosition.rating(), MoodyRatings.find("Aaa"));
 	}
 }
