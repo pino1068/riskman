@@ -50,4 +50,5 @@ public class MinMaxRatingTest {
 	public void shouldA1IsInRangeCAndAAA() {
 		assertThat(A1, is(ratingIn(C, AAA)));
 	}
+	
 }

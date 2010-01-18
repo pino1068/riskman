@@ -25,7 +25,9 @@ public class IsInMatcher<T> extends BaseMatcher<T> {
 
 	@Override
 	public void describeTo(Description description) {
+		description.appendText("in range from:");
 		description.appendValue(from);
+		description.appendText("to:");
 		description.appendValue(to);
 	}
 
@@ -38,6 +40,9 @@ public class IsInMatcher<T> extends BaseMatcher<T> {
 	}
 
 	private Rating ratingOf(Object item) {
+		if (BondPosition.class.isInstance(item))
+			return ((BondPosition) item).rating();
+		
 		if (MoodyRating.class.isInstance(item))
 			return (Rating) item;
 

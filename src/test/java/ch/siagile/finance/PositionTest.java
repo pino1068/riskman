@@ -1,5 +1,6 @@
 package ch.siagile.finance;
 
+import static ch.siagile.finance.IsInMatcher.*;
 import static ch.siagile.finance.fixtures.Fixtures.*;
 import static org.junit.Assert.*;
 
@@ -7,7 +8,7 @@ import org.junit.*;
 
 import ch.siagile.finance.instrument.*;
 import ch.siagile.finance.instrument.rating.*;
-
+import static org.hamcrest.Matchers.*;
 
 public class PositionTest {
 	@Test
@@ -62,5 +63,15 @@ public class PositionTest {
 		BondPosition bondPosition = bond(interAmericaDevBankBond(), CHF(5000), "102 %");
 		
 		assertEquals(bondPosition.rating(), MoodyRatings.find("Aaa"));
+	}
+
+	@Test
+	public void shouldMatchBondPositingInRatings() {
+		BondPosition bondPosition = bond(interAmericaDevBankBond(), CHF(5000), "102 %");
+		
+		MoodyRating C = MoodyRatings.find("C");
+		MoodyRating AAA = MoodyRatings.find("Aaa");
+		
+		assertThat(bondPosition, is(ratingIn(C, AAA)));
 	}
 }

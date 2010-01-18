@@ -33,6 +33,6 @@ public class Rating {
 
 	@Override
 	public String toString() {
-		return format("Moody Rating value:{0}", value);
+		return format("rating:{0}", value);
 	}
 }
