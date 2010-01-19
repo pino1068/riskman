@@ -1,14 +1,14 @@
 package ch.siagile.finance;
 
-public class MinCheck extends SingleCheck {
+public class MINCheck extends SingleCheck {
 
-	public MinCheck(Percent value) {
+	public MINCheck(double value) {
 		super(value);
 	}
 
 	@Override
-	public boolean check(Ratio aRatio) {
-		return aRatio.isGreaterTheOrEqualsTo(value());
+	public boolean check(Ratio value) {
+		return value.isGreaterTheOrEqualsTo(this.value());
 	}
 
 }

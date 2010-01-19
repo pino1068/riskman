@@ -1,14 +1,14 @@
 package ch.siagile.finance;
 
 
-public class MaxCheck extends SingleCheck {
+public class MAXCheck extends SingleCheck {
 	
-	public MaxCheck(Percent percent) {
-		super(percent);
+	public MAXCheck(double bigDecimal) {
+		super(bigDecimal);
 	}
 
-	public boolean check(Ratio aRatio) {
-		return aRatio.isLowerOrEqualsTo(value());
+	public boolean check(Ratio value) {
+		return value.isLowerOrEqualsTo(this.value());
 	}
 
 }
