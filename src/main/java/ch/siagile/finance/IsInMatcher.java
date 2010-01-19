@@ -23,7 +23,6 @@ public class IsInMatcher<T> extends BaseMatcher<T> {
 		this.to = to;
 	}
 
-	@Override
 	public void describeTo(Description description) {
 		description.appendText("in range from:");
 		description.appendValue(from);
@@ -31,7 +30,6 @@ public class IsInMatcher<T> extends BaseMatcher<T> {
 		description.appendValue(to);
 	}
 
-	@Override
 	public boolean matches(Object item) {
 		Rating rating = ratingOf(item);
 		if (null == rating)

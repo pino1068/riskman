@@ -2,12 +2,12 @@ package ch.siagile.finance.instrument;
 
 import ch.siagile.finance.*;
 import ch.siagile.finance.instrument.rating.*;
+import ch.siagile.finance.location.*;
 
 public class Bond {
 
 	private final String name;
 	private final Rating rating;
-	private final Area area;
 
 	public static Bond from(String name, Rating rating, Area anArea) {
 		return new Bond(name, rating, anArea);
@@ -20,7 +20,7 @@ public class Bond {
 	public Bond(String name, Rating rating, Area area) {
 		this.name = name;
 		this.rating = rating;
-		this.area = area;
+		Location.from(this).locateIn(area);
 	}
 
 	public Rating rating() {
@@ -42,10 +42,14 @@ public class Bond {
 
 	public boolean isLocated(String someAreas) {
 		for (String anArea : someAreas.split(",")) {
-			if (Area.from(anArea).equals(area))
+			if (Area.from(anArea).equals(area()))
 				return true;
 		}
 		return false;
+	}
+
+	private Area area() {
+		return Location.from(this).area();
 	}
 
 }

@@ -35,4 +35,8 @@ public class Percent {
 		return value > anOther.value;
 	}
 
+	public BigDecimal plus(BigDecimal amount) {
+		return amount.add(amount.multiply(toBigDecimal()));
+	}
+
 }

@@ -16,12 +16,10 @@ public class IsMinMatcher<T> extends BaseMatcher<T> {
 		this.threshold = threshold;
 	}
 
-	@Override
 	public void describeTo(Description description) {
 		description.appendValue(threshold);
 	}
 
-	@Override
 	public boolean matches(Object item) {
 		return Matchers.greaterThanOrEqualTo(threshold).matches(item);
 	}

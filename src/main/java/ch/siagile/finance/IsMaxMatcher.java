@@ -11,12 +11,10 @@ public class IsMaxMatcher<T> extends BaseMatcher<T> {
 		this.threshold = threshold;
 	}
 
-	@Override
 	public void describeTo(Description description) {
 		description.appendValue(threshold);
 	}
 	
-	@Override
 	public boolean matches(Object item) {
 		return Matchers.lessThanOrEqualTo(threshold).matches(item);
 	}

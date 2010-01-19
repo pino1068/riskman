@@ -78,4 +78,12 @@ public class Money {
 	public int hashCode() {
 		return 13 * amount.hashCode() + 17 * currency.hashCode();
 	}
+
+	public Money times(Percent percent) {
+		return Money.from(percent.times(amount), currency);
+	}
+
+	public Money plus(Percent percent) {
+		return Money.from(percent.plus(amount), currency);
+	}
 }
