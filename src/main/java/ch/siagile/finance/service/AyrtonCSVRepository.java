@@ -1,11 +1,9 @@
 package ch.siagile.finance.service;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.util.Scanner;
+import java.io.*;
+import java.util.*;
 
-import ch.siagile.finance.Areas;
-import ch.siagile.finance.Repository;
+import ch.siagile.finance.*;
 
 public class AyrtonCSVRepository implements Repository{
 

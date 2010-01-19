@@ -8,6 +8,7 @@ import org.junit.*;
 
 import ch.siagile.finance.instrument.*;
 import ch.siagile.finance.instrument.rating.*;
+import ch.siagile.finance.position.*;
 
 public class ShellTest {
 	private String output;

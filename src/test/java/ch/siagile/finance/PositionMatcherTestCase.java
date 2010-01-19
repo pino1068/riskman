@@ -8,6 +8,9 @@ import static org.junit.Assert.*;
 import org.hamcrest.*;
 import org.junit.*;
 
+import ch.siagile.finance.matcher.*;
+import ch.siagile.finance.position.*;
+
 
 public class PositionMatcherTestCase {
 

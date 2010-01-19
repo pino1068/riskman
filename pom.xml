@@ -1,66 +1,95 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-   <modelVersion>4.0.0</modelVersion>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
 
-   <groupId>risk-management</groupId>
-   <artifactId>risk-management</artifactId>
-   <version>1.0</version>
-   <packaging>jar</packaging>
+	<groupId>risk-management</groupId>
+	<artifactId>risk-management</artifactId>
+	<version>1.0</version>
+	<packaging>jar</packaging>
 
-   <name>Risk Management</name>
-  <description />
-  <url/>
-  <inceptionYear>2009</inceptionYear>
-  <organization />
-  <licenses />
+	<name>Risk Management</name>
+	<description />
+	<url />
+	<inceptionYear>2009</inceptionYear>
+	<organization />
+	<licenses />
 
-  <developers />
-  <contributors />
+	<developers />
+	<contributors />
 
-  <mailingLists />
+	<mailingLists />
 
-  <prerequisites />
+	<prerequisites />
 
-  <modules/>
+	<modules />
 
-  <scm/>
-  <issueManagement />
-  <ciManagement />
-  <distributionManagement/>
+	<scm />
+	<issueManagement />
+	<ciManagement />
+	<distributionManagement />
 
-  <properties />
+	<properties />
 
-  <dependencyManagement />
-    <dependencies>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.7</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.hamcrest</groupId>
-            <artifactId>hamcrest-all</artifactId>
-            <version>1.1</version>
-        </dependency>
-    </dependencies>
+	<dependencyManagement />
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.7</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.hamcrest</groupId>
+			<artifactId>hamcrest-all</artifactId>
+			<version>1.1</version>
+		</dependency>
+	</dependencies>
 
-  <repositories />
-  <pluginRepositories/>
+	<repositories />
+	<pluginRepositories />
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>exec-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<goals>
+							<goal>java</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<mainClass>ch.siagile.finance.App</mainClass>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>2.1</version>
+				<configuration>
+					<archive>
+						<manifest>
+							<mainClass>ch.siagile.finance.App</mainClass>
+							<addClasspath>true</addClasspath>
+<!--							<addDefaultImplementationEntries>true</addDefaultImplementationEntries>-->
+<!--							<addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>-->
+						</manifest>
+					</archive>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 
-  <build>
-    <plugins>
-      <plugin>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <configuration>
-          <source>1.6</source>
-          <target>1.6</target>
-        </configuration>
-      </plugin>
-    </plugins>
-  </build>
+	<reporting />
 
-  <reporting />
-
-  <profiles />
+	<profiles />
 </project>

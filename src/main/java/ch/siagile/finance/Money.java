@@ -97,4 +97,14 @@ public class Money {
 	public Money plus(Percent percent) {
 		return Money.from(percent.plus(amount), currency);
 	}
+
+	public static Money CHF(double amount) {
+		return Money.from(BigDecimal.valueOf(amount), "CHF");
+	}
+	public static Money USD(double amount) {
+		return Money.from(BigDecimal.valueOf(amount), "USD");
+	}
+	public static Money EUR(double amount) {
+		return Money.from(BigDecimal.valueOf(amount), "EUR");
+	}
 }

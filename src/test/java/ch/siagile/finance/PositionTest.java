@@ -1,13 +1,14 @@
 package ch.siagile.finance;
 
-import static ch.siagile.finance.IsInMatcher.*;
 import static ch.siagile.finance.fixtures.Fixtures.*;
+import static ch.siagile.finance.matcher.IsInMatcher.*;
 import static org.junit.Assert.*;
 
 import org.junit.*;
 
 import ch.siagile.finance.instrument.*;
 import ch.siagile.finance.instrument.rating.*;
+import ch.siagile.finance.position.*;
 import static org.hamcrest.Matchers.*;
 
 public class PositionTest {

@@ -4,6 +4,9 @@ import static java.text.MessageFormat.*;
 
 import java.util.*;
 
+import ch.siagile.finance.command.*;
+import ch.siagile.finance.position.*;
+
 public class Shell {
 	
 	private static final List<Command> strategies = new LinkedList<Command>();

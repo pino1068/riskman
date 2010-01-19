@@ -2,6 +2,7 @@ package ch.siagile.finance.fixtures;
 
 import ch.siagile.finance.*;
 import ch.siagile.finance.instrument.*;
+import ch.siagile.finance.position.*;
 
 public class Fixtures {
 	public static final int IBM_PRICE = 100;

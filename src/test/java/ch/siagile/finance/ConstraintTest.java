@@ -5,8 +5,10 @@ import static org.junit.Assert.*;
 
 import org.junit.*;
 
+import ch.siagile.finance.constraint.*;
 import ch.siagile.finance.instrument.*;
 import ch.siagile.finance.instrument.rating.*;
+import ch.siagile.finance.position.*;
 
 public class ConstraintTest {
 

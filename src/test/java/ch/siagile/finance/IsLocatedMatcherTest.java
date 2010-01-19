@@ -6,7 +6,8 @@ import static org.junit.Assert.*;
 import org.junit.*;
 
 import ch.siagile.finance.instrument.*;
-import static ch.siagile.finance.IsLocatedMatcher.*;
+import ch.siagile.finance.position.*;
+import static ch.siagile.finance.matcher.IsLocatedMatcher.*;
 
 public class IsLocatedMatcherTest {
 	
