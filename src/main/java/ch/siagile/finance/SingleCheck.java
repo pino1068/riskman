@@ -4,14 +4,14 @@ import java.math.*;
 
 public abstract class SingleCheck extends Check {
 
-	private Percent percent;
+	private BigDecimal value;
 
-	public SingleCheck(Percent percent) {
-		this.percent = percent;
+	public SingleCheck(double value) {
+		this.value = BigDecimal.valueOf(value);
 	}
 
 	public BigDecimal value() {
-		return percent.toBigDecimal();
+		return value;
 	}
 
 }

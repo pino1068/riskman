@@ -1,6 +1,7 @@
 package ch.siagile.finance;
 
 import static org.hamcrest.Matchers.*;
+import static ch.siagile.finance.fixtures.Fixtures.*;
 import static org.junit.Assert.*;
 
 import org.junit.*;
@@ -18,20 +19,20 @@ public class PercentTest {
 	
 	@Test 
 	public void shouldMultiplyWithMoney() {
-		Money amount = Money.CHF(100);
+		Money amount = CHF(100);
 		
 		Money multiplied = amount.times(PERCENT20);
 		
-		assertThat(multiplied,is(equalTo(Money.CHF(20))));
+		assertThat(multiplied,is(equalTo(CHF(20))));
 	}
 	
 	@Test 
 	public void shouldSumPercentToMoney() {
-		Money CHF100 = Money.CHF(100);
+		Money CHF100 = CHF(100);
 		
 		Money plus20Percent = CHF100.plus(PERCENT20);
 		
-		assertThat(plus20Percent, is(Money.CHF(120)));
+		assertThat(plus20Percent, is(CHF(120)));
 	}
 	
 	@Test 

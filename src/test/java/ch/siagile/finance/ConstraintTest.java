@@ -5,7 +5,8 @@ import static org.junit.Assert.*;
 
 import org.junit.*;
 
-import ch.siagile.finance.fixtures.*;
+import ch.siagile.finance.instrument.*;
+import ch.siagile.finance.instrument.rating.*;
 
 public class ConstraintTest {
 
@@ -80,14 +81,74 @@ public class ConstraintTest {
 
 	@Test
 	public void shouldCheckOnlyValidAreaOnPositions() {
+		final MoodyRating A2 = MoodyRatings.find("A2");
+		final Area UE = Area.from("UE");
+
 		positions = new Positions(){
 			{
 				add(account("pluto", CHF(10)));
 				add(UBS(10));
-				add(bondPosition(Fixtures.bond("GECC", "UE"), CHF(1000),"100%"));
+				add(bond(Bond.from("GECC", A2, UE), CHF(100),"100%"));
 			}
 		};
 		Constraint constraint = new AreaConstraint("UE", "min:20%");
+
+		assertTrue(constraint.checkLimitOn(positions));
+	}
+
+	@Test
+	public void shouldCheckSomeBondInRatingRange() {
+		
+		final MoodyRating A2 = MoodyRatings.find("A2");
+		final Area UE = Area.from("UE");
+
+		positions = new Positions(){
+			{
+				add(account("pluto", CHF(10)));
+				add(UBS(10));
+				add(bond(Bond.from("GECC", A2, UE), CHF(100),"100%"));
+			}
+		};
+		
+		Constraint constraint = new RatingConstraint("range:B1,A2", "min:20%");
+
+		assertTrue(constraint.checkLimitOn(positions));
+	}
+
+	@Test
+	public void shouldCheckSomeBondInRatingRangeA1Aaa() {
+		
+		final MoodyRating Aaa = MoodyRatings.find("Aaa");
+		final Area UE = Area.from("UE");
+
+		positions = new Positions(){
+			{
+				add(account("pluto", CHF(10)));
+				add(UBS(10));
+				add(bond(Bond.from("GECC", Aaa, UE), CHF(100),"100%"));
+			}
+		};
+		
+		Constraint constraint = new RatingConstraint("range:A1,Aaa", "min:20%");
+
+		assertTrue(constraint.checkLimitOn(positions));
+	}
+
+	@Test
+	public void shouldCheckSomeBondInRatingMaxA1() {
+		
+		final MoodyRating B2 = MoodyRatings.find("B2");
+		final Area UE = Area.from("UE");
+
+		positions = new Positions(){
+			{
+				add(account("pluto", CHF(10)));
+				add(UBS(10));
+				add(bond(Bond.from("GECC", B2, UE), CHF(100),"100%"));
+			}
+		};
+		
+		Constraint constraint = new RatingConstraint("max:A1", "min:20%");
 
 		assertTrue(constraint.checkLimitOn(positions));
 	}

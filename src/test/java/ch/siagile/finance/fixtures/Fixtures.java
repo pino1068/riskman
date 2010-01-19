@@ -2,7 +2,6 @@ package ch.siagile.finance.fixtures;
 
 import ch.siagile.finance.*;
 import ch.siagile.finance.instrument.*;
-import ch.siagile.finance.location.*;
 
 public class Fixtures {
 	public static final int IBM_PRICE = 100;
@@ -20,7 +19,7 @@ public class Fixtures {
 		return new EquityPosition(Equity.from(equity), quantity, price);
 	}
 
-	public static BondPosition bondPosition(Bond bond, Money quantity, String price) {
+	public static BondPosition bond(Bond bond, Money quantity, String price) {
 		return new BondPosition(bond, quantity, price);
 	}
 
@@ -34,12 +33,6 @@ public class Fixtures {
 
 	public static Money USD(double amount) {
 		return Money.from(amount, "USD");
-	}
-
-	public static Bond bond(String name, String area) {
-		Bond bond = Bond.from(name);
-		Location.from(bond).locateIn(area);
-		return bond;
 	}
 
 }

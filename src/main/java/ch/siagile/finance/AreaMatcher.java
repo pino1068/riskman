@@ -22,7 +22,7 @@ public class AreaMatcher<T> extends BaseMatcher<T> {
 		if (!Bond.class.isInstance(obj))
 			return false;
 		Bond bond = (Bond) obj;
-		return bond.isLocatedIn(area);
+		return bond.isLocated(area);
 	}
 
 	public void describeTo(Description description) {

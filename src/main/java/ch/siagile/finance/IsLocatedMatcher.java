@@ -5,11 +5,10 @@ import static java.text.MessageFormat.*;
 import org.hamcrest.*;
 
 import ch.siagile.finance.instrument.*;
-import ch.siagile.finance.location.*;
 
 public class IsLocatedMatcher<T> extends BaseMatcher<T> {
 
-	public static final <T> Matcher<T> locatedIn(String someAreas) {
+	public static final <T> Matcher<T> located(String someAreas) {
 		return new IsLocatedMatcher<T>(someAreas);
 	}
 
@@ -20,10 +19,12 @@ public class IsLocatedMatcher<T> extends BaseMatcher<T> {
 	}
 
 	public boolean matches(Object obj) {
-		if (isBondPosition(obj)) 
+		if (isBondPosition(obj)) {
 			return locationOf((BondPosition) obj);
-		if (isBond(obj)) 
+		}
+		if (isBond(obj)) {
 			return locationOf((Bond) obj);
+		}
 		return false;
 	}
 
@@ -36,7 +37,7 @@ public class IsLocatedMatcher<T> extends BaseMatcher<T> {
 	}
 
 	private boolean locationOf(Bond bond) {
-		return Location.from(bond).isLocatedIn(areas);
+		return bond.isLocated(areas);
 	}
 
 	private boolean locationOf(BondPosition position) {

@@ -1,6 +1,5 @@
 package ch.siagile.finance;
 
-import static java.text.MessageFormat.*;
 import ch.siagile.finance.instrument.*;
 import ch.siagile.finance.instrument.rating.*;
 
@@ -29,14 +28,6 @@ public class BondPosition extends Position {
 	}
 
 	public boolean isLocated(String anArea) {
-		return bond.isLocatedIn(anArea);
+		return bond.isLocated(anArea);
 	}
-
-	@Override
-	public String toString() {
-		return format(
-				"bond position ({0}) with quantity:{1} and price:{2} whos balance is: {3}",
-				bond, quantity, price, balance());
-	}
-
 }

@@ -8,8 +8,4 @@ public abstract class Position {
 		return balance().plus(position.balance());
 	}
 
-	public boolean hasCurrency(String currency) {
-		return balance().compatible(currency);
-	}
-
 }

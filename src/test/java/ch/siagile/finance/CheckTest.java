@@ -12,7 +12,7 @@ public class CheckTest {
 
 	@Test
 	public void shouldEquityContaint() {
-		check = new MaxCheck(Percent.from("50%"));
+		check = new MaxCheck(0.5);
 
 		assertCheck(check, "10%");
 		assertCheck(check, "20%");
