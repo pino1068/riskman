@@ -2,8 +2,8 @@ HOW TO EXECUTE COMMAND
 'mvn clean compile exec:java'
 
 or 
-
-'java -jar target/risk-management'
+'mvn clean package'
+'java -jar target/risk-management-1.0.jar'
 
 
 CODE CONVENTION
