@@ -12,6 +12,7 @@ public class Shell {
 		add(new EquityCommand(""));
 		add(new AreaCommand(""));
 		add(new CurrencyCommand(""));
+		add(new RatingCommand(""));
 	}
 
 	private void add(Command command) {

@@ -16,7 +16,7 @@ public class ConstraintTest {
 	@Test
 	public void shouldEquityConstraintMaxMatchOnPortofolioWithLessEquity() {
 		constraint = new EquityConstraint("max: 50%");
-		positions = new Positions(account("pluto", CHF(2000)), IBM(10));
+		positions = new Positions(account("pluto", CHF(2000)), IBM(CHF(100)));
 
 		assertTrue(constraint.checkLimitOn(positions));
 	}
@@ -24,7 +24,7 @@ public class ConstraintTest {
 	@Test
 	public void shouldEquityConstraintMaxMatchOnPortofolioWithMoreEquity() {
 		constraint = new EquityConstraint("max: 50%");
-		positions = new Positions(account("pluto", CHF(999.0)), IBM(10));
+		positions = new Positions(account("pluto", CHF(999.0)), IBM(CHF(1000)));
 
 		assertFalse(constraint.checkLimitOn(positions));
 	}
@@ -32,7 +32,7 @@ public class ConstraintTest {
 	@Test
 	public void shouldEquityConstraintMinMatchOnPortofolioWithLessEquity() {
 		constraint = new EquityConstraint("min:50%");
-		positions = new Positions(account("pluto", CHF(2000)), IBM(10));
+		positions = new Positions(account("pluto", CHF(2000)), IBM(CHF(100)));
 
 		assertFalse(constraint.checkLimitOn(positions));
 	}
@@ -40,7 +40,7 @@ public class ConstraintTest {
 	@Test
 	public void shouldEquityConstraintMinMatchOnPortofolioWithMoreEquity() {
 		constraint = new EquityConstraint("min:50%");
-		positions = new Positions(account("pluto", CHF(1000)), IBM(10));
+		positions = new Positions(account("pluto", CHF(1000)), IBM(CHF(1000)));
 
 		assertTrue(constraint.checkLimitOn(positions));
 	}
@@ -48,7 +48,7 @@ public class ConstraintTest {
 	@Test
 	public void shouldEquitySpecificConstraintMaxMatchOnPortfolio() {
 		constraint = new EquityConstraint("max:3%", "UBS");
-		positions = new Positions(account("pluto", CHF(1000)), UBS(1), UBS(1), IBM(10));
+		positions = new Positions(account("pluto", CHF(1000)), UBS(CHF(10)), UBS(CHF(10)), IBM(CHF(1000)));
 
 		assertTrue(constraint.checkLimitOn(positions));
 	}
@@ -66,7 +66,7 @@ public class ConstraintTest {
 	@Test
 	public void shouldEquitySpecificConstraintMinMatchOnPortfolio() {
 		constraint = new EquityConstraint("min:1%", "UBS");
-		positions = new Positions(account("pluto", CHF(1)), UBS(2), IBM(10));
+		positions = new Positions(account("pluto", CHF(1)), UBS(CHF(20)), IBM(CHF(1000)));
 
 		assertTrue(constraint.checkLimitOn(positions));
 	}
@@ -74,7 +74,7 @@ public class ConstraintTest {
 	@Test
 	public void shouldEquitySpecificConstraintMinDoesntMatchOnPortfolio() {
 		constraint = new EquityConstraint("min:1%", "UBS");
-		positions = new Positions(account("pluto", CHF(1)), UBS(1), IBM(10));
+		positions = new Positions(account("pluto", CHF(1)), UBS(CHF(10)), IBM(CHF(10000)));
 
 		assertFalse(constraint.checkLimitOn(positions));
 	}
@@ -95,7 +95,7 @@ public class ConstraintTest {
 		positions = new Positions() {
 			{
 				add(account("pluto", CHF(10)));
-				add(UBS(10));
+				add(UBS(CHF(100)));
 				add(bond(Bond.from("GECC", A2, UE), CHF(100), "100%"));
 			}
 		};
@@ -113,7 +113,7 @@ public class ConstraintTest {
 		positions = new Positions() {
 			{
 				add(account("pluto", CHF(10)));
-				add(UBS(10));
+				add(UBS(CHF(100)));
 				add(bond(Bond.from("GECC", A2, UE), CHF(100), "100%"));
 			}
 		};
@@ -132,7 +132,7 @@ public class ConstraintTest {
 		positions = new Positions() {
 			{
 				add(account("pluto", CHF(10)));
-				add(UBS(10));
+				add(UBS(CHF(100)));
 				add(bond(Bond.from("GECC", Aaa, UE), CHF(100), "100%"));
 			}
 		};
@@ -151,7 +151,7 @@ public class ConstraintTest {
 		positions = new Positions() {
 			{
 				add(account("pluto", CHF(10)));
-				add(UBS(10));
+				add(UBS(CHF(100)));
 				add(bond(Bond.from("GECC", B2, UE), CHF(100), "100%"));
 			}
 		};

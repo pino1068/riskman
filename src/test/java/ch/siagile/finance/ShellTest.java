@@ -3,11 +3,13 @@ package ch.siagile.finance;
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.*;
 import static ch.siagile.finance.fixtures.Fixtures.*;
+
 import org.junit.*;
 
 import ch.siagile.finance.instrument.*;
+import ch.siagile.finance.instrument.rating.*;
 
-public class InputOutputTest {
+public class ShellTest {
 	private String output;
 	private Shell command;
 	private Positions positions;
@@ -129,6 +131,28 @@ public class InputOutputTest {
 	public void shouldUsdNotInRangePercentKO() {
 		output = command.execute(positions, "CHF range:60%,80%");
 		assertThat(output, containsString("CHF range:60%,80% KO"));
+	}
+
+	@Test
+	public void shouldMaxRatingPercentKO() {
+		output = command.execute(positions, "rating:range:B1,A2 min:60%");
+		assertThat(output, containsString("rating:range:B1,A2 min:60% KO"));
+	}
+
+	@Test
+	public void shouldMaxRatingPercentOK() {
+		final MoodyRating A2 = MoodyRatings.find("A2");
+		final Area UE = Area.from("UE");
+
+		positions = new Positions() {
+			{
+				add(account("pluto", CHF(10)));
+				add(UBS(CHF(10)));
+				add(bond(Bond.from("GECC", A2, UE), CHF(100), "100%"));
+			}
+		};
+		output = command.execute(positions, "rating:range:B1,A2 min:60%");
+		assertThat(output, containsString("rating:range:B1,A2 min:60% OK"));
 	}
 
 	@Test

@@ -30,6 +30,7 @@ public class IsInMatcher<T> extends BaseMatcher<T> {
 		description.appendValue(to);
 	}
 
+	@SuppressWarnings("unchecked")
 	public boolean matches(Object item) {
 		Rating rating = ratingOf(item);
 		if (null == rating)

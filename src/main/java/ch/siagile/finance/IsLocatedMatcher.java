@@ -45,6 +45,6 @@ public class IsLocatedMatcher<T> extends BaseMatcher<T> {
 	}
 
 	public void describeTo(Description description) {
-		description.appendText(format("matches an area = {0}", areas));
+		description.appendText(format("matches an area = {0}", (Object[]) areas));
 	}
 }

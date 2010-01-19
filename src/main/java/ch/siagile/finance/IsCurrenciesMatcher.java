@@ -1,6 +1,5 @@
 package ch.siagile.finance;
 
-import static java.text.MessageFormat.*;
 import static org.hamcrest.Matchers.*;
 
 import java.util.*;

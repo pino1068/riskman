@@ -7,20 +7,21 @@ import org.hamcrest.*;
 
 public class EquityConstraint extends Constraint {
 
-	private Matcher matcher;
+	private Matcher<Position> matcher;
 
+	@SuppressWarnings("unchecked")
 	public EquityConstraint(String check, String... equities) {
 		super(Check.from(check));
-		matcher = allOf(new IsEquityMatcher(), new IsSpecificEquityMatcher(equities));
+		matcher = allOf(new IsEquityMatcher<Position>(), new IsSpecificEquityMatcher<Position>(equities));
 	}
 
 	public EquityConstraint(String check) {
 		super(Check.from(check));
-		matcher = new IsEquityMatcher();
+		matcher = new IsEquityMatcher<Position>();
 	}
 
 	@Override
-	protected Matcher matcher() {
+	protected Matcher<Position> matcher() {
 		return matcher;
 	}
 }
