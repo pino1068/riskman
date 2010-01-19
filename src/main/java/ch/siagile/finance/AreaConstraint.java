@@ -4,16 +4,16 @@ import org.hamcrest.*;
 
 public class AreaConstraint extends Constraint {
 
-	private String area;
+	private IsLocatedMatcher<Position> matcher;
 
-	public AreaConstraint(String area, String check) {
+	public AreaConstraint(String check, String... area) {
 		super(Check.from(check));
-		this.area = area;
+		matcher = new IsLocatedMatcher<Position>(area);
 	}
 
 	@Override
 	protected Matcher<Position> matcher() {
-		return new IsLocatedMatcher<Position>(area);
+		return matcher;
 	}
 
 }

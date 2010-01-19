@@ -1,16 +1,18 @@
 package ch.siagile.finance;
 
+import org.hamcrest.*;
+
 public class EquitySpecificConstraint extends Constraint {
 
-	private final String equity;
+	private final Matcher matcher;
 
-	public EquitySpecificConstraint(String equity, String limit) {
-		super(Check.from(limit));
-		this.equity = equity;
+	public EquitySpecificConstraint(String check, String... equities) {
+		super(Check.from(check));
+		matcher = new IsSpecificEquityMatcher(equities);
 	}
 
 	@Override
-	protected IsSpecificEquityMatcher matcher() {
-		return new IsSpecificEquityMatcher(equity);
+	protected Matcher matcher() {
+		return matcher;
 	}
 }

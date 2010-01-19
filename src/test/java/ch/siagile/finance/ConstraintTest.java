@@ -47,7 +47,7 @@ public class ConstraintTest {
 
 	@Test
 	public void shouldEquitySpecificConstraintMaxMatchOnPortfolio() {
-		constraint = new EquitySpecificConstraint("UBS", "max:3%");
+		constraint = new EquityConstraint("max:3%", "UBS");
 		positions = new Positions(account("pluto", CHF(1000)), UBS(1), UBS(1), IBM(10));
 
 		assertTrue(constraint.checkLimitOn(positions));
@@ -55,7 +55,7 @@ public class ConstraintTest {
 
 	@Test
 	public void shouldEquitySpecificConstraintMaxMatchOnPortfolioWithTooManyUBS() {
-		constraint = new EquitySpecificConstraint("UBS", "max:5%");
+		constraint = new EquityConstraint("max:5%", "UBS");
 		EquityPosition IBM1000chf = equity("IBM", 10, CHF(100));
 		EquityPosition UBS2000chf = equity("UBS", 200, CHF(10));
 		positions = new Positions(UBS2000chf, IBM1000chf);
@@ -65,7 +65,7 @@ public class ConstraintTest {
 
 	@Test
 	public void shouldEquitySpecificConstraintMinMatchOnPortfolio() {
-		constraint = new EquitySpecificConstraint("UBS", "min:1%");
+		constraint = new EquityConstraint("min:1%", "UBS");
 		positions = new Positions(account("pluto", CHF(1)), UBS(2), IBM(10));
 
 		assertTrue(constraint.checkLimitOn(positions));
@@ -73,10 +73,18 @@ public class ConstraintTest {
 
 	@Test
 	public void shouldEquitySpecificConstraintMinDoesntMatchOnPortfolio() {
-		constraint = new EquitySpecificConstraint("UBS", "min:1%");
+		constraint = new EquityConstraint("min:1%", "UBS");
 		positions = new Positions(account("pluto", CHF(1)), UBS(1), IBM(10));
 
 		assertFalse(constraint.checkLimitOn(positions));
+	}
+
+	@Test
+	public void shouldEquitySpecificConstraintMinMatchAListOfEquities() {
+		constraint = new EquityConstraint("min:50%", "UBS", "IBM");
+		positions = new Positions(account("pluto", CHF(20)), UBS(CHF(40)), IBM(CHF(40)));
+
+		assertTrue(constraint.checkLimitOn(positions));
 	}
 
 	@Test
@@ -84,32 +92,32 @@ public class ConstraintTest {
 		final MoodyRating A2 = MoodyRatings.find("A2");
 		final Area UE = Area.from("UE");
 
-		positions = new Positions(){
+		positions = new Positions() {
 			{
 				add(account("pluto", CHF(10)));
 				add(UBS(10));
-				add(bond(Bond.from("GECC", A2, UE), CHF(100),"100%"));
+				add(bond(Bond.from("GECC", A2, UE), CHF(100), "100%"));
 			}
 		};
-		Constraint constraint = new AreaConstraint("UE", "min:20%");
+		Constraint constraint = new AreaConstraint("min:20%", "UE", "USA");
 
 		assertTrue(constraint.checkLimitOn(positions));
 	}
 
 	@Test
 	public void shouldCheckSomeBondInRatingRange() {
-		
+
 		final MoodyRating A2 = MoodyRatings.find("A2");
 		final Area UE = Area.from("UE");
 
-		positions = new Positions(){
+		positions = new Positions() {
 			{
 				add(account("pluto", CHF(10)));
 				add(UBS(10));
-				add(bond(Bond.from("GECC", A2, UE), CHF(100),"100%"));
+				add(bond(Bond.from("GECC", A2, UE), CHF(100), "100%"));
 			}
 		};
-		
+
 		Constraint constraint = new RatingConstraint("range:B1,A2", "min:20%");
 
 		assertTrue(constraint.checkLimitOn(positions));
@@ -117,18 +125,18 @@ public class ConstraintTest {
 
 	@Test
 	public void shouldCheckSomeBondInRatingRangeA1Aaa() {
-		
+
 		final MoodyRating Aaa = MoodyRatings.find("Aaa");
 		final Area UE = Area.from("UE");
 
-		positions = new Positions(){
+		positions = new Positions() {
 			{
 				add(account("pluto", CHF(10)));
 				add(UBS(10));
-				add(bond(Bond.from("GECC", Aaa, UE), CHF(100),"100%"));
+				add(bond(Bond.from("GECC", Aaa, UE), CHF(100), "100%"));
 			}
 		};
-		
+
 		Constraint constraint = new RatingConstraint("range:A1,Aaa", "min:20%");
 
 		assertTrue(constraint.checkLimitOn(positions));
@@ -136,18 +144,18 @@ public class ConstraintTest {
 
 	@Test
 	public void shouldCheckSomeBondInRatingMaxA1() {
-		
+
 		final MoodyRating B2 = MoodyRatings.find("B2");
 		final Area UE = Area.from("UE");
 
-		positions = new Positions(){
+		positions = new Positions() {
 			{
 				add(account("pluto", CHF(10)));
 				add(UBS(10));
-				add(bond(Bond.from("GECC", B2, UE), CHF(100),"100%"));
+				add(bond(Bond.from("GECC", B2, UE), CHF(100), "100%"));
 			}
 		};
-		
+
 		Constraint constraint = new RatingConstraint("max:A1", "min:20%");
 
 		assertTrue(constraint.checkLimitOn(positions));

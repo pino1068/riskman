@@ -15,6 +15,14 @@ public class Fixtures {
 		return equity("IBM", quantity, CHF(IBM_PRICE));
 	}
 
+	public static Position IBM(Money price) {
+		return equity("IBM", 1, price);
+	}
+
+	public static Position UBS(Money price) {
+		return equity("UBS", 1, price);
+	}
+
 	public static EquityPosition equity(String equity, int quantity, Money price) {
 		return new EquityPosition(Equity.from(equity), quantity, price);
 	}

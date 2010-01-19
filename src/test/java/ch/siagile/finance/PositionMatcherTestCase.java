@@ -1,11 +1,13 @@
 package ch.siagile.finance;
 
+
 import static ch.siagile.finance.fixtures.Fixtures.*;
-import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
+import static org.junit.Assert.*;
 
 import org.hamcrest.*;
 import org.junit.*;
+
 
 public class PositionMatcherTestCase {
 
@@ -27,7 +29,7 @@ public class PositionMatcherTestCase {
 
 	@Test
 	public void shouldNotMatchOneAccountPosition() {
-		Matcher<Position> isIBMEquity = new IsSpecificEquityMatcher<Position>("IBM");
+		Matcher<Position> isIBMEquity = allOf(new IsSpecificEquityMatcher<Position>("IBM"), new IsEquityMatcher<Position>());
 		Position position = account("adsf", CHF(300));
 
 		assertThat(position, not(isIBMEquity));
@@ -114,5 +116,14 @@ public class PositionMatcherTestCase {
 
 	private Matcher<Position> currency(String currency) {
 		return new IsCurrencyMatcher<Position>(currency);
+	}
+
+	@Test
+	public void shouldThrowExceptionWhenCurrenciesNotAllowed() {
+		try {
+			new IsCurrenciesMatcher("equity");
+			fail("expected exception for wrong currencies");
+		} catch (Exception expectedBehaivor) {
+		}
 	}
 }

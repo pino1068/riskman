@@ -1,6 +1,9 @@
 package ch.siagile.finance;
 
+import static java.text.MessageFormat.*;
 import static org.hamcrest.Matchers.*;
+
+import java.util.*;
 
 import org.hamcrest.*;
 
@@ -18,7 +21,14 @@ public class IsCurrenciesMatcher<T> extends BaseMatcher<T> {
 	}
 
 	public IsCurrenciesMatcher(String... currencies) {
+		check(currencies);
 		this.currencies = currencies;
+	}
+
+	private void check(String... currencies) {
+		for (String currency : currencies) {
+			Currency.getInstance(currency);
+		}
 	}
 
 	public boolean matches(Object position) {

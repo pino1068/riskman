@@ -40,9 +40,20 @@ public class Money {
 	}
 
 	public Money plus(Money other) {
-		if (currency != other.currency)
-			throw new RuntimeException("adding differing currencies is not allowed");
+		if (!compatible(other)) {
+			return changeAndSum(other);
+		}
 		return Money.from((amount.add(other.amount)), currency);
+	}
+
+	private Money changeAndSum(Money other) {
+		return change(other).plus(this);
+	}
+
+	private Money change(Money other) {
+		ExchangeRate rate = ExchangeRate.from(Money.from(1, "USD"),Money.from(1.1, "CHF"));
+		Money otherChf = rate.change(other);
+		return otherChf;
 	}
 
 	@Override

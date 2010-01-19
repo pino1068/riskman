@@ -29,8 +29,8 @@ public class IsLocatedMatcherTest {
 		Bond bond = Bond.from("name", "UE");
 		BondPosition position = new BondPosition(Bond.from("name", "UE"), Money.from(100, "CHF"), "100%");
 
-		assertThat(bond, is(located("UE,USA")));
-		assertThat(position, is(located("UE,USA")));
+		assertThat(bond, is(located("UE","USA")));
+		assertThat(position, is(located("UE","USA")));
 	}
 	
 	@Test

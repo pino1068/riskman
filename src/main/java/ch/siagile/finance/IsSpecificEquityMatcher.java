@@ -4,24 +4,26 @@ import org.hamcrest.*;
 
 public class IsSpecificEquityMatcher<T> extends BaseMatcher<T> {
 
-	private final String equity;
-	private IsEquityMatcher<T> equityMatcher = new IsEquityMatcher<T>();
+	private String[] equities;
 
-	public IsSpecificEquityMatcher(String equity) {
-		this.equity = equity;
+	public IsSpecificEquityMatcher(String... equities) {
+		this.equities = equities;
 	}
 
 	public void describeTo(Description description) {
 		description.appendText("exptected specified equity: ");
-		description.appendValue(equity);
+		description.appendValue(equities);
 	}
 
 	public boolean matches(Object item) {
-		if(!equityMatcher.matches(item)) return false;
+		if(!EquityPosition.class.isInstance(item)) return false;
+		if(equities.length == 0) return true;
 		EquityPosition position = (EquityPosition) item;
-		return position.isEquity(equity);
+		for (String equity : equities) {
+			if (position.isEquity(equity))
+				return true;
+		}
+		return false;
 	}
-	
 
 }
- 

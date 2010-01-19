@@ -8,13 +8,13 @@ import ch.siagile.finance.instrument.*;
 
 public class IsLocatedMatcher<T> extends BaseMatcher<T> {
 
-	public static final <T> Matcher<T> located(String someAreas) {
+	public static final <T> Matcher<T> located(String... someAreas) {
 		return new IsLocatedMatcher<T>(someAreas);
 	}
 
-	private final String areas;
+	private final String[] areas;
 
-	public IsLocatedMatcher(String areas) {
+	public IsLocatedMatcher(String... areas) {
 		this.areas = areas;
 	}
 

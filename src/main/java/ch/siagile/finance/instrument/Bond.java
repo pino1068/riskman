@@ -40,8 +40,8 @@ public class Bond {
 		return name.hashCode();
 	}
 
-	public boolean isLocated(String someAreas) {
-		for (String anArea : someAreas.split(",")) {
+	public boolean isLocated(String... someAreas) {
+		for (String anArea : someAreas) {
 			if (Area.from(anArea).equals(area()))
 				return true;
 		}
