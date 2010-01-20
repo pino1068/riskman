@@ -4,7 +4,7 @@ import static java.text.MessageFormat.*;
 
 import java.security.*;
 
-import ch.siagile.finance.*;
+import ch.siagile.finance.base.*;
 
 public class RangeCheck extends Check {
 

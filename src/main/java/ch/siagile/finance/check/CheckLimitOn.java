@@ -2,7 +2,7 @@ package ch.siagile.finance.check;
 
 import org.hamcrest.*;
 
-import ch.siagile.finance.*;
+import ch.siagile.finance.base.*;
 import ch.siagile.finance.position.*;
 
 public class CheckLimitOn {

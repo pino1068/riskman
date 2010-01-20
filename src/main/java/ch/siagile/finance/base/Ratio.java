@@ -1,4 +1,4 @@
-package ch.siagile.finance;
+package ch.siagile.finance.base;
 import static java.text.MessageFormat.*;
 
 import java.math.*;

@@ -7,6 +7,8 @@ import java.math.*;
 
 import org.junit.*;
 
+import ch.siagile.finance.base.*;
+
 
 public class RatioTest {
 

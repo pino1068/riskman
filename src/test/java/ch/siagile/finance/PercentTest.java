@@ -6,6 +6,8 @@ import static org.junit.Assert.*;
 
 import org.junit.*;
 
+import ch.siagile.finance.base.*;
+
 public class PercentTest {
 
 	private static final Percent PERCENT20 = Percent.from("20%");

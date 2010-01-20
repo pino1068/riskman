@@ -5,6 +5,8 @@ import static org.junit.Assert.*;
 
 import org.junit.*;
 
+import ch.siagile.finance.base.*;
+
 
 public class MoneyTest {
 	

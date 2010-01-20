@@ -6,6 +6,7 @@ import static org.junit.Assert.*;
 
 import org.junit.*;
 
+import ch.siagile.finance.base.*;
 import ch.siagile.finance.check.*;
 
 public class CheckTest {

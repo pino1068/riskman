@@ -1,6 +1,6 @@
 package ch.siagile.finance.position;
 
-import ch.siagile.finance.*;
+import ch.siagile.finance.base.*;
 
 public abstract class Position {
 

@@ -4,7 +4,7 @@ import java.util.*;
 
 import org.hamcrest.*;
 
-import ch.siagile.finance.*;
+import ch.siagile.finance.base.*;
 
 public class Positions {
 

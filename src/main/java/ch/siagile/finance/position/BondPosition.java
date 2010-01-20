@@ -1,7 +1,7 @@
 package ch.siagile.finance.position;
 
 import static java.text.MessageFormat.*;
-import ch.siagile.finance.*;
+import ch.siagile.finance.base.*;
 import ch.siagile.finance.instrument.*;
 import ch.siagile.finance.instrument.rating.*;
 

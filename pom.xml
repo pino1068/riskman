@@ -61,7 +61,7 @@
 					</execution>
 				</executions>
 				<configuration>
-					<mainClass>ch.siagile.finance.App</mainClass>
+					<mainClass>ch.siagile.finance.app.App</mainClass>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -71,10 +71,8 @@
 				<configuration>
 					<archive>
 						<manifest>
-							<mainClass>ch.siagile.finance.App</mainClass>
+							<mainClass>ch.siagile.finance.app.App</mainClass>
 							<addClasspath>true</addClasspath>
-<!--							<addDefaultImplementationEntries>true</addDefaultImplementationEntries>-->
-<!--							<addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>-->
 						</manifest>
 					</archive>
 				</configuration>

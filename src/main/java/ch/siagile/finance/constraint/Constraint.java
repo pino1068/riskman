@@ -26,4 +26,8 @@ public abstract class Constraint {
 	public String toString() {
 		return format("{0} with limit: {1}", matcher(), check);
 	}
+
+	public Positions filter(Positions positions) {
+		return positions.select(matcher());
+	}
 }

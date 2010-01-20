@@ -2,7 +2,7 @@ package ch.siagile.finance.position;
 
 
 import static java.text.MessageFormat.*;
-import ch.siagile.finance.*;
+import ch.siagile.finance.base.*;
 import ch.siagile.finance.instrument.*;
 
 public class EquityPosition extends Position {
