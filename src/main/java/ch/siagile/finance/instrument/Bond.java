@@ -50,4 +50,8 @@ public class Bond {
 		return Location.from(this).area();
 	}
 
+	public boolean isCalled(String aName) {
+		return name.equals(aName);
+	}
+
 }
