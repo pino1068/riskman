@@ -1,5 +1,6 @@
 HOW TO EXECUTE COMMAND
-'mvn clean compile exec:java'
+'mvn clean compile'
+'mvn exec:java'
 
 or 
 'mvn clean package'
