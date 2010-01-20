@@ -9,7 +9,7 @@ import org.junit.*;
 import ch.siagile.finance.instrument.rating.*;
 
 public class MoodyRatingTest {
-
+	
 	@Test
 	public void shouldCompare2RatingsUsingNaturalOrder() {
 		should("Aaa = Aaa");
