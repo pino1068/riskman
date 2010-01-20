@@ -1,0 +1,3 @@
+load:portfolio1.csv
+CHF min:90%
+USD max:10%

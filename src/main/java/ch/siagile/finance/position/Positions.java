@@ -1,5 +1,7 @@
 package ch.siagile.finance.position;
 
+import static ch.siagile.finance.Some.*;
+
 import java.util.*;
 
 import org.hamcrest.*;
@@ -7,6 +9,7 @@ import org.hamcrest.*;
 import ch.siagile.finance.money.*;
 
 public class Positions implements Iterable<Position> {
+	
 	private List<Position> positions = new ArrayList<Position>();
 
 	public Positions(Position... positions) {
@@ -38,11 +41,7 @@ public class Positions implements Iterable<Position> {
 
 	@Override
 	public String toString() {
-		String result = "";
-		for (Position position : positions) {
-			result += position.toString() + "\n";
-		}
-		return result;
+		return some(positions).toString();
 	}
 
 	public Ratio divideBy(Positions other) {

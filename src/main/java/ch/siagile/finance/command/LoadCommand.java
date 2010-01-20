@@ -1,5 +1,6 @@
 package ch.siagile.finance.command;
 
+import static ch.siagile.finance.Some.*;
 import static java.text.MessageFormat.*;
 
 import java.util.*;
@@ -21,38 +22,69 @@ public class LoadCommand extends Command {
 		return string.startsWith("load");
 	}
 
-	public String execute(Positions positions) {
-		PositionsParser positionsParser = new PositionsParser();
-		for (String string : lines(pathname())) {
-			try {
-				positions.add(positionsParser.parse(string));
-			} catch (Exception e) {
-				warning(string);
-			}
-		}
+	private PositionsParser positionsParser = new PositionsParser();
 
-		if (!warnings.isEmpty())
-			return format("{0} {1}\n{2}", definition(), "KO", toString(warnings));
-		return format("{0} {1}", definition(), "OK");
+	public String execute(Positions positions) {
+		return execute("", positions);
 	}
 
-	private String toString(List<String> strings) {
-		StringBuilder builder = new StringBuilder();
+	public String execute(String dirname, Positions positions) {
+
+		String pathname = pathname(dirname);
+		
+		List<String> strings = readLines(pathname);
+
+		tryParse(positions, strings);
+
+		return output();
+	}
+
+	private void tryParse(Positions positions, List<String> strings) {
 		for (String string : strings) {
-			builder.append(string).append("\n");
+			tryParse(positions, string);
 		}
-		return builder.toString();
+	}
+
+	private void tryParse(Positions positions, String string) {
+		try {
+			positions.add(positionsParser.parse(string));
+		} catch (Exception e) {
+			warning(string);
+		}
+	}
+
+	private String output() {
+		if (hasWarnings())
+			return failWith(warnings);
+
+		return success();
+	}
+
+	private String success() {
+		return message("{0}", "OK");
+	}
+
+	private String failWith(List<String> strings) {
+		return message("{0}\n{1}", "KO", some(strings).toString());
+	}
+
+	private boolean hasWarnings() {
+		return !warnings.isEmpty();
+	}
+
+	private String message(String format, Object... args) {
+		return format("{0} {1}", definition(), format(format, args));
 	}
 
 	private void warning(String string) {
 		warnings.add(format("warning:{0}", string));
 	}
 
-	private String pathname() {
-		return values("load:")[0];
+	private String pathname(String dirname) {
+		return format("{0}/{1}", dirname, values("load:")[0]).replaceAll("^/*", "");
 	}
 
-	private List<String> lines(String pathname) {
+	private List<String> readLines(String pathname) {
 		return new TextRepository().load(pathname);
 	}
 
