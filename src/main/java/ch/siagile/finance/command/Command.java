@@ -11,7 +11,9 @@ public abstract class Command {
 		this.definition = definition;
 	}
 
-	public abstract Constraint constraint();
+	public Constraint constraint() {
+		return new TrueConstraint();
+	}
 
 	protected String checkFrom(String definition) {
 		return definition.split(" ")[1];

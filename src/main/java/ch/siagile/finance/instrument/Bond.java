@@ -1,6 +1,8 @@
 package ch.siagile.finance.instrument;
 
+import static java.text.MessageFormat.*;
 import ch.siagile.finance.location.*;
+
 
 public class Bond {
 
@@ -54,4 +56,8 @@ public class Bond {
 		return name.equals(aName);
 	}
 
+	@Override
+	public String toString() {
+		return format("{0} {1}", name, rating);
+	}
 }
