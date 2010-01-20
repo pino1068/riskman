@@ -1,6 +1,5 @@
 package ch.siagile.finance.location;
 
-import ch.siagile.finance.*;
 
 
 public class Location {

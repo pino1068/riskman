@@ -1,9 +1,9 @@
-package ch.siagile.finance.service;
+package ch.siagile.finance.repository;
 
 import java.io.*;
 import java.util.*;
 
-import ch.siagile.finance.*;
+import ch.siagile.finance.location.*;
 
 public class CsvRepository implements Repository{
 

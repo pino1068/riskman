@@ -1,13 +1,14 @@
 package ch.siagile.finance;
 
+import static ch.siagile.finance.fixtures.Fixtures.*;
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.*;
-import static ch.siagile.finance.fixtures.Fixtures.*;
 
 import org.junit.*;
 
+import ch.siagile.finance.app.*;
 import ch.siagile.finance.instrument.*;
-import ch.siagile.finance.instrument.rating.*;
+import ch.siagile.finance.location.*;
 import ch.siagile.finance.position.*;
 
 public class ShellTest {

@@ -4,7 +4,7 @@ import static java.text.MessageFormat.*;
 
 import org.hamcrest.*;
 
-import ch.siagile.finance.instrument.rating.*;
+import ch.siagile.finance.instrument.*;
 
 public class RatingMatchers {
 

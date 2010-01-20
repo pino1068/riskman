@@ -1,9 +1,8 @@
 package ch.siagile.finance.position;
 
 import static java.text.MessageFormat.*;
-import ch.siagile.finance.base.*;
 import ch.siagile.finance.instrument.*;
-import ch.siagile.finance.instrument.rating.*;
+import ch.siagile.finance.money.*;
 
 public class BondPosition extends Position {
 	private Bond bond;

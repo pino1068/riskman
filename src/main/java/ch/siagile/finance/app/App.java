@@ -2,7 +2,7 @@ package ch.siagile.finance.app;
 
 import java.io.*;
 
-import ch.siagile.finance.base.*;
+import ch.siagile.finance.money.*;
 import ch.siagile.finance.position.*;
 
 public class App {

@@ -1,6 +1,6 @@
 package ch.siagile.finance.check;
 
-import ch.siagile.finance.base.*;
+import ch.siagile.finance.money.*;
 
 public class MaxCheck extends SingleCheck {
 

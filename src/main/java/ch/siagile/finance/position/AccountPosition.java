@@ -2,7 +2,7 @@ package ch.siagile.finance.position;
 
 
 import static java.text.MessageFormat.*;
-import ch.siagile.finance.base.*;
+import ch.siagile.finance.money.*;
 
 
 public class AccountPosition extends BasePosition {

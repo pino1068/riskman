@@ -1,6 +1,5 @@
-package ch.siagile.finance;
+package ch.siagile.finance.repository;
 
-import ch.siagile.finance.service.*;
 
 public class Factory {
 

@@ -2,7 +2,7 @@ package ch.siagile.finance.matcher;
 
 import org.hamcrest.*;
 
-import ch.siagile.finance.instrument.rating.*;
+import ch.siagile.finance.instrument.*;
 
 public class IsMinMatcher<T> extends BaseMatcher<T> {
 

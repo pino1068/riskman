@@ -1,4 +1,4 @@
-package ch.siagile.finance.instrument.rating;
+package ch.siagile.finance.instrument;
 
 
 public class MoodyRating extends Rating implements Comparable<MoodyRating> {

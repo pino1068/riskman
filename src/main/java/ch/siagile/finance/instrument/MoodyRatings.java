@@ -1,4 +1,4 @@
-package ch.siagile.finance.instrument.rating;
+package ch.siagile.finance.instrument;
 
 import static java.text.MessageFormat.*;
 import static java.util.Arrays.*;

@@ -1,8 +1,7 @@
 package ch.siagile.finance.fixtures;
 
-import ch.siagile.finance.*;
-import ch.siagile.finance.base.*;
 import ch.siagile.finance.instrument.*;
+import ch.siagile.finance.money.*;
 import ch.siagile.finance.position.*;
 
 public class Fixtures {

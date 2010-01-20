@@ -1,4 +1,4 @@
-package ch.siagile.finance.base;
+package ch.siagile.finance.money;
 
 import java.math.*;
 

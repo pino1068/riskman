@@ -1,12 +1,12 @@
 package ch.siagile.finance;
 
-import static org.hamcrest.Matchers.*;
 import static ch.siagile.finance.fixtures.Fixtures.*;
+import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.*;
 
 import org.junit.*;
 
-import ch.siagile.finance.base.*;
+import ch.siagile.finance.money.*;
 
 public class PercentTest {
 

@@ -1,6 +1,5 @@
 package ch.siagile.finance.app;
 
-import ch.siagile.finance.*;
 import ch.siagile.finance.position.*;
 
 public class ExecutionMenu extends BaseMenu {

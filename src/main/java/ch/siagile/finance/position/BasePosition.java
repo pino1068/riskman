@@ -1,6 +1,6 @@
 package ch.siagile.finance.position;
 
-import ch.siagile.finance.base.*;
+import ch.siagile.finance.money.*;
 
 public class BasePosition extends Position {
 	
