@@ -1,6 +1,9 @@
 package ch.siagile.finance.money;
 
+import static java.text.MessageFormat.*;
+
 import java.math.*;
+
 
 public class Percent {
 
@@ -13,6 +16,10 @@ public class Percent {
 		} catch (NumberFormatException e) {
 		}
 		value = myValue;
+	}
+
+	public Percent(BigDecimal value) {
+		this.value = value.doubleValue();
 	}
 
 	public static Percent from(String string) {
@@ -37,6 +44,15 @@ public class Percent {
 
 	public BigDecimal plus(BigDecimal amount) {
 		return amount.add(amount.multiply(toBigDecimal()));
+	}
+
+	public static Percent from(Money numerator, Money denominator) {
+		return new Percent(numerator.amount().divide(denominator.amount(), 6, RoundingMode.DOWN).multiply(BigDecimal.valueOf(100)));
+	}
+	
+	@Override
+	public String toString() {
+		return format("{0}%", value);
 	}
 
 }

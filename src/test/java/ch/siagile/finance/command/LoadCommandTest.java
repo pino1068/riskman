@@ -24,7 +24,6 @@ public class LoadCommandTest {
 		String output = new LoadCommand("load:src/test/resources/portfolio-with-unknown-position.csv").execute(positions);
 		assertThat(output, containsString("load:src/test/resources/portfolio-with-unknown-position.csv KO"));
 		assertThat(output, containsString("warning:,,,,,,,,,,,,,,,,,,,,,"));
-		System.out.println(output);
 	}
 
 }

@@ -51,5 +51,9 @@ public class Ratio {
 	public int hashCode() {
 		return 13 * numerator.hashCode() + 17 * denominator.hashCode();
 	}
+
+	public Percent percent() {
+		return Percent.from(numerator, denominator);
+	}
 }
  

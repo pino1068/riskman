@@ -1,5 +1,6 @@
 package ch.siagile.finance.command;
 
+import static java.text.MessageFormat.*;
 import ch.siagile.finance.constraint.*;
 import ch.siagile.finance.position.*;
 
@@ -22,7 +23,7 @@ public abstract class Command {
 	protected String[] commandValues(String name, String definition) {
 		return definition.split(" ")[0].replaceAll(name, "").split(",");
 	}
-	
+
 	protected String definition() {
 		return definition;
 	}
@@ -30,7 +31,7 @@ public abstract class Command {
 	protected String check() {
 		return checkFrom(definition);
 	}
-	
+
 	protected String[] values(String name) {
 		return commandValues(name, definition());
 	}
@@ -39,7 +40,25 @@ public abstract class Command {
 
 	public String execute(Positions positions) {
 		boolean result = constraint().checkLimitOn(positions);
-		return definition + (result ? " OK" : " KO");
+		if (result)
+			return format("{0} OK", definition);
+
+		return format("{0} KO {1}", definition, failMessage(positions));
+	}
+
+	private String failMessage(Positions allPositions) {
+
+		Positions filtered = constraint().filter(allPositions);
+
+		String filteredPercent = "";
+		String filteredValue = "";
+		String positionsValue = "";
+
+		filteredPercent = filtered.divideBy(allPositions).percent().toString();
+		filteredValue = filtered.value().toString();
+		positionsValue = allPositions.value().toString();
+
+		return format(" but is {0} {1} of {2}", filteredPercent, filteredValue, positionsValue);
 	}
 
 	public abstract Command createFrom(String definition);

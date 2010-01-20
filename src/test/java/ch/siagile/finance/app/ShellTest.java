@@ -27,6 +27,7 @@ public class ShellTest {
 	public void shouldChfMax20PercentKO() {
 		output = command.execute(positions, "CHF max:20%");
 		assertThat(output, containsString("CHF max:20% KO"));
+		assertThat(output, containsString("but is 28.037% 30 CHF of 107 CHF"));
 	}
 
 	@Test
