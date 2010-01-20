@@ -1,3 +1,12 @@
+HOW TO EXECUTE COMMAND
+'mvn clean compile'
+'mvn exec:java'
+
+or 
+'mvn clean package'
+'java -jar target/risk-management-1.0.jar'
+
+
 CODE CONVENTION
 
 * don't commit commented code

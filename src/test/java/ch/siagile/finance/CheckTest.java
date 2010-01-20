@@ -6,13 +6,16 @@ import static org.junit.Assert.*;
 
 import org.junit.*;
 
+import ch.siagile.finance.check.*;
+import ch.siagile.finance.money.*;
+
 public class CheckTest {
 
 	private Check check;
 
 	@Test
 	public void shouldEquityContaint() {
-		check = new MaxCheck(Percent.from("50%"));
+		check = new MaxCheck(0.5);
 
 		assertCheck(check, "10%");
 		assertCheck(check, "20%");

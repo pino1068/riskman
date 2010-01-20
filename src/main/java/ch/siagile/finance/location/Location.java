@@ -1,6 +1,5 @@
 package ch.siagile.finance.location;
 
-import ch.siagile.finance.*;
 
 
 public class Location {
@@ -21,7 +20,7 @@ public class Location {
 		this.area = Area.from(area);
 	}
 
-	public void locate(Area area) {
+	public void locateIn(Area area) {
 		this.area = area;
 	}
 

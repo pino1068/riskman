@@ -5,7 +5,6 @@ import static org.hamcrest.Matchers.*;
 
 import org.junit.*;
 
-import ch.siagile.finance.fixtures.*;
 import ch.siagile.finance.instrument.*;
 import ch.siagile.finance.location.*;
 
@@ -24,14 +23,14 @@ public class LocationTest {
 	@Test 
 	public void shouldLocateAnEquityInAnArea() {
 		Equity equity = new Equity("USA");
-		Location.from(equity).locate(Area.from("USA"));
+		Location.from(equity).locateIn(Area.from("USA"));
 		
 		assertThat(Location.from(equity).area(), is(Area.from("USA")));
 	}
 	
 	@Test 
 	public void shouldLocateABondInAnArea() {
-		Bond bond = Fixtures.bond("EIB 02","UE");
+		Bond bond = Bond.from("EIB 02", "UE");
 		
 		assertThat(Location.from(bond).area(), is(Area.from("UE")));
 	}

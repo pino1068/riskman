@@ -1,15 +1,24 @@
 package ch.siagile.finance;
 
-import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
+import static org.junit.Assert.*;
 
 import org.hamcrest.*;
 import org.junit.*;
 
-import ch.siagile.finance.instrument.rating.*;
+import ch.siagile.finance.instrument.*;
 
 public class MoodyRatingTest {
 	
+	@Test
+	public void shouldThrowsExceptionIsMoodyRatingNotFound() {
+		try {
+			MoodyRatings.find("AAA");
+			fail("expected exception");
+		} catch (Exception expectedBehaiver) {
+		}
+	}
+
 	@Test
 	public void shouldCompare2RatingsUsingNaturalOrder() {
 		should("Aaa = Aaa");
@@ -50,7 +59,8 @@ public class MoodyRatingTest {
 		String[] split = string.split(operator);
 		MoodyRating rating = rating(split[1]);
 		Matcher<MoodyRating> matcher = matcher(operator, rating);
-		assertThat(rating(split[0]), is(matcher));
+		MoodyRating rating2 = rating(split[0]);
+		assertThat(rating2, is(matcher));
 	}
 
 	private Matcher<MoodyRating> matcher(String operator, MoodyRating rating) {

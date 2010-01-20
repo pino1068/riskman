@@ -6,6 +6,8 @@ import static org.hamcrest.Matchers.*;
 
 import org.junit.*;
 
+import ch.siagile.finance.location.*;
+
 public class AreaTest {
 
 	@Test
