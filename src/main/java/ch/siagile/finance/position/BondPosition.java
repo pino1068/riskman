@@ -12,6 +12,8 @@ public class BondPosition extends Position {
 	private final Money quantity;
 	private final double price;
 
+	private String owner;
+
 	public BondPosition(Bond bond, Money quantity, String price) {
 		this.bond = bond;
 		this.quantity = quantity;
@@ -35,5 +37,18 @@ public class BondPosition extends Position {
 	@Override
 	public String toString() {
 		return format("bond {0}: {1} {2} = {3}",bond, quantity, price, balance());
+	}
+
+	public boolean isOwnedBy(String anOwner) {
+		return owner.equals(anOwner);
+	}
+
+	public boolean isCalled(String aName) {
+		return bond.isCalled(aName);
+	}
+
+	public BondPosition ownedBy(String anOwner) {
+		this.owner = anOwner;
+		return this;
 	}
 }

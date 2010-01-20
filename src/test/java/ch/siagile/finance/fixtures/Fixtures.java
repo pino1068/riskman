@@ -8,14 +8,6 @@ public class Fixtures {
 	public static final int IBM_PRICE = 100;
 	public static final int UBS_PRICE = 10;
 
-//	public static Position UBS(int quantity) {
-//		return equity("UBS", quantity, CHF(UBS_PRICE));
-//	}
-//
-//	public static Position IBM(int quantity) {
-//		return equity("IBM", quantity, CHF(IBM_PRICE));
-//	}
-
 	public static Position IBM(Money price) {
 		return equity("IBM", 1, price);
 	}

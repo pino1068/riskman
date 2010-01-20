@@ -10,4 +10,5 @@ public abstract class Position {
 		return balance().plus(position.balance());
 	}
 
+
 }

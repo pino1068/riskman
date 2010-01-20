@@ -1,0 +1,10 @@
+load:portfolio1.csv
+load:portfolio2.csv
+policy:conservativo
+ - CHF min:90%
+ - USD max:10%
+policy:aggressivo
+ - CHF max:20%
+ - USD min:30%
+pippo1:aggressivo
+pippo2:conservativo

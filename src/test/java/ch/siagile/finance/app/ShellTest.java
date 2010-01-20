@@ -1,4 +1,5 @@
-package ch.siagile.finance;
+package ch.siagile.finance.app;
+
 
 import static ch.siagile.finance.fixtures.Fixtures.*;
 import static org.hamcrest.Matchers.*;
@@ -6,7 +7,6 @@ import static org.junit.Assert.*;
 
 import org.junit.*;
 
-import ch.siagile.finance.app.*;
 import ch.siagile.finance.instrument.*;
 import ch.siagile.finance.location.*;
 import ch.siagile.finance.position.*;
@@ -27,6 +27,7 @@ public class ShellTest {
 	public void shouldChfMax20PercentKO() {
 		output = command.execute(positions, "CHF max:20%");
 		assertThat(output, containsString("CHF max:20% KO"));
+		assertThat(output, containsString("but is 28.037% 30 CHF of 107 CHF"));
 	}
 
 	@Test
@@ -139,6 +140,12 @@ public class ShellTest {
 	public void shouldMaxRatingPercentKO() {
 		output = command.execute(positions, "rating:range:B1,A2 min:60%");
 		assertThat(output, containsString("rating:range:B1,A2 min:60% KO"));
+	}
+
+	@Test
+	public void shouldLoadPortfolioCsv() {
+		output = command.execute(positions, "load:src/test/resources/portfolio1.csv");
+		assertThat(output, containsString("load:src/test/resources/portfolio1.csv OK"));
 	}
 
 	@Test

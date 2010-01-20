@@ -6,8 +6,7 @@ import org.hamcrest.*;
 
 import ch.siagile.finance.money.*;
 
-public class Positions {
-
+public class Positions implements Iterable<Position> {
 	private List<Position> positions = new ArrayList<Position>();
 
 	public Positions(Position... positions) {
@@ -16,7 +15,7 @@ public class Positions {
 		}
 	}
 
-	protected void add(Position aPosition) {
+	public void add(Position aPosition) {
 		positions.add(aPosition);
 	}
 
@@ -41,7 +40,7 @@ public class Positions {
 	public String toString() {
 		String result = "";
 		for (Position position : positions) {
-			result += position.toString()+"\n";
+			result += position.toString() + "\n";
 		}
 		return result;
 	}
@@ -50,4 +49,8 @@ public class Positions {
 		return value().divideBy(other.value());
 	}
 
+	@Override
+	public Iterator<Position> iterator() {
+		return positions.iterator();
+	}
 }

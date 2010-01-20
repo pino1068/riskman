@@ -58,7 +58,7 @@ public class Money {
 
 	@Override
 	public String toString() {
-		return format("Money: {0} {1}", amount, currency);
+		return format("{0} {1}", amount, currency);
 	}
 
 	public Ratio divideBy(Money other) {
@@ -74,7 +74,7 @@ public class Money {
 	}
 
 	public Money divideBy(BigDecimal anAmount) {
-		return Money.from(amount.divide(anAmount), currency);
+		return Money.from(amount.divide(anAmount, 6, RoundingMode.DOWN), currency);
 	}
 
 	public boolean compatible(String aCurrency) {
