@@ -9,6 +9,7 @@ import ch.siagile.finance.position.*;
 public class PositionsParser {
 
 	private final List<Parser> parsers = new LinkedList<Parser>() {
+		private static final long serialVersionUID = 1L;
 		{
 			add(new BondParser());
 			add(new AccountParser());

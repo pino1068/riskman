@@ -11,6 +11,8 @@ import ch.siagile.finance.position.*;
 public class Shell {
 
 	private static final List<Command> commands = new LinkedList<Command>() {
+		private static final long serialVersionUID = 1L;
+
 		{
 			add(new EquityCommand(""));
 			add(new AreaCommand(""));

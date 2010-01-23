@@ -9,32 +9,32 @@ import org.hamcrest.*;
 import ch.siagile.finance.instrument.*;
 import ch.siagile.finance.position.*;
 
-public class IsInMatcher<T> extends BaseMatcher<T> {
+public class IsRatingInMatcher<T> extends BaseMatcher<T> {
 
 	public static final <T> Matcher<T> ratingIn(MoodyRating from, MoodyRating to) {
-		return new IsInMatcher<T>(from, to);
+		return new IsRatingInMatcher<T>(from, to);
 	}
 
 	private final MoodyRating from;
 	private final MoodyRating to;
 
-	public IsInMatcher(MoodyRating from, MoodyRating to) {
+	public IsRatingInMatcher(MoodyRating from, MoodyRating to) {
 		this.from = from;
 		this.to = to;
 	}
 
 	public void describeTo(Description description) {
-		description.appendText("in range from:");
-		description.appendValue(from);
-		description.appendText("to:");
-		description.appendValue(to);
+		description
+		.appendText("in range from:")
+		.appendValue(from)
+		.appendText("to:")
+		.appendValue(to);
 	}
 
 	@SuppressWarnings("unchecked")
 	public boolean matches(Object item) {
 		Rating rating = ratingOf(item);
-		if (null == rating)
-			return false;
+		if (null == rating)		return false;
 		return allOf(min(from), max(to)).matches(rating);
 	}
 

@@ -3,9 +3,7 @@ package ch.siagile.finance.instrument;
 import static java.text.MessageFormat.*;
 import ch.siagile.finance.location.*;
 
-
 public class Bond {
-
 	private final String name;
 	private final Rating rating;
 
@@ -29,10 +27,17 @@ public class Bond {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (!Bond.class.isInstance(obj))
+		if (isNotBond(obj))
 			return false;
-		Bond bond = (Bond) obj;
-		return bond.name.equals(name);
+		return toBond(obj).name.equals(name);
+	}
+
+	private Bond toBond(Object obj) {
+		return ((Bond) obj);
+	}
+
+	private boolean isNotBond(Object obj) {
+		return !Bond.class.isInstance(obj);
 	}
 
 	@Override
@@ -41,10 +46,9 @@ public class Bond {
 	}
 
 	public boolean isLocated(String... someAreas) {
-		for (String anArea : someAreas) {
+		for (String anArea : someAreas) 
 			if (Area.from(anArea).equals(area()))
 				return true;
-		}
 		return false;
 	}
 

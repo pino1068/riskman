@@ -17,9 +17,8 @@ public class Some<T> {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		for (T t : someT) {
-			builder.append(t.toString()).append("\n");
-		}
+		for (T t : someT) 
+			builder.append(t).append("\n");
 		return builder.toString();
 	}
 

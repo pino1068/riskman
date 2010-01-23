@@ -1,8 +1,8 @@
 package ch.siagile.finance.money;
 
-import static java.text.MessageFormat.*;
-
 import java.math.*;
+
+import static java.text.MessageFormat.*;
 
 
 public class Percent {

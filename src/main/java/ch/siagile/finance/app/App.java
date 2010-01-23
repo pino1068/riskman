@@ -15,7 +15,7 @@ public class App {
 	}
 
 	public void start() {
-		Positions positions = positions();
+		Positions positions = samples();
 		printHeader();
 		String line = null;
 		do {
@@ -29,15 +29,14 @@ public class App {
 		} while (!new QuitMenu().isCalled(line));
 	}
 
-	private Positions positions() {
+	private Positions samples() {
 		return new Positions(account("name", Money.CHF(30)), account("name2",
 				Money.USD(70)));
 	}
 
 	private void printHeader() {
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 10; i++) 
 			println("");
-		}
 		println("Enter a command or 'h' for help or 'quit' to exit");
 	}
 

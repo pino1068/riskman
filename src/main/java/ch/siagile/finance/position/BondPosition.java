@@ -7,23 +7,22 @@ import ch.siagile.finance.money.*;
 public class BondPosition extends Position {
 	private Bond bond;
 
-	// for bonds the prices is espress in % and the quantity (nominal value) in
+	// for bonds the prices is in % and the quantity (nominal value) in
 	// Money
 	private final Money quantity;
-	private final double price;
+	private final Percent price;
 
 	private String owner;
 
-	public BondPosition(Bond bond, Money quantity, String price) {
+	public BondPosition(Bond bond, Money quantity, Percent price) {
 		this.bond = bond;
 		this.quantity = quantity;
-		String percent = price.split("%")[0];
-		this.price = Double.valueOf(percent);
+		this.price = price;
 	}
 
 	@Override
 	public Money balance() {
-		return this.quantity.times(price).divideBy(100);
+		return this.quantity.times(price);
 	}
 
 	public Rating rating() {

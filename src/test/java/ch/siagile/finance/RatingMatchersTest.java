@@ -14,7 +14,7 @@ public class RatingMatchersTest {
 
 	@Test
 	public void shouldInRange() {
-		assertThat(RatingMatchers.build("range:C,Aaa"), is(instanceOf(IsInMatcher.class)));		
+		assertThat(RatingMatchers.build("range:C,Aaa"), is(instanceOf(IsRatingInMatcher.class)));		
 	}
 
 	@Test

@@ -5,19 +5,19 @@ public class ExchangeRate {
 	private final Money from;
 	private final Money to;
 
-	public ExchangeRate(Money fromMoney, Money toMoney) {
-		this.from = fromMoney;
-		this.to = toMoney;
+	public ExchangeRate(Money from, Money to) {
+		this.from 	= from;
+		this.to 	= to;
 	}
 
-	public static ExchangeRate from(Money fromMoney, Money toMoney) {
-		return new ExchangeRate(fromMoney, toMoney);
+	public static ExchangeRate from(Money from, Money to) {
+		return new ExchangeRate(from, to);
 	}
 
 	public Money change(Money source) {
 		if(source.compatible(from))
-			return to.times(source.amount()).divideBy(from.amount());
-		return from.times(source.amount()).divideBy(to.amount());
+			return to.times(source).divideBy(from.amount());
+		return from.times(source).divideBy(to.amount());
 	}
 
 }

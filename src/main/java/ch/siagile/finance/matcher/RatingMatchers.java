@@ -47,7 +47,7 @@ public class RatingMatchers {
 		String[] tokens = string.replaceAll("range:", "").split(",");
 		String from = tokens[0];
 		String to = tokens[1];
-		return IsInMatcher.ratingIn(MoodyRating.from(from), MoodyRating.from(to));
+		return IsRatingInMatcher.ratingIn(MoodyRating.from(from), MoodyRating.from(to));
 	}
 
 }

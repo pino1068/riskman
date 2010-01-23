@@ -4,7 +4,6 @@ import static java.text.MessageFormat.*;
 import java.math.*;
 
 public class Ratio {
-
 	private final Money numerator;
 	private final Money denominator;
 
@@ -21,21 +20,28 @@ public class Ratio {
 		return divide().compareTo(aValue) <= 0;
 	}
 
+	public boolean isGreaterTheOrEqualsTo(BigDecimal aValue) {
+		return divide().compareTo(aValue) >= 0;
+	}
+	
 	private BigDecimal divide() {
 		return numerator.amount().divide(denominator.amount(), 6, BigDecimal.ROUND_DOWN);
 	}
 
-	public boolean isGreaterTheOrEqualsTo(BigDecimal aValue) {
-		return divide().compareTo(aValue) >= 0;
-	}
-
 	@Override
 	public boolean equals(Object obj) {
-		if(!Ratio.class.isInstance(obj)) return false;
-		Ratio other = (Ratio) obj;
-		if(!numerator.equals(other.numerator)) return false;
-		if(!denominator.equals(other.denominator)) return false;
+		if(isNotRatio(obj)) return false;
+		if(!numerator.equals(toRatio(obj).numerator)) return false;
+		if(!denominator.equals(toRatio(obj).denominator)) return false;
 		return true;
+	}
+
+	private Ratio toRatio(Object obj) {
+		return (Ratio) obj;
+	}
+
+	private boolean isNotRatio(Object obj) {
+		return !Ratio.class.isInstance(obj);
 	}
 
 	public boolean isEqualsTo(BigDecimal aValue) {

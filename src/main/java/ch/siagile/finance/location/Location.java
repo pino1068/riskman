@@ -30,10 +30,13 @@ public class Location {
 	}
 
 	public boolean isLocatedIn(String someAreaNames) {
-		for (String anArea : someAreaNames.split(",")) {
+		for (String anArea : split(someAreaNames)) 
 			if (isLocatedIn(Area.from(anArea)))
 				return true;
-		}
 		return false;
+	}
+
+	private String[] split(String someAreaNames) {
+		return someAreaNames.split(",");
 	}
 }

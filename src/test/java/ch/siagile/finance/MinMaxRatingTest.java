@@ -1,6 +1,6 @@
 package ch.siagile.finance;
 
-import static ch.siagile.finance.matcher.IsInMatcher.*;
+import static ch.siagile.finance.matcher.IsRatingInMatcher.*;
 import static ch.siagile.finance.matcher.IsMaxMatcher.*;
 import static ch.siagile.finance.matcher.IsMinMatcher.*;
 import static org.hamcrest.Matchers.*;

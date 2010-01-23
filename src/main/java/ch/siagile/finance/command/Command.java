@@ -43,24 +43,17 @@ public abstract class Command {
 	}
 
 	private String failMessage(Positions allPositions) {
-
 		Positions filtered = constraint().filter(allPositions);
 
-		String filteredPercent = filtered.divideBy(allPositions).percent().toString();
-		String filteredValue = filtered.value().toString();
-		String positionsValue = allPositions.value().toString();
-
-		return format("but is {0} {1} of {2}", filteredPercent, filteredValue, positionsValue);
+		return format("but is {0} {1} of {2}", filtered.percentOf(allPositions), filtered.value(), allPositions.value());
 	}
 
 	public abstract Command createFrom(String definition);
 
 	public String execute(String dirname, Positions positions) {
 		boolean success = constraint().checkLimitOn(positions);
-		
 		if (success)
 			return format("{0} OK", definition);
-
 		return format("{0} KO {1}", definition, failMessage(positions));
 	}
 

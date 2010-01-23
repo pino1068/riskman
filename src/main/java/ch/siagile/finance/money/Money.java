@@ -1,8 +1,8 @@
 package ch.siagile.finance.money;
 
-import static java.text.MessageFormat.*;
-
 import java.math.*;
+
+import static java.text.MessageFormat.*;
 
 public class Money {
 	private final String currency;
@@ -23,12 +23,25 @@ public class Money {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (!Money.class.isInstance(obj))
-			return false;
-		Money other = (Money) obj;
-		if (!currency.equals(other.currency))
-			return false;
-		return amount.compareTo(other.amount) == 0;
+		if (isNotMoney(obj))		return false;
+		if (isNotCompatible(obj))	return false;
+		return compareTo(toMoney(obj)) == 0;
+	}
+
+	private int compareTo(Money money) {
+		return amount.compareTo(money.amount);
+	}
+
+	private boolean isNotCompatible(Object obj) {
+		return !compatible(toMoney(obj));
+	}
+
+	private Money toMoney(Object obj) {
+		return ((Money) obj);
+	}
+
+	private boolean isNotMoney(Object obj) {
+		return !Money.class.isInstance(obj);
 	}
 
 	public Money times(BigDecimal quantity) {
@@ -40,9 +53,7 @@ public class Money {
 	}
 
 	public Money plus(Money other) {
-		if (!compatible(other)) {
-			return changeAndSum(other);
-		}
+		if (isNotCompatible(other)) 	return changeAndSum(other);
 		return Money.from((amount.add(other.amount)), currency);
 	}
 
@@ -52,8 +63,7 @@ public class Money {
 
 	private Money change(Money other) {
 		ExchangeRate rate = ExchangeRate.from(Money.from(1, "USD"),Money.from(1.1, "CHF"));
-		Money otherChf = rate.change(other);
-		return otherChf;
+		return rate.change(other);
 	}
 
 	@Override
@@ -106,5 +116,9 @@ public class Money {
 	}
 	public static Money EUR(double amount) {
 		return Money.from(BigDecimal.valueOf(amount), "EUR");
+	}
+
+	public Money times(Money source) {
+		return times(source.amount);
 	}
 }

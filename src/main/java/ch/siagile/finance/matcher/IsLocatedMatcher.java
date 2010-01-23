@@ -20,12 +20,12 @@ public class IsLocatedMatcher<T> extends BaseMatcher<T> {
 	}
 
 	public boolean matches(Object obj) {
-		if (isBondPosition(obj)) {
-			return locationOf((BondPosition) obj);
-		}
-		if (isBond(obj)) {
-			return locationOf((Bond) obj);
-		}
+		if (isBondPosition(obj)) 
+			return isLocated((BondPosition) obj);
+		
+		if (isBond(obj)) 
+			return isLocated((Bond) obj);
+		
 		return false;
 	}
 
@@ -37,11 +37,11 @@ public class IsLocatedMatcher<T> extends BaseMatcher<T> {
 		return BondPosition.class.isInstance(obj);
 	}
 
-	private boolean locationOf(Bond bond) {
+	private boolean isLocated(Bond bond) {
 		return bond.isLocated(areas);
 	}
 
-	private boolean locationOf(BondPosition position) {
+	private boolean isLocated(BondPosition position) {
 		return position.isLocated(areas);
 	}
 

@@ -25,10 +25,16 @@ public class Rating {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (!Rating.class.isInstance(obj))
-			return false;
-		Rating rating = (Rating) obj;
-		return value.equals(rating.value);
+		if (isNotRating(obj))	return false;
+		return value.equals(toRating(obj).value);
+	}
+
+	private Rating toRating(Object obj) {
+		return (Rating) obj;
+	}
+
+	private boolean isNotRating(Object obj) {
+		return !Rating.class.isInstance(obj);
 	}
 
 	@Override

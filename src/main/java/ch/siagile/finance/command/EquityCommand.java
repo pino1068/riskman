@@ -10,20 +10,30 @@ public class EquityCommand extends Command {
 
 	@Override
 	public Constraint constraint() {
-		String[] values = values("equity:");
-		
-		if (notContains(values))
+		if (notContains(values()))
 			return new EquityConstraint(check());
 
-		return new EquityConstraint(check(), values);
+		return new EquityConstraint(check(), values());
+	}
+
+	private String[] values() {
+		return values(prefix());
+	}
+
+	private String prefix() {
+		return name() + ":";
+	}
+
+	private String name() {
+		return "equity";
 	}
 
 	private boolean notContains(String[] values) {
-		return values.length == 1 && values[0].equals("equity");
+		return values.length == 1 && values[0].equals(name());
 	}
 
 	public boolean canExecute(String string) {
-		return string.startsWith("equity");
+		return string.startsWith(name());
 	}
 	
 	@Override

@@ -9,6 +9,4 @@ public abstract class Position {
 	public Money sumBalance(Position position) {
 		return balance().plus(position.balance());
 	}
-
-
 }

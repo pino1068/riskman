@@ -23,8 +23,8 @@ public class BondParser extends Parser {
 		return f(OWNER);
 	}
 
-	private String price() {
-		return format("{0}%", f(PRICE, "0"));
+	private Percent price() {
+		return Percent.from(format("{0}%", f(PRICE, "0")));
 	}
 
 	private Money quantity() {
@@ -39,5 +39,4 @@ public class BondParser extends Parser {
 		fields(string);
 		return f(INSTRUMENTID).equals("2");
 	}
-
 }

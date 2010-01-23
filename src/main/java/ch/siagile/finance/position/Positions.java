@@ -32,10 +32,9 @@ public class Positions implements Iterable<Position> {
 
 	public Positions select(Matcher<Position> matcher) {
 		Positions result = new Positions();
-		for (Position position : positions) {
+		for (Position position : positions) 
 			if (matcher.matches(position))
 				result.add(position);
-		}
 		return result;
 	}
 
@@ -48,8 +47,16 @@ public class Positions implements Iterable<Position> {
 		return value().divideBy(other.value());
 	}
 
-	@Override
 	public Iterator<Position> iterator() {
 		return positions.iterator();
+	}
+
+	public Ratio ratioOn(Matcher<Position> matcher) {
+		Positions selectedPositions = select(matcher);
+		return selectedPositions.divideBy(this);
+	}
+
+	public Percent percentOf(Positions other) {
+		return divideBy(other).percent();
 	}
 }

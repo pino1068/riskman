@@ -12,12 +12,11 @@ public class IsCurrenciesMatcher<T> extends BaseMatcher<T> {
 
 	private final String[] currencies;
 
-	public Matcher<Position>[] toMatchers(String[] currencies) {
-		@SuppressWarnings("unchecked")
+	@SuppressWarnings("unchecked")
+	private Matcher<Position>[] toMatchers(String...currencies) {
 		Matcher<Position>[] matchers = new Matcher[currencies.length];
-		for (int i = 0; i < currencies.length; i++) {
+		for (int i = 0; i < currencies.length; i++) 
 			matchers[i] = new IsCurrencyMatcher<Position>(currencies[i]);
-		}
 		return matchers;
 	}
 
@@ -27,9 +26,8 @@ public class IsCurrenciesMatcher<T> extends BaseMatcher<T> {
 	}
 
 	private void check(String... currencies) {
-		for (String currency : currencies) {
+		for (String currency : currencies) 
 			Currency.getInstance(currency);
-		}
 	}
 
 	public boolean matches(Object position) {
@@ -40,5 +38,4 @@ public class IsCurrenciesMatcher<T> extends BaseMatcher<T> {
 		description.appendText("exptected one of those currencies:");
 		description.appendValue(currencies);
 	}
-
 }

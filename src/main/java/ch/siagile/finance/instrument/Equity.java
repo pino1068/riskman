@@ -23,14 +23,20 @@ public class Equity {
 	
 	@Override
 	public boolean equals(Object obj) {
-		if(!Equity.class.isInstance(obj)) return false;
-		Equity equity = (Equity)obj;
-		return equity.name.equals(name);
+		if(isNotEquity(obj)) return false;
+		return toEquity(obj).name.equals(name);
+	}
+
+	private boolean isNotEquity(Object obj) {
+		return !Equity.class.isInstance(obj);
+	}
+
+	private Equity toEquity(Object obj) {
+		return (Equity)obj;
 	}
 	
 	@Override
 	public int hashCode() {
 		return name.hashCode();
 	}
-
 }

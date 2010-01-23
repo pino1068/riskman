@@ -10,13 +10,11 @@ public abstract class BaseMenu implements Menu {
 		return false;
 	}
 
-	public void perform(Positions positions, String line) {
-	}
+	public void perform(Positions positions, String line) {}
 	
 	protected void println(String... string) {
-		for (String item : string) {
+		for (String item : string) 
 			System.out.println(item);
-		}
 	}
 	
 	protected MenuList parent(){
@@ -24,19 +22,15 @@ public abstract class BaseMenu implements Menu {
 	}
 	
 	protected void print(String... strings) {
-		for (String string : strings) {
+		for (String string : strings) 
 			System.out.print(string);
-		}
 	}
 
 	public void parent(MenuList list) {
 		this.parent = list;
 	}
 
-
 	public String describe() {
 		return "";
 	}
-
-
 }
