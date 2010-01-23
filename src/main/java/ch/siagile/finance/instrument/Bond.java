@@ -1,6 +1,7 @@
 package ch.siagile.finance.instrument;
 
 import static java.text.MessageFormat.*;
+import ch.siagile.finance.instrument.rating.*;
 import ch.siagile.finance.location.*;
 
 public class Bond {

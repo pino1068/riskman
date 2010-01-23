@@ -7,6 +7,7 @@ import static org.hamcrest.Matchers.*;
 import org.hamcrest.*;
 
 import ch.siagile.finance.instrument.*;
+import ch.siagile.finance.instrument.rating.*;
 import ch.siagile.finance.position.*;
 
 public class IsRatingInMatcher<T> extends BaseMatcher<T> {

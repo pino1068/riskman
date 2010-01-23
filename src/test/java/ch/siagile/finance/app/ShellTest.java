@@ -9,6 +9,7 @@ import java.util.*;
 import org.junit.*;
 
 import ch.siagile.finance.instrument.*;
+import ch.siagile.finance.instrument.rating.*;
 import ch.siagile.finance.location.*;
 import ch.siagile.finance.position.*;
 
