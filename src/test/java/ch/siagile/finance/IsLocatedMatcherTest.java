@@ -1,7 +1,6 @@
 package ch.siagile.finance;
 
 import static ch.siagile.finance.matcher.IsLocatedMatcher.*;
-
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.*;
 

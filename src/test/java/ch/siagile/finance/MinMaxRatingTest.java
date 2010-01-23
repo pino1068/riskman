@@ -1,14 +1,13 @@
 package ch.siagile.finance;
 
-import static ch.siagile.finance.matcher.IsRatingInMatcher.*;
 import static ch.siagile.finance.matcher.IsMaxMatcher.*;
 import static ch.siagile.finance.matcher.IsMinMatcher.*;
+import static ch.siagile.finance.matcher.IsRatingInMatcher.*;
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.*;
 
 import org.junit.*;
 
-import ch.siagile.finance.instrument.*;
 import ch.siagile.finance.instrument.rating.*;
 
 public class MinMaxRatingTest {

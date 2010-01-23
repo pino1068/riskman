@@ -2,7 +2,6 @@ package ch.siagile.finance.matcher;
 
 import org.hamcrest.*;
 
-import ch.siagile.finance.instrument.*;
 import ch.siagile.finance.instrument.rating.*;
 
 public class IsMaxMatcher<T> extends BaseMatcher<T> {

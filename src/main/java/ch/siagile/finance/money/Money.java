@@ -1,8 +1,8 @@
 package ch.siagile.finance.money;
 
-import java.math.*;
-
 import static java.text.MessageFormat.*;
+
+import java.math.*;
 
 public class Money {
 	private final String currency;

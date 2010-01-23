@@ -6,7 +6,6 @@ import static org.junit.Assert.*;
 import org.hamcrest.*;
 import org.junit.*;
 
-import ch.siagile.finance.instrument.*;
 import ch.siagile.finance.instrument.rating.*;
 
 public class MoodyRatingTest {

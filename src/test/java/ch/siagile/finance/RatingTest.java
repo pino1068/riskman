@@ -5,7 +5,6 @@ import static org.hamcrest.Matchers.*;
 
 import org.junit.*;
 
-import ch.siagile.finance.instrument.*;
 import ch.siagile.finance.instrument.rating.*;
 
 public class RatingTest {
