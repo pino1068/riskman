@@ -1,4 +1,4 @@
-package ch.siagile.finance;
+package ch.siagile.finance.matcher;
 
 import org.hamcrest.*;
 
