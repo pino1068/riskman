@@ -1,6 +1,8 @@
 package ch.siagile.finance;
 
 import static ch.siagile.finance.fixtures.Fixtures.*;
+import static ch.siagile.finance.money.Money.*;
+
 import static org.junit.Assert.*;
 
 import org.junit.*;
@@ -160,6 +162,42 @@ public class ConstraintTest {
 		};
 
 		Constraint constraint = new RatingConstraint("max:A1", "min:20%");
+
+		assertTrue(constraint.checkLimitOn(positions));
+	}
+
+	@Test
+	public void shouldBondConstraintDontMatchOnPortofolioWithNoEnoughBonds() {
+		constraint = new BondConstraint("min: 20%");
+		positions = new Positions(account("pluto", CHF(999.0)), IBM(CHF(1000)));
+
+		assertFalse(constraint.checkLimitOn(positions));
+	}
+
+	@Test
+	public void shouldBondConstraintMatchOnPortofolioWithBonds() {
+		constraint = new BondConstraint("min: 20%");
+		positions = new Positions() {
+			{
+				add(account("pluto", CHF(10)));
+				add(UBS(CHF(100)));
+				add(bond(Bond.from("GECC", "UE"), CHF(100), "100%"));
+			}
+		};
+
+		assertTrue(constraint.checkLimitOn(positions));
+	}
+
+	@Test
+	public void shouldBondConstraintMatchOnPortofolioWithTooBonds() {
+		constraint = new BondConstraint("min: 40%");
+		positions = new Positions() {
+			{
+				add(account("pluto", CHF(10)));
+				add(UBS(CHF(100)));
+				add(bond(Bond.from("GECC", "UE"), CHF(100), "100%"));
+			}
+		};
 
 		assertTrue(constraint.checkLimitOn(positions));
 	}

@@ -28,12 +28,4 @@ public class Fixtures {
 		return new AccountPosition(name, balance);
 	}
 
-	public static Money CHF(double price) {
-		return Money.from(price, "CHF");
-	}
-
-	public static Money USD(double amount) {
-		return Money.from(amount, "USD");
-	}
-
 }

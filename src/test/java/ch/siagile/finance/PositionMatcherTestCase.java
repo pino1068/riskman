@@ -1,13 +1,14 @@
 package ch.siagile.finance;
 
-
 import static ch.siagile.finance.fixtures.Fixtures.*;
+import static ch.siagile.finance.money.Money.*;
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.*;
 
 import org.hamcrest.*;
 import org.junit.*;
 
+import ch.siagile.finance.instrument.*;
 import ch.siagile.finance.matcher.*;
 import ch.siagile.finance.position.*;
 
@@ -87,8 +88,8 @@ public class PositionMatcherTestCase {
 		assertThat(position, not(USDorEUR));
 	}
 
-	@SuppressWarnings("unchecked")
 	@Test
+	@SuppressWarnings("unchecked")
 	public void shouldMatchOnePositionInORtypeCondition() {
 		Matcher<Position> equityOrCHF = anyOf(currency("CHF"), equity());
 		Position position = IBM(CHF(500));
@@ -96,8 +97,8 @@ public class PositionMatcherTestCase {
 		assertThat(position, equityOrCHF);
 	}
 
-	@SuppressWarnings("unchecked")
 	@Test
+	@SuppressWarnings("unchecked")
 	public void shouldNotMatchOneUSDPositionInANDtypeCondition() {
 		Matcher<Position> equityInUSD = allOf(currency("USD"), equity());
 		Position position = IBM(CHF(500));
@@ -105,13 +106,35 @@ public class PositionMatcherTestCase {
 		assertThat(position, not(equityInUSD));
 	}
 
-	@SuppressWarnings("unchecked")
 	@Test
+	@SuppressWarnings("unchecked")
 	public void shouldMatchOneCHFPositionInANDtypeCondition() {
 		Matcher<Position> equityInCHF = allOf(currency("CHF"), equity());
 		Position position = IBM(CHF(500));
 
 		assertThat(position, equityInCHF);
+	}
+	
+	@Test 
+	public void shouldMatchOnBondMatcher() {
+		Matcher<Position> isBond = new IsBondMatcher<Position>();
+		Position position = bond(Bond.from("a name", "anArea"), CHF(100), "100%");
+
+		assertThat(position, isBond);
+	}
+	
+	@Test
+	@SuppressWarnings("unchecked")
+	public void shouldMatchOnePositionInUSDANDBond() {
+		Matcher<Position> bondInUSD = allOf(currency("USD"), bondMatcher());
+		Position position = bond(Bond.from("a name", "anArea"), USD(100), "100%");
+
+		assertThat(position, bondInUSD);
+	}
+	
+
+	private Matcher<Position> bondMatcher() {
+		return new IsBondMatcher<Position>();
 	}
 
 	private Matcher<Position> equity() {
@@ -123,7 +146,7 @@ public class PositionMatcherTestCase {
 	}
 
 	@Test
-	public void shouldThrowExceptionWhenCurrenciesNotAllowed() {
+	public void shouldWrongCurrenciesNotAllowed() {
 		try {
 			new IsCurrenciesMatcher<Position>("equity");
 			fail("expected exception for wrong currencies");

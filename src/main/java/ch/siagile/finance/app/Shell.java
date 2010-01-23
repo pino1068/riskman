@@ -14,6 +14,7 @@ public class Shell {
 		private static final long serialVersionUID = 1L;
 
 		{
+			add(new BondCommand(""));
 			add(new EquityCommand(""));
 			add(new AreaCommand(""));
 			add(new CurrencyCommand(""));

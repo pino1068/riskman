@@ -1,6 +1,8 @@
 package ch.siagile.finance.app;
 
 import static ch.siagile.finance.fixtures.Fixtures.*;
+import static ch.siagile.finance.money.Money.*;
+
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.*;
 
@@ -49,6 +51,25 @@ public class ShellTest {
 		def("equity min:20%");
 		execute();
 		assertThat(output, containsString("equity min:20% KO"));
+	}
+
+	@Test
+	public void shouldBondMin20PercentKO() {
+		def(account("name", CHF(30)));
+		def(account("name2", USD(70)));
+		def("bond min:20%");
+		execute();
+		assertThat(output, containsString("bond min:20% KO"));
+	}
+
+	@Test
+	public void shouldBondMin20PercentOK() {
+		def(account("name", CHF(30)));
+		def(account("name2", CHF(70)));
+		def(bond(Bond.from("name", "USA"), CHF(100), "100%"));
+		def("bond min:20%");
+		execute();
+		assertThat(output, containsString("bond min:20% OK"));
 	}
 
 	@Test

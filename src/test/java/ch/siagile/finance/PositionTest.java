@@ -1,6 +1,8 @@
 package ch.siagile.finance;
 
 import static ch.siagile.finance.fixtures.Fixtures.*;
+import static ch.siagile.finance.money.Money.*;
+
 import static ch.siagile.finance.matcher.IsRatingInMatcher.*;
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.*;
