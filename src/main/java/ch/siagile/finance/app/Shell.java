@@ -23,11 +23,7 @@ public class Shell {
 		}
 	};
 
-	public String execute(Positions positions, String definition) {
-		return execute("", positions, definition);
-	}
-
-	private String execute(String dirname, Positions positions, String definition) {
+	public String execute(String dirname, Positions positions, String definition) {
 		if (definition.equals(""))
 			return "OK";
 
@@ -42,10 +38,6 @@ public class Shell {
 			}
 		}
 		throw new RuntimeException(format("unknown command for {0}", definition));
-	}
-
-	public String execute(Positions positions, List<String> definitions) {
-		return execute("", positions, definitions);
 	}
 
 	public String execute(String dirname, Positions positions, List<String> definitions) {

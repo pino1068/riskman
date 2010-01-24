@@ -111,14 +111,16 @@ public class Money {
 	public static Money CHF(double amount) {
 		return Money.from(BigDecimal.valueOf(amount), "CHF");
 	}
+	
 	public static Money USD(double amount) {
 		return Money.from(BigDecimal.valueOf(amount), "USD");
 	}
+	
 	public static Money EUR(double amount) {
 		return Money.from(BigDecimal.valueOf(amount), "EUR");
 	}
 
-	public Money times(Money source) {
-		return times(source.amount);
+	public Money times(Money other) {
+		return times(other.amount);
 	}
 }

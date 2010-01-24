@@ -33,7 +33,7 @@ public class FirstRegressionTest {
 	}
 
 	private void check(String definition) {
-		new Shell().execute(positions, definition);
+		new Shell().execute(System.getProperty("user.dir"), positions, definition);
 	}
 
 	private void position(String string) {

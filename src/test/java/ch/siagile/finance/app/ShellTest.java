@@ -248,6 +248,6 @@ public class ShellTest {
 	}
 
 	private void execute() {
-		output = command.execute(positions, definitions);
+		output = command.execute("", positions, definitions);
 	}
 }
