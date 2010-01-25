@@ -44,6 +44,6 @@ public class AccountParserTest {
 	}
 
 	private AccountPosition parsedPosition(String account) {
-		return importAccount.parse(account);
+		return (AccountPosition)importAccount.parse(account);
 	}
 }

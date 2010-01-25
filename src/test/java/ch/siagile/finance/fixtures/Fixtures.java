@@ -24,7 +24,7 @@ public class Fixtures {
 		return new BondPosition(bond, quantity, Percent.from(price));
 	}
 
-	public static AccountPosition account(String name, Money balance) {
+	public static BasePosition account(String name, Money balance) {
 		return new AccountPosition(name, balance);
 	}
 

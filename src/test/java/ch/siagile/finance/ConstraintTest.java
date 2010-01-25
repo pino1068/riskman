@@ -167,7 +167,7 @@ public class ConstraintTest {
 	}
 
 	@Test
-	public void shouldBondConstraintDontMatchOnPortofolioWithNoEnoughBonds() {
+	public void shouldBondConstraintMin20NotMatch() {
 		constraint = new BondConstraint("min: 20%");
 		positions = new Positions(account("pluto", CHF(999.0)), IBM(CHF(1000)));
 
@@ -175,22 +175,8 @@ public class ConstraintTest {
 	}
 
 	@Test
-	public void shouldBondConstraintMatchOnPortofolioWithBonds() {
+	public void shouldBondConstraintMin20Match() {
 		constraint = new BondConstraint("min: 20%");
-		positions = new Positions() {
-			{
-				add(account("pluto", CHF(10)));
-				add(UBS(CHF(100)));
-				add(bond(Bond.from("GECC", "UE"), CHF(100), "100%"));
-			}
-		};
-
-		assertTrue(constraint.checkLimitOn(positions));
-	}
-
-	@Test
-	public void shouldBondConstraintMatchOnPortofolioWithTooBonds() {
-		constraint = new BondConstraint("min: 40%");
 		positions = new Positions() {
 			{
 				add(account("pluto", CHF(10)));

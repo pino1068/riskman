@@ -22,29 +22,29 @@ public class BondParserTest {
 
 	@Test
 	public void shouldImportAccount$Balance() {
-		assertThat(parsedPosition(bond1).balance(), is(equalTo(EUR(0))));
-		assertThat(parsedPosition(bond2).balance(), is(equalTo(EUR(201980))));
+		assertThat(parse(bond1).balance(), is(equalTo(EUR(0))));
+		assertThat(parse(bond2).balance(), is(equalTo(EUR(201980))));
 	}
 
 	@Test
 	public void shouldImportAccount$Type() {
-		assertThat(parsedPosition(bond1), is(instanceOf(BondPosition.class)));
+		assertThat(parse(bond1), is(instanceOf(BondPosition.class)));
 	}
 
 	@Test
 	public void shouldImportAccount$Owner() {
-		assertTrue(parsedPosition(bond1).isOwnedBy("pippo1"));
-		assertTrue(parsedPosition(bond2).isOwnedBy("pippo2"));
+		assertTrue(parse(bond1).isOwnedBy("pippo1"));
+		assertTrue(parse(bond2).isOwnedBy("pippo2"));
 	}
 
 	@Test
 	public void shouldImportAccount$Name() {
-		assertTrue(parsedPosition(bond1).isCalled("20111024 - 4.875% Procter & Gamble 24-10-11 Pro-rata"));
-		assertTrue(parsedPosition(bond2).isCalled("20100625 - 3.25% Rabobank Nederland 25-06-10"));
+		assertTrue(parse(bond1).isCalled("20111024 - 4.875% Procter & Gamble 24-10-11 Pro-rata"));
+		assertTrue(parse(bond2).isCalled("20100625 - 3.25% Rabobank Nederland 25-06-10"));
 	}
 
-	private BondPosition parsedPosition(String bond) {
-		return importBond.parse(bond);
+	private BondPosition parse(String bond) {
+		return (BondPosition)importBond.parse(bond);
 	}
 
 }
