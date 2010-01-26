@@ -21,8 +21,8 @@ public class EquityPosition extends BasePosition {
 		return price.times(quantity);
 	}
 
-	public boolean isEquity(String other) {
-		return equity.equals(Equity.from(other));
+	public boolean isEquity(String aName) {
+		return equity.isCalled(aName);
 	}
 
 	@Override

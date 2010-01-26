@@ -24,7 +24,7 @@ public class Equity {
 	@Override
 	public boolean equals(Object obj) {
 		if(isNotEquity(obj)) return false;
-		return toEquity(obj).name.equals(name);
+		return toEquity(obj).isCalled(name);
 	}
 
 	private boolean isNotEquity(Object obj) {
@@ -38,5 +38,9 @@ public class Equity {
 	@Override
 	public int hashCode() {
 		return name.hashCode();
+	}
+
+	public boolean isCalled(String aName) {
+		return name.equals(aName);
 	}
 }

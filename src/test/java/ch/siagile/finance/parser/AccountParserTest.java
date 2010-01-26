@@ -1,4 +1,4 @@
-package ch.siagile.finance;
+package ch.siagile.finance.parser;
 
 import static ch.siagile.finance.money.Money.*;
 import static org.hamcrest.Matchers.*;
@@ -6,6 +6,7 @@ import static org.junit.Assert.*;
 
 import org.junit.*;
 
+import ch.siagile.finance.*;
 import ch.siagile.finance.position.*;
 
 public class AccountParserTest {

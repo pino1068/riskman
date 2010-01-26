@@ -13,7 +13,7 @@ public class PositionsParser {
 		{
 			add(new BondParser());
 			add(new AccountParser());
-			add(new EquityParser());
+			add(new EquityPositionParser());
 		}
 	};
 
