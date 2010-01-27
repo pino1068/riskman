@@ -13,7 +13,7 @@ public class Shell {
 	private static final List<Command> commands = new LinkedList<Command>() {
 		private static final long serialVersionUID = 1L;
 		{
-			add(new MultiTypeCommand(""));
+//			add(new MultiTypeCommand(""));
 			add(new BondCommand(""));
 			add(new EquityCommand(""));
 			add(new AreaCommand(""));

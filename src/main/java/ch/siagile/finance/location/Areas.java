@@ -27,4 +27,8 @@ public class Areas implements Iterable<Area> {
 	public Iterator<Area> iterator() {
 		return areas.iterator();
 	}
+
+	public boolean contains(String anAreaName) {
+		return areas.contains(Area.from(anAreaName));
+	}
 }

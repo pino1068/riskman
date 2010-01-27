@@ -4,7 +4,7 @@ import org.junit.*;
 
 public class TesterTest {
 	
-	@Test
+	@Test @Ignore
 	public void shouldTester() {
 		new Tester(new String[] {"sample/sample1/sample1.txt"}).test();
 	}

@@ -1,6 +1,7 @@
 package ch.siagile.finance.fixtures;
 
 import ch.siagile.finance.instrument.*;
+import ch.siagile.finance.location.*;
 import ch.siagile.finance.money.*;
 import ch.siagile.finance.position.*;
 
@@ -17,14 +18,16 @@ public class Fixtures {
 	}
 
 	public static EquityPosition equity(String equity, int quantity, Money price) {
-		return new EquityPosition(Equity.from(equity), quantity, price);
+		Equity myEquity = Equity.from(equity);
+		Location.from(myEquity).locateIn("UE");
+		return new EquityPosition(myEquity, quantity, price);
 	}
 
 	public static BondPosition bond(Bond bond, Money quantity, String price) {
 		return new BondPosition(bond, quantity, Percent.from(price));
 	}
 
-	public static BasePosition account(String name, Money balance) {
+	public static AccountPosition account(String name, Money balance) {
 		return new AccountPosition(name, balance);
 	}
 

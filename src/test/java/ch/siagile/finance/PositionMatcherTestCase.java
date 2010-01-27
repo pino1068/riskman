@@ -88,6 +88,13 @@ public class PositionMatcherTestCase {
 		assertThat(position, equityMatcher);
 	}
 	@Test 
+	public void shouldMatchOnePositionOfUBSEquityType() {
+		Matcher<Position> equityMatcher = new IsTypeMatcher<Position>("equity:UBS");
+		Position position = IBM(CHF(500));
+
+		assertThat(position, not(equityMatcher));
+	}
+	@Test 
 	public void shouldMatchOnePositionOfBondType() {
 		Matcher<Position> bondMatcher = new IsTypeMatcher<Position>("bond");
 		Position position = bond(Bond.from("IBM bond", "USA"),CHF(1000),"100%");

@@ -29,4 +29,8 @@ public class EquityPosition extends BasePosition {
 	public String toString() {
 		return format("Equity: {0} - {1} with price:{2} = {3}", equity, quantity, price, balance());
 	}
+
+	public boolean isLocated(String[] areas) {
+		return equity.isLocated(areas);
+	}
 }

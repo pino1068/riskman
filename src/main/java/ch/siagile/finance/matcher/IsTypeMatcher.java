@@ -1,11 +1,10 @@
-package ch.siagile.finance;
+package ch.siagile.finance.matcher;
 
 import java.util.*;
 
 import org.hamcrest.*;
 import org.hamcrest.core.*;
 
-import ch.siagile.finance.matcher.*;
 import ch.siagile.finance.position.*;
 
 public class IsTypeMatcher<T> extends BaseMatcher<T> {
