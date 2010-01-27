@@ -20,7 +20,7 @@ public class AreaTest {
 
 	@Test
 	public void shouldHaveAllAreas() {
-		Areas areas = Areas.defaultAreas;
+		Areas areas = Areas.defaultAreas();
 
 		assertThat(areas, hasItem(Area.from("CH")));
 	}

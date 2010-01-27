@@ -23,7 +23,7 @@ public abstract class Parser {
 		return price;
 	}
 
-	private double fDouble(int quantity2) {
+	protected double fDouble(int quantity2) {
 		return Double.parseDouble(f(quantity2));
 	}
 
@@ -32,8 +32,22 @@ public abstract class Parser {
 		return fields[fieldPosition];
 	}
 
-	public abstract boolean recognize(String string);
+	public boolean recognize(String string){
+		fields(string);
+		return recognizePosition(string);
+	}
 
-	public abstract Position parse(String string);
+	protected abstract boolean recognizePosition(String string);
+
+	public Position parse(String string){
+		fields(string);
+		return parsePosition(string);
+	}
+
+	protected abstract Position parsePosition(String string);
+
+	protected int fInt(int fieldPosition) {
+		return Integer.valueOf(f(fieldPosition));
+	}
 
 }

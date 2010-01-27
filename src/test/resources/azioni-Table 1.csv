@@ -1,4 +1,4 @@
-ID,ID_strumento,Azione,NumeroValore,Borsa,Domestico,Eliminazione,Ticker,BenchmarkVAR,Strike,NumeroValoreSottostante,Maturity,Tipo,Posizione,Ratio,ISIN,rowguid
+#ID,ID_strumento,Azione,NumeroValore,Borsa,Domestico,Eliminazione,Ticker,BenchmarkVAR,Strike,NumeroValoreSottostante,Maturity,Tipo,Posizione,Ratio,ISIN,rowguid
 1673,1,OCEAN STRATEGIES,020232,NYSE,0,0,battle7,,,,,Azioni,,,,02F2B493-4E58-438B-A8EA-D355650F293F
 1686,1,KINGATE GLOBAL FUND SHS USD,030711,NYSE,0,0,battle18,,,,,Azioni,,,,DD711EC3-CEF8-4848-AAE4-6AAC0C4EBEB9
 380,1,AVENTIS,0511029EU,CACEU,0,0,AVE.PA,,,,,Azioni,,,,36222EA5-960E-429C-A219-A0E03C557CDA

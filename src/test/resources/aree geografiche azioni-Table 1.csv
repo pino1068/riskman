@@ -1,4 +1,4 @@
-ID_strumento,ID_AAA,ID_area_geografica,Peso
+#ID_strumento,ID_AAA,ID_area_geografica,Peso
 1,14,4,1
 1,49,4,1
 1,62,4,1
@@ -219,3 +219,4 @@ ID_strumento,ID_AAA,ID_area_geografica,Peso
 1,1174,5,1
 1,1282,1,1
 1,1283,6,1
+1,1870,6,1

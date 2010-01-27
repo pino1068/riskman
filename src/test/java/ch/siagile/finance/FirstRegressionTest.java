@@ -26,8 +26,8 @@ public class FirstRegressionTest {
 	@Test
 	public void shouldRegression2() {
 		try {
-			position("pippo8,A,EUR,180,1335786EU,Sparinvest Sicav Global  Value,105.019996643066,140.4,25272,37293.391278,0.336888254502429,E,Azioni e simili,37293.391278,25272,36651.9816,1841,14,,,,");
-			fail("expected exception for not implemented position parser");
+			position("pippo8,KPRD,EUR,180,1335786EU,Sparinvest Sicav Global  Value,105.019996643066,140.4,25272,37293.391278,0.336888254502429,E,Azioni e simili,37293.391278,25272,36651.9816,1841,14,,,,");
+			fail("expected exception for not implemented position parser - retrived are: "+positions);
 		} catch (Exception e) {
 		}
 	}

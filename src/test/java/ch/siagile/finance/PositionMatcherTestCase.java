@@ -79,6 +79,39 @@ public class PositionMatcherTestCase {
 
 		assertThat(position, USDorCHForEUR);
 	}
+	
+	@Test 
+	public void shouldMatchOnePositionOfEquityType() {
+		Matcher<Position> equityMatcher = new IsTypeMatcher<Position>("equity");
+		Position position = IBM(CHF(500));
+
+		assertThat(position, equityMatcher);
+	}
+	@Test 
+	public void shouldMatchOnePositionOfUBSEquityType() {
+		Matcher<Position> equityMatcher = new IsTypeMatcher<Position>("equity:UBS");
+		Position position = IBM(CHF(500));
+
+		assertThat(position, not(equityMatcher));
+	}
+	@Test 
+	public void shouldMatchOnePositionOfBondType() {
+		Matcher<Position> bondMatcher = new IsTypeMatcher<Position>("bond");
+		Position position = bond(Bond.from("IBM bond", "USA"),CHF(1000),"100%");
+
+		assertThat(position, bondMatcher);
+	}
+	
+	@Test
+	public void shouldMatchOnePositionOfMultiTypes() {
+		Matcher<Position> bondOrEquity = new IsTypeMatcher<Position>("bond", "equity");
+		Position equity = IBM(CHF(500));
+		Position bond = bond(Bond.from("IBM bond", "USA"),CHF(1000),"100%");
+
+		assertThat(equity, bondOrEquity);
+		assertThat(bond, bondOrEquity);
+	}
+	
 
 	@Test
 	public void shouldNotMatchOnePositionInUSDOrEUR() {

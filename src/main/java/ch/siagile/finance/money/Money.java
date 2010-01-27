@@ -29,7 +29,13 @@ public class Money {
 	}
 
 	private int compareTo(Money money) {
+		if(isPraticallyEquals(money))
+			return 0;
 		return amount.compareTo(money.amount);
+	}
+
+	private boolean isPraticallyEquals(Money money) {
+		return amount.subtract(money.amount).doubleValue() < 0.001;
 	}
 
 	private boolean isNotCompatible(Object obj) {

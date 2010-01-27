@@ -29,6 +29,16 @@ public class ShellTest {
 		command = new Shell();
 		positions = new Positions();
 	}
+	
+	@Test 
+	public void shouldSelectPositionsOnly() {
+		def(account("name", CHF(30)));
+		def(account("name2", USD(70)));
+		def("CHF max:20%");
+		execute();
+		assertThat(output, containsString("CHF max:20% KO"));
+		assertThat(output, containsString("but is 28.037% 30 CHF of 107 CHF"));
+	}
 
 	@Test
 	public void shouldChfMax20PercentKO() {
@@ -40,10 +50,6 @@ public class ShellTest {
 		assertThat(output, containsString("but is 28.037% 30 CHF of 107 CHF"));
 	}
 
-	private void def(Position position) {
-		positions.add(position);
-	}
-
 	@Test
 	public void shouldEquityMin20PercentKO() {
 		def(account("name", CHF(30)));
@@ -51,6 +57,28 @@ public class ShellTest {
 		def("equity min:20%");
 		execute();
 		assertThat(output, containsString("equity min:20% KO"));
+	}
+
+	@Test @Ignore
+	public void shouldEquityAndBondMin20PercentOK() {
+		def(account("name", CHF(30)));
+		def(equity("IBM", 1, CHF(30)));
+		def(bond(Bond.from("name", "USA"), CHF(40), "100%"));
+		def("equity,bond min:20%");
+		execute();
+		assertThat(output, containsString("equity,bond min:20% OK"));
+	}
+
+	@Test
+	@Ignore
+	public void shouldEquityAndBondMax20PercentKO() {
+		def(account("name", CHF(30)));
+		def(equity("IBM", 1, CHF(30)));
+		def(bond(Bond.from("name", "USA"), CHF(40), "100%"));
+		def("equity,bond max:69%");
+		execute();
+		System.out.println(output);
+		assertThat(output, containsString("equity,bond max:69% KO"));
 	}
 
 	@Test
@@ -119,7 +147,7 @@ public class ShellTest {
 	}
 
 	@Test
-	public void shouldEquityIBMMin20PercentOK() {
+	public void shouldEquityIBMMin40PercentOK() {
 		def(equity("IBM", 1, CHF(30)));
 		def(equity("ORCL", 1, CHF(70)));
 		def("equity:ORCL min:40%");
@@ -239,6 +267,10 @@ public class ShellTest {
 		def("");
 		execute();
 		assertThat(output, containsString("OK"));
+	}
+
+	private void def(Position position) {
+		positions.add(position);
 	}
 
 	private List<String> definitions = new LinkedList<String>();

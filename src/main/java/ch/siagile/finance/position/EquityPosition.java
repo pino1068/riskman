@@ -5,12 +5,13 @@ import static java.text.MessageFormat.*;
 import ch.siagile.finance.instrument.*;
 import ch.siagile.finance.money.*;
 
-public class EquityPosition extends Position {
+public class EquityPosition extends BasePosition {
 	private final Equity equity;
 	private final int quantity;
 	private final Money price;
 
 	public EquityPosition(Equity equity, int quantity, Money price) {
+		super(price.times(quantity));
 		this.equity = equity;
 		this.quantity = quantity;
 		this.price = price;
@@ -20,8 +21,8 @@ public class EquityPosition extends Position {
 		return price.times(quantity);
 	}
 
-	public boolean isEquity(String other) {
-		return equity.equals(Equity.from(other));
+	public boolean isEquity(String aName) {
+		return equity.isCalled(aName);
 	}
 
 	@Override
@@ -29,4 +30,7 @@ public class EquityPosition extends Position {
 		return format("Equity: {0} - {1} with price:{2} = {3}", equity, quantity, price, balance());
 	}
 
+	public boolean isLocated(String[] areas) {
+		return equity.isLocated(areas);
+	}
 }

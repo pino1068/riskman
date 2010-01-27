@@ -14,8 +14,7 @@ public class BondParser extends Parser {
 	private static final int NAME = 5;
 	private static final int OWNER = 0;
 
-	public BondPosition parse(String string) {
-		fields(string);
+	public BondPosition parsePosition(String string) {
 		return new BondPosition(bond(), quantity(), price()).ownedBy(owner());
 	}
 
@@ -35,8 +34,7 @@ public class BondParser extends Parser {
 		return Bond.from(f(NAME), "UE");
 	}
 
-	public boolean recognize(String string) {
-		fields(string);
+	public boolean recognizePosition(String string) {
 		return f(INSTRUMENTID).equals("2");
 	}
 }

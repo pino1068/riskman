@@ -18,7 +18,7 @@ import ch.siagile.finance.position.*;
 public class PositionTest {
 	@Test
 	public void shouldCreateAccountPosition() {
-		AccountPosition account = new AccountPosition("pippo", CHF(500));
+		BasePosition account = new AccountPosition("pippo", CHF(500));
 		
 		assertEquals(CHF(500), account.balance());
 	}
@@ -33,7 +33,7 @@ public class PositionTest {
 	
 	@Test
 	public void shouldCreatePortfolioWith2Positions() {
-		AccountPosition 		account 	= account("pippo", CHF(500));
+		BasePosition 		account 	= account("pippo", CHF(500));
 		EquityPosition 	equity 		= equity("IBM", 5, CHF(IBM_PRICE));
 
 		Positions 		positions 	= new Positions(account, equity);
@@ -57,7 +57,7 @@ public class PositionTest {
 	public void shouldTreatBondPositionLikePosition() {
 		BondPosition bondPosition = bond(interAmericaDevBankBond(), CHF(5000), "102 %");
 		
-		AccountPosition accountPosition = account("pippo", CHF(500));
+		BasePosition accountPosition = account("pippo", CHF(500));
 		Positions positions = new Positions(bondPosition, accountPosition);
 		
 		assertEquals(CHF(5600), positions.value());

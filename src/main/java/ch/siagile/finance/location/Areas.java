@@ -2,23 +2,22 @@ package ch.siagile.finance.location;
 
 import java.util.*;
 
+import ch.siagile.finance.repository.*;
+
 public class Areas implements Iterable<Area> {
 
 	private Set<Area> areas = new HashSet<Area>();
 
-	public static Areas defaultAreas = new Areas() {
-		{
-			add("CH");
-			add("GBP");
-			add("NORD AMERICA");
-			add("PACIFICO");
-			add("UE");
-			add("USA");
-		}
-	};
+	public static Areas defaultAreas(){
+		return new AreaRepository().all();
+	}
 
 	public void add(String name) {
-		areas.add(Area.from(name));
+		add(Area.from(name));
+	}
+
+	public void add(Area area) {
+		areas.add(area);
 	}
 
 	public int size() {
@@ -27,5 +26,9 @@ public class Areas implements Iterable<Area> {
 
 	public Iterator<Area> iterator() {
 		return areas.iterator();
+	}
+
+	public boolean contains(String anAreaName) {
+		return areas.contains(Area.from(anAreaName));
 	}
 }
