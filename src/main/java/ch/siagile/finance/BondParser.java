@@ -14,7 +14,7 @@ public class BondParser extends Parser {
 	private static final int NAME = 5;
 	private static final int OWNER = 0;
 
-	public BondPosition parsePosition(String string) {
+	public Position parsePosition(String string) {
 		return new BondPosition(bond(), quantity(), price()).ownedBy(owner());
 	}
 

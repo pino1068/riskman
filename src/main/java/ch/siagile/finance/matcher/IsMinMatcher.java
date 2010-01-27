@@ -2,7 +2,9 @@ package ch.siagile.finance.matcher;
 
 import org.hamcrest.*;
 
+import ch.siagile.finance.instrument.*;
 import ch.siagile.finance.instrument.rating.*;
+import ch.siagile.finance.position.*;
 
 public class IsMinMatcher<T> extends BaseMatcher<T> {
 
@@ -21,6 +23,29 @@ public class IsMinMatcher<T> extends BaseMatcher<T> {
 	}
 
 	public boolean matches(Object item) {
+		Rating rating = null;
+		if(BondPosition.class.isInstance(item))
+			rating = toBondPosition(item).rating();
+		if(Bond.class.isInstance(item))
+			rating = toBond(item).rating();
+		if(Rating.class.isInstance(item))
+			rating = toRating(item);
+		return ratingMatches(rating);
+	}
+
+	private Rating toRating(Object item) {
+		return (Rating)item;
+	}
+
+	private Bond toBond(Object item) {
+		return (Bond)item;
+	}
+
+	private BondPosition toBondPosition(Object item) {
+		return (BondPosition)item;
+	}
+
+	private boolean ratingMatches(Object item) {
 		return Matchers.greaterThanOrEqualTo(threshold).matches(item);
 	}
 }

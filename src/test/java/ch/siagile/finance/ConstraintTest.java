@@ -2,7 +2,6 @@ package ch.siagile.finance;
 
 import static ch.siagile.finance.fixtures.Fixtures.*;
 import static ch.siagile.finance.money.Money.*;
-
 import static org.junit.Assert.*;
 
 import org.junit.*;
@@ -61,8 +60,8 @@ public class ConstraintTest {
 	@Test
 	public void shouldEquitySpecificConstraintMaxMatchOnPortfolioWithTooManyUBS() {
 		constraint = new EquityConstraint("max:5%", "UBS");
-		EquityPosition IBM1000chf = equity("IBM", 10, CHF(100));
-		EquityPosition UBS2000chf = equity("UBS", 200, CHF(10));
+		Position IBM1000chf = equity("IBM", 10, CHF(100));
+		Position UBS2000chf = equity("UBS", 200, CHF(10));
 		positions = new Positions(UBS2000chf, IBM1000chf);
 
 		assertFalse(constraint.checkLimitOn(positions));

@@ -11,6 +11,10 @@ public class Bond extends Instrument {
 		return new Bond(name, rating, anArea);
 	}
 
+	public static Bond from(String name, Rating rating, String anArea) {
+		return new Bond(name, rating, Area.from(anArea));
+	}
+
 	public static Bond from(String name, String area) {
 		return new Bond(name, Rating.NotRated(), Area.from(area));
 	}

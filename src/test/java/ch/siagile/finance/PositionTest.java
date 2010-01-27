@@ -1,9 +1,8 @@
 package ch.siagile.finance;
 
 import static ch.siagile.finance.fixtures.Fixtures.*;
-import static ch.siagile.finance.money.Money.*;
-
 import static ch.siagile.finance.matcher.IsRatingInMatcher.*;
+import static ch.siagile.finance.money.Money.*;
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.*;
 
@@ -33,8 +32,8 @@ public class PositionTest {
 	
 	@Test
 	public void shouldCreatePortfolioWith2Positions() {
-		BasePosition 		account 	= account("pippo", CHF(500));
-		EquityPosition 	equity 		= equity("IBM", 5, CHF(IBM_PRICE));
+		BasePosition 	account 	= account("pippo", CHF(500));
+		Position 		equity 		= equity("IBM", 5, CHF(IBM_PRICE));
 
 		Positions 		positions 	= new Positions(account, equity);
 		
@@ -44,7 +43,7 @@ public class PositionTest {
 	
 	@Test
 	public void shouldBondPositionHaveOwnBalance() {
-		BondPosition bondPosition = bond(interAmericaDevBankBond(), CHF(5000), "102 %");
+		Position bondPosition = bond(interAmericaDevBankBond(), CHF(5000), "102 %");
 		
 		assertEquals(CHF(5100), bondPosition.balance());
 	}
@@ -55,7 +54,7 @@ public class PositionTest {
 	
 	@Test
 	public void shouldTreatBondPositionLikePosition() {
-		BondPosition bondPosition = bond(interAmericaDevBankBond(), CHF(5000), "102 %");
+		Position bondPosition = bond(interAmericaDevBankBond(), CHF(5000), "102 %");
 		
 		BasePosition accountPosition = account("pippo", CHF(500));
 		Positions positions = new Positions(bondPosition, accountPosition);
@@ -65,14 +64,14 @@ public class PositionTest {
 	
 	@Test
 	public void shouldBondPositionHaveRating() {
-		BondPosition bondPosition = bond(interAmericaDevBankBond(), CHF(5000), "102 %");
+		BondPosition bondPosition = (BondPosition)bond(interAmericaDevBankBond(), CHF(5000), "102 %");
 		
 		assertEquals(bondPosition.rating(), MoodyRatings.find("Aaa"));
 	}
 
 	@Test
 	public void shouldMatchBondPositingInRatings() {
-		BondPosition bondPosition = bond(interAmericaDevBankBond(), CHF(5000), "102 %");
+		Position bondPosition = bond(interAmericaDevBankBond(), CHF(5000), "102 %");
 		
 		MoodyRating C = MoodyRatings.find("C");
 		MoodyRating AAA = MoodyRatings.find("Aaa");

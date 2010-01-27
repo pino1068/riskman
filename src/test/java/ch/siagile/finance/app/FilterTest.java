@@ -11,6 +11,7 @@ import org.hamcrest.*;
 import org.junit.*;
 
 import ch.siagile.finance.instrument.*;
+import ch.siagile.finance.instrument.rating.*;
 import ch.siagile.finance.matcher.*;
 import ch.siagile.finance.position.*;
 
@@ -19,7 +20,7 @@ public class FilterTest {
 	private Position bond;
 	private Position ibm_equity;
 	private Position account;
-	private MatcherParser matcherParser;
+	private MatcherBuilder matcherParser;
 	private Positions positions;
 	private List<Position> filter;
 	private Position oracle_equity;
@@ -30,8 +31,8 @@ public class FilterTest {
 		account = account("name", CHF(30));
 		ibm_equity = equity("IBM", 1, CHF(30));
 		oracle_equity = equity("ORCL", 1, USD(30));
-		bond = bond(Bond.from("name", "USA"), USD(40), "100%");
-		matcherParser = new MatcherParser();
+		bond = bond(Bond.from("name", MoodyRating.from("A1"),"USA"), USD(40), "100%");
+		matcherParser = new MatcherBuilder();
 	}
 	
 	@Test 
@@ -65,10 +66,10 @@ public class FilterTest {
 		check(not(hasItems(account,ibm_equity)));
 	}
 	
-	@Test 
+	@Test @Ignore
 	public void shouldFilterByUSDAndCHF() {
 		def(account); def(ibm_equity);def(bond);
-		filter("USD CHF");
+		filter("USD + CHF");
 		check(hasItems(bond,account,ibm_equity));
 	}
 	
@@ -92,7 +93,7 @@ public class FilterTest {
 		def(ibm_equity).
 		def(bond).
 		def(oracle_equity);
-		filter("equity#IBM");
+		filter("equity:IBM");
 		check(hasItem(ibm_equity));
 		check(not(hasItem(bond)));
 		check(not(hasItem(account)));
@@ -127,12 +128,7 @@ public class FilterTest {
 	
 	@Test 
 	public void shouldInvalidFilter() {
-		try {
-			filter("don't know what to do...");
-			fail("expecting an exception");
-		} catch (Exception e) {
-			assertThat(e.getMessage(), containsString("don't know"));
-		}
+		filter("don't know what to do...");
 	}
 	
 	@Test
@@ -144,6 +140,19 @@ public class FilterTest {
 		filter("equity:USD");
 		check(not(hasItem(ibm_equity)));
 		check(not(hasItem(bond)));
+		check(not(hasItem(account)));
+		check(hasItem(oracle_equity));
+	}
+	
+	@Test
+	public void shouldFilterByOwner() {
+		def(account).
+		def(ibm_equity).
+		def(bond).
+		def(oracle_equity);
+		filter("owner#bondOwner,equityOwner");
+		check(hasItem(ibm_equity));
+		check(hasItem(bond));
 		check(not(hasItem(account)));
 		check(hasItem(oracle_equity));
 	}
@@ -199,6 +208,32 @@ public class FilterTest {
 		check(not(hasItem(account)));
 		check(not(hasItem(oracle_equity)));
 	}
+	
+	@Test 
+	public void shouldFilterByRating() {
+		def(account).
+		def(ibm_equity).
+		def(bond).
+		def(oracle_equity);
+		filter("rating=min.B1");
+		check(not(hasItem(ibm_equity)));
+		check(hasItem(bond));
+		check(not(hasItem(account)));
+		check(not(hasItem(oracle_equity)));
+	}
+	
+	@Test 
+	public void shouldFilterIBMorOracle() {
+		def(account).
+		def(ibm_equity).
+		def(bond).
+		def(oracle_equity);
+		filter("IBM,ORCL");
+		check(hasItem(ibm_equity));
+		check(not(hasItem(bond)));
+		check(not(hasItem(account)));
+		check(hasItem(oracle_equity));
+	}
 
 	private void check(Matcher<Iterable<Position>> matcher) {
 		assertThat(filter, matcher);
@@ -212,7 +247,7 @@ public class FilterTest {
 	}
 
 	private Positions parseAndSelect(String definition) {
-		return positions.select(matcherParser.parse(definition));
+		return positions.select(matcherParser.build(definition));
 	}
 
 	private FilterTest def(Position position) {

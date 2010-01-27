@@ -3,7 +3,6 @@ package ch.siagile.finance.matcher;
 import static java.text.MessageFormat.*;
 import static org.hamcrest.Matchers.*;
 
-import java.security.*;
 import java.util.*;
 
 import org.hamcrest.*;
@@ -11,15 +10,11 @@ import org.hamcrest.*;
 import ch.siagile.finance.location.*;
 import ch.siagile.finance.position.*;
 
-public class MatcherParser {
+public class MatcherBuilder {
 
-	public Matcher<Position> parse(String definition) {
+	public Matcher<Position> build(String definition) {
 		String[] orSelections = cleanUp(definition).split(" ");
-		try {
-			return anyOfFilters(orSelections);
-		} catch (RuntimeException e) {
-			throw new RuntimeException(format("wrong definition <{0}>", definition), e);
-		}
+		return anyOfFilters(orSelections);
 	}
 
 	private String cleanUp(String definition) {
@@ -32,13 +27,15 @@ public class MatcherParser {
 
 	private Matcher<Position> anyOfFilters(String[] definitions) {
 		Filters filters = new Filters();
-		for (String definition : definitions) 
-			try {
-				filters.add(allOfFilters(definition));
-			} catch (RuntimeException e) {
-				throw new RuntimeException(format("wrong definition <{0}>",definition), e);
-			}
+		for (String definition : definitions) {
+			if(isEmpty(definition)) continue;
+			filters.add(allOfFilters(definition));
+		}
 		return anyOf(filters.matchers);
+	}
+
+	private boolean isEmpty(String definition) {
+		return "".equals(definition.trim());
 	}
 
 	private Matcher<Position> allOfFilters(String definitions) {
@@ -50,17 +47,29 @@ public class MatcherParser {
 	}
 
 	private Matcher<Position> toFilter(String definition) {
+		if(isRating(definition))
+			return RatingMatchers.build(definition.split("=")[1]);
 		if (isCurrency(definition))
 			return new IsCurrenciesMatcher<Position>(definition.split(","));
 		if (isEquitySpecific(definition)) 
 			return new IsSpecificEquityMatcher<Position>(definition.split("#")[1]);
 		if (isBondType(definition))
-			return new IsBondMatcher<Position>();
+			return new IsTypeMatcher<Position>("bond");
 		if (isEquityType(definition))
-			return new IsEquityMatcher<Position>();
+			return new IsTypeMatcher<Position>("equity");
 		if (isArea(definition)) 
 			return new IsLocatedMatcher<Position>(definition.split(","));
-		throw new InvalidParameterException(format("invalid definition part <{0}>",definition));
+		if (isOwner(definition)) 
+			return new IsOwnerMatcher<Position>(definition.split("#")[1].split(","));
+		return new IsTextMatcher<Position>(definition.split(","));
+	}
+
+	private boolean isOwner(String definition) {
+		return definition.startsWith("owner#");
+	}
+
+	private boolean isRating(String definition) {
+		return definition.startsWith("rating=");
 	}
 
 	private boolean isArea(String type) {
@@ -68,15 +77,15 @@ public class MatcherParser {
 	}
 
 	private boolean isEquityType(String type) {
-		return type.contains("equity");
+		return type.equals("equity");
 	}
 
 	private boolean isBondType(String type) {
-		return type.contains("bond");
+		return type.equals("bond");
 	}
 
 	private boolean isEquitySpecific(String type) {
-		return type.contains("equity#");
+		return type.equals("equity#");
 	}
 
 	private boolean isCurrency(String type) {

@@ -73,8 +73,30 @@ public class RatingMatchersTest {
 	}
 	
 	@Test
+	public void shouldExtractToRangeWithDot() {
+		Matcher<MoodyRating> inRange = RatingMatchers.build("range.C,Aaa");
+		assertThat(MoodyRating.from("Aaa"), is(inRange));
+	}
+	
+	@Test
+	public void shouldExtractToRangeWithDotAndRatingEquals() {
+		Matcher<MoodyRating> inRange = RatingMatchers.build("rating=range.C,Aaa");
+		assertThat(MoodyRating.from("Aaa"), is(inRange));
+	}
+	
+	@Test
 	public void shouldNotInRange() {
 		Matcher<MoodyRating> inRange = RatingMatchers.build("range:C,Aaa");
+		assertThat(MoodyRating.from("NR"), is(not(inRange)));
+	}
+	@Test
+	public void shouldWorkWithDot() {
+		Matcher<MoodyRating> inRange = RatingMatchers.build("range.C,Aaa");
+		assertThat(MoodyRating.from("NR"), is(not(inRange)));
+	}
+	@Test
+	public void shouldWorkWithRatingEquals() {
+		Matcher<MoodyRating> inRange = RatingMatchers.build("rating=range.C,Aaa");
 		assertThat(MoodyRating.from("NR"), is(not(inRange)));
 	}
 }
