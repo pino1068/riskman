@@ -6,7 +6,7 @@ public class Area {
 
 	private final String name;
 
-	public Area(String name) {
+	private Area(String name) {
 		this.name = name;
 	}
 

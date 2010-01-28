@@ -12,7 +12,7 @@ public class RatingConstraint extends Constraint {
 
 	public RatingConstraint(String ratings, String check) {
 		super(Check.from(check));
-		matcher = RatingMatchers.build(ratings);
+		matcher = new RatingBuilder<Position>().build(ratings);
 	}
 
 	@Override

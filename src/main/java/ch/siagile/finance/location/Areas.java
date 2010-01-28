@@ -8,7 +8,7 @@ public class Areas implements Iterable<Area> {
 
 	private Set<Area> areas = new HashSet<Area>();
 
-	public static Areas defaultAreas(){
+	public static Areas all(){
 		return new AreaRepository().all();
 	}
 
