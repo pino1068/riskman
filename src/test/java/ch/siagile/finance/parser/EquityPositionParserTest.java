@@ -36,7 +36,7 @@ public class EquityPositionParserTest {
 	
 	@Test 
 	public void shouldParseEquityField() {
-		assertTrue(parse(equity1).isEquity("Sparinvest Sicav Global Value"));
+		assertTrue(parse(equity1).isCalled("Sparinvest Sicav Global Value"));
 	}
 	
 	@Test 

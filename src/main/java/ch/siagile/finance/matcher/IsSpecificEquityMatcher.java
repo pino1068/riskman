@@ -22,7 +22,7 @@ public class IsSpecificEquityMatcher<T> extends BaseMatcher<T> {
 		if(equities.length == 0) return true;
 		EquityPosition position = (EquityPosition) item;
 		for (String equity : equities) {
-			if (position.isEquity(equity))
+			if (position.isCalled(equity))
 				return true;
 		}
 		return false;

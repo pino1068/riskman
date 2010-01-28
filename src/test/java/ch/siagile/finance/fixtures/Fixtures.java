@@ -17,14 +17,14 @@ public class Fixtures {
 		return equity("UBS", 1, price);
 	}
 
-	public static EquityPosition equity(String equity, int quantity, Money price) {
+	public static Position equity(String equity, int quantity, Money price) {
 		Equity myEquity = Equity.from(equity);
 		Location.from(myEquity).locateIn("UE");
-		return new EquityPosition(myEquity, quantity, price);
+		return new EquityPosition(myEquity, quantity, price).ownedBy("equityOwner");
 	}
 
-	public static BondPosition bond(Bond bond, Money quantity, String price) {
-		return new BondPosition(bond, quantity, Percent.from(price));
+	public static Position bond(Bond bond, Money quantity, String price) {
+		return new BondPosition(bond, quantity, Percent.from(price)).ownedBy("bondOwner");
 	}
 
 	public static AccountPosition account(String name, Money balance) {
