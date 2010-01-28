@@ -13,7 +13,7 @@ public class ExecutionMenu extends BaseMenu {
 	public void perform(Positions positions, String line) {
 		Shell shell = new Shell();
 		try {
-			println(shell.execute(System.getProperty("user.dir"), positions, clean(line)));
+			println(shell.execute("", positions, clean(line)));
 		} catch (Exception e) {
 			print("Error: ", e.getMessage(), "");
 		}

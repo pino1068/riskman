@@ -9,28 +9,22 @@ public class RiskMan {
 	private Map<String, Runnable> apps = new HashMap<String, Runnable>();
 
 	public Runnable app(final String[] args) {
-
 		Runnable tester = new Runnable() {
-			@Override
 			public void run() {
 				new Tester(args, System.out).test();
 			}
 		};
 		Runnable shell = new Runnable() {
-			@Override
 			public void run() {
 				App.main(args);
 			}
 		};
 		Runnable batch = new Runnable() {
-			@Override
 			public void run() {
 				System.out.println("coming soon.");
 			}
 		};
 		Runnable help = new Runnable() {
-			
-			@Override
 			public void run() {
 				System.out.println("riskman COMMAND [ARGS]");
 				System.out.println("The most commonly used riskman commands are:");

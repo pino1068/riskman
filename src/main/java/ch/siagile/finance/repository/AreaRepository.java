@@ -11,7 +11,7 @@ public class AreaRepository {
 		private static final long serialVersionUID = 1L;
 		{
 			List<String> lines = new TextRepository()
-					.load("src/main/resources/areas.csv");
+					.load(getClass().getClassLoader().getResourceAsStream("areas.csv"));
 			for (String line : lines)
 				add(area(line));
 		}

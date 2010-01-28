@@ -25,7 +25,12 @@ public class MatchersBuilder {
 		builders.add(new FreeTextBuilder());
 	}
 
-	public Matcher<Position> build(String definition) {
+	public static Matcher<Position> from(String definition) {
+		final MatchersBuilder builder = new MatchersBuilder();
+		return builder.build(definition);
+	}
+	
+	public Matcher<Position> build(String definition){
 		return anyOfFilters(selections(definition));
 	}
 

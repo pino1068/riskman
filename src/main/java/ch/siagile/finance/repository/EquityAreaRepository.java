@@ -8,7 +8,7 @@ import ch.siagile.finance.location.*;
 
 public class EquityAreaRepository {
 
-	private static List<String> lines = new TextRepository().load("src/test/resources/aree-equity.csv");
+	private static List<String> lines = new TextRepository().load(EquityAreaRepository.class.getClassLoader().getResourceAsStream("aree-equity.csv"));
 	private static AreaRepository areaRepository = new AreaRepository();
 
 	public Area locationOf(Equity equity) {

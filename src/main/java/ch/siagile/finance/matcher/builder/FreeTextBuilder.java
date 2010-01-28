@@ -8,7 +8,7 @@ import ch.siagile.finance.position.*;
 public class FreeTextBuilder implements MatcherBuilder {
 
 	public Matcher<Position> build(String definition) {
-		return new IsTextMatcher<Position>(definition);
+		return new IsTextMatcher<Position>(definition.split(","));
 	}
 
 	public boolean canBuild(String definition) {
