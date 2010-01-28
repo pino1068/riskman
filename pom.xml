@@ -3,12 +3,12 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>risk-management</groupId>
-	<artifactId>risk-management</artifactId>
+	<groupId>riskman</groupId>
+	<artifactId>riskman</artifactId>
 	<version>1.0</version>
 	<packaging>jar</packaging>
 
-	<name>Risk Management</name>
+	<name>Intelligent Risk Management</name>
 	<description />
 	<url />
 	<inceptionYear>2009</inceptionYear>
@@ -49,6 +49,7 @@
 	<repositories />
 	<pluginRepositories />
 	<build>
+                <finalName>riskman</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
@@ -61,7 +62,7 @@
 					</execution>
 				</executions>
 				<configuration>
-					<mainClass>ch.siagile.finance.app.App</mainClass>
+					<mainClass>ch.siagile.finance.app.RiskMan</mainClass>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -71,7 +72,7 @@
 				<configuration>
 					<archive>
 						<manifest>
-							<mainClass>ch.siagile.finance.app.App</mainClass>
+							<mainClass>ch.siagile.finance.app.RiskMan</mainClass>
 							<addClasspath>true</addClasspath>
 						</manifest>
 					</archive>

@@ -11,7 +11,7 @@ public class EquityRepository {
 		private static final long serialVersionUID = 1L;
 		{
 			List<String> lines = new TextRepository()
-					.load("src/main/resources/equities.csv");
+					.load(getClass().getClassLoader().getResourceAsStream("equities.csv"));
 			for (String line : lines)
 				add(new EquityParser().parse(line));
 		}

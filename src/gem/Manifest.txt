@@ -2,3 +2,4 @@ README.rdoc
 bin/riskman
 lib/riskman.rb
 lib/riskman.jar
+lib/hamcrest-all-1.1.jar
