@@ -19,7 +19,7 @@ public class Tester {
 
 	public Tester(String[] args, PrintStream printStream) {
 		this.printStream = printStream;
-		this.inputpath = args[0];
+		this.inputpath = args[1];
 		this.dirname = dirname(inputpath);
 		definitions = textRepository.load(inputpath);
 		expectedOutput = textRepository.load(format("{0}/{1}", dirname, outputpath));

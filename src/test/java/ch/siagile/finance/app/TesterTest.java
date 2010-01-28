@@ -1,11 +1,13 @@
 package ch.siagile.finance.app;
 
 import org.junit.*;
+import java.io.*;
 
 public class TesterTest {
 	
-	@Test @Ignore
+	@Test
 	public void shouldTester() {
-		new Tester(new String[] {"sample/sample1/sample1.txt"}).test();
+                PrintStream out = new PrintStream(new ByteArrayOutputStream());
+		new Tester(new String[] {"tester", "sample/sample1/sample1.txt"}, out).test();
 	}
 }
