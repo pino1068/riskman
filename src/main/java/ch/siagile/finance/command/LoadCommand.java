@@ -81,7 +81,9 @@ public class LoadCommand extends Command {
 	}
 
 	private String pathname(String dirname) {
-		return format("{0}/{1}", dirname, values("load:")[0]);
+		final String filename = values("load:")[0];
+		if(dirname==null || dirname.length()==0) return filename;
+		return format("{0}/{1}", dirname, filename);
 	}
 
 	private List<String> readLines(String pathname) {

@@ -1,7 +1,7 @@
 package ch.siagile.finance.matcher;
 
-import static org.hamcrest.Matchers.*;
 import static java.text.MessageFormat.*;
+import static org.hamcrest.Matchers.*;
 
 import java.security.*;
 import java.util.*;

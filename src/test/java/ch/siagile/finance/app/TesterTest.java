@@ -1,7 +1,8 @@
 package ch.siagile.finance.app;
 
-import org.junit.*;
 import java.io.*;
+
+import org.junit.*;
 
 public class TesterTest {
 	

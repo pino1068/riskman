@@ -1,19 +1,16 @@
 package ch.siagile.finance.repository;
 
-import static java.text.MessageFormat.*;
-
 import java.io.*;
 import java.util.*;
 
 public class TextRepository {
 
 	public List<String> load(String pathname) {
-		System.out.println(format("reading file {0}",pathname));
 		return scan(scanning(new File(pathname)));
 	}
 
-	public List<String> load(InputStream resourceAsStream) {
-		return scan(new Scanner(resourceAsStream).useDelimiter("\n"));
+	public List<String> load(InputStream inputStream) {
+		return scan(new Scanner(inputStream).useDelimiter("\n"));
 	}
 
 	private List<String> scan(Scanner scanner) {
