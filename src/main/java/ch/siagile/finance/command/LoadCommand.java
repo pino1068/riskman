@@ -81,7 +81,7 @@ public class LoadCommand extends Command {
 	}
 
 	private String pathname(String dirname) {
-		return format("{0}/{1}", dirname, values("load:")[0]).replaceAll("^/*", "");
+		return format("{0}/{1}", dirname, values("load:")[0]);
 	}
 
 	private List<String> readLines(String pathname) {

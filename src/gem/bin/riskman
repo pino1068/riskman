@@ -1,5 +1,3 @@
 #!/usr/bin/env ruby
 
-require 'riskman'
-
-system "java -jar #{File.dirname(__FILE__)}/../lib/riskman.jar"
+system "java -cp #{File.dirname(__FILE__)}/../lib/hamcrest-all-1.1.jar -jar #{File.dirname(__FILE__)}/../lib/riskman.jar #{ARGV.join(' ')}"
