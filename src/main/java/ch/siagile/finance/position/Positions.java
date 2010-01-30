@@ -56,4 +56,8 @@ public class Positions implements Iterable<Position> {
 	public Percent percentOf(Positions other) {
 		return divideBy(other).percent();
 	}
+
+	public int size() {
+		return positions.size();
+	}
 }

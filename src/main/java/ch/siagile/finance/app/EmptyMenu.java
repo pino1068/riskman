@@ -12,4 +12,9 @@ public class EmptyMenu extends BaseMenu {
 		println("and now what?");
 	}
 
+	@Override
+	public String describe() {
+		return "";
+	}
+
 }

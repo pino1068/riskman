@@ -9,7 +9,12 @@ public class NullMenu extends BaseMenu {
 	}
 
 	public void perform(Positions positions, String line) {
-		println(line + "- command not found. Are you kidding with me?");
+		println(line + "- command not found. Are you kidding me?");
+	}
+
+	@Override
+	public String describe() {
+		return "";
 	}
 
 }

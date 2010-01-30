@@ -6,14 +6,18 @@ public abstract class BaseMenu implements Menu {
 
 	private MenuList parent;
 
-	public boolean isCalled(String line) {
-		return false;
-	}
+	public abstract boolean isCalled(String line);
 
-	public void perform(Positions positions, String line) {}
+	public abstract void perform(Positions positions, String line);
+
+	public abstract String describe() ;
+
+	public void parent(MenuList list) {
+		this.parent = list;
+	}
 	
-	protected void println(String... string) {
-		for (String item : string) 
+	protected void println(Object... string) {
+		for (Object item : string) 
 			System.out.println(item);
 	}
 	
@@ -21,16 +25,12 @@ public abstract class BaseMenu implements Menu {
 		return parent;
 	}
 	
-	protected void print(String... strings) {
-		for (String string : strings) 
+	protected void print(Object... strings) {
+		for (Object string : strings) 
 			System.out.print(string);
 	}
 
-	public void parent(MenuList list) {
-		this.parent = list;
-	}
-
-	public String describe() {
-		return "";
+	protected void newLine() {
+		println("");
 	}
 }
