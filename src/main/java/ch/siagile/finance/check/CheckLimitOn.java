@@ -1,14 +1,13 @@
 package ch.siagile.finance.check;
 
-import org.hamcrest.*;
-
+import ch.siagile.finance.constraint.*;
 import ch.siagile.finance.position.*;
 
 public class CheckLimitOn {
 
 	private final boolean valid;
 
-	public CheckLimitOn(Positions allPositions, Matcher<Position> matcher, Check check) {
+	public CheckLimitOn(Positions allPositions, Filter matcher, Check check) {
 		valid = check.check(allPositions.ratioOn(matcher));
 	}
 

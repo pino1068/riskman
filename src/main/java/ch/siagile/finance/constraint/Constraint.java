@@ -2,46 +2,47 @@ package ch.siagile.finance.constraint;
 
 
 import static java.text.MessageFormat.*;
-
-import org.hamcrest.*;
-
 import ch.siagile.finance.check.*;
 import ch.siagile.finance.matcher.*;
 import ch.siagile.finance.position.*;
 
 public class Constraint {
 
-	private Check check;
-	private final Matcher<Position> matcher;
+	private final Check check;
+	private final Filter filter;
 
 	public Constraint(Check check) {
-		matcher = null;
+		filter = null;
 		this.check = check;
 	}
 
-	public Constraint(Matcher<Position> matcher, Check check) {
-		this.matcher = matcher;
+	public Constraint(Filter filter, Check check) {
+		this.filter = filter;
 		this.check = check;
 	}
 
 	public boolean checkLimitOn(Positions positions) {
-		return new CheckLimitOn(positions, matcher(), check).isValid();
+		return new CheckLimitOn(positions, filter(), check).isValid();
 	}
 
-	protected Matcher<Position> matcher(){
-		return matcher;
+	protected Filter filter(){
+		return filter;
 	}
 
 	@Override
 	public String toString() {
-		return format("{0} with limit: {1}", matcher(), check);
+		return format("{0} with limit: {1}", filter(), check);
 	}
 
 	public Positions filter(Positions positions) {
-		return positions.select(matcher());
+		return positions.select(filter());
 	}
 
-	public static Constraint from(String constraint, String check) {
-		return new Constraint(MatchersBuilder.from(constraint), Check.from(check)) ;
+	public static Constraint from(String filter, String check) {
+		return new Constraint(FilterBuilder.from(filter), Check.from(check)) ;
+	}
+
+	public static Constraint from(Filter filter, Check check) {
+		return new Constraint(filter, check);
 	}
 }

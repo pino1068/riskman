@@ -73,7 +73,7 @@ public class LoadCommand extends Command {
 	}
 
 	private String message(String format, Object... args) {
-		return format("{0} {1}", definition(), format(format, args));
+		return format("{0} {1}", content(), format(format, args));
 	}
 
 	private void warning(String string) {
@@ -81,9 +81,13 @@ public class LoadCommand extends Command {
 	}
 
 	private String pathname(String dirname) {
-		final String filename = values("load:")[0];
+		final String filename = cleanFrom("load:");
 		if(dirname==null || dirname.length()==0) return filename;
 		return format("{0}/{1}", dirname, filename);
+	}
+
+	private String cleanFrom(String string) {
+		return content().replaceAll(string, "");
 	}
 
 	private List<String> readLines(String pathname) {
