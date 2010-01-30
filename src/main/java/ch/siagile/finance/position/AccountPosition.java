@@ -14,7 +14,7 @@ public class AccountPosition extends BasePosition {
 
 	@Override
 	public String toString() {
-		return format("{0} {1}", name, balance());
+		return format("{2} Account: {0} {1}", name, balance(), super.toString());
 	}
 
 	public boolean isCalled(String aName) {

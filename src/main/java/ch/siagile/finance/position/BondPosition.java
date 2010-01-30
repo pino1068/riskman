@@ -34,7 +34,7 @@ public class BondPosition extends Position {
 	
 	@Override
 	public String toString() {
-		return format("bond {0}: {1} {2} = {3}",bond, quantity, price, balance());
+		return format("{4} Bond {0}: {1} {2} = {3}",bond, quantity, price, balance(),super.toString());
 	}
 
 	public boolean isCalled(String aName) {
