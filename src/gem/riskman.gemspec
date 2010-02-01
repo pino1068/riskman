@@ -2,11 +2,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{riskman}
-  s.version = "0.0.5"
+  s.version = "0.0.7"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Luca Marrocco, Giuseppe Di Pierri"]
-  s.date = %q{2010-01-31}
+  s.date = %q{2010-02-01}
   s.default_executable = %q{riskman}
   s.description = %q{FIX (describe your package)}
   s.email = ["riskman-dev@googlegroups.com"]

@@ -27,8 +27,8 @@ public class Fixtures {
 		return new BondPosition(bond, quantity, Percent.from(price)).ownedBy("bondOwner");
 	}
 
-	public static AccountPosition account(String name, Money balance) {
-		return new AccountPosition(name, balance);
+	public static Position account(String name, Money balance) {
+		return new AccountPosition(name, balance).ownedBy("accountOwner");
 	}
 
 }

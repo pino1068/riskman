@@ -6,7 +6,7 @@ import ch.siagile.finance.position.*;
 
 public class App {
 	private final static MenuList menu = new MenuList(new HelpMenu(),
-			new PositionMenu(), new ExecutionMenu(), new FilterMenu(), new RemoveFilterMenu(), new QuitMenu(),
+			new PositionMenu(), new ExecutionMenu(), new FilterMenu(), new SplitByMenu(), new RemoveFilterMenu(), new QuitMenu(),
 			new EmptyMenu(), new NullMenu());
 
 	public static void main(String args[]) {

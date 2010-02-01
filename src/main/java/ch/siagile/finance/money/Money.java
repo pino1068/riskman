@@ -129,4 +129,8 @@ public class Money {
 	public Money times(Money other) {
 		return times(other.amount);
 	}
+
+	public String currency() {
+		return currency;
+	}
 }
