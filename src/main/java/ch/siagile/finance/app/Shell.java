@@ -14,6 +14,7 @@ public class Shell {
 		private static final long serialVersionUID = 1L;
 		{
 			add(new LoadCommand(""));
+			add(new SplitCommand(""));
 			add(new ConstraintCommand(""));
 		}
 	};

@@ -12,4 +12,9 @@ public class MaxCheck extends SingleCheck {
 		return value.isLowerOrEqualsTo(value());
 	}
 
+	@Override
+	public String toString() {
+		return "max is "+super.toString();
+	}
+
 }

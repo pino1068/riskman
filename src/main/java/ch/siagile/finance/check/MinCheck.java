@@ -12,4 +12,9 @@ public class MinCheck  extends SingleCheck{
 		return value.isGreaterTheOrEqualsTo(value());
 	}
 
+	@Override
+	public String toString() {
+		return "min is "+super.toString();
+	}
+
 }
