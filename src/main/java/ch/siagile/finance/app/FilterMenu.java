@@ -10,12 +10,13 @@ public class FilterMenu extends BaseMenu {
 		return line.startsWith("f");
 	}
 
-	public void perform(Positions positions, String line) {
+	public void perform(AppContext context, String line) {
 		println(format("Positions filtered with criteria: <{0}>",
 				criteria(line)));
 		newLine();
 		try {
-			Positions selected = positions.select(filter(line));
+			Positions positions = context.positions();
+			Positions selected = positions .select(filter(line));
 			println(selected);
 			newLine();
 			println(format(
@@ -24,6 +25,7 @@ public class FilterMenu extends BaseMenu {
 			newLine();
 			println("Ratio and Values are:");
 			println(selected.divideBy(positions));
+			context.changeTo(criteria(line), selected);
 		} catch (Exception e) {
 			print("Error: ", e.getMessage(), "");
 		}

@@ -1,6 +1,5 @@
 package ch.siagile.finance.app;
 
-import ch.siagile.finance.position.*;
 
 public class HelpMenu extends BaseMenu {
 
@@ -8,7 +7,7 @@ public class HelpMenu extends BaseMenu {
 		return line.startsWith("h");
 	}
 
-	public void perform(Positions positions, String line) {
+	public void perform(AppContext context, String line) {
 		println("Menu: --------------------");
 		for (Menu menu : parent().list()) {
 			String description = menu.describe();

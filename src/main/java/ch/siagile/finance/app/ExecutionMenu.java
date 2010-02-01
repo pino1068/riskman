@@ -1,6 +1,5 @@
 package ch.siagile.finance.app;
 
-import ch.siagile.finance.position.*;
 
 public class ExecutionMenu extends BaseMenu {
 
@@ -10,10 +9,10 @@ public class ExecutionMenu extends BaseMenu {
 	}
 	
 	@Override
-	public void perform(Positions positions, String line) {
+	public void perform(AppContext context, String line) {
 		Shell shell = new Shell();
 		try {
-			println(shell.execute("", positions, clean(line)));
+			println(shell.execute("", context.positions(), clean(line)));
 		} catch (Exception e) {
 			print("Error: ", e.getMessage(), "");
 		}
