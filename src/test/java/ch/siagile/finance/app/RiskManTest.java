@@ -36,9 +36,16 @@ public class RiskManTest {
 	}
 
 	@Test
+	public void shouldRiskManShellWhenThereArentArgumentes() {
+		RiskMan riskMan = new RiskMan();
+		riskMan.app(new String[] {});
+		assertThat(riskMan.command, is(equalTo("shell")));
+	}
+
+	@Test
 	public void shouldRiskManBatch() {
 		RiskMan riskMan = new RiskMan();
-		riskMan.app(new String[] { "batch" });
+		riskMan.app(new String[] { "sample/sample1/sample1.txt" });
 		assertThat(riskMan.command, is(equalTo("batch")));
 	}
 }
