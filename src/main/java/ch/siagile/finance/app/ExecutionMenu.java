@@ -28,6 +28,7 @@ public class ExecutionMenu extends BaseMenu {
 
 	@Override
 	public String describe() {
-		return "		'exe:<constraint>'		- to execute a constraint";
+		return 	"	'exe:<constraint>'		- to apply a constraint and get the result printed"
+		+ 		"\n	'exe:load:<file>'		- to load a file with positions and get warnings printed";
 	}
 }

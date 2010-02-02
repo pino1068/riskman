@@ -1,5 +1,6 @@
 package ch.siagile.finance.position;
 
+import static java.text.MessageFormat.*;
 import ch.siagile.finance.money.*;
 
 public abstract class Position {
@@ -20,5 +21,10 @@ public abstract class Position {
 	public Position ownedBy(String anOwner) {
 		this.owner = anOwner;
 		return this;
+	}
+	
+	@Override
+	public String toString() {
+		return format("{0}: ", owner);
 	}
 }

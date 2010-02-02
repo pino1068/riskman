@@ -23,7 +23,7 @@ public class FilterTest {
 	private Position account;
 	private Position oracle_equity;
 
-	private MatchersBuilder matcherParser;
+	private FilterBuilder matcherParser;
 	private Positions positions;
 	private List<Position> filter;
 
@@ -38,7 +38,7 @@ public class FilterTest {
 		def(ibm_equity);
 		def(bond);
 		def(oracle_equity);
-		matcherParser = new MatchersBuilder();
+		matcherParser = new FilterBuilder();
 	}
 
 	@Test

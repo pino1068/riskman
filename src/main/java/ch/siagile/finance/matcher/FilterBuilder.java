@@ -8,14 +8,15 @@ import java.util.*;
 
 import org.hamcrest.*;
 
+import ch.siagile.finance.constraint.*;
 import ch.siagile.finance.matcher.builder.*;
 import ch.siagile.finance.position.*;
 
-public class MatchersBuilder {
+public class FilterBuilder {
 
 	private List<MatcherBuilder> builders = new ArrayList<MatcherBuilder>();
 
-	public MatchersBuilder() {
+	public FilterBuilder() {
 		builders.add(new RatingBuilder<Position>());
 		builders.add(new CurrencyBuilder());
 		builders.add(new TypeBuilder("bond"));
@@ -25,13 +26,13 @@ public class MatchersBuilder {
 		builders.add(new FreeTextBuilder());
 	}
 
-	public static Matcher<Position> from(String definition) {
-		final MatchersBuilder builder = new MatchersBuilder();
-		return builder.build(definition);
+	public static Filter from(String definition) {
+		final FilterBuilder builder = new FilterBuilder();
+		return new Filter(builder.build(definition));
 	}
 	
-	public Matcher<Position> build(String definition){
-		return anyOfFilters(selections(definition));
+	public Filter build(String definition){
+		return new Filter(anyOfFilters(selections(definition)));
 	}
 
 	private String[] selections(String definition) {

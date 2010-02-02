@@ -1,5 +1,6 @@
 package ch.siagile.finance.app;
 
+import static java.text.MessageFormat.*;
 import ch.siagile.finance.position.*;
 
 public class PositionMenu extends BaseMenu {
@@ -7,7 +8,10 @@ public class PositionMenu extends BaseMenu {
 	@Override
 	public void perform(Positions positions, String line) {
 		println("Actual positions are:");
-		println(positions.toString());
+		println(positions);
+		println(format("\n{0} position(s) found!", positions.size()));
+		println("\nTotal Value is:");
+		println(positions.value());
 	}
 
 	@Override
@@ -17,6 +21,6 @@ public class PositionMenu extends BaseMenu {
 
 	@Override
 	public String describe() {
-		return "		'p' or 'positions'			- print all positions";
+		return "	'p' or 'positions'		- print all positions";
 	}
 }

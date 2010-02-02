@@ -103,9 +103,9 @@ public class ShellTest {
 	public void shouldAreaInUEMin20PercentKO() {
 		def(account("name", CHF(30)));
 		def(account("name2", USD(70)));
-		def("area:UE min:20%");
+		def("UE min:20%");
 		execute();
-		assertThat(output, containsString("area:UE min:20% KO"));
+		assertThat(output, containsString("UE min:20% KO"));
 	}
 
 	@Test
@@ -113,18 +113,18 @@ public class ShellTest {
 		def(account("name", CHF(30)));
 		def(account("name2", USD(70)));
 		def(bond(Bond.from("name", "USA"), CHF(100), "100%"));
-		def("area:USA min:20%");
+		def("USA min:20%");
 		execute();
-		assertThat(output, containsString("area:USA min:20% OK"));
+		assertThat(output, containsString("USA min:20% OK"));
 	}
 
 	@Test
 	public void shouldAreaInUSAorUEMin20PercentKO() {
 		def(bond(Bond.from("name", "USA"), CHF(50), "100%"));
 		def(bond(Bond.from("name", "UE"), CHF(50), "100%"));
-		def("area:USA,UE min:100%");
+		def("USA,UE min:100%");
 		execute();
-		assertThat(output, containsString("area:USA,UE min:100% OK"));
+		assertThat(output, containsString("USA,UE min:100% OK"));
 	}
 
 	@Test
@@ -140,27 +140,27 @@ public class ShellTest {
 	public void shouldEquityIBMMin40PercentKO() {
 		def(equity("IBM", 1, CHF(30)));
 		def(equity("ORCL", 1, CHF(70)));
-		def("equity:IBM min:40%");
+		def("IBM min:40%");
 		execute();
-		assertThat(output, containsString("equity:IBM min:40% KO"));
+		assertThat(output, containsString("IBM min:40% KO"));
 	}
 
 	@Test
 	public void shouldEquityIBMMin40PercentOK() {
 		def(equity("IBM", 1, CHF(30)));
 		def(equity("ORCL", 1, CHF(70)));
-		def("equity:ORCL min:40%");
+		def("ORCL min:40%");
 		execute();
-		assertThat(output, containsString("equity:ORCL min:40% OK"));
+		assertThat(output, containsString("ORCL min:40% OK"));
 	}
 
 	@Test
 	public void shouldEquityORCLandIBMMin80PercentOK() {
 		def(equity("IBM", 1, CHF(30)));
 		def(equity("ORCL", 1, CHF(70)));
-		def("equity:IBM,ORCL min:80%");
+		def("IBM,ORCL min:80%");
 		execute();
-		assertThat(output, containsString("equity:IBM,ORCL min:80% OK"));
+		assertThat(output, containsString("IBM,ORCL min:80% OK"));
 	}
 
 	@Test
@@ -237,9 +237,9 @@ public class ShellTest {
 	public void shouldMaxRatingPercentKO() {
 		def(account("name", CHF(30)));
 		def(account("name2", USD(70)));
-		def("rating:range:B1,A2 min:60%");
+		def("range:B1,A2 min:60%");
 		execute();
-		assertThat(output, containsString("rating:range:B1,A2 min:60% KO"));
+		assertThat(output, containsString("range:B1,A2 min:60% KO"));
 	}
 
 	@Test
@@ -256,9 +256,9 @@ public class ShellTest {
 		def(account("pluto", CHF(10)));
 		def(UBS(CHF(10)));
 		def(bond(Bond.from("GECC", A2, UE), CHF(100), "100%"));
-		def("rating:range:B1,A2 min:60%");
+		def("range:B1,A2 min:60%");
 		execute();
-		assertThat(output, containsString("rating:range:B1,A2 min:60% OK"));
+		assertThat(output, containsString("range:B1,A2 min:60% OK"));
 	}
 
 	@Test

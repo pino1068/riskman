@@ -74,6 +74,9 @@ public class RatingBuilder<T> implements MatcherBuilder {
 	}
 
 	public String cleanUp(String definition) {
-		return definition.replaceAll("range:", "range#");
+		return 
+		definition.replaceAll("max:", "max#")
+		.replaceAll("min:", "max#")
+		.replaceAll("range:", "range#");
 	}
 }

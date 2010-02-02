@@ -20,7 +20,7 @@ public class HelpMenu extends BaseMenu {
 	
 	@Override
 	public String describe() {
-		return "		'h' or 'help'			- print this help";
+		return "	'h' or 'help'			- print this help";
 	}
 
 }

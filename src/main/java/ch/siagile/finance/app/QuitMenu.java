@@ -15,6 +15,6 @@ public class QuitMenu extends BaseMenu {
 
 	@Override
 	public String describe() {
-		return "		'q' or 'quit'			- to exit this program";
+		return "\n	'q' or 'quit'			- to exit this program";
 	}
 }

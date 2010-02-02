@@ -50,7 +50,7 @@ public class Ratio {
 
 	@Override
 	public String toString() {
-		return format("{0}/{1}", numerator, denominator);
+		return format("{0} over {1}", numerator, denominator);
 	}
 	
 	@Override
