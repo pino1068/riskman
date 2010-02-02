@@ -9,6 +9,6 @@ public class TesterTest {
 	@Test  
 	public void shouldTester() {
                 PrintStream out = new PrintStream(new ByteArrayOutputStream());
-		new Tester(new String[] {"tester", "/sample/sample1/sample1.txt"}, out).test();
+		new Tester(new String[] {"tester", "sample/sample1/sample1.txt"}, out).test();
 	}
 }

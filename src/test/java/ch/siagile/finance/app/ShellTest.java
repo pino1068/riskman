@@ -76,7 +76,6 @@ public class ShellTest {
 		def(bond(Bond.from("name", "USA"), CHF(40), "100%"));
 		def("equity,bond max:69%");
 		execute();
-		System.out.println(output);
 		assertThat(output, containsString("equity,bond max:69% KO"));
 	}
 
