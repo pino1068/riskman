@@ -10,14 +10,14 @@ public class Execute {
 
 	protected final String inputpath;
 	protected final String outputpath = "output.txt";
-	protected final String dirname;
+	protected final String workingDir;
 	protected final List<String> definitions;
 	protected final PrintStream printStream;
 
 	public Execute(String[] args, PrintStream printStream) {
 		this.printStream = printStream;
 		this.inputpath = inputPath(args);
-		this.dirname = dirname(inputpath);
+		this.workingDir = dirname(inputpath);
 		definitions = textRepository.load(inputpath);
 	}
 
@@ -36,8 +36,8 @@ public class Execute {
 	protected final Positions positions = new Positions();
 
 	public void batch() {
-
-		String output = shell.execute(dirname, positions, definitions);
+		ContextData data = new ContextData(positions, workingDir);
+		String output = shell.execute(data, definitions);
 
 		List<String> actualOutput = stringRepository.load(output);
 

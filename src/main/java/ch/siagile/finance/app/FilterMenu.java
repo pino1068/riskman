@@ -6,26 +6,26 @@ import ch.siagile.finance.position.*;
 
 public class FilterMenu extends BaseMenu {
 
-	public boolean isCalled(String line) {
+	public boolean canExecute(String line) {
 		return line.startsWith("f");
 	}
 
-	public void perform(AppContext context, String line) {
+	public void execute(ContextData context, String definition) {
 		println(format("Positions filtered with criteria: <{0}>",
-				criteria(line)));
+				criteria(definition)));
 		newLine();
 		try {
 			Positions positions = context.positions();
-			Positions selected = positions .select(filter(line));
+			Positions selected = positions .select(filter(definition));
 			println(selected);
 			newLine();
 			println(format(
 					"{0} position(s) selected over {1} with criteria <{2}>",
-					selected.size(), positions.size(), criteria(line)));
+					selected.size(), positions.size(), criteria(definition)));
 			newLine();
 			println("Ratio and Values are:");
 			println(selected.divideBy(positions));
-			context.changeTo(criteria(line), selected);
+			context.changeTo(criteria(definition), selected);
 		} catch (Exception e) {
 			print("Error: ", e.getMessage(), "");
 		}

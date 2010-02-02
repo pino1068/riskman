@@ -5,7 +5,7 @@ import java.io.*;
 import ch.siagile.finance.position.*;
 
 public class App {
-	private final static MenuList menu = new MenuList(new HelpMenu(),
+	private final static Commands commands = new Commands(new HelpMenu(),
 			new PositionMenu(), new ExecutionMenu(), new FilterMenu(), new SplitByMenu(), new RemoveFilterMenu(), new QuitMenu(),
 			new EmptyMenu(), new NullMenu());
 
@@ -14,18 +14,18 @@ public class App {
 	}
 
 	public void start() {
-		AppContext context = new AppContext("", new Positions());
+		ContextData data = new ContextData(new Positions(), commands, System.getProperty("user.dir"));
 		printHeader();
 		String line = null;
 		do {
-			line = waitingForInput(context);
-			for (Menu item : menu.list()) {
-				if (item.isCalled(line)) {
-					item.perform(context, line);
+			line = waitingForInput(data);
+			for (Menu item : commands.list()) {
+				if (item.canExecute(line)) {
+					item.execute(data, line);
 					break;
 				}
 			}
-		} while (!new QuitMenu().isCalled(line));
+		} while (!new QuitMenu().canExecute(line));
 	}
 
 	private void printHeader() {
@@ -35,19 +35,17 @@ public class App {
 	}
 
 	private void print(String... strings) {
-		for (String string : strings) {
+		for (String string : strings) 
 			System.out.print(string);
-		}
 	}
 
 	private void println(String... strings) {
-		for (String string : strings) {
+		for (String string : strings) 
 			System.out.println(string);
-		}
 	}
 
-	private String waitingForInput(AppContext context) {
-		printPrefix(context);
+	private String waitingForInput(ContextData data) {
+		printPrefix(data);
 		String result = "";
 		int bytesRead = 0;
 		byte name[] = new byte[100];
@@ -63,9 +61,9 @@ public class App {
 		return result.replace("\n", "");
 	}
 
-	private void printPrefix(AppContext context) {
+	private void printPrefix(ContextData data) {
 		println("");
-		print(context.path());
+		print(data.path());
 		print(" > ");
 	}
 }

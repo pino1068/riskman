@@ -12,7 +12,7 @@ import ch.siagile.finance.matcher.*;
 import ch.siagile.finance.position.*;
 
 public class AppTest {
-	private AppContext context;
+	private ContextData context;
 	private Positions positions;
 
 	@Before
@@ -21,7 +21,7 @@ public class AppTest {
 		positions.add(equity("ciao", 10, CHF(10)));
 		positions.add(bond(Bond.from("bond1", "CH"), USD(1000), "100%"));
 		positions.add(bond(Bond.from("bond2", "CH"), USD(1000), "100%"));
-		context = new AppContext("", positions);
+		context = new ContextData("", positions, new Commands(), "");
 	}
 
 	@Test 

@@ -3,12 +3,9 @@ package ch.siagile.finance.app;
 
 public interface Menu {
 
-	boolean isCalled(String line);
+	boolean canExecute(String definition);
 
-	void perform(AppContext context, String line);
-
-	void parent(MenuList menuList);
+	void execute(ContextData data, String definition);
 
 	String describe();
-
 }

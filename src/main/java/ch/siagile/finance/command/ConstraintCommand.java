@@ -1,33 +1,23 @@
 package ch.siagile.finance.command;
 
 import static java.text.MessageFormat.*;
+import ch.siagile.finance.app.*;
 import ch.siagile.finance.check.*;
 import ch.siagile.finance.constraint.*;
 import ch.siagile.finance.position.*;
 
-public class ConstraintCommand extends Command {
+public class ConstraintCommand extends BaseCommand {
 
-	public ConstraintCommand(String definition) {
-		super(definition);
+	public ConstraintCommand(String content) {
+		super(content);
 	}
 	
-	public boolean canExecute(String string) {
-		return true;
-	}
-//TODO should delete this method?
-	public Command createFrom(String definition) {
-		return new ConstraintCommand(definition);
-	}
-
 	private String checkFrom(String definition) {
 		return definition.substring(definition.lastIndexOf(" ")+1);
 	}
 
 	private String check() {
 		return checkFrom(content());
-	}
-	public String execute(Positions positions) {
-		return execute("", positions);
 	}
 
 	private String failMessage(Positions allPositions) {
@@ -36,11 +26,15 @@ public class ConstraintCommand extends Command {
 		return format("but is {0} {1} of {2}", filtered.percentOf(allPositions), filtered.value(), allPositions.value());
 	}
 	
-	public String execute(String dirname, Positions positions) {
+	private String execute(String dirname, Positions positions) {
 		boolean success = constraint().checkLimitOn(positions);
 		if (success)
 			return format("{0} OK", content());
 		return format("{0} KO {1}", content(), failMessage(positions));
+	}
+
+	public String execute(ContextData data) {
+		return execute(data.workingDir(), data.positions());
 	}
 
 	private Constraint constraint() {
@@ -53,5 +47,9 @@ public class ConstraintCommand extends Command {
 
 	private Filter filter(String definition2) {
 		return Filter.from(definition2);
+	}
+
+	public String describe() {
+		return "	'<filter> <check>'		- apply a constraint to current positions, i.e. equity:CHF max:30%";
 	}
 }

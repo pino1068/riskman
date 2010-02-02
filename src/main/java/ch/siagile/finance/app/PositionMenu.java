@@ -5,8 +5,7 @@ import ch.siagile.finance.position.*;
 
 public class PositionMenu extends BaseMenu {
 
-	@Override
-	public void perform(AppContext context, String line) {
+	public void execute(ContextData context, String line) {
 		println("Actual positions are:");
 		Positions positions = context.positions();
 		println(positions );
@@ -15,12 +14,10 @@ public class PositionMenu extends BaseMenu {
 		println(positions.value());
 	}
 
-	@Override
-	public boolean isCalled(String line) {
+	public boolean canExecute(String line) {
 		return line.startsWith("p");
 	}
 
-	@Override
 	public String describe() {
 		return "	'p' or 'positions'		- print all positions";
 	}

@@ -2,12 +2,24 @@ package ch.siagile.finance.app;
 
 import ch.siagile.finance.position.*;
 
-public class AppContext {
+public class ContextData {
 
 	private AppContextData current;
+	private Commands commands;
+	private String workingDir;
 
-	public AppContext(String name, Positions positions) {
+	public ContextData(String name, Positions positions, Commands commands, String workingData) {
 		this.current = new AppContextData(name,positions);
+		this.commands = commands;
+		this.workingDir = workingData;
+	}
+
+	public ContextData(Positions positions, Commands commands, String workingDir) {
+		this("", positions, commands, workingDir);
+	}
+
+	public ContextData(Positions positions, String workingDir) {
+		this("", positions, null, workingDir);
 	}
 
 	public String name() {
@@ -34,4 +46,11 @@ public class AppContext {
 		return current.path();
 	}
 
+	public Commands commands() {
+		return commands;
+	}
+
+	public String workingDir() {
+		return workingDir;
+	}
 }

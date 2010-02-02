@@ -1,36 +1,10 @@
 package ch.siagile.finance.command;
 
-import static java.text.MessageFormat.*;
-import ch.siagile.finance.position.*;
+import ch.siagile.finance.app.*;
 
-public abstract class Command {
+public interface Command {
 
-	private final String content;
+	String describe();
 
-	public Command(String content) {
-		this.content = content;
-	}
-	
-	protected String content() {
-		return content;
-	}
-
-	public abstract boolean canExecute(String string);
-
-	
-	private Command clone(String definition) {
-		try {
-			return this.getClass().getConstructor(String.class).newInstance(definition);
-		} catch (Exception e) {
-			e.printStackTrace();
-			throw new RuntimeException(format("cannot create command {0} with definition {1}",getClass(),definition),e);
-		}
-	}
-
-	public Command createFrom(String definition) {
-		return clone(definition);
-	}
-
-	public abstract String execute(String dirname, Positions positions);
-
+	String execute(ContextData data);
 }

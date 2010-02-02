@@ -33,7 +33,8 @@ public class FirstRegressionTest {
 	}
 
 	private void check(String definition) {
-		new Shell().execute(System.getProperty("user.dir"), positions, definition);
+		ContextData data = new ContextData("",positions, null, System.getProperty("user.dir"));
+		new Shell().execute(data, definition);
 	}
 
 	private void position(String string) {

@@ -2,12 +2,13 @@ package ch.siagile.finance.command;
 
 import static java.text.MessageFormat.*;
 import ch.siagile.finance.*;
+import ch.siagile.finance.app.*;
 import ch.siagile.finance.check.*;
 import ch.siagile.finance.money.*;
 import ch.siagile.finance.position.*;
 import ch.siagile.finance.splitter.*;
 
-public class SplitCommand extends Command {
+public class SplitCommand extends BaseCommand {
 
 	private Splitter splitter;
 
@@ -18,21 +19,15 @@ public class SplitCommand extends Command {
 	}
 
 	private String criteria(String definition) {
-		return definition.split(":| ")[1];
+		return definition.split(" ")[0];
 	}
-
-	@Override
-	public boolean canExecute(String string) {
-		return string.startsWith("s");
-	}
-
-	public String execute(Positions positions) {
-		return execute("", positions);
-	}
-
-	@Override
+	
 	public String execute(String dirname, Positions positions) {
 		return checkLimitOn(positions);
+	}
+
+	public String execute(ContextData data) {
+		return execute(data.workingDir(),data.positions());
 	}
 
 	private String checkLimitOn(Positions positions) {
@@ -59,6 +54,10 @@ public class SplitCommand extends Command {
 
 	private String check() {
 		return checkFrom(content());
+	}
+
+	public String describe() {
+		return "	'splitby:<criteria>'		- split according to criteria and print results, i.e. splitby:owner";
 	}
 
 }

@@ -11,12 +11,13 @@ public class Tester extends Execute {
 
 	public Tester(String[] args, PrintStream printStream) {
 		super(args, printStream);
-		expectedOutput = textRepository.load(format("{0}/{1}", dirname, outputpath));
+		expectedOutput = textRepository.load(format("{0}/{1}", workingDir, outputpath));
 	}
 
 	public void test() {
 
-		String output = shell.execute(dirname, positions, definitions);
+		ContextData data = new ContextData(positions, workingDir);
+		String output = shell.execute(data , definitions);
 
 		List<String> actualOutput = stringRepository.load(output);
 

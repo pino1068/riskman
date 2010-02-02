@@ -6,10 +6,12 @@ import static java.text.MessageFormat.*;
 import java.util.*;
 
 import ch.siagile.finance.*;
+import ch.siagile.finance.app.*;
 import ch.siagile.finance.position.*;
 import ch.siagile.finance.repository.*;
 
-public class LoadCommand extends Command {
+public class LoadCommand extends BaseCommand {
+	private PositionsParser positionsParser = new PositionsParser();
 
 	private List<String> warnings = new LinkedList<String>();
 
@@ -17,32 +19,24 @@ public class LoadCommand extends Command {
 		super(definition);
 	}
 
-	@Override
-	public boolean canExecute(String string) {
-		return string.startsWith("load");
-	}
-
-	private PositionsParser positionsParser = new PositionsParser();
-
 	public String execute(Positions positions) {
 		return execute("", positions);
 	}
 
 	public String execute(String dirname, Positions positions) {
-
 		String pathname = pathname(dirname);
-		
 		List<String> strings = readLines(pathname);
-
 		tryParse(positions, strings);
-
 		return output();
 	}
 
+	public String execute(ContextData data) {
+		return execute(data.workingDir(),data.positions());
+	}
+
 	private void tryParse(Positions positions, List<String> strings) {
-		for (String string : strings) {
+		for (String string : strings) 
 			tryParse(positions, string);
-		}
 	}
 
 	private void tryParse(Positions positions, String string) {
@@ -61,7 +55,7 @@ public class LoadCommand extends Command {
 	}
 
 	private String success() {
-		return message("{0}", "OK");
+		return message("{0}","OK");
 	}
 
 	private String failWith(List<String> strings) {
@@ -73,7 +67,7 @@ public class LoadCommand extends Command {
 	}
 
 	private String message(String format, Object... args) {
-		return format("{0} {1}", content(), format(format, args));
+		return format(" {0}", format(format, args));
 	}
 
 	private void warning(String string) {
@@ -94,9 +88,7 @@ public class LoadCommand extends Command {
 		return new TextRepository().load(pathname);
 	}
 
-	@Override
-	public Command createFrom(String definition) {
-		return new LoadCommand(definition);
+	public String describe() {
+		return "	'load:<file>'			- load positions from given file";
 	}
-
 }

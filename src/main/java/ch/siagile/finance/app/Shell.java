@@ -6,37 +6,22 @@ import static java.text.MessageFormat.*;
 import java.util.*;
 
 import ch.siagile.finance.command.*;
-import ch.siagile.finance.position.*;
 
 public class Shell {
 
-	private static final List<Command> commands = new LinkedList<Command>() {
-		private static final long serialVersionUID = 1L;
-		{
-			add(new LoadCommand(""));
-			add(new SplitCommand(""));
-			add(new ConstraintCommand(""));
-		}
-	};
-
-	public String execute(String dirname, Positions positions, String definition) {
+	CommandBuilder builder = new CommandBuilder();
+	
+	public String execute(ContextData data, String definition) {
 		if (definition.equals(""))
 			return "OK";
-		return commandFor(definition).execute(dirname, positions);
+		return builder.build(definition).execute(data);
 	}
 
-	private Command commandFor(String definition) {
-		for (Command command : commands) 
-			if (command.canExecute(definition)) 
-				return command.createFrom(definition);
-		throw new RuntimeException(format("unknown command for {0}", definition));
-	}
-
-	public String execute(String dirname, Positions positions, List<String> definitions) {
+	public String execute(ContextData data, List<String> definitions) {
 		List<String> outputs = new LinkedList<String>();
-		for(String definition: definitions) 
+		for (String definition : definitions)
 			try {
-				outputs.add(execute(dirname, positions, definition));
+				outputs.add(definition+execute(data, definition));
 			} catch (Exception e) {
 				return format("error:{0} {1}", definition, e.getMessage());
 			}

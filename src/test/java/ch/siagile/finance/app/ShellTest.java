@@ -290,6 +290,7 @@ public class ShellTest {
 	}
 
 	private void execute() {
-		output = command.execute(System.getProperty("user.dir"), positions, definitions);
+		ContextData data = new ContextData("",positions, null, System.getProperty("user.dir"));
+		output = command.execute(data, definitions);
 	}
 }

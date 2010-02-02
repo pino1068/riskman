@@ -7,11 +7,11 @@ import ch.siagile.finance.splitter.*;
 
 public class SplitByMenu extends BaseMenu {
 
-	public boolean isCalled(String line) {
+	public boolean canExecute(String line) {
 		return line.startsWith("s");
 	}
 
-	public void perform(AppContext context, String line) {
+	public void execute(ContextData context, String line) {
 		String criteria = criteria(line);
 		println(format("Positions splitted by : <{0}>", criteria));
 		newLine();

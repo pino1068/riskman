@@ -7,15 +7,15 @@ public class RemoveFilterMenu extends BaseMenu {
 		return "	'r or remove'			- removes last filter";
 	}
 
-	public boolean isCalled(String line) {
+	public boolean canExecute(String line) {
 		return line.startsWith("r");
 	}
 
-	public void perform(AppContext context, String line) {
+	public void execute(ContextData context, String line) {
 		String last = context.name();
 		if(context.isNotRoot()){
 			context.remove();
-			new PositionMenu().perform(context, line);
+			new PositionMenu().execute(context, line);
 			println("Removed last filter: "+last);
 		}else{
 			println("Sorry man! No filter found!");
