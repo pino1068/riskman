@@ -22,7 +22,8 @@ public abstract class Command {
 		try {
 			return this.getClass().getConstructor(String.class).newInstance(definition);
 		} catch (Exception e) {
-			throw new RuntimeException(format("cannot create comman {0} with definition {1}",getClass(),definition));
+			e.printStackTrace();
+			throw new RuntimeException(format("cannot create command {0} with definition {1}",getClass(),definition),e);
 		}
 	}
 

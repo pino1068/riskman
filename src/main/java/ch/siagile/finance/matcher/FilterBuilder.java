@@ -14,24 +14,25 @@ import ch.siagile.finance.position.*;
 
 public class FilterBuilder {
 
-	private List<MatcherBuilder> builders = new ArrayList<MatcherBuilder>();
-
-	public FilterBuilder() {
-		builders.add(new RatingBuilder<Position>());
-		builders.add(new CurrencyBuilder());
-		builders.add(new TypeBuilder("bond"));
-		builders.add(new TypeBuilder("equity"));
-		builders.add(new AreaBuilder());
-		builders.add(new OwnerBuilder());
-		builders.add(new FreeTextBuilder());
-	}
+	private List<MatcherBuilder> builders = new ArrayList<MatcherBuilder>() {
+		private static final long serialVersionUID = 1L;
+		{
+			add(new RatingBuilder<Position>());
+			add(new CurrencyBuilder());
+			add(new TypeBuilder("bond"));
+			add(new TypeBuilder("equity"));
+			add(new AreaBuilder());
+			add(new OwnerBuilder());
+			add(new FreeTextBuilder());
+		}
+	};
 
 	public static Filter from(String definition) {
 		final FilterBuilder builder = new FilterBuilder();
 		return new Filter(builder.build(definition));
 	}
-	
-	public Filter build(String definition){
+
+	public Filter build(String definition) {
 		return new Filter(anyOfFilters(selections(definition)));
 	}
 
@@ -41,7 +42,7 @@ public class FilterBuilder {
 
 	private String cleanUp(String definition) {
 		String result = definition.replaceAll("[ ]*([,:+])[ ]*", "$1");
-		for (MatcherBuilder b : builders) 
+		for (MatcherBuilder b : builders)
 			result = b.cleanUp(result);
 		return result;
 	}
@@ -65,6 +66,7 @@ public class FilterBuilder {
 			if (b.canBuild(definition))
 				return b.build(definition);
 		}
-		throw new InvalidParameterException(format("wrong definition: {0}",definition));
+		throw new InvalidParameterException(format("wrong definition: {0}",
+				definition));
 	}
 }

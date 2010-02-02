@@ -1,6 +1,5 @@
 package ch.siagile.finance.app;
 
-import ch.siagile.finance.position.*;
 
 public class EmptyMenu extends BaseMenu {
 
@@ -8,7 +7,7 @@ public class EmptyMenu extends BaseMenu {
 		return line == null || "".equals(line.replaceAll(" ", ""));
 	}
 
-	public void perform(Positions positions, String line) {
+	public void perform(AppContext context, String line) {
 		println("and now what?");
 	}
 

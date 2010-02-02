@@ -1,6 +1,5 @@
 package ch.siagile.finance.app;
 
-import ch.siagile.finance.position.*;
 
 public class NullMenu extends BaseMenu {
 
@@ -8,7 +7,7 @@ public class NullMenu extends BaseMenu {
 		return true;
 	}
 
-	public void perform(Positions positions, String line) {
+	public void perform(AppContext context, String line) {
 		println(line + "- command not found. Are you kidding me?");
 	}
 

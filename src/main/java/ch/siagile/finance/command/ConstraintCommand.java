@@ -14,7 +14,7 @@ public class ConstraintCommand extends Command {
 	public boolean canExecute(String string) {
 		return true;
 	}
-
+//TODO should delete this method?
 	public Command createFrom(String definition) {
 		return new ConstraintCommand(definition);
 	}

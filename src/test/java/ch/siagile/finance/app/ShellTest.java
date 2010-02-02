@@ -262,6 +262,18 @@ public class ShellTest {
 	}
 
 	@Test
+	public void shouldCheckMaxOnSplitByOwner() {
+		def(account("pluto", CHF(10)));
+		def(UBS(CHF(10)));
+		def(bond(Bond.from("GECC", A2, UE), CHF(100), "100%"));
+		def("splitby:owner max:10%");
+		execute();
+		assertThat(output, containsString("bondOwner KO, check <max:10%> but is 83.333% (100 CHF over 120 CHF)"));
+		assertThat(output, containsString("accountOwner OK"));
+		assertThat(output, containsString("equityOwner OK"));
+	}
+
+	@Test
 	public void shouldOK() {
 		def("");
 		execute();

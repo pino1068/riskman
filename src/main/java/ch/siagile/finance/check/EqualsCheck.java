@@ -12,5 +12,9 @@ public class EqualsCheck extends SingleCheck {
 		return value.isEqualsTo(value());
 	}
 
+	@Override
+	public String toString() {
+		return "equal to"+super.toString();
+	}
 
 }

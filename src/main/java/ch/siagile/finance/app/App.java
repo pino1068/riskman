@@ -2,12 +2,11 @@ package ch.siagile.finance.app;
 
 import java.io.*;
 
-import ch.siagile.finance.money.*;
 import ch.siagile.finance.position.*;
 
 public class App {
 	private final static MenuList menu = new MenuList(new HelpMenu(),
-			new PositionMenu(), new ExecutionMenu(), new FilterMenu(), new QuitMenu(),
+			new PositionMenu(), new ExecutionMenu(), new FilterMenu(), new SplitByMenu(), new RemoveFilterMenu(), new QuitMenu(),
 			new EmptyMenu(), new NullMenu());
 
 	public static void main(String args[]) {
@@ -15,23 +14,18 @@ public class App {
 	}
 
 	public void start() {
-		Positions positions = samples();
+		AppContext context = new AppContext("", new Positions());
 		printHeader();
 		String line = null;
 		do {
-			line = waitingForInput();
+			line = waitingForInput(context);
 			for (Menu item : menu.list()) {
 				if (item.isCalled(line)) {
-					item.perform(positions, line);
+					item.perform(context, line);
 					break;
 				}
 			}
 		} while (!new QuitMenu().isCalled(line));
-	}
-
-	private Positions samples() {
-		return new Positions(account("name", Money.CHF(30)), account("name2",
-				Money.USD(70)));
 	}
 
 	private void printHeader() {
@@ -52,12 +46,8 @@ public class App {
 		}
 	}
 
-	private Position account(String name, Money balance) {
-		return new AccountPosition(name, balance);
-	}
-
-	private String waitingForInput() {
-		print("> ");
+	private String waitingForInput(AppContext context) {
+		printPrefix(context);
 		String result = "";
 		int bytesRead = 0;
 		byte name[] = new byte[100];
@@ -71,5 +61,11 @@ public class App {
 			e.printStackTrace();
 		}
 		return result.replace("\n", "");
+	}
+
+	private void printPrefix(AppContext context) {
+		println("");
+		print(context.path());
+		print(" > ");
 	}
 }

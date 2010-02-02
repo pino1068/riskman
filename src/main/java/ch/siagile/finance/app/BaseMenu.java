@@ -1,6 +1,5 @@
 package ch.siagile.finance.app;
 
-import ch.siagile.finance.position.*;
 
 public abstract class BaseMenu implements Menu {
 
@@ -8,7 +7,7 @@ public abstract class BaseMenu implements Menu {
 
 	public abstract boolean isCalled(String line);
 
-	public abstract void perform(Positions positions, String line);
+	public abstract void perform(AppContext context, String line);
 
 	public abstract String describe() ;
 

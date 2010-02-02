@@ -27,4 +27,12 @@ public abstract class Position {
 	public String toString() {
 		return format("{0}: ", owner);
 	}
+
+	public String currency() {
+		return balance().currency();
+	}
+
+	public String owner() {
+		return owner;
+	}
 }
