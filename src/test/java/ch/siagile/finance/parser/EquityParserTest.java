@@ -21,17 +21,17 @@ public class EquityParserTest {
 		parsedEquity = importer.parse(equity);
 	}
 
-	@Test
+	@Test 
 	public void shouldParseCreateEquities() {
 		assertTrue(parsedEquity.isCalled("Orpheus NV Fund Reserve Inv USD"));
 	}
 
-	@Test
+	@Test 
 	public void shouldParseEquityIdentity() {
 		assertTrue(Identities.from(parsedEquity).isIdentifiedBy("1870"));
 	}
 
-	@Test
+	@Test 
 	public void shouldEquityBeLocatedInUSA() {
 		assertThat(Location.from(parsedEquity).area(),is(Area.from("USA")));
 		assertThat(Location.from(parsedEquity).area(),is(not(Area.from("UE"))));

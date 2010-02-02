@@ -21,31 +21,31 @@ public class EquityPositionParserTest {
 	public void setUp(){
 		importer = new EquityPositionParser();
 	}
-	@Test 
+	@Test  
 	public void shouldRecognizeEquity() {
 		assertTrue(importer.recognize(equity1));
 		assertTrue(importer.recognize(equity2));
 		assertFalse(importer.recognize(bond));
 	}
-	@Test
+	@Test 
 	public void shouldImportAccount$Type() {
 		assertThat(parse(equity1), is(instanceOf(EquityPosition.class)));
 		assertThat(parse(equity2), is(instanceOf(EquityPosition.class)));
 	}
 
 	
-	@Test 
+	@Test  
 	public void shouldParseEquityField() {
 		assertTrue(parse(equity1).isCalled("Sparinvest Sicav Global Value"));
 	}
 	
-	@Test 
+	@Test  
 	public void shouldMoneyBeCorrect() {
 		assertThat(parse(equity1).balance(), is(equalTo(EUR(180*140.4))));
 		assertThat(parse(equity2).balance(), is(equalTo(CHF(330*98.6))));
 	}
 	
-	@Test 
+	@Test  
 	public void shouldOwnerBeCorrect() {
 		assertTrue(parse(equity1).isOwnedBy("pippo8"));
 		assertTrue(parse(equity2).isOwnedBy("pippo13"));

@@ -41,7 +41,7 @@ public class FilterTest {
 		matcherParser = new FilterBuilder();
 	}
 
-	@Test
+	@Test 
 	public void shouldFilterBondAndEquity() {
 		filter("equity +bond");
 		check(hasItem(bond));
@@ -50,7 +50,7 @@ public class FilterTest {
 		check(hasItem(oracle_equity));
 	}
 
-	@Test
+	@Test 
 	public void shouldFilterBondAndEquityWtihSpaces() {
 		filter("equity + bond");
 		check(hasItem(bond));
@@ -59,45 +59,45 @@ public class FilterTest {
 		check(hasItem(oracle_equity));
 	}
 
-	@Test
+	@Test 
 	public void shouldFilterBonds() {
 		filter("bond");
 		check(hasItem(bond));
 	}
 
-	@Test
+	@Test 
 	public void shouldFilterByCHF() {
 		filter("CHF");
 		check(hasItems(account, ibm_equity));
 		check(not(hasItems(bond)));
 	}
 
-	@Test
+	@Test 
 	public void shouldFilterByUSD() {
 		filter("USD");
 		check(hasItems(bond));
 		check(not(hasItems(account, ibm_equity)));
 	}
 
-	@Test
+	@Test 
 	public void shouldFilterByUSDAndCHF() {
 		filter("USD + CHF");
 		check(hasItems(bond, account, ibm_equity));
 	}
 
-	@Test
+	@Test 
 	public void shouldFilterByUSDAndCHFWithComma() {
 		filter("USD,CHF");
 		check(hasItems(bond, account, ibm_equity));
 	}
 
-	@Test
+	@Test 
 	public void shouldFilterByUSDAndCHFWithCommaAndSpace() {
 		filter("USD , CHF");
 		check(hasItems(bond, account, ibm_equity));
 	}
 
-	@Test
+	@Test 
 	public void shouldSpecificEquity() {
 		filter("equity:IBM");
 		check(hasItem(ibm_equity));
@@ -106,7 +106,7 @@ public class FilterTest {
 		check(not(hasItem(oracle_equity)));
 	}
 
-	@Test
+	@Test 
 	public void shouldFilterInUSA() {
 		filter("USA");
 		check(not(hasItem(ibm_equity)));
@@ -115,7 +115,7 @@ public class FilterTest {
 		check(not(hasItem(oracle_equity)));
 	}
 
-	@Test
+	@Test 
 	public void shouldFilterInUSAorUE() {
 		filter("USA,UE");
 		check(hasItem(ibm_equity));
@@ -124,12 +124,12 @@ public class FilterTest {
 		check(hasItem(oracle_equity));
 	}
 
-	@Test
+	@Test 
 	public void shouldInvalidFilter() {
 		filter("don't know what to do...");
 	}
 
-	@Test
+	@Test 
 	public void shouldFilterEquityUSD() {
 		filter("equity:USD");
 		check(not(hasItem(ibm_equity)));
@@ -138,7 +138,7 @@ public class FilterTest {
 		check(hasItem(oracle_equity));
 	}
 
-	@Test
+	@Test 
 	public void shouldFilterByOwner() {
 		filter("owner:bondOwner,equityOwner");
 		check(hasItem(ibm_equity));
@@ -147,7 +147,7 @@ public class FilterTest {
 		check(hasItem(oracle_equity));
 	}
 
-	@Test
+	@Test 
 	public void shouldFilterBondUSA() {
 		filter("bond:USA");
 		check(not(hasItem(ibm_equity)));
@@ -156,7 +156,7 @@ public class FilterTest {
 		check(not(hasItem(oracle_equity)));
 	}
 
-	@Test
+	@Test 
 	public void shouldFilterUSAorCHF() {
 		filter("CHF+USA");
 		check(hasItem(ibm_equity));
@@ -165,7 +165,7 @@ public class FilterTest {
 		check(not(hasItem(oracle_equity)));
 	}
 
-	@Test
+	@Test 
 	public void shouldFilterUSAandCHF() {
 		filter("CHF:USA");
 		check(not(hasItem(ibm_equity)));
@@ -174,7 +174,7 @@ public class FilterTest {
 		check(not(hasItem(oracle_equity)));
 	}
 
-	@Test
+	@Test 
 	public void shouldFilterUSAandCHFWithWhiteSpaces() {
 		filter("CHF : USA");
 		check(not(hasItem(ibm_equity)));
@@ -183,7 +183,7 @@ public class FilterTest {
 		check(not(hasItem(oracle_equity)));
 	}
 
-	@Test
+	@Test 
 	public void shouldFilterByRating() {
 		filter("range:B1,Aaa");
 		check(not(hasItem(ibm_equity)));
@@ -192,7 +192,7 @@ public class FilterTest {
 		check(not(hasItem(oracle_equity)));
 	}
 
-	@Test
+	@Test 
 	public void shouldFilterIBMorOracle() {
 		filter("IBM, ORCL");
 		check(hasItem(ibm_equity));

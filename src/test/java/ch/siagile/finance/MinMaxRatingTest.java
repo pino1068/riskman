@@ -16,37 +16,37 @@ public class MinMaxRatingTest {
 	MoodyRating C = MoodyRatings.find("C");
 	MoodyRating AAA = MoodyRatings.find("Aaa");
 
-	@Test
+	@Test 
 	public void shouldAAAIsMinOrEqualToA1() {
 		assertThat(AAA, is(min(A1)));
 	}
 
-	@Test
+	@Test 
 	public void shouldA1IsMinOrEqualThanA1() {
 		assertThat(A1, is(min(A1)));
 	}
 
-	@Test
+	@Test 
 	public void shouldCIsNotMinOrEqualThanA1() {
 		assertThat(C, is(not(min(A1))));
 	}
 
-	@Test
+	@Test 
 	public void shouldAAAIsNotMaxOrEqualToA1() {
 		assertThat(AAA, is(not(max(A1))));
 	}
 
-	@Test
+	@Test 
 	public void shouldCIsMaxOrEqualToA1() {
 		assertThat(C, is(max(A1)));
 	}
 
-	@Test
+	@Test 
 	public void shouldA1IsMaxOrEqualToA1() {
 		assertThat(A1, is(max(A1)));
 	}
 
-	@Test
+	@Test 
 	public void shouldA1IsInRangeCAndAAA() {
 		assertThat(A1, is(ratingIn(C, AAA)));
 	}

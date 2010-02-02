@@ -18,7 +18,7 @@ public class ConstraintTest {
 	private Constraint constraint;
 	private Positions positions;
 
-	@Test
+	@Test 
 	public void shouldEquityConstraintMaxMatchOnPortofolioWithLessEquity() {
 		constraint = contraint("equity", "max: 50%");
 		positions = new Positions(account("pluto", CHF(2000)), IBM(CHF(100)));
@@ -26,7 +26,7 @@ public class ConstraintTest {
 		assertTrue(constraint.checkLimitOn(positions));
 	}
 
-	@Test
+	@Test 
 	public void shouldEquityConstraintMaxMatchOnPortofolioWithMoreEquity() {
 		constraint = contraint("equity", "max: 50%");
 		positions = new Positions(account("pluto", CHF(999.0)), IBM(CHF(1000)));
@@ -34,7 +34,7 @@ public class ConstraintTest {
 		assertFalse(constraint.checkLimitOn(positions));
 	}
 
-	@Test
+	@Test 
 	public void shouldEquityConstraintMinMatchOnPortofolioWithLessEquity() {
 		constraint = contraint("equity", "min:50%");
 		positions = new Positions(account("pluto", CHF(2000)), IBM(CHF(100)));
@@ -42,7 +42,7 @@ public class ConstraintTest {
 		assertFalse(constraint.checkLimitOn(positions));
 	}
 
-	@Test
+	@Test 
 	public void shouldEquityConstraintMinMatchOnPortofolioWithMoreEquity() {
 		constraint = contraint("equity", "min:50%");
 		positions = new Positions(account("pluto", CHF(1000)), IBM(CHF(1000)));
@@ -50,7 +50,7 @@ public class ConstraintTest {
 		assertTrue(constraint.checkLimitOn(positions));
 	}
 
-	@Test
+	@Test 
 	public void shouldEquitySpecificConstraintMaxMatchOnPortfolio() {
 		constraint = contraint("UBS", "max:3%");
 		positions = new Positions(account("pluto", CHF(1000)), UBS(CHF(10)), UBS(CHF(10)), IBM(CHF(1000)));
@@ -58,7 +58,7 @@ public class ConstraintTest {
 		assertTrue(constraint.checkLimitOn(positions));
 	}
 
-	@Test
+	@Test 
 	public void shouldEquitySpecificConstraintMaxMatchOnPortfolioWithTooManyUBS() {
 		constraint = contraint("UBS", "max:5%");
 		Position IBM1000chf = equity("IBM", 10, CHF(100));
@@ -68,7 +68,7 @@ public class ConstraintTest {
 		assertFalse(constraint.checkLimitOn(positions));
 	}
 
-	@Test
+	@Test 
 	public void shouldEquitySpecificConstraintMinMatchOnPortfolio() {
 		constraint = contraint("UBS", "min:1%");
 		positions = new Positions(account("pluto", CHF(1)), UBS(CHF(20)), IBM(CHF(1000)));
@@ -76,7 +76,7 @@ public class ConstraintTest {
 		assertTrue(constraint.checkLimitOn(positions));
 	}
 
-	@Test
+	@Test 
 	public void shouldEquitySpecificConstraintMinDoesntMatchOnPortfolio() {
 		constraint = contraint("UBS", "min:1%");
 		positions = new Positions(account("pluto", CHF(1)), UBS(CHF(10)), IBM(CHF(10000)));
@@ -84,7 +84,7 @@ public class ConstraintTest {
 		assertFalse(constraint.checkLimitOn(positions));
 	}
 
-	@Test
+	@Test 
 	public void shouldEquitySpecificConstraintMinMatchAListOfEquities() {
 		constraint = contraint("UBS,IBM", "min:50%");
 		positions = new Positions(account("pluto", CHF(20)), UBS(CHF(40)), IBM(CHF(40)));
@@ -92,7 +92,7 @@ public class ConstraintTest {
 		assertTrue(constraint.checkLimitOn(positions));
 	}
 
-	@Test
+	@Test 
 	public void shouldCheckOnlyValidAreaOnPositions() {
 		final MoodyRating A2 = MoodyRatings.find("A2");
 		final Area UE = Area.from("UE");
@@ -109,7 +109,7 @@ public class ConstraintTest {
 		assertTrue(constraint.checkLimitOn(positions));
 	}
 
-	@Test
+	@Test 
 	public void shouldCheckSomeBondInRatingRange() {
 
 		final MoodyRating A2 = MoodyRatings.find("A2");
@@ -128,7 +128,7 @@ public class ConstraintTest {
 		assertTrue(constraint.checkLimitOn(positions));
 	}
 
-	@Test
+	@Test 
 	public void shouldCheckSomeBondInRatingRangeA1Aaa() {
 
 		final MoodyRating Aaa = MoodyRatings.find("Aaa");
@@ -147,7 +147,7 @@ public class ConstraintTest {
 		assertTrue(constraint.checkLimitOn(positions));
 	}
 
-	@Test
+	@Test 
 	public void shouldCheckSomeBondInRatingMaxA1() {
 
 		final MoodyRating B2 = MoodyRatings.find("B2");
@@ -166,7 +166,7 @@ public class ConstraintTest {
 		assertTrue(constraint.checkLimitOn(positions));
 	}
 
-	@Test
+	@Test 
 	public void shouldBondConstraintMin20NotMatch() {
 		constraint = contraint("bond", "min: 20%");
 		positions = new Positions(account("pluto", CHF(999.0)), IBM(CHF(1000)));
@@ -174,7 +174,7 @@ public class ConstraintTest {
 		assertFalse(constraint.checkLimitOn(positions));
 	}
 
-	@Test
+	@Test 
 	public void shouldBondConstraintMin20Match() {
 		constraint = contraint("bond", "min: 20%");
 		positions = new Positions() {

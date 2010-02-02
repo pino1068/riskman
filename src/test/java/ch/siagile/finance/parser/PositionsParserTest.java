@@ -17,13 +17,13 @@ public class PositionsParserTest {
 
 	private Position position;
 	
-	@Test
+	@Test 
 	public void shouldRecognizeAccount() {
 		position = new PositionsParser().parse(account1);
 		assertThat(position, is(instanceOf(AccountPosition.class)));
 	}
 
-	@Test
+	@Test 
 	public void shouldRecognizeBond() {
 		position = new PositionsParser().parse(bond1);
 		assertThat(position, is(instanceOf(BondPosition.class)));

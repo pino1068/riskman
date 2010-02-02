@@ -21,24 +21,24 @@ public class AccountParserTest {
 		importAccount = new AccountParser();
 	}
 
-	@Test
+	@Test 
 	public void shouldImportAccount$Balance() {
 		assertThat(parsedPosition(account1).balance(), is(equalTo(EUR(1041804.04494558))));
 		assertThat(parsedPosition(account2).balance(), is(equalTo(EUR(1041801.62494558))));
 	}
 
-	@Test
+	@Test 
 	public void shouldImportAccount$Type() {
 		assertThat(parsedPosition(account1), is(instanceOf(AccountPosition.class)));
 	}
 
-	@Test
+	@Test 
 	public void shouldImportAccount$Owner() {
 		assertTrue(parsedPosition(account1).isOwnedBy("pippo1"));
 		assertTrue(parsedPosition(account2).isOwnedBy("pippo2"));
 	}
 
-	@Test
+	@Test 
 	public void shouldImportAccount$Name() {
 		assertTrue(parsedPosition(account1).isCalled("EUR-0456-733008-92"));
 		assertTrue(parsedPosition(account2).isCalled("EUR-0456-389835-82"));

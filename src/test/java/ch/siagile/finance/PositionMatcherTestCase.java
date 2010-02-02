@@ -15,7 +15,7 @@ import ch.siagile.finance.position.*;
 
 public class PositionMatcherTestCase {
 
-	@Test
+	@Test 
 	public void shouldMatchOneGeneralEquityPosition() {
 		Matcher<Position> isEquity = new IsEquityMatcher<Position>();
 		Position position = IBM(CHF(500));
@@ -23,7 +23,7 @@ public class PositionMatcherTestCase {
 		assertThat(position, isEquity);
 	}
 
-	@Test
+	@Test 
 	public void shouldMatchOneSpecificEquityPosition() {
 		Matcher<Position> isIBMEquity = new IsSpecificEquityMatcher<Position>("IBM");
 		Position position = IBM(CHF(500));
@@ -31,7 +31,7 @@ public class PositionMatcherTestCase {
 		assertThat(position, isIBMEquity);
 	}
 
-	@Test
+	@Test 
 	@SuppressWarnings("unchecked")
 	public void shouldNotMatchOneAccountPosition() {
 		Matcher<Position> isIBMEquity = allOf(new IsSpecificEquityMatcher<Position>("IBM"), new IsEquityMatcher<Position>());
@@ -40,7 +40,7 @@ public class PositionMatcherTestCase {
 		assertThat(position, not(isIBMEquity));
 	}
 
-	@Test
+	@Test 
 	public void shouldNotMatchOneOtherEquityPosition() {
 		Matcher<Position> isOracleEquity = new IsSpecificEquityMatcher<Position>("Oracle");
 		Position position = IBM(CHF(300));
@@ -48,7 +48,7 @@ public class PositionMatcherTestCase {
 		assertThat(position, not(isOracleEquity));
 	}
 
-	@Test
+	@Test 
 	public void shouldMatchOnePositionInCHF() {
 		Matcher<Position> inCHF = new IsCurrencyMatcher<Position>("CHF");
 		Position position = IBM(CHF(500));
@@ -56,7 +56,7 @@ public class PositionMatcherTestCase {
 		assertThat(position, inCHF);
 	}
 
-	@Test
+	@Test 
 	public void shouldNotMatchOnePositionInUSD() {
 		Matcher<Position> inUSD = new IsCurrencyMatcher<Position>("USD");
 		Position position = IBM(CHF(500));
@@ -64,7 +64,7 @@ public class PositionMatcherTestCase {
 		assertThat(position, not(inUSD));
 	}
 
-	@Test
+	@Test 
 	public void shouldMatchOnePositionInUSDOrCHF() {
 		Matcher<Position> USDorCHF = new IsCurrenciesMatcher<Position>("USD", "CHF");
 		Position position = IBM(CHF(500));
@@ -72,7 +72,7 @@ public class PositionMatcherTestCase {
 		assertThat(position, USDorCHF);
 	}
 
-	@Test
+	@Test 
 	public void shouldMatchOnePositionInUSDOrCHFOrEUR() {
 		Matcher<Position> USDorCHForEUR = new IsCurrenciesMatcher<Position>("USD", "CHF", "EUR");
 		Position position = IBM(CHF(500));
@@ -80,21 +80,21 @@ public class PositionMatcherTestCase {
 		assertThat(position, USDorCHForEUR);
 	}
 	
-	@Test 
+	@Test  
 	public void shouldMatchOnePositionOfEquityType() {
 		Matcher<Position> equityMatcher = new IsTypeMatcher<Position>("equity");
 		Position position = IBM(CHF(500));
 
 		assertThat(position, equityMatcher);
 	}
-	@Test 
+	@Test  
 	public void shouldMatchOnePositionOfUBSEquityType() {
 		Matcher<Position> equityMatcher = new IsTypeMatcher<Position>("equity:UBS");
 		Position position = IBM(CHF(500));
 
 		assertThat(position, not(equityMatcher));
 	}
-	@Test 
+	@Test  
 	public void shouldMatchOnePositionOfBondType() {
 		Matcher<Position> bondMatcher = new IsTypeMatcher<Position>("bond");
 		Position position = bond(Bond.from("IBM bond", "USA"),CHF(1000),"100%");
@@ -102,7 +102,7 @@ public class PositionMatcherTestCase {
 		assertThat(position, bondMatcher);
 	}
 	
-	@Test
+	@Test 
 	public void shouldMatchOnePositionOfMultiTypes() {
 		Matcher<Position> bondOrEquity = new IsTypeMatcher<Position>("bond", "equity");
 		Position equity = IBM(CHF(500));
@@ -113,7 +113,7 @@ public class PositionMatcherTestCase {
 	}
 	
 
-	@Test
+	@Test 
 	public void shouldNotMatchOnePositionInUSDOrEUR() {
 		Matcher<Position> USDorEUR = new IsCurrenciesMatcher<Position>("USD", "EUR");
 		Position position = IBM(CHF(500));
@@ -121,7 +121,7 @@ public class PositionMatcherTestCase {
 		assertThat(position, not(USDorEUR));
 	}
 
-	@Test
+	@Test 
 	@SuppressWarnings("unchecked")
 	public void shouldMatchOnePositionInORtypeCondition() {
 		Matcher<Position> equityOrCHF = anyOf(currency("CHF"), equity());
@@ -130,7 +130,7 @@ public class PositionMatcherTestCase {
 		assertThat(position, equityOrCHF);
 	}
 
-	@Test
+	@Test 
 	@SuppressWarnings("unchecked")
 	public void shouldNotMatchOneUSDPositionInANDtypeCondition() {
 		Matcher<Position> equityInUSD = allOf(currency("USD"), equity());
@@ -139,7 +139,7 @@ public class PositionMatcherTestCase {
 		assertThat(position, not(equityInUSD));
 	}
 
-	@Test
+	@Test 
 	@SuppressWarnings("unchecked")
 	public void shouldMatchOneCHFPositionInANDtypeCondition() {
 		Matcher<Position> equityInCHF = allOf(currency("CHF"), equity());
@@ -148,7 +148,7 @@ public class PositionMatcherTestCase {
 		assertThat(position, equityInCHF);
 	}
 	
-	@Test 
+	@Test  
 	public void shouldMatchOnBondMatcher() {
 		Matcher<Position> isBond = new IsBondMatcher<Position>();
 		Position position = bond(Bond.from("a name", "anArea"), CHF(100), "100%");
@@ -156,7 +156,7 @@ public class PositionMatcherTestCase {
 		assertThat(position, isBond);
 	}
 	
-	@Test
+	@Test 
 	@SuppressWarnings("unchecked")
 	public void shouldMatchOnePositionInUSDANDBond() {
 		Matcher<Position> bondInUSD = allOf(currency("USD"), bondMatcher());
@@ -178,7 +178,7 @@ public class PositionMatcherTestCase {
 		return new IsCurrencyMatcher<Position>(currency);
 	}
 
-	@Test
+	@Test 
 	public void shouldWrongCurrenciesNotAllowed() {
 		try {
 			new IsCurrenciesMatcher<Position>("equity");

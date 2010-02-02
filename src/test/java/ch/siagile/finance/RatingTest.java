@@ -9,7 +9,7 @@ import ch.siagile.finance.instrument.rating.*;
 
 public class RatingTest {
 	
-	@Test public void shouldAaaEqualsToAaa() {
+	@Test  public void shouldAaaEqualsToAaa() {
 		assertThat(rating("Aaa"), is(equalTo(rating("Aaa"))));
 	}
 
@@ -28,7 +28,7 @@ public class RatingTest {
 		}
 	}
 
-	@Test public void shouldB2IsLowerThenB1() {
+	@Test  public void shouldB2IsLowerThenB1() {
 		should("Aaa > Aa1");
 		should("Aa1 < Aaa");
 		should("A2 < Aaa");

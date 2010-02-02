@@ -22,7 +22,7 @@ public class SplitterTest {
 				CHF(4000), "100%"));
 	}
 	
-	@Test 
+	@Test  
 	public void shouldCreateASplit() {
 		Split split = new Split();
 		split.add("CHF", positions);
@@ -35,7 +35,7 @@ public class SplitterTest {
 		assertThat(split.positions("USD").size(), is(0));
 	}
 
-	@Test
+	@Test 
 	public void shouldSplitPerCurrency() {
 		Splitter splitter = SplitterBuilder.from("currency");
 		
@@ -48,7 +48,7 @@ public class SplitterTest {
 		assertThat(split.positions("USD").size(), is(1));
 	}
 	
-	@Test 
+	@Test  
 	public void shouldSplitPerSinglePosition() {
 		Splitter splitter = SplitterBuilder.from("position");
 		
@@ -57,7 +57,7 @@ public class SplitterTest {
 		assertThat(split.size(), is(4));
 	}
 	
-	@Test 
+	@Test  
 	public void shouldSplitPerPositionType() {
 		Splitter splitter = SplitterBuilder.from("type");
 		
@@ -69,7 +69,7 @@ public class SplitterTest {
 		hasGroup(split, EquityPosition.class);
 	}
 	
-	@Test 
+	@Test  
 	public void shouldSplitByOwner() {
 		Splitter splitter  = SplitterBuilder.from("owner");
 		

@@ -21,24 +21,24 @@ public class BondParserTest {
 		importBond = new BondParser();
 	}
 
-	@Test
+	@Test 
 	public void shouldImportAccount$Balance() {
 		assertThat(parse(bond1).balance(), is(equalTo(EUR(0))));
 		assertThat(parse(bond2).balance(), is(equalTo(EUR(201980))));
 	}
 
-	@Test
+	@Test 
 	public void shouldImportAccount$Type() {
 		assertThat(parse(bond1), is(instanceOf(BondPosition.class)));
 	}
 
-	@Test
+	@Test 
 	public void shouldImportAccount$Owner() {
 		assertTrue(parse(bond1).isOwnedBy("pippo1"));
 		assertTrue(parse(bond2).isOwnedBy("pippo2"));
 	}
 
-	@Test
+	@Test 
 	public void shouldImportAccount$Name() {
 		assertTrue(parse(bond1).isCalled("20111024 - 4.875% Procter & Gamble 24-10-11 Pro-rata"));
 		assertTrue(parse(bond2).isCalled("20100625 - 3.25% Rabobank Nederland 25-06-10"));

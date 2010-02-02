@@ -10,7 +10,7 @@ import ch.siagile.finance.location.*;
 
 public class AreaTest {
 
-	@Test
+	@Test 
 	public void shouldCreateNewArea() {
 		Area area = Area.from("CH");
 
@@ -18,7 +18,7 @@ public class AreaTest {
 		assertThat(Area.from("CH"), is(area));
 	}
 
-	@Test
+	@Test 
 	public void shouldHaveAllAreas() {
 		Areas areas = Areas.all();
 

@@ -12,14 +12,14 @@ public class PercentTest {
 
 	private static final Percent PERCENT20 = Percent.from("20%");
 
-	@Test 
+	@Test  
 	public void shouldPercentBeBuild() {
 		Percent percent = Percent.from("30%");
 		
 		assertEquals(Double.valueOf(30), percent.value());
 	}
 	
-	@Test 
+	@Test  
 	public void shouldMultiplyWithMoney() {
 		Money amount = CHF(100);
 		
@@ -28,7 +28,7 @@ public class PercentTest {
 		assertThat(multiplied,is(equalTo(CHF(20))));
 	}
 	
-	@Test 
+	@Test  
 	public void shouldSumPercentToMoney() {
 		Money CHF100 = CHF(100);
 		
@@ -37,7 +37,7 @@ public class PercentTest {
 		assertThat(plus20Percent, is(CHF(120)));
 	}
 	
-	@Test 
+	@Test  
 	public void shouldEmptyStringBeZeroPercent() {
 		Percent percent = Percent.from("");
 		

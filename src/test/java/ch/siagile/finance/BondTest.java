@@ -17,21 +17,21 @@ public class BondTest {
 	MoodyRating A1 = MoodyRatings.find("A1");
 	MoodyRating C = MoodyRatings.find("C");
 
-	@Test
+	@Test 
 	public void shouldBondBeLocalted() {
 		Bond bond = Bond.from("EIB 02", "UE");
 
 		assertTrue(bond.isLocated("UE"));
 	}
 
-	@Test
+	@Test 
 	public void shouldBondInRatingRange() {
 		Bond bondAaa = Bond.from("EIB 02", MoodyRatings.find("Aaa"), Area.from("UE"));
 
 		assertThat(bondAaa, is(ratingIn(A1, AAA)));
 	}
 
-	@Test
+	@Test 
 	public void shouldBondNotInRatingRange() {
 		Bond bondAaa = Bond.from("EIB 02", MoodyRatings.find("Aaa"), Area.from("UE"));
 

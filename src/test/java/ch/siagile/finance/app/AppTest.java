@@ -24,17 +24,17 @@ public class AppTest {
 		context = new AppContext("", positions);
 	}
 
-	@Test
+	@Test 
 	public void shouldCreateContext() {
 		assertThat(context.name(), is(equalTo("")));
 	}
 
-	@Test
+	@Test 
 	public void shouldContextHavePositionsStored() {
 		assertThat(context.positions().size(), is(3));
 	}
 
-	@Test
+	@Test 
 	public void shouldChangeContext() {
 		context.changeTo("bond",filter("bond"));
 		assertThat(context.positions().size(), is(2));
@@ -45,7 +45,7 @@ public class AppTest {
 		return positions.select(FilterBuilder.from(def));
 	}
 
-	@Test 
+	@Test  
 	public void shouldBackToParent() {
 		context.changeTo("bond",filter("bond"));
 		assertThat(context.positions().size(), is(2));

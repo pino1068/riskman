@@ -15,14 +15,14 @@ import ch.siagile.finance.money.*;
 import ch.siagile.finance.position.*;
 
 public class PositionTest {
-	@Test
+	@Test 
 	public void shouldCreateAccountPosition() {
 		BasePosition account = new AccountPosition("pippo", CHF(500));
 
 		assertEquals(CHF(500), account.balance());
 	}
 
-	@Test
+	@Test 
 	public void shouldCreateEquityPosition() {
 		Equity equity = Equity.from("IBM");
 		EquityPosition position = new EquityPosition(equity, 5, CHF(IBM_PRICE));
@@ -30,7 +30,7 @@ public class PositionTest {
 		assertEquals(CHF(5 * IBM_PRICE), position.balance());
 	}
 
-	@Test
+	@Test 
 	public void shouldCreatePortfolioWith2Positions() {
 		Position account = account("pippo", CHF(500));
 		Position equity = equity("IBM", 5, CHF(IBM_PRICE));
@@ -41,7 +41,7 @@ public class PositionTest {
 		assertEquals(totalAmount, positions.value());
 	}
 
-	@Test
+	@Test 
 	public void shouldBondPositionHaveOwnBalance() {
 		Position bondPosition = bond(interAmericaDevBankBond(), CHF(5000),
 				"102 %");
@@ -54,7 +54,7 @@ public class PositionTest {
 				Area.from("UE"));
 	}
 
-	@Test
+	@Test 
 	public void shouldTreatBondPositionLikePosition() {
 		Position bondPosition = bond(interAmericaDevBankBond(), CHF(5000),
 				"102 %");
@@ -65,7 +65,7 @@ public class PositionTest {
 		assertEquals(CHF(5600), positions.value());
 	}
 
-	@Test
+	@Test 
 	public void shouldBondPositionHaveRating() {
 		BondPosition bondPosition = (BondPosition) bond(
 				interAmericaDevBankBond(), CHF(5000), "102 %");
@@ -73,7 +73,7 @@ public class PositionTest {
 		assertEquals(bondPosition.rating(), MoodyRatings.find("Aaa"));
 	}
 
-	@Test
+	@Test 
 	public void shouldMatchBondPositingInRatings() {
 		Position bondPosition = bond(interAmericaDevBankBond(), CHF(5000),
 				"102 %");

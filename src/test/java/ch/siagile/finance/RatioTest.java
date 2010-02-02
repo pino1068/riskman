@@ -12,7 +12,7 @@ import ch.siagile.finance.money.*;
 
 public class RatioTest {
 
-	@Test
+	@Test 
 	public void should1000Over1999IsLowerThen50Percent() {
 		Money numerator = CHF(1000);
 		Money denominator = CHF(1999);

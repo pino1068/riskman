@@ -10,7 +10,7 @@ import ch.siagile.finance.location.*;
 
 public class LocationTest {
 	
-	@Test 
+	@Test  
 	public void shouldLocateAnEquityUsingString() {
 		Equity equity = new Equity("IBM");
 		Location.from(equity).locateIn("USA");
@@ -20,7 +20,7 @@ public class LocationTest {
 		assertThat(location.area(), is(equalTo(Area.from("USA"))));
 	}
 
-	@Test 
+	@Test  
 	public void shouldLocateAnEquityInAnArea() {
 		Equity equity = new Equity("USA");
 		Location.from(equity).locateIn(Area.from("USA"));
@@ -28,7 +28,7 @@ public class LocationTest {
 		assertThat(Location.from(equity).area(), is(Area.from("USA")));
 	}
 	
-	@Test 
+	@Test  
 	public void shouldLocateABondInAnArea() {
 		Bond bond = Bond.from("EIB 02", "UE");
 		

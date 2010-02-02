@@ -19,22 +19,22 @@ public class RatingMatchersTest {
 		builder = new RatingBuilder<Rating>();
 	}
 	
-	@Test
+	@Test 
 	public void shouldInRange() {
 		assertThat(builder.build("range:C,Aaa"), is(instanceOf(IsRatingInMatcher.class)));		
 	}
 
-	@Test
+	@Test 
 	public void shouldMinA1() {
 		assertThat(builder.build("min:A1"), is(instanceOf(IsMinMatcher.class)));		
 	}
 
-	@Test
+	@Test 
 	public void shouldMaxA2() {
 		assertThat(builder.build("max:A2"), is(instanceOf(IsMaxMatcher.class)));		
 	}
 
-	@Test
+	@Test 
 	public void shouldThrowsExceptionIfNotRecognize() {
 		try {
 			builder.build("unknown:");
@@ -43,54 +43,54 @@ public class RatingMatchersTest {
 		}
 	}
 	
-	@Test
+	@Test 
 	public void shouldIsMinA1() {
 		Matcher<Rating> inMin = builder.buildWithType("min:A1");
 		assertThat(MoodyRating.from("Aaa"), is(inMin));
 	}
 	
-	@Test
+	@Test 
 	public void shouldAaa1IsMaxA1() {
 		Matcher<Rating> inMax = builder.buildWithType("max:A1");
 		assertThat(MoodyRating.from("A2"), is(inMax));
 	}
 
-	@Test
+	@Test 
 	public void shouldA3IsMinB1() {
 		Matcher<Rating> inMin = builder.buildWithType("min:B1");
 		assertThat(MoodyRating.from("A3"), is(inMin));
 	}
 	
-	@Test
+	@Test 
 	public void shouldExtractFromRange() {
 		Matcher<Rating> inRange = builder.buildWithType("range:C,Aaa");
 		assertThat(MoodyRating.from("C"), is(inRange));
 	}
 	
-	@Test
+	@Test 
 	public void shouldExtractFromRangeCandA1() {
 		Matcher<Rating> inRange = builder.buildWithType("range:C,A1");
 		assertThat(MoodyRating.from("Aaa"), is(not(inRange)));
 	}
 	
-	@Test
+	@Test 
 	public void shouldExtractToRange() {
 		Matcher<Rating> inRange = builder.buildWithType("range:C,Aaa");
 		assertThat(MoodyRating.from("Aaa"), is(inRange));
 	}
 	
-	@Test
+	@Test 
 	public void shouldExtractToRangeWithDot() {
 		Matcher<Rating> inRange = builder.buildWithType("range#C,Aaa");
 		assertThat(MoodyRating.from("Aaa"), is(inRange));
 	}
 		
-	@Test
+	@Test 
 	public void shouldNotInRange() {
 		Matcher<Rating> inRange = builder.buildWithType("range:C,Aaa");
 		assertThat(MoodyRating.from("NR"), is(not(inRange)));
 	}
-	@Test
+	@Test 
 	public void shouldWorkWithDot() {
 		Matcher<Rating> inRange = builder.buildWithType("range#C,Aaa");
 		assertThat(MoodyRating.from("NR"), is(not(inRange)));

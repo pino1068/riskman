@@ -13,7 +13,7 @@ public class CheckTest {
 
 	private Check check;
 
-	@Test
+	@Test 
 	public void shouldEquityContaint() {
 		check = new MaxCheck(0.5);
 
@@ -22,12 +22,12 @@ public class CheckTest {
 		assertNotCheck(check, "51%");
 	}
 
-	@Test
+	@Test 
 	public void shouldBeMax() {
 		assertThat(Check.from("max: 20%"), is(instanceOf(MaxCheck.class)));
 	}
 
-	@Test
+	@Test 
 	public void shouldCreateMax20Percent() {
 		check = Check.from("max: 20%");
 
@@ -36,17 +36,17 @@ public class CheckTest {
 		assertNotCheck(check, "30%");
 	}
 
-	@Test
+	@Test 
 	public void shouldEqBeEqualsCheck() {
 		assertThat(Check.from("eq: 20%"), is(instanceOf(EqualsCheck.class)));
 	}
 
-	@Test
+	@Test 
 	public void shouldEqualBeEqualsCheck() {
 		assertThat(Check.from("equal: 20%"), is(instanceOf(EqualsCheck.class)));
 	}
 
-	@Test
+	@Test 
 	public void shouldEq20Percent() {
 		check = Check.from("eq: 20%");
 
@@ -55,17 +55,17 @@ public class CheckTest {
 		assertNotCheck(check, "30%");
 	}
 
-	@Test
+	@Test 
 	public void shouldEqualsBeEqualsCheck() {
 		assertThat(Check.from("equals: 20%"), is(instanceOf(EqualsCheck.class)));
 	}
 
-	@Test
+	@Test 
 	public void shouldEqualsSignBeEqualsCheck() {
 		assertThat(Check.from("=: 20%"), is(instanceOf(EqualsCheck.class)));
 	}
 
-	@Test
+	@Test 
 	public void shouldEquals20Percent() {
 		check = Check.from("equals: 20%");
 
@@ -74,7 +74,7 @@ public class CheckTest {
 		assertNotCheck(check, "30%");
 	}
 
-	@Test
+	@Test 
 	public void shouldEqual20Percent() {
 		check = Check.from("equal: 20%");
 
@@ -83,7 +83,7 @@ public class CheckTest {
 		assertNotCheck(check, "30%");
 	}
 
-	@Test
+	@Test 
 	public void shouldEqualsTo20Percent() {
 		check = Check.from("equalsTo: 20%");
 
@@ -92,7 +92,7 @@ public class CheckTest {
 		assertNotCheck(check, "30%");
 	}
 
-	@Test
+	@Test 
 	public void shouldEqualsSymbol20Percent() {
 		check = Check.from("=: 20%");
 
@@ -101,12 +101,12 @@ public class CheckTest {
 		assertNotCheck(check, "30%");
 	}
 
-	@Test
+	@Test 
 	public void shouldMinBeMinCheck() {
 		assertThat(Check.from("min: 20%"), is(instanceOf(MinCheck.class)));
 	}
 
-	@Test
+	@Test 
 	public void shouldCreateMin20Percent() {
 		check = Check.from("min: 20%");
 
@@ -127,13 +127,13 @@ public class CheckTest {
 		return Double.valueOf(percent.split("%")[0]);
 	}
 
-	@Test
+	@Test 
 	public void shouldRangteBeRangeCheck() {
 		assertThat(Check.from("range: 20%, 29.997%"),
 				is(instanceOf(RangeCheck.class)));
 	}
 
-	@Test
+	@Test 
 	public void shouldCreateRangeFrom20To30Percent() {
 		check = Check.from("range: 20%, 29.997%");
 
@@ -144,7 +144,7 @@ public class CheckTest {
 		assertNotCheck(check, "40%");
 	}
 
-	@Test
+	@Test 
 	public void shouldCheckInvalidRange() {
 		try {
 			Check.from("range: 30%, 20%");

@@ -21,28 +21,28 @@ public class IsLocatedMatcherTest {
 		position = new BondPosition(bond, Money.CHF(100), hundredPercent());
 	}
 	
-	@Test
+	@Test 
 	public void shouldMatchBond() {
 		assertThat(bond, is(located("UE")));
 	}
 	
-	@Test
+	@Test 
 	public void shouldMatchBondPostion() {
 		assertThat(position, is(located("UE")));
 	}
 	
-	@Test
+	@Test 
 	public void shouldMatchSomeLocations() {
 		assertThat(bond, 		is(located("UE","USA")));
 		assertThat(position, 	is(located("UE","USA")));
 	}
 	
-	@Test
+	@Test 
 	public void shouldNotMatchALocation() {
 		assertThat(position, is(not(located("USA"))));
 	}
 	
-	@Test public void shouldNotMatchBondAreaNull() {
+	@Test  public void shouldNotMatchBondAreaNull() {
 		position = bondPositionWithNullArea();
 
 		assertThat(position, is(not(located("USA"))));

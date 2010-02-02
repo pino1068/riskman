@@ -10,7 +10,7 @@ import ch.siagile.finance.instrument.rating.*;
 
 public class MoodyRatingTest {
 	
-	@Test
+	@Test 
 	public void shouldThrowsExceptionIsMoodyRatingNotFound() {
 		try {
 			MoodyRatings.find("AAA");
@@ -19,7 +19,7 @@ public class MoodyRatingTest {
 		}
 	}
 
-	@Test
+	@Test 
 	public void shouldCompare2RatingsUsingNaturalOrder() {
 		should("Aaa = Aaa");
 		should("Aaa > Aa1");
