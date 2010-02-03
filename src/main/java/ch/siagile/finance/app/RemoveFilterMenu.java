@@ -11,7 +11,7 @@ public class RemoveFilterMenu extends BaseMenu {
 		return line.startsWith("r");
 	}
 
-	public void execute(ContextData context, String line) {
+	public void execute(Workspace context, String line) {
 		String last = context.name();
 		if(context.isNotRoot()){
 			context.remove();

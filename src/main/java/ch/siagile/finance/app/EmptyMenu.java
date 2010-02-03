@@ -7,7 +7,7 @@ public class EmptyMenu extends BaseMenu {
 		return line == null || "".equals(line.replaceAll(" ", ""));
 	}
 
-	public void execute(ContextData context, String line) {
+	public void execute(Workspace context, String line) {
 		println("and now what?");
 	}
 

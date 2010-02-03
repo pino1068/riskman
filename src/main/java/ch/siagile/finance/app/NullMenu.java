@@ -7,7 +7,7 @@ public class NullMenu extends BaseMenu {
 		return true;
 	}
 
-	public void execute(ContextData context, String line) {
+	public void execute(Workspace context, String line) {
 		println(line + "- command not found. Are you kidding me?");
 	}
 

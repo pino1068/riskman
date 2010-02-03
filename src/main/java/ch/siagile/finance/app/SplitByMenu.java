@@ -11,7 +11,7 @@ public class SplitByMenu extends BaseMenu {
 		return line.startsWith("s");
 	}
 
-	public void execute(ContextData context, String line) {
+	public void execute(Workspace context, String line) {
 		String criteria = criteria(line);
 		println(format("Positions splitted by : <{0}>", criteria));
 		newLine();

@@ -5,7 +5,7 @@ import ch.siagile.finance.position.*;
 
 public class PositionMenu extends BaseMenu {
 
-	public void execute(ContextData context, String line) {
+	public void execute(Workspace context, String line) {
 		println("Actual positions are:");
 		Positions positions = context.positions();
 		println(positions );

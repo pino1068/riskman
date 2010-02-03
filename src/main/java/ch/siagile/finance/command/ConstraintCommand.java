@@ -20,10 +20,16 @@ public class ConstraintCommand extends BaseCommand {
 		return checkFrom(content());
 	}
 
-	private String failMessage(Positions allPositions) {
-		Positions filtered = constraint().filter(allPositions);
+	private String failMessage(Positions positions) {
+		Positions filtered = constraint().filter(positions);
+		
+		return format("but is {0}: {1} of {2}", percent(positions, filtered), filtered.value(), positions.value());
+	}
 
-		return format("but is {0} {1} of {2}", filtered.percentOf(allPositions), filtered.value(), allPositions.value());
+	private String percent(Positions positions, Positions filtered) {
+		if(positions.isEmpty())
+			return "";
+		return filtered.percentOf(positions).toString();
 	}
 	
 	private String execute(String dirname, Positions positions) {
@@ -33,7 +39,7 @@ public class ConstraintCommand extends BaseCommand {
 		return format("{0} KO {1}", content(), failMessage(positions));
 	}
 
-	public String execute(ContextData data) {
+	public String execute(Workspace data) {
 		return execute(data.workingDir(), data.positions());
 	}
 
@@ -45,8 +51,8 @@ public class ConstraintCommand extends BaseCommand {
 		return content().substring(0, content().lastIndexOf(" "));
 	}
 
-	private Filter filter(String definition2) {
-		return Filter.from(definition2);
+	private Filter filter(String definition) {
+		return Filter.from(definition);
 	}
 
 	public String describe() {

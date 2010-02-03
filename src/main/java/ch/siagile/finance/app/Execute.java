@@ -36,7 +36,7 @@ public class Execute {
 	protected final Positions positions = new Positions();
 
 	public void batch() {
-		ContextData data = new ContextData(positions, workingDir);
+		Workspace data = new Workspace(positions, workingDir);
 		String output = shell.execute(data, definitions);
 
 		List<String> actualOutput = stringRepository.load(output);

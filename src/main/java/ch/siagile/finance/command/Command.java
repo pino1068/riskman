@@ -6,5 +6,5 @@ public interface Command {
 
 	String describe();
 
-	String execute(ContextData data);
+	String execute(Workspace data);
 }

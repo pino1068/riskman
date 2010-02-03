@@ -7,14 +7,14 @@ public class HelpMenu extends BaseMenu {
 		return line.startsWith("h");
 	}
 
-	public void execute(ContextData context, String line) {
-		println("Menu: --------------------");
+	public void execute(Workspace context, String line) {
+		context.console.println("Menu: --------------------");
 		for (Menu menu : context.commands().list()) {
 			String description = menu.describe();
 			if(!"".equals(description))
-				println(description);
+				context.console.println(description);
 		}
-		println("--------------------------");
+		context.console.println("--------------------------");
 	}
 	
 	public String describe() {

@@ -26,7 +26,7 @@ public class SplitCommand extends BaseCommand {
 		return checkLimitOn(positions);
 	}
 
-	public String execute(ContextData data) {
+	public String execute(Workspace data) {
 		return execute(data.workingDir(),data.positions());
 	}
 

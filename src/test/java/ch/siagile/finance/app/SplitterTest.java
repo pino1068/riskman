@@ -1,15 +1,16 @@
 package ch.siagile.finance.app;
 
+import static ch.siagile.finance.fixtures.Fixtures.*;
+import static ch.siagile.finance.money.Money.*;
+import static org.hamcrest.MatcherAssert.*;
+import static org.hamcrest.Matchers.*;
+
 import org.junit.*;
 
 import ch.siagile.finance.*;
 import ch.siagile.finance.instrument.*;
 import ch.siagile.finance.position.*;
 import ch.siagile.finance.splitter.*;
-import static ch.siagile.finance.fixtures.Fixtures.*;
-import static ch.siagile.finance.money.Money.*;
-import static org.hamcrest.MatcherAssert.*;
-import static org.hamcrest.Matchers.*;
 
 public class SplitterTest {
 

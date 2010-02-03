@@ -2,23 +2,25 @@ package ch.siagile.finance.app;
 
 import ch.siagile.finance.position.*;
 
-public class ContextData {
+public class Workspace {
 
-	private AppContextData current;
+	public Console console;
+
+	private WorkspaceData current;
 	private Commands commands;
 	private String workingDir;
 
-	public ContextData(String name, Positions positions, Commands commands, String workingData) {
-		this.current = new AppContextData(name,positions);
+	public Workspace(String name, Positions positions, Commands commands, String workingData) {
+		this.current = new WorkspaceData(name,positions);
 		this.commands = commands;
 		this.workingDir = workingData;
 	}
 
-	public ContextData(Positions positions, Commands commands, String workingDir) {
+	public Workspace(Positions positions, Commands commands, String workingDir) {
 		this("", positions, commands, workingDir);
 	}
 
-	public ContextData(Positions positions, String workingDir) {
+	public Workspace(Positions positions, String workingDir) {
 		this("", positions, null, workingDir);
 	}
 
@@ -31,15 +33,15 @@ public class ContextData {
 	}
 	
 	public void remove() {
-		this.current = current.parent();
+		this.current = current.previous();
 	}
 
 	public void changeTo(String name, Positions positions) {
-		this.current = new AppContextData(name, positions, current);
+		this.current = new WorkspaceData(name, positions, current);
 	}
 
 	public boolean isNotRoot() {
-		return current.hasParent();
+		return current.hasPrevious();
 	}
 
 	public String path() {

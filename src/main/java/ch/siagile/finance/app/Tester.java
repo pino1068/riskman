@@ -16,7 +16,7 @@ public class Tester extends Execute {
 
 	public void test() {
 
-		ContextData data = new ContextData(positions, workingDir);
+		Workspace data = new Workspace(positions, workingDir);
 		String output = shell.execute(data , definitions);
 
 		List<String> actualOutput = stringRepository.load(output);

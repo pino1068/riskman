@@ -1,8 +1,9 @@
 package ch.siagile.finance.splitter;
 
+import static java.text.MessageFormat.*;
+
 import java.security.*;
 import java.util.*;
-import static java.text.MessageFormat.*;
 
 public class SplitterBuilder {
 

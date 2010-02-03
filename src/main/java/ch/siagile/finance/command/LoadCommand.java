@@ -30,8 +30,8 @@ public class LoadCommand extends BaseCommand {
 		return output();
 	}
 
-	public String execute(ContextData data) {
-		return execute(data.workingDir(),data.positions());
+	public String execute(Workspace workspace) {
+		return execute(workspace.workingDir(),workspace.positions());
 	}
 
 	private void tryParse(Positions positions, List<String> strings) {

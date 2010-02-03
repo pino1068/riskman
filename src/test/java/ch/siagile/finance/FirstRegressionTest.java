@@ -33,7 +33,7 @@ public class FirstRegressionTest {
 	}
 
 	private void check(String definition) {
-		ContextData data = new ContextData("",positions, null, System.getProperty("user.dir"));
+		Workspace data = new Workspace("",positions, null, System.getProperty("user.dir"));
 		new Shell().execute(data, definition);
 	}
 

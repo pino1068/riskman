@@ -7,8 +7,8 @@ public class CheckLimitOn {
 
 	private final boolean valid;
 
-	public CheckLimitOn(Positions allPositions, Filter matcher, Check check) {
-		valid = check.check(allPositions.ratioOn(matcher));
+	public CheckLimitOn(Positions positions, Filter filter, Check check) {
+		valid = positions.isEmpty()?false:check.check(positions.ratioOn(filter));
 	}
 
 	public boolean isValid() {

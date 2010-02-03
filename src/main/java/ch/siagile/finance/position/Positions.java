@@ -60,4 +60,8 @@ public class Positions implements Iterable<Position> {
 	public int size() {
 		return positions.size();
 	}
+
+	public boolean isEmpty() {
+		return positions.isEmpty();
+	}
 }

@@ -1,58 +1,74 @@
 package ch.siagile.finance.app;
 
-import static ch.siagile.finance.fixtures.Fixtures.*;
-import static ch.siagile.finance.money.Money.*;
+import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
-import static org.junit.Assert.*;
 
 import org.junit.*;
 
-import ch.siagile.finance.instrument.*;
-import ch.siagile.finance.matcher.*;
-import ch.siagile.finance.position.*;
-
 public class AppTest {
-	private ContextData context;
-	private Positions positions;
+
+	private TestConsole console;
+	private App app;
 
 	@Before
 	public void setUp() {
-		positions = new Positions();
-		positions.add(equity("ciao", 10, CHF(10)));
-		positions.add(bond(Bond.from("bond1", "CH"), USD(1000), "100%"));
-		positions.add(bond(Bond.from("bond2", "CH"), USD(1000), "100%"));
-		context = new ContextData("", positions, new Commands(), "");
+		console = new TestConsole();
+		app = new App(console);
 	}
 
-	@Test 
-	public void shouldCreateContext() {
-		assertThat(context.name(), is(equalTo("")));
+	@Test
+	public void shouldStartApp() {
+		app.start();
+		check("Enter a command or 'h' for help or 'quit' to exit");
 	}
 
-	@Test 
-	public void shouldContextHavePositionsStored() {
-		assertThat(context.positions().size(), is(3));
+	@Test
+	public void shouldHelp() {
+		console.enter("help");
+		app.start();
+
+		check("Menu: --------------------");
+		check("	'h' or 'help'			- print this help");
+		check("	'p' or 'positions'		- print all positions");
+		check("	'exe:<constraint>'		- to apply a constraint and get the result printed");
+		check("	'exe:load:<file>'		- to load a file with positions and get warnings printed");
+		check("	'f:<criteria>'			- print positions filtered by given criteria");
+		check("	's:<criteria>'			- print the splitted groups by given criteria");
+		check("	'r or remove'			- removes last filter");
+		check("'q' or 'quit'			- to exit this program");
+		check("--------------------------");
 	}
 
-	@Test 
-	public void shouldChangeContext() {
-		context.changeTo("bond",filter("bond"));
-		assertThat(context.positions().size(), is(2));
-		assertThat(context.name(), is("bond"));
+	@Test
+	public void shouldLoadPositions() {
+		console.enter("exe:load:src/test/resources/portfolio1.csv");
+		app.start();
+		check("Enter a command or 'h' for help or 'quit' to exit");
+		check("OK");
 	}
 
-	private Positions filter(String def) {
-		return positions.select(FilterBuilder.from(def));
-	}
-
-	@Test  
-	public void shouldBackToParent() {
-		context.changeTo("bond",filter("bond"));
-		assertThat(context.positions().size(), is(2));
-		assertThat(context.name(), is("bond"));
-		context.remove();
-		assertThat(context.positions().size(), is(3));
-		assertThat(context.name(), is(""));
+	@Test
+	public void shouldShowPositions() {
+		console.enter("exe:load:src/test/resources/portfolio1.csv");
+		console.enter("positions");
+		app.start();
+		check("OK");
+		check("Actual positions are:");
+		check("pippo2:  Account: EUR-0456-389835-82");
+		check("1 position(s) found!");
 	}
 	
+	@Test 
+	public void shouldFilterByPippo2() {
+		console.enter("exe:load:src/test/resources/portfolio1.csv");
+		console.enter("filter:owner:pippo2");
+		app.start();
+		check("Positions filtered with criteria: <owner:pippo2>");
+		check("1 position(s) selected over 1 with criteria <owner:pippo2>");
+		check("owner:pippo2 > ");
+	}
+
+	private void check(String string) {
+		assertThat(console.output(), containsString(string));
+	}
 }

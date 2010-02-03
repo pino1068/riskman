@@ -1,69 +1,59 @@
 package ch.siagile.finance.app;
 
-import java.io.*;
-
 import ch.siagile.finance.position.*;
 
 public class App {
 	private final static Commands commands = new Commands(new HelpMenu(),
 			new PositionMenu(), new ExecutionMenu(), new FilterMenu(), new SplitByMenu(), new RemoveFilterMenu(), new QuitMenu(),
 			new EmptyMenu(), new NullMenu());
+	private final Console console;
+
+	public App(Console console) {
+		this.console = console;
+	}
 
 	public static void main(String args[]) {
-		new App().start();
+		new App(new ShellConsole()).start();
 	}
 
 	public void start() {
-		ContextData data = new ContextData(new Positions(), commands, System.getProperty("user.dir"));
+		Workspace workspace = new Workspace(new Positions(), commands, System.getProperty("user.dir"));
+		workspace.console = console;
+		for (Menu command : commands.list()){
+			command.workspace(workspace);
+		}
+
 		printHeader();
 		String line = null;
 		do {
-			line = waitingForInput(data);
-			for (Menu item : commands.list()) {
-				if (item.canExecute(line)) {
-					item.execute(data, line);
+			printIntro(workspace);
+			line = console.waitForInput();
+			for (Menu command : commands.list()) {
+				if (command.canExecute(line)) {
+					execute(command,workspace, line);
 					break;
 				}
 			}
 		} while (!new QuitMenu().canExecute(line));
 	}
 
-	private void printHeader() {
-		for (int i = 0; i < 10; i++) 
-			println("");
-		println("Enter a command or 'h' for help or 'quit' to exit");
-	}
-
-	private void print(String... strings) {
-		for (String string : strings) 
-			System.out.print(string);
-	}
-
-	private void println(String... strings) {
-		for (String string : strings) 
-			System.out.println(string);
-	}
-
-	private String waitingForInput(ContextData data) {
-		printPrefix(data);
-		String result = "";
-		int bytesRead = 0;
-		byte name[] = new byte[100];
+	private void execute(Menu command, Workspace data, String line) {
 		try {
-			bytesRead = System.in.read(name);
-			OutputStream os = new ByteArrayOutputStream(100);
-			os.write(name, 0, bytesRead);
-			result = os.toString();
-		} catch (IOException e) {
-			println("Sorry: ");
+			command.execute(data, line);
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return result.replace("\n", "");
 	}
 
-	private void printPrefix(ContextData data) {
-		println("");
-		print(data.path());
-		print(" > ");
+	private void printIntro(Workspace data) {
+		console.println("");
+		console.print(data.path());
+		console.print(" > ");
+	}
+
+	private void printHeader() {
+		for (int i = 0; i < 10; i++) 
+			console.println("");
+		console.println("Enter a command or 'h' for help or 'quit' to exit");
 	}
 }

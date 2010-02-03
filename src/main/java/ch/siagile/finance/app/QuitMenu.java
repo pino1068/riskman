@@ -7,7 +7,7 @@ public class QuitMenu extends BaseMenu {
 		return line.startsWith("q");
 	}
 	
-	public void execute(ContextData context, String line) {
+	public void execute(Workspace context, String line) {
 	}
 
 	public String describe() {

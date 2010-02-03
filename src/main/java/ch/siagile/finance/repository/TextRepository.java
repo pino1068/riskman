@@ -31,8 +31,7 @@ public class TextRepository {
 		try {
 			return new Scanner(file).useDelimiter("\n");
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-			throw new RuntimeException("boh, file not found",e);
+			throw new RuntimeException(e);
 		}
 	}
 }

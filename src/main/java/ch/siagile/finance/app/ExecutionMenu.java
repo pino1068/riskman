@@ -7,13 +7,8 @@ public class ExecutionMenu extends BaseMenu {
 		return definition.startsWith("e");
 	}
 	
-	public void execute(ContextData context, String definition) {
-		Shell shell = new Shell();
-		try {
-			println(shell.execute(context, clean(definition)));
-		} catch (Exception e) {
-			print("Error: ", e.getMessage(), "");
-		}
+	public void execute(Workspace context, String definition) {
+		context.console.println(new Shell().execute(context, clean(definition)));
 	}
 
 	private String clean(String definition) {

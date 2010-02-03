@@ -10,7 +10,7 @@ public class FilterMenu extends BaseMenu {
 		return line.startsWith("f");
 	}
 
-	public void execute(ContextData context, String definition) {
+	public void execute(Workspace context, String definition) {
 		println(format("Positions filtered with criteria: <{0}>",
 				criteria(definition)));
 		newLine();

@@ -36,7 +36,7 @@ public class ShellTest {
 		def("CHF max:20%");
 		execute();
 		assertThat(output, containsString("CHF max:20% KO"));
-		assertThat(output, containsString("but is 28.037% 30 CHF of 107 CHF"));
+		assertThat(output, containsString("but is 28.037%: 30 CHF of 107 CHF"));
 	}
 
 	@Test 
@@ -46,7 +46,7 @@ public class ShellTest {
 		def("CHF max:20%");
 		execute();
 		assertThat(output, containsString("CHF max:20% KO"));
-		assertThat(output, containsString("but is 28.037% 30 CHF of 107 CHF"));
+		assertThat(output, containsString("but is 28.037%: 30 CHF of 107 CHF"));
 	}
 
 	@Test 
@@ -164,9 +164,10 @@ public class ShellTest {
 
 	@Test 
 	public void shouldThrowExceptionWhenCommandIsNotRecognized() {
+		def(account("name", CHF(30)));
 		def("wrongCommand min:20%");
 		execute();
-		assertThat(output, containsString("error:wrongCommand min:20%"));
+		assertThat(output, containsString("wrongCommand min:20% KO but is 0%: 0 CHF of 30 CHF"));
 	}
 
 	@Test 
@@ -290,7 +291,7 @@ public class ShellTest {
 	}
 
 	private void execute() {
-		ContextData data = new ContextData("",positions, null, System.getProperty("user.dir"));
+		Workspace data = new Workspace("",positions, null, System.getProperty("user.dir"));
 		output = command.execute(data, definitions);
 	}
 }
