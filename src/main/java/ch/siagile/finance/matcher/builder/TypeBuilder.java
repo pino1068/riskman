@@ -18,10 +18,9 @@ public class TypeBuilder implements MatcherBuilder {
 	}
 
 	public boolean canBuild(String definition) {
-		for (String part : definition.split(",")) {
-			if(part.equals(type))
+		for (String part : definition.split(","))
+			if (part.equals(type))
 				return true;
-		}
 		return false;
 	}
 

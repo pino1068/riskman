@@ -1,7 +1,6 @@
 package ch.siagile.finance.matcher;
 
 import static java.text.MessageFormat.*;
-import static org.hamcrest.Matchers.*;
 
 import java.security.*;
 import java.util.*;
@@ -20,6 +19,7 @@ public class FilterBuilder {
 			add(new RatingBuilder<Position>());
 			add(new CurrencyBuilder());
 			add(new TypeBuilder("bond"));
+			add(new TypeBuilder("account"));
 			add(new TypeBuilder("equity"));
 			add(new AreaBuilder());
 			add(new OwnerBuilder());
@@ -28,8 +28,7 @@ public class FilterBuilder {
 	};
 
 	public static Filter from(String definition) {
-		final FilterBuilder builder = new FilterBuilder();
-		return new Filter(builder.build(definition));
+		return new FilterBuilder().build(definition);
 	}
 
 	public Filter build(String definition) {
@@ -51,21 +50,20 @@ public class FilterBuilder {
 		Filters filters = new Filters();
 		for (String definition : definitions)
 			filters.add(allOfFilters(definition));
-		return anyOf(filters.matchers);
+		return filters.anyOfThem();
 	}
 
 	private Matcher<Position> allOfFilters(String definitions) {
 		Filters filters = new Filters();
 		for (String definition : definitions.split(":"))
 			filters.add(toFilter(definition));
-		return allOf(filters.matchers);
+		return filters.allOfThem();
 	}
 
 	private Matcher<Position> toFilter(String definition) {
-		for (MatcherBuilder b : builders) {
+		for (MatcherBuilder b : builders)
 			if (b.canBuild(definition))
 				return b.build(definition);
-		}
 		throw new InvalidParameterException(format("wrong definition: {0}",
 				definition));
 	}

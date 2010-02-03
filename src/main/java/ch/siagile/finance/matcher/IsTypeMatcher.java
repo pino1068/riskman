@@ -16,6 +16,7 @@ public class IsTypeMatcher<T> extends BaseMatcher<T> {
 		{
 			put("bond", new IsBondMatcher<T>());
 			put("equity", new IsEquityMatcher<T>());
+			put("account", new IsAccountMatcher<T>());
 		}
 	};
 

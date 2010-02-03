@@ -19,9 +19,9 @@ public class FilterTest {
 	private final static Rating A1 = MoodyRating.from("A1");
 
 	private Position bond;
-	private Position ibm_equity;
+	private Position ibm;
 	private Position account;
-	private Position oracle_equity;
+	private Position oracle;
 
 	private FilterBuilder matcherParser;
 	private Positions positions;
@@ -31,13 +31,13 @@ public class FilterTest {
 	public void setUp() {
 		positions = new Positions();
 		account = account("name", CHF(30));
-		ibm_equity = equity("IBM", 1, CHF(30));
-		oracle_equity = equity("ORCL", 1, USD(30));
+		ibm = equity("IBM", 1, CHF(30));
+		oracle = equity("ORCL", 1, USD(30));
 		bond = bond(Bond.from("name", A1, "USA"), USD(40), "100%");
 		def(account);
-		def(ibm_equity);
+		def(ibm);
 		def(bond);
-		def(oracle_equity);
+		def(oracle);
 		matcherParser = new FilterBuilder();
 	}
 
@@ -45,18 +45,18 @@ public class FilterTest {
 	public void shouldFilterBondAndEquity() {
 		filter("equity +bond");
 		check(hasItem(bond));
-		check(hasItem(ibm_equity));
-		check(not(hasItem(account)));
-		check(hasItem(oracle_equity));
+		check(hasItem(ibm));
+		check(hasNotItem(account));
+		check(hasItem(oracle));
 	}
 
 	@Test 
 	public void shouldFilterBondAndEquityWtihSpaces() {
 		filter("equity + bond");
 		check(hasItem(bond));
-		check(hasItem(ibm_equity));
-		check(not(hasItem(account)));
-		check(hasItem(oracle_equity));
+		check(hasItem(ibm));
+		check(hasNotItem(account));
+		check(hasItem(oracle));
 	}
 
 	@Test 
@@ -68,7 +68,7 @@ public class FilterTest {
 	@Test 
 	public void shouldFilterByCHF() {
 		filter("CHF");
-		check(hasItems(account, ibm_equity));
+		check(hasItems(account, ibm));
 		check(not(hasItems(bond)));
 	}
 
@@ -76,52 +76,52 @@ public class FilterTest {
 	public void shouldFilterByUSD() {
 		filter("USD");
 		check(hasItems(bond));
-		check(not(hasItems(account, ibm_equity)));
+		check(not(hasItems(account, ibm)));
 	}
 
 	@Test 
 	public void shouldFilterByUSDAndCHF() {
 		filter("USD + CHF");
-		check(hasItems(bond, account, ibm_equity));
+		check(hasItems(bond, account, ibm));
 	}
 
 	@Test 
 	public void shouldFilterByUSDAndCHFWithComma() {
 		filter("USD,CHF");
-		check(hasItems(bond, account, ibm_equity));
+		check(hasItems(bond, account, ibm));
 	}
 
 	@Test 
 	public void shouldFilterByUSDAndCHFWithCommaAndSpace() {
 		filter("USD , CHF");
-		check(hasItems(bond, account, ibm_equity));
+		check(hasItems(bond, account, ibm));
 	}
 
 	@Test 
 	public void shouldSpecificEquity() {
 		filter("equity:IBM");
-		check(hasItem(ibm_equity));
-		check(not(hasItem(bond)));
-		check(not(hasItem(account)));
-		check(not(hasItem(oracle_equity)));
+		check(hasItem(ibm));
+		check(hasNotItem(bond));
+		check(hasNotItem(account));
+		check(hasNotItem(oracle));
 	}
 
 	@Test 
 	public void shouldFilterInUSA() {
 		filter("USA");
-		check(not(hasItem(ibm_equity)));
+		check(hasNotItem(ibm));
 		check(hasItem(bond));
-		check(not(hasItem(account)));
-		check(not(hasItem(oracle_equity)));
+		check(hasNotItem(account));
+		check(hasNotItem(oracle));
 	}
 
 	@Test 
 	public void shouldFilterInUSAorUE() {
 		filter("USA,UE");
-		check(hasItem(ibm_equity));
+		check(hasItem(ibm));
 		check(hasItem(bond));
-		check(not(hasItem(account)));
-		check(hasItem(oracle_equity));
+		check(hasNotItem(account));
+		check(hasItem(oracle));
 	}
 
 	@Test 
@@ -132,73 +132,73 @@ public class FilterTest {
 	@Test 
 	public void shouldFilterEquityUSD() {
 		filter("equity:USD");
-		check(not(hasItem(ibm_equity)));
-		check(not(hasItem(bond)));
-		check(not(hasItem(account)));
-		check(hasItem(oracle_equity));
+		check(hasNotItem(ibm));
+		check(hasNotItem(bond));
+		check(hasNotItem(account));
+		check(hasItem(oracle));
 	}
 
 	@Test 
 	public void shouldFilterByOwner() {
 		filter("owner:bondOwner,equityOwner");
-		check(hasItem(ibm_equity));
+		check(hasItem(ibm));
 		check(hasItem(bond));
-		check(not(hasItem(account)));
-		check(hasItem(oracle_equity));
+		check(hasNotItem(account));
+		check(hasItem(oracle));
 	}
 
 	@Test 
 	public void shouldFilterBondUSA() {
 		filter("bond:USA");
-		check(not(hasItem(ibm_equity)));
+		check(hasNotItem(ibm));
 		check(hasItem(bond));
-		check(not(hasItem(account)));
-		check(not(hasItem(oracle_equity)));
+		check(hasNotItem(account));
+		check(hasNotItem(oracle));
 	}
 
 	@Test 
 	public void shouldFilterUSAorCHF() {
 		filter("CHF+USA");
-		check(hasItem(ibm_equity));
+		check(hasItem(ibm));
 		check(hasItem(bond));
 		check(hasItem(account));
-		check(not(hasItem(oracle_equity)));
+		check(hasNotItem(oracle));
 	}
 
 	@Test 
 	public void shouldFilterUSAandCHF() {
 		filter("CHF:USA");
-		check(not(hasItem(ibm_equity)));
-		check(not(hasItem(bond)));
-		check(not(hasItem(account)));
-		check(not(hasItem(oracle_equity)));
+		check(hasNotItem(ibm));
+		check(hasNotItem(bond));
+		check(hasNotItem(account));
+		check(hasNotItem(oracle));
 	}
 
 	@Test 
 	public void shouldFilterUSAandCHFWithWhiteSpaces() {
 		filter("CHF : USA");
-		check(not(hasItem(ibm_equity)));
-		check(not(hasItem(bond)));
-		check(not(hasItem(account)));
-		check(not(hasItem(oracle_equity)));
+		check(hasNotItem(ibm));
+		check(hasNotItem(bond));
+		check(hasNotItem(account));
+		check(hasNotItem(oracle));
 	}
 
 	@Test 
 	public void shouldFilterByRating() {
 		filter("range:B1,Aaa");
-		check(not(hasItem(ibm_equity)));
+		check(hasNotItem(ibm));
 		check(hasItem(bond));
-		check(not(hasItem(account)));
-		check(not(hasItem(oracle_equity)));
+		check(hasNotItem(account));
+		check(hasNotItem(oracle));
 	}
 
 	@Test 
 	public void shouldFilterIBMorOracle() {
 		filter("IBM, ORCL");
-		check(hasItem(ibm_equity));
-		check(not(hasItem(bond)));
-		check(not(hasItem(account)));
-		check(hasItem(oracle_equity));
+		check(hasItem(ibm));
+		check(hasNotItem(bond));
+		check(hasNotItem(account));
+		check(hasItem(oracle));
 	}
 
 	private void check(Matcher<Iterable<Position>> matcher) {
@@ -223,5 +223,39 @@ public class FilterTest {
 		for (Position position : filterPositions(definition))
 			result.add(position);
 		return result;
+	}
+
+	@Test 
+	public void shouldFilterAccount() {
+		filter("account");
+		Position bond2 = bond;
+		check(hasNotItem(bond2));
+		check(hasNotItem(ibm));
+		check(hasItem(account));
+		check(hasNotItem(oracle));
+	}
+
+	@Test 
+	public void shouldFilterAccountAndEquity() {
+		filter("account,equity");
+		Position bond2 = bond;
+		check(hasNotItem(bond2));
+		check(hasItem(ibm));
+		check(hasItem(account));
+		check(hasItem(oracle));
+	}
+
+	@Test 
+	public void shouldFilterAccountAndBondWithPlus() {
+		filter("account+bond");
+		Position bond2 = bond;
+		check(hasItem(bond2));
+		check(hasNotItem(ibm));
+		check(hasItem(account));
+		check(hasNotItem(oracle));
+	}
+
+	private static Matcher<Iterable<Position>> hasNotItem(Position position) {
+		return not(hasItem(position));
 	}
 }
