@@ -1,21 +1,18 @@
-package ch.siagile.finance.app;
+package ch.siagile.finance.command;
 
 import static java.text.MessageFormat.*;
 import ch.siagile.finance.position.*;
 
-public class PositionMenu extends BaseMenu {
+public class PositionCommand extends BaseCommand {
 
-	public void execute(Workspace context, String line) {
+	public void execute(String definition) {
+		definition = commands.contentOf(definition);
 		println("Actual positions are:");
-		Positions positions = context.positions();
+		Positions positions = workspace.positions();
 		println(positions );
 		println(format("\n{0} position(s) found!", positions.size()));
 		println("\nTotal Value is:");
 		println(positions.value());
-	}
-
-	public boolean canExecute(String line) {
-		return line.startsWith("p");
 	}
 
 	public String describe() {

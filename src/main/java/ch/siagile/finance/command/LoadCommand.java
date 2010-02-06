@@ -5,48 +5,45 @@ import static java.text.MessageFormat.*;
 
 import java.util.*;
 
-import ch.siagile.finance.*;
-import ch.siagile.finance.app.*;
+import ch.siagile.finance.parser.*;
 import ch.siagile.finance.position.*;
 import ch.siagile.finance.repository.*;
 
 public class LoadCommand extends BaseCommand {
+
 	private PositionsParser positionsParser = new PositionsParser();
-
 	private List<String> warnings = new LinkedList<String>();
+	private int counterLoadedPositions = 0;
+	private int counterLinesRead = 0;
 
-	public LoadCommand(String definition) {
-		super(definition);
+	public void execute(String definition) {
+		String pathname = pathname(definition);
+		positionsParser.listener(new LoadParserListener());
+		workspace.positions().addAll(readAndParse(pathname));
+		workspace.console.println(output());
 	}
 
-	public String execute(Positions positions) {
-		return execute("", positions);
+	private Positions readAndParse(String pathname) {
+		return positionsParser.parse(readLines(pathname));
 	}
 
-	public String execute(String dirname, Positions positions) {
-		String pathname = pathname(dirname);
-		List<String> strings = readLines(pathname);
-		tryParse(positions, strings);
-		return output();
+	private String pathname(String definition) {
+		if(commands!=null)
+			definition = commands.contentOf(definition);
+		String dirname = workspace.workingDir();
+		final String filename = cleanFrom("load:", definition);
+		if(dirname==null || dirname.length()==0) return filename;
+		return format("{0}/{1}", dirname, filename);
 	}
 
-	public String execute(Workspace workspace) {
-		return execute(workspace.workingDir(),workspace.positions());
+	private String cleanFrom(String string, String definition) {
+		return definition.replaceAll(string, "");
 	}
 
-	private void tryParse(Positions positions, List<String> strings) {
-		for (String string : strings) 
-			tryParse(positions, string);
+	private List<String> readLines(String pathname) {
+		return new TextRepository().load(pathname);
 	}
-
-	private void tryParse(Positions positions, String string) {
-		try {
-			positions.add(positionsParser.parse(string));
-		} catch (Exception e) {
-			warning(string);
-		}
-	}
-
+	
 	private String output() {
 		if (hasWarnings())
 			return failWith(warnings);
@@ -55,11 +52,13 @@ public class LoadCommand extends BaseCommand {
 	}
 
 	private String success() {
-		return message("{0}","OK");
+		return message("{0} - {1} positions successfully loaded!", "OK",
+				counterLoadedPositions);
 	}
 
 	private String failWith(List<String> strings) {
-		return message("{0}\n{1}", "KO", some(strings).toString());
+		return message("{0} - {1} positions loaded over {2} lines read.\n{3}", "KO",
+				counterLoadedPositions, counterLinesRead,some(strings).toString());
 	}
 
 	private boolean hasWarnings() {
@@ -74,21 +73,19 @@ public class LoadCommand extends BaseCommand {
 		warnings.add(format("warning:{0}", string));
 	}
 
-	private String pathname(String dirname) {
-		final String filename = cleanFrom("load:");
-		if(dirname==null || dirname.length()==0) return filename;
-		return format("{0}/{1}", dirname, filename);
-	}
-
-	private String cleanFrom(String string) {
-		return content().replaceAll(string, "");
-	}
-
-	private List<String> readLines(String pathname) {
-		return new TextRepository().load(pathname);
-	}
-
 	public String describe() {
 		return "	'load:<file>'			- load positions from given file";
+	}
+	
+	private final class LoadParserListener implements OperationListener {
+		public void success(String string, Position position) {
+			counterLoadedPositions++;
+			counterLinesRead++;
+		}
+
+		public void failure(String string) {
+			warning(string);
+			counterLinesRead++;
+		}
 	}
 }

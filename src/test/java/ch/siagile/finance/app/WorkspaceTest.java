@@ -21,7 +21,7 @@ public class WorkspaceTest {
 		positions.add(equity("ciao", 10, CHF(10)));
 		positions.add(bond(Bond.from("bond1", "CH"), USD(1000), "100%"));
 		positions.add(bond(Bond.from("bond2", "CH"), USD(1000), "100%"));
-		workspace = new Workspace("", positions, new Commands(), "");
+		workspace = new Workspace("", positions, "");
 	}
 
 	@Test 

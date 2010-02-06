@@ -1,7 +1,8 @@
-package ch.siagile.finance;
+package ch.siagile.finance.parser;
 
 
-public abstract class BaseInstrumentParser extends Parser {
+
+public abstract class BaseInstrumentParser extends PositionParser {
 	
 	protected static final int CURRENCY = 2;
 	private static final int INSTRUMENT = 1;

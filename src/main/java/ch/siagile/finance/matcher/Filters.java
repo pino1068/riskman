@@ -1,10 +1,11 @@
 package ch.siagile.finance.matcher;
 
+import static org.hamcrest.Matchers.*;
+
 import java.util.*;
 
 import org.hamcrest.*;
 
-import static org.hamcrest.Matchers.*;
 import ch.siagile.finance.position.*;
 
 

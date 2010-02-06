@@ -37,9 +37,11 @@ public class Execute {
 
 	public void batch() {
 		Workspace data = new Workspace(positions, workingDir);
-		String output = shell.execute(data, definitions);
+		BatchConsole console = new BatchConsole();
+		data.console = console;
+		shell.execute(data, definitions);
 
-		List<String> actualOutput = stringRepository.load(output);
+		List<String> actualOutput = stringRepository.load(console.output());
 
 		info(actualOutput);
 	}

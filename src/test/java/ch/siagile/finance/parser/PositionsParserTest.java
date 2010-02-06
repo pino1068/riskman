@@ -5,7 +5,6 @@ import static org.junit.Assert.*;
 
 import org.junit.*;
 
-import ch.siagile.finance.*;
 import ch.siagile.finance.position.*;
 
 

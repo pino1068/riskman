@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.*;
 
 import ch.siagile.finance.app.*;
+import ch.siagile.finance.parser.*;
 import ch.siagile.finance.position.*;
 
 
@@ -33,7 +34,7 @@ public class FirstRegressionTest {
 	}
 
 	private void check(String definition) {
-		Workspace data = new Workspace("",positions, null, System.getProperty("user.dir"));
+		Workspace data = new Workspace("",positions, System.getProperty("user.dir"));
 		new Shell().execute(data, definition);
 	}
 

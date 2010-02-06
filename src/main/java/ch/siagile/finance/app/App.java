@@ -1,59 +1,77 @@
 package ch.siagile.finance.app;
 
+import static java.text.MessageFormat.*;
+
+import java.security.*;
+
+import ch.siagile.finance.command.*;
 import ch.siagile.finance.position.*;
 
 public class App {
-	private final static Commands commands = new Commands(new HelpMenu(),
-			new PositionMenu(), new ExecutionMenu(), new FilterMenu(), new SplitByMenu(), new RemoveFilterMenu(), new QuitMenu(),
-			new EmptyMenu(), new NullMenu());
 	private final Console console;
-
-	public App(Console console) {
-		this.console = console;
-	}
+	private final Commands commands;
+	private final Workspace workspace;
 
 	public static void main(String args[]) {
 		new App(new ShellConsole()).start();
 	}
-
-	public void start() {
-		Workspace workspace = new Workspace(new Positions(), commands, System.getProperty("user.dir"));
-		workspace.console = console;
-		for (Menu command : commands.list()){
-			command.workspace(workspace);
-		}
-
-		printHeader();
-		String line = null;
-		do {
-			printIntro(workspace);
-			line = console.waitForInput();
-			for (Menu command : commands.list()) {
-				if (command.canExecute(line)) {
-					execute(command,workspace, line);
-					break;
-				}
-			}
-		} while (!new QuitMenu().canExecute(line));
+	
+	public App(Console console) {
+		this.console = console;
+		commands = new Commands();
+		workspace = workspace(commands);
 	}
 
-	private void execute(Menu command, Workspace data, String line) {
+	private Workspace workspace(Commands commands) {
+		Workspace workspace = new Workspace(new Positions(), System.getProperty("user.dir"));
+		workspace.console = console;
+		return workspace;
+	}
+
+	public void start() {
+		header();
+		working();
+	}
+
+	private void header() {
+		for (int i = 0; i < 10; i++) 
+			console.println("");
+		console.println("Enter a command or 'h' for help or 'quit' to exit");
+	}
+
+	private void working() {
+		Command command = null;
+		do {
+			printShell(workspace);
+			String line = console.waitForInput();
+			command = command(line);
+			execute(command,line);
+		} while (keepGoing(command));
+	}
+
+	private void printShell(Workspace workspace) {
+		console.println("");
+		console.print(workspace.path());
+		console.print(" > ");
+	}
+	
+	private void execute(Command command, String line) {
 		try {
-			command.execute(data, line);
+			command.execute(line);
+		} catch (InvalidParameterException e) {
+			console.println(format("{0} command not found",line));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-	private void printIntro(Workspace data) {
-		console.println("");
-		console.print(data.path());
-		console.print(" > ");
+	private Command command(String line) {
+		Command command = commands.build(line);
+		command.workspace(workspace);
+		return command;
 	}
 
-	private void printHeader() {
-		for (int i = 0; i < 10; i++) 
-			console.println("");
-		console.println("Enter a command or 'h' for help or 'quit' to exit");
+	private boolean keepGoing(Command command) {
+		return !QuitCommand.class.isInstance(command);
 	}
 }

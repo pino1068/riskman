@@ -1,5 +1,6 @@
 package ch.siagile.finance.app;
 
+import static ch.siagile.finance.Some.*;
 import static java.text.MessageFormat.*;
 
 import java.io.*;
@@ -15,15 +16,32 @@ public class Tester extends Execute {
 	}
 
 	public void test() {
-
 		Workspace data = new Workspace(positions, workingDir);
-		String output = shell.execute(data , definitions);
+		BatchConsole console = new BatchConsole();
+		data.console = console;
+		execute(data , definitions);
 
+		String output = console.output();
 		List<String> actualOutput = stringRepository.load(output);
 
 		StringBuilder summary = compare(expectedOutput, actualOutput);
 
 		info(format("{0} {1}", summary.toString(), inputpath));
+	}
+
+	public String execute(Workspace data, List<String> definitions) {
+		List<String> outputs = new LinkedList<String>();
+		for (String definition : definitions)
+			try {
+				BatchConsole console = new BatchConsole();
+				data.console = console;
+				shell.execute(data, definition);
+				outputs.add(definition + console.output());
+			} catch (Exception e) {
+				e.printStackTrace();
+				return format("error:{0} {1}", definition, e.getMessage());
+			}
+		return some(outputs).toString();
 	}
 
 	private StringBuilder compare(List<String> expectedOutput, List<String> actualOutput) {

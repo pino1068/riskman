@@ -27,7 +27,7 @@ public class ShellConsole implements Console {
 			println("Sorry: ");
 			e.printStackTrace();
 		}
-		return result;//.replace("\n", "");
+		return result.replace("\n", "");//skip the last <enter>
 	}
 
 }

@@ -1,9 +1,9 @@
-package ch.siagile.finance;
+package ch.siagile.finance.parser;
 
 import ch.siagile.finance.money.*;
 import ch.siagile.finance.position.*;
 
-public abstract class Parser {
+public abstract class PositionParser {
 
 	protected String[] fields;
 

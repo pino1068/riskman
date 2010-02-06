@@ -64,4 +64,8 @@ public class Positions implements Iterable<Position> {
 	public boolean isEmpty() {
 		return positions.isEmpty();
 	}
+
+	public void addAll(Positions some) {
+		positions.addAll(some.positions);
+	}
 }

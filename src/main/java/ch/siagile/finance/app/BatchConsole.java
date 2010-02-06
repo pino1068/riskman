@@ -2,11 +2,11 @@ package ch.siagile.finance.app;
 
 import java.util.*;
 
-public class TestConsole implements Console{
+public class BatchConsole implements Console{
 	private List<String> entries;
 	private StringBuffer output;
 
-	public TestConsole() {
+	public BatchConsole() {
 		entries = new LinkedList<String>();
 		output = new StringBuffer();
 	}

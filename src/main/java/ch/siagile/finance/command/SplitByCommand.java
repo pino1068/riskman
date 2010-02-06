@@ -1,22 +1,19 @@
-package ch.siagile.finance.app;
+package ch.siagile.finance.command;
 
 import static java.text.MessageFormat.*;
 import ch.siagile.finance.*;
 import ch.siagile.finance.position.*;
 import ch.siagile.finance.splitter.*;
 
-public class SplitByMenu extends BaseMenu {
+public class SplitByCommand extends BaseCommand {
 
-	public boolean canExecute(String line) {
-		return line.startsWith("s");
-	}
-
-	public void execute(Workspace context, String line) {
-		String criteria = criteria(line);
+	public void execute(String definition) {
+		definition = commands.contentOf(definition);
+		String criteria = criteria(definition);
 		println(format("Positions splitted by : <{0}>", criteria));
 		newLine();
 		try {
-			Positions positions = context.positions();
+			Positions positions = workspace.positions();
 			Splitter splitter = SplitterBuilder.from(criteria);
 			Split split = splitter.split(positions);
 			printSplit(criteria, split);
@@ -44,7 +41,7 @@ public class SplitByMenu extends BaseMenu {
 	}
 
 	public String describe() {
-		return "	's:<criteria>'			- print the splitted groups by given criteria";
+		return "	'split:<criteria>'		- print the splitted groups by given criteria";
 	}
 
 }

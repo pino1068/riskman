@@ -6,12 +6,11 @@ import static org.junit.Assert.*;
 
 import org.junit.*;
 
-import ch.siagile.finance.*;
 import ch.siagile.finance.position.*;
 
 public class EquityPositionParserTest {
 
-	private Parser importer;
+	private PositionParser importer;
 
 	private String bond = "pippo1,Oacc,EUR,0,3495227,20111024 - 4.875% Procter & Gamble 24-10-11 Pro-rata,,,540.924682617188,540.924682617188,,D,Obbligazioni e simili          ,798.231870875702,540.924682617188,784.503067199707,1043,2,,,,";
 	private String equity1 = "pippo8,A,EUR,180,1335786EU,Sparinvest Sicav Global Value,105.019996643066,140.4,25272,37293.391278,0.336888254502429,E,Azioni e simili,37293.391278,25272,36651.9816,1841,14,,,,";

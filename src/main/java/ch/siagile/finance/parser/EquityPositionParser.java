@@ -1,4 +1,4 @@
-package ch.siagile.finance;
+package ch.siagile.finance.parser;
 
 import static java.text.MessageFormat.*;
 import ch.siagile.finance.instrument.*;

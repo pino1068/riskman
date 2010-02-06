@@ -1,9 +1,9 @@
-package ch.siagile.finance;
+package ch.siagile.finance.parser;
 
 import ch.siagile.finance.money.*;
 import ch.siagile.finance.position.*;
 
-public class AccountParser extends BaseInstrumentParser {
+public class AccountPositionParser extends BaseInstrumentParser {
 
 	private static final int BALANCE = 3;
 

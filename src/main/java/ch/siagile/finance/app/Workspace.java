@@ -4,24 +4,17 @@ import ch.siagile.finance.position.*;
 
 public class Workspace {
 
-	public Console console;
-
+	public Console console = new BatchConsole();
 	private WorkspaceData current;
-	private Commands commands;
 	private String workingDir;
 
-	public Workspace(String name, Positions positions, Commands commands, String workingData) {
+	public Workspace(String name, Positions positions, String workingData) {
 		this.current = new WorkspaceData(name,positions);
-		this.commands = commands;
 		this.workingDir = workingData;
 	}
 
-	public Workspace(Positions positions, Commands commands, String workingDir) {
-		this("", positions, commands, workingDir);
-	}
-
 	public Workspace(Positions positions, String workingDir) {
-		this("", positions, null, workingDir);
+		this("", positions, workingDir);
 	}
 
 	public String name() {
@@ -46,10 +39,6 @@ public class Workspace {
 
 	public String path() {
 		return current.path();
-	}
-
-	public Commands commands() {
-		return commands;
 	}
 
 	public String workingDir() {

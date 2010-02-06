@@ -1,16 +1,31 @@
 package ch.siagile.finance.command;
 
+import ch.siagile.finance.app.*;
+
 
 public abstract class BaseCommand implements Command {
 
-	private final String content;
+	protected Workspace workspace;
+	protected Commands commands;
 
-	public BaseCommand(String content) {
-		this.content = content;
+	public void init(Commands commands) {
+		this.commands = commands;
 	}
 	
-	protected String content() {
-		return content;
+	public void workspace(Workspace workspace) {
+		this.workspace = workspace;
+	}
+	protected void println(Object... thinks) {
+		for (Object think : thinks) 
+			workspace.console.println(think.toString());
+	}
+	
+	protected void print(Object... thinks) {
+		for (Object think : thinks) 
+			workspace.console.print(think.toString());
 	}
 
+	protected void newLine() {
+		println("");
+	}
 }

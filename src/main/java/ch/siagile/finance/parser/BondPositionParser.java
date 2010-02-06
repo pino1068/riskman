@@ -1,11 +1,11 @@
-package ch.siagile.finance;
+package ch.siagile.finance.parser;
 
 import static java.text.MessageFormat.*;
 import ch.siagile.finance.instrument.*;
 import ch.siagile.finance.money.*;
 import ch.siagile.finance.position.*;
 
-public class BondParser extends Parser {
+public class BondPositionParser extends PositionParser {
 
 	private static final int INSTRUMENTID = 17;
 	private static final int PRICE = 7;

@@ -7,12 +7,12 @@ import org.junit.*;
 
 public class AppTest {
 
-	private TestConsole console;
+	private BatchConsole console;
 	private App app;
 
 	@Before
 	public void setUp() {
-		console = new TestConsole();
+		console = new BatchConsole();
 		app = new App(console);
 	}
 
@@ -30,18 +30,20 @@ public class AppTest {
 		check("Menu: --------------------");
 		check("	'h' or 'help'			- print this help");
 		check("	'p' or 'positions'		- print all positions");
-		check("	'exe:<constraint>'		- to apply a constraint and get the result printed");
-		check("	'exe:load:<file>'		- to load a file with positions and get warnings printed");
+//		check("	'exe:<constraint>'		- to apply a constraint and get the result printed");
+//		check("	'exe:load:<file>'		- to load a file with positions and get warnings printed");
 		check("	'f:<criteria>'			- print positions filtered by given criteria");
-		check("	's:<criteria>'			- print the splitted groups by given criteria");
+		check("	'split:<criteria>'		- print the splitted groups by given criteria");
+		check("	'check:<split>'		- split and check according to criteria and print results, i.e. splitby:owner max:5%");
 		check("	'r or remove'			- removes last filter");
-		check("'q' or 'quit'			- to exit this program");
+		check("	'q' or 'quit'			- to exit this program");
+		check("	'load:<file>'			- load positions from given file");
 		check("--------------------------");
 	}
 
 	@Test
 	public void shouldLoadPositions() {
-		console.enter("exe:load:src/test/resources/portfolio1.csv");
+		console.enter("load:src/test/resources/portfolio1.csv");
 		app.start();
 		check("Enter a command or 'h' for help or 'quit' to exit");
 		check("OK");
@@ -49,7 +51,7 @@ public class AppTest {
 
 	@Test
 	public void shouldShowPositions() {
-		console.enter("exe:load:src/test/resources/portfolio1.csv");
+		console.enter("load:src/test/resources/portfolio1.csv");
 		console.enter("positions");
 		app.start();
 		check("OK");
@@ -60,7 +62,7 @@ public class AppTest {
 	
 	@Test 
 	public void shouldFilterByPippo2() {
-		console.enter("exe:load:src/test/resources/portfolio1.csv");
+		console.enter("load:src/test/resources/portfolio1.csv");
 		console.enter("filter:owner:pippo2");
 		app.start();
 		check("Positions filtered with criteria: <owner:pippo2>");
