@@ -14,6 +14,8 @@ import riskman.instrument.rating.*;
 import riskman.location.*;
 import riskman.position.*;
 
+import static riskman.app.Dirs.*;
+
 public class ShellTest {
 
 	private static final MoodyRating A2 = MoodyRatings.find("A2");
@@ -267,7 +269,7 @@ public class ShellTest {
 	}
 
 	private void execute() {
-		Workspace data = new Workspace("",positions, System.getProperty("user.dir"));
+		Workspace data = new Workspace("",positions, workingDir());
 		BatchConsole console = new BatchConsole();
 		data.console = console;
 		shell.execute(data, definitions);

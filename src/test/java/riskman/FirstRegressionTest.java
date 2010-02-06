@@ -1,5 +1,6 @@
 package riskman;
 
+
 import static org.junit.Assert.*;
 
 import org.junit.*;
@@ -8,6 +9,7 @@ import riskman.app.*;
 import riskman.parser.*;
 import riskman.position.*;
 
+import static riskman.app.Dirs.*;
 
 public class FirstRegressionTest {
 
@@ -34,7 +36,7 @@ public class FirstRegressionTest {
 	}
 
 	private void check(String definition) {
-		Workspace data = new Workspace("",positions, System.getProperty("user.dir"));
+		Workspace data = new Workspace("",positions, workingDir());
 		new Shell().execute(data, definition);
 	}
 

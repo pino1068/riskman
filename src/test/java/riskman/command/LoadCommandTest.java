@@ -10,6 +10,8 @@ import org.junit.*;
 import riskman.app.*;
 import riskman.position.*;
 
+import static riskman.app.Dirs.*;
+
 public class LoadCommandTest {
 	
 	private Positions positions;
@@ -20,7 +22,7 @@ public class LoadCommandTest {
 	public void setUp(){
 		positions = new Positions();
 		loadCommand = new LoadCommand();
-		Workspace workspace = new Workspace(positions,System.getProperty("user.dir"));
+		Workspace workspace = new Workspace(positions,workingDir());
 		console = new BatchConsole();
 		workspace.console = console;
 		loadCommand.workspace(workspace);
