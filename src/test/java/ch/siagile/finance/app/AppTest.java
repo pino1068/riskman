@@ -32,9 +32,9 @@ public class AppTest {
 		check("	'p' or 'positions'		- print all positions");
 //		check("	'exe:<constraint>'		- to apply a constraint and get the result printed");
 //		check("	'exe:load:<file>'		- to load a file with positions and get warnings printed");
-		check("	'f:<criteria>'			- print positions filtered by given criteria");
+		check("	'filter:<criteria>'		- print positions filtered by given criteria");
 		check("	'split:<criteria>'		- print the splitted groups by given criteria");
-		check("	'check:<split>'		- split and check according to criteria and print results, i.e. splitby:owner max:5%");
+		check("	'check:<split>'			- split and check according to criteria and print results, i.e. splitby:owner max:5%");
 		check("	'r or remove'			- removes last filter");
 		check("	'q' or 'quit'			- to exit this program");
 		check("	'load:<file>'			- load positions from given file");
