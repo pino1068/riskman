@@ -62,7 +62,7 @@
 					</execution>
 				</executions>
 				<configuration>
-					<mainClass>ch.siagile.finance.app.RiskMan</mainClass>
+					<mainClass>riskman.app.RiskMan</mainClass>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -72,7 +72,7 @@
 				<configuration>
 					<archive>
 						<manifest>
-							<mainClass>ch.siagile.finance.app.RiskMan</mainClass>
+							<mainClass>riskman.app.RiskMan</mainClass>
 							<addClasspath>true</addClasspath>
 						</manifest>
 					</archive>
