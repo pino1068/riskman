@@ -61,11 +61,11 @@ public class AppTest {
 	@Test 
 	public void shouldFilterByPippo2() {
 		console.enter("load:src/test/resources/portfolio1.csv");
-		console.enter("filter:owner:pippo2");
+		console.enter("filter:pippo2");
 		app.start();
-		check("Positions filtered with criteria: <owner:pippo2>");
-		check("1 position(s) selected over 1 with criteria <owner:pippo2>");
-		check("owner:pippo2 > ");
+		check("Positions filtered with criteria: <pippo2>");
+		check("1 position(s) selected over 1 with criteria <pippo2>");
+		check("pippo2 > ");
 	}
 
 	private void check(String string) {

@@ -10,6 +10,7 @@ import java.util.*;
 import org.hamcrest.*;
 import org.junit.*;
 
+import riskman.*;
 import riskman.instrument.*;
 import riskman.instrument.rating.*;
 import riskman.matcher.*;
@@ -27,18 +28,32 @@ public class FilterTest {
 	private Positions positions;
 	private List<Position> filter;
 
+	private OwnerRepository repository = new OwnerRepository();
+
 	@Before
 	public void setUp() {
+		createFixtures();
 		positions = new Positions();
-		account = account("name", CHF(30));
-		ibm = equity("IBM", 1, CHF(30));
-		oracle = equity("ORCL", 1, USD(30));
-		bond = bond(Bond.from("name", A1, "USA"), USD(40), "100%");
 		def(account);
 		def(ibm);
 		def(bond);
 		def(oracle);
 		matcherParser = new FilterBuilder();
+		storeOwners(positions);
+	}
+
+	private void createFixtures() {
+		account = account("name", CHF(30));
+		ibm = equity("IBM", 1, CHF(30));
+		oracle = equity("ORCL", 1, USD(30));
+		bond = bond(Bond.from("name", A1, "USA"), USD(40), "100%");
+	}
+
+	private void storeOwners(final Positions positions2) {
+		repository.cleanup();
+		for (Position pos : positions2) {
+			repository.add(pos.owner());
+		}
 	}
 
 	@Test 
@@ -140,7 +155,7 @@ public class FilterTest {
 
 	@Test 
 	public void shouldFilterByOwner() {
-		filter("owner:bondOwner,equityOwner");
+		filter("bondOwner,equityOwner");
 		check(hasItem(ibm));
 		check(hasItem(bond));
 		check(hasNotItem(account));
