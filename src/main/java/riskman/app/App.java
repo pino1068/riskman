@@ -1,12 +1,13 @@
 package riskman.app;
 
 import static java.text.MessageFormat.*;
+import static riskman.app.Dirs.*;
 
+import java.io.*;
 import java.security.*;
 
 import riskman.command.*;
 import riskman.position.*;
-import static riskman.app.Dirs.*;
 
 public class App {
 	private final Console console;
@@ -14,7 +15,13 @@ public class App {
 	private final Workspace workspace;
 
 	public static void main(String args[]) {
-		new App(new ShellConsole()).start();
+		final ShellConsole shellConsole = new ShellConsole();
+		Console logConsole = new LoggingConsole(shellConsole, new File(createSessionName()));
+		new App(logConsole).start();
+	}
+
+	private static String createSessionName() {
+		return "session_"+System.currentTimeMillis()+".txt";
 	}
 
 	public App(Console console) {
