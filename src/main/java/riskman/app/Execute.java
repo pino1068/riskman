@@ -27,7 +27,6 @@ public class Execute {
 	}
 
 	private String dirname(String path) {
-		System.out.println(path);
 		if(!path.contains("/"))
 			return "./";
 		return path.substring(0, path.lastIndexOf("/"));
