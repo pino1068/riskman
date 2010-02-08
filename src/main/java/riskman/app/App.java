@@ -15,9 +15,11 @@ public class App {
 	private final Workspace workspace;
 
 	public static void main(String args[]) {
-		final ShellConsole shellConsole = new ShellConsole();
-		Console logConsole = new LoggingConsole(shellConsole, new File(createSessionName()));
-		new App(logConsole).start();
+		new App(console()).start();
+	}
+
+	private static Console console() {
+		return new LoggingConsole(new ShellConsole(), new File(createSessionName()));
 	}
 
 	private static String createSessionName() {
