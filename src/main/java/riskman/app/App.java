@@ -19,11 +19,27 @@ public class App {
 	}
 
 	private static Console console() {
-		return new LoggingConsole(new ShellConsole(), new File(createSessionName()));
+		return commands(session(shell()), commandFile());
 	}
 
-	private static String createSessionName() {
-		return "session_"+System.currentTimeMillis()+".txt";
+	private static Console shell() {
+		return new ShellConsole();
+	}
+
+	private static File commandFile() {
+		return new File("commands_" + System.currentTimeMillis() + ".txt");
+	}
+
+	private static Console commands(Console session, File commandFile) {
+		return new CommandLoggingConsole(session, commandFile);
+	}
+
+	private static Console session(Console console) {
+		return new SessionLoggingConsole(console, sessionFile());
+	}
+
+	private static File sessionFile() {
+		return new File("session_" + System.currentTimeMillis() + ".txt");
 	}
 
 	public App(Console console) {
