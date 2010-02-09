@@ -1,14 +1,14 @@
 package riskman.app;
 
-import static java.text.MessageFormat.*;
-import static riskman.app.Dirs.*;
+import static java.text.MessageFormat.format;
+import static riskman.app.Dirs.workingDir;
 
-import java.io.*;
-import java.security.*;
+import java.io.File;
+import java.security.InvalidParameterException;
 
 import riskman.app.console.*;
 import riskman.command.*;
-import riskman.position.*;
+import riskman.position.Positions;
 
 public class App {
 	private final Console console;
