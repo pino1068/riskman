@@ -6,6 +6,7 @@ import static riskman.app.Dirs.*;
 import java.io.*;
 import java.security.*;
 
+import riskman.app.console.*;
 import riskman.command.*;
 import riskman.position.*;
 

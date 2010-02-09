@@ -1,4 +1,4 @@
-package riskman.app;
+package riskman.app.console;
 
 public interface Console {
 

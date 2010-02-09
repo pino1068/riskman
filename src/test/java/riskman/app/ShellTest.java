@@ -9,6 +9,7 @@ import java.util.*;
 
 import org.junit.*;
 
+import riskman.app.console.*;
 import riskman.instrument.*;
 import riskman.instrument.rating.*;
 import riskman.location.*;

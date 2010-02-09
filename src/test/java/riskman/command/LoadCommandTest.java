@@ -9,6 +9,7 @@ import org.junit.*;
 
 import riskman.*;
 import riskman.app.*;
+import riskman.app.console.*;
 import riskman.position.*;
 
 import static riskman.app.Dirs.*;

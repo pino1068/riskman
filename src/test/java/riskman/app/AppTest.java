@@ -5,6 +5,8 @@ import static org.hamcrest.Matchers.*;
 
 import org.junit.*;
 
+import riskman.app.console.*;
+
 public class AppTest {
 
 	private BatchConsole console;
@@ -57,7 +59,7 @@ public class AppTest {
 		check("pippo2:  Account: EUR-0456-389835-82");
 		check("1 position(s) found!");
 	}
-	
+
 	@Test 
 	public void shouldFilterByPippo2() {
 		console.enter("load:src/test/resources/portfolio1.csv");
@@ -66,6 +68,44 @@ public class AppTest {
 		check("Positions filtered with criteria: <pippo2>");
 		check("1 position(s) selected over 1 with criteria <pippo2>");
 		check("pippo2 > ");
+	}
+
+	@Test 
+	public void shouldFilterByPippo2WithSpace() {
+		console.enter("load:src/test/resources/portfolio1.csv");
+		console.enter("filter: pippo2");
+		app.start();
+		check("Positions filtered with criteria: <pippo2>");
+		check("1 position(s) selected over 1 with criteria <pippo2>");
+		check("pippo2 > ");
+	}
+	@Test 
+	public void shouldFilterByPippo2WithSpaceBefore() {
+		console.enter("load:src/test/resources/portfolio1.csv");
+		console.enter("filter :pippo2");
+		app.start();
+		check("Positions filtered with criteria: <pippo2>");
+		check("1 position(s) selected over 1 with criteria <pippo2>");
+		check("pippo2 > ");
+	}
+	@Test 
+	public void shouldFilterByPippo2WithMoreSpaces() {
+		console.enter("load:src/test/resources/portfolio1.csv");
+		console.enter("filter :  pippo2");
+		app.start();
+		check("Positions filtered with criteria: <pippo2>");
+		check("1 position(s) selected over 1 with criteria <pippo2>");
+		check("pippo2 > ");
+	}
+	
+	@Test 
+	public void shouldFilterByPippo2AndMoreSpaces() {
+		console.enter("load:src/test/resources/portfolio1.csv");
+		console.enter("filter :  pippo2 ,pippo3");
+		app.start();
+		check("Positions filtered with criteria: <pippo2,pippo3>");
+		check("1 position(s) selected over 1 with criteria <pippo2,pippo3>");
+		check("pippo2,pippo3 > ");
 	}
 
 	private void check(String string) {

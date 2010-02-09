@@ -60,8 +60,7 @@ public class Commands {
 	public String contentOf(String definition) {
 		for (String name : commands.keySet())
 			if (canExecute(definition, name))
-				return definition.replaceAll(name+":", "");
-
+				return definition.replaceAll(name+"\\s*:\\s*", "").replaceAll("\\s*([,])\\s*", "$1");
 		return definition;
 	}
 

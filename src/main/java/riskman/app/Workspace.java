@@ -1,5 +1,6 @@
 package riskman.app;
 
+import riskman.app.console.*;
 import riskman.position.*;
 
 public class Workspace {

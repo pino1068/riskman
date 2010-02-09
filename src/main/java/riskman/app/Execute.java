@@ -3,6 +3,7 @@ package riskman.app;
 import java.io.*;
 import java.util.*;
 
+import riskman.app.console.*;
 import riskman.position.*;
 import riskman.repository.*;
 
