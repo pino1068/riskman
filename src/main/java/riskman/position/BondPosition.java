@@ -40,4 +40,8 @@ public class BondPosition extends Position {
 	public boolean isCalled(String aName) {
 		return bond.isCalled(aName);
 	}
+
+	public Bond bond() {
+		return bond;
+	}
 }

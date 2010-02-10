@@ -36,4 +36,8 @@ public class MoodyRatings {
 	private static boolean equals(MoodyRating threshold, MoodyRating other) {
 		return indexOf(threshold.value) == indexOf(other.value);
 	}
+
+	public Iterable<String> ratings() {
+		return list;
+	}
 }

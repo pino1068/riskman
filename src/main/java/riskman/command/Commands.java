@@ -7,6 +7,7 @@ public class Commands {
 	private static Map<String, Class<? extends BaseCommand>> commands = new HashMap<String, Class<? extends BaseCommand>>() {
 		private static final long serialVersionUID = 1L;
 		{
+			put("show", ShowCommand.class);
 			put("help", HelpCommand.class);
 			put("positions", PositionCommand.class);
 			put("filter", FilterCommand.class);

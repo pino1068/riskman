@@ -32,4 +32,8 @@ public class EquityRepository {
 		return Identities.from(equity);
 	}
 
+	public Iterable<Equity> equities() {
+		return equities;
+	}
+
 }

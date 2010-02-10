@@ -33,4 +33,8 @@ public class Area {
 		return name.hashCode();
 	}
 
+	public String name() {
+		return name;
+	}
+
 }

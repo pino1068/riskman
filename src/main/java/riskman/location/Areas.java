@@ -31,4 +31,13 @@ public class Areas implements Iterable<Area> {
 	public boolean contains(String anAreaName) {
 		return areas.contains(Area.from(anAreaName));
 	}
+	
+	@Override
+	public String toString() {
+		StringBuffer result = new StringBuffer();
+		for (Area area : areas) {
+			result.append(area.name()).append("\n");
+		}
+		return result.toString();
+	}
 }

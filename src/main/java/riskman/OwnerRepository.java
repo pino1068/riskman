@@ -4,7 +4,7 @@ import java.util.*;
 
 public class OwnerRepository {
 
-	private static List<String> owners = new ArrayList<String>();
+	private static Set<String> owners = new HashSet<String>();
 
 	public void add(String owner) {
 		owners.add(owner);
@@ -16,6 +16,10 @@ public class OwnerRepository {
 
 	public void cleanup() {
 		owners.clear();
+	}
+
+	public Iterable<String> owners() {
+		return owners;
 	}
 
 }

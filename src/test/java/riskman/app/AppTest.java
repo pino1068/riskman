@@ -60,7 +60,7 @@ public class AppTest {
 		check("1 position(s) found!");
 	}
 
-	@Test 
+	@Test
 	public void shouldFilterByPippo2() {
 		console.enter("load:src/test/resources/portfolio1.csv");
 		console.enter("filter:pippo2");
@@ -70,7 +70,7 @@ public class AppTest {
 		check("pippo2 > ");
 	}
 
-	@Test 
+	@Test
 	public void shouldFilterByPippo2WithSpace() {
 		console.enter("load:src/test/resources/portfolio1.csv");
 		console.enter("filter: pippo2");
@@ -79,7 +79,8 @@ public class AppTest {
 		check("1 position(s) selected over 1 with criteria <pippo2>");
 		check("pippo2 > ");
 	}
-	@Test 
+
+	@Test
 	public void shouldFilterByPippo2WithSpaceBefore() {
 		console.enter("load:src/test/resources/portfolio1.csv");
 		console.enter("filter :pippo2");
@@ -88,7 +89,8 @@ public class AppTest {
 		check("1 position(s) selected over 1 with criteria <pippo2>");
 		check("pippo2 > ");
 	}
-	@Test 
+
+	@Test
 	public void shouldFilterByPippo2WithMoreSpaces() {
 		console.enter("load:src/test/resources/portfolio1.csv");
 		console.enter("filter :  pippo2");
@@ -97,8 +99,8 @@ public class AppTest {
 		check("1 position(s) selected over 1 with criteria <pippo2>");
 		check("pippo2 > ");
 	}
-	
-	@Test 
+
+	@Test
 	public void shouldFilterByPippo2AndMoreSpaces() {
 		console.enter("load:src/test/resources/portfolio1.csv");
 		console.enter("filter :  pippo2 ,pippo3");
@@ -106,6 +108,60 @@ public class AppTest {
 		check("Positions filtered with criteria: <pippo2,pippo3>");
 		check("1 position(s) selected over 1 with criteria <pippo2,pippo3>");
 		check("pippo2,pippo3 > ");
+	}
+
+	@Test
+	public void shouldShowListAreas() {
+		console.enter("show: areas");
+		app.start();
+		check("Available areas:");
+		check("CH");
+		check("GBP");
+		check("NORD AMERICA");
+		check("PACIFICO");
+		check("UE");
+		check("USA");
+		check("6 element(s) found.");
+	}
+
+	@Test
+	public void shouldShowListOwners() {
+		console.enter("load:src/test/resources/portfolio1.csv");
+		console.enter("show: owners");
+		app.start();
+		check("Available owners:");
+		check("pippo2");
+		check("1 element(s) found.");
+	}
+
+	@Test
+	public void shouldShowEquities() {
+		console.enter("load:src/test/resources/portfolio1.csv");
+		console.enter("show: equities");
+		app.start();
+		check("Available equities:");
+		check("Philips");
+		check("1 element(s) found.");
+	}
+
+	@Test
+	public void shouldShowBonds() {
+		console.enter("load:src/test/resources/portfolio-Table1.csv");
+		console.enter("show: bonds");
+		app.start();
+		check("Available bonds:");
+		check("20111130");
+		check("176 element(s) found.");
+	}
+	
+	@Test
+	public void shouldShowMoodys() {
+		console.enter("load:src/test/resources/portfolio-Table1.csv");
+		console.enter("show: moody");
+		app.start();
+		check("Available moody:");
+		check("Aaa");
+		check("20 element(s) found.");
 	}
 
 	private void check(String string) {

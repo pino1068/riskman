@@ -37,7 +37,7 @@ public class LoadCommand extends BaseCommand {
 	}
 
 	private LoadParserListener listeners() {
-		return new LoadParserListener(new StoreOwnerListener());
+		return new LoadParserListener(new StoreBondDataListener(new StoreOwnerListener()));
 	}
 
 	private Positions readAndParse(String pathname) {

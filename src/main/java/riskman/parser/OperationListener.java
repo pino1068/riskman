@@ -4,8 +4,8 @@ import riskman.position.*;
 
 public interface OperationListener {
 
-	public void success(String string, Position position);
+	void success(String string, Position position);
 
-	public void failure(String string);
+	void failure(String string);
 
 }
