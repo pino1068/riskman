@@ -1,36 +1,38 @@
-All Exchange rates should be imported
-user can change working position list (troughout a filter)
-return to root, charge all root positions
-perform a split on positions (es. owner, currency, instrument, position)
-create a command that performs a split and prints the generated groups
-combine splitby:owner with checks like max:5%
-Extend functionality for instruments of type Account
-show areas
-show owner
-show equities
-show bonds
-show should sort by name
-show ratings
-provide rating vs bound source table
-record result on aaa14.txt
-show sectors
-add bound founds
-add edge founds
-add instrument performance (gov, highyeld, corporate)
-add mixed funds
-add emerging economies (in areas?)
-add elapsed date (scadenza?)
-add maturity date in bond
-care about sensibility of bonds ?
-add option instrument
-add forward instrument
-add swap instrument
-see the list of policies currently available
-definition of a policy with name with collection of constraints
-ratio divide by zero to be checked
-describe the bump[ing/bootstrapping method
-select on bond duration criteria
-add secotr for equity and bond or instrument
-add durantion as bond info
-select positions by sector or list or sector
-add continent
+X use ; as fields separator
+
+- All Exchange rates should be imported
+- user can change working position list (troughout a filter)
+- return to root, charge all root positions
+- perform a split on positions (es. owner, currency, instrument, position)
+- create a command that performs a split and prints the generated groups
+- combine splitby:owner with checks like max:5%
+- Extend functionality for instruments of type Account
+- show areas
+- show owner
+- show equities
+- show bonds
+- show should sort by name
+- show ratings
+- provide rating vs bound source table
+- record result on aaa14.txt
+- show sectors
+- add bound founds
+- add edge founds
+- add instrument performance (gov, highyeld, corporate)
+- add mixed funds
+- add emerging economies (in areas?)
+- add elapsed date (scadenza?)
+- add maturity date in bond
+- care about sensibility of bonds ?
+- add option instrument
+- add forward instrument
+- add swap instrument
+- see the list of policies currently available
+- definition of a policy with name with collection of constraints
+- ratio divide by zero to be checked
+- describe the bump[ing/bootstrapping method
+- select on bond duration criteria
+- add secotr for equity and bond or instrument
+- add durantion as bond info
+- select positions by sector or list or sector
+- add continent
