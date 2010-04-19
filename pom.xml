@@ -5,7 +5,7 @@
 
 	<groupId>riskman</groupId>
 	<artifactId>riskman</artifactId>
-	<version>1.0</version>
+	<version>0.22</version>
 	<packaging>jar</packaging>
 
 	<name>Intelligent Risk Management</name>
