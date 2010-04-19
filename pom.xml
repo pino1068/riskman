@@ -49,7 +49,7 @@
 	<repositories />
 	<pluginRepositories />
 	<build>
-                <finalName>riskman</finalName>
+		<finalName>riskman-${version}</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>

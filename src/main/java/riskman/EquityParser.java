@@ -12,7 +12,7 @@ public class EquityParser {
 	private EquityAreaRepository areaRepository = new EquityAreaRepository();
 
 	protected void fields(String string) {
-		fields = string.split(",");
+		fields = string.split(";");
 	}
 
 	public Equity parse(String line) {

@@ -33,7 +33,7 @@ public class AreaRepository {
 	}
 
 	private static String id(String line) {
-		return line.split(",")[0];
+		return line.split(";")[0];
 	}
 
 	private static Area area(String line) {
@@ -47,7 +47,7 @@ public class AreaRepository {
 	}
 
 	private static String name(String line) {
-		return line.split(",")[1];
+		return line.split(";")[1];
 	}
 
 	public Areas all() {

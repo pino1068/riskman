@@ -27,11 +27,11 @@ public class EquityAreaRepository {
 	}
 
 	private String areaId(String line) {
-		return line.split(",")[2];
+		return line.split(";")[2];
 	}
 
 	private String equityId(String line) {
-		return line.split(",")[1];
+		return line.split(";")[1];
 	}
 
 }

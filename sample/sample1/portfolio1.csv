@@ -1,2 +1,2 @@
-customer1,L,CHF,91.00,,EUR-0123-456789-01,,,91.00,91.00,,A,Saldi in Cto. Corrente,91.00,91.00,91.00,,,,,,
-customer1,L,USD,09.00,,EUR-0123-456789-01,,,09.00,09.00,,A,Saldi in Cto. Corrente,09.00,09.00,09.00,,,,,,
+customer1;L;CHF;91.00;;EUR-0123-456789-01;;;91.00;91.00;;A;Saldi in Cto. Corrente;91.00;91.00;91.00;;;;;;
+customer1;L;USD;09.00;;EUR-0123-456789-01;;;09.00;09.00;;A;Saldi in Cto. Corrente;09.00;09.00;09.00;;;;;;
