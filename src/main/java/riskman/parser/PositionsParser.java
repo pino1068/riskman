@@ -17,13 +17,7 @@ public class PositionsParser {
 		}
 	};
 
-	private OperationListener listener = new OperationListener() {// no listener
-		public void success(String string, Position position) {
-		}
-
-		public void failure(String string) {
-		}
-	};
+	private OperationListener listener = new NoListener();
 
 	public void listener(OperationListener listener) {
 		this.listener = listener;
@@ -49,6 +43,14 @@ public class PositionsParser {
 			}
 		}
 		return positions;
+	}
+
+	private final class NoListener implements OperationListener {
+		public void success(String string, Position position) {
+		}
+
+		public void failure(String string) {
+		}
 	}
 
 }

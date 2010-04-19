@@ -33,4 +33,13 @@ public class Area {
 		return name.hashCode();
 	}
 
+	public String name() {
+		return name;
+	}
+
+	public Area or(Area otherArea) {
+		if(null == name || "".equals(name)) return otherArea;
+		return this;
+	}
+
 }

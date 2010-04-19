@@ -31,6 +31,6 @@ public class EquityPosition extends BasePosition {
 	}
 
 	public boolean isLocated(String[] areas) {
-		return equity.isLocated(areas);
+		return equity.isLocatedIn(areas);
 	}
 }

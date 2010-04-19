@@ -3,6 +3,7 @@ package riskman.app;
 import java.io.*;
 import java.util.*;
 
+import riskman.app.console.*;
 import riskman.position.*;
 import riskman.repository.*;
 
@@ -27,6 +28,8 @@ public class Execute {
 	}
 
 	private String dirname(String path) {
+		if(!path.contains("/"))
+			return "./";
 		return path.substring(0, path.lastIndexOf("/"));
 	}
 

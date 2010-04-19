@@ -7,7 +7,9 @@ import static org.junit.Assert.*;
 
 import org.junit.*;
 
+import riskman.*;
 import riskman.app.*;
+import riskman.app.console.*;
 import riskman.position.*;
 
 import static riskman.app.Dirs.*;
@@ -17,6 +19,7 @@ public class LoadCommandTest {
 	private Positions positions;
 	private Command loadCommand;
 	private BatchConsole console;
+	private OwnerRepository ownerRepository;
 
 	@Before
 	public void setUp(){
@@ -26,6 +29,8 @@ public class LoadCommandTest {
 		console = new BatchConsole();
 		workspace.console = console;
 		loadCommand.workspace(workspace);
+		ownerRepository = new OwnerRepository();
+		ownerRepository.cleanup();
 	}
 	@Test 
 	public void shouldLoadPortfolioCsv() {
@@ -39,4 +44,14 @@ public class LoadCommandTest {
 		assertThat(console.output(), containsString(" KO"));
 		assertThat(console.output(), containsString("warning:,,,,,,,,,,,,,,,,,,,,,"));
 	}
+	
+	@Test 
+	public void shouldStoreOnwerInRepository() {
+		assertFalse(ownerRepository.contains("pippo2"));
+		
+		loadCommand.execute("src/test/resources/portfolio1.csv");
+		
+		assertTrue(ownerRepository.contains("pippo2"));
+	}
+	
 }

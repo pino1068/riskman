@@ -18,13 +18,9 @@ public class LoadCommand extends BaseCommand {
 
 	public void execute(String definition) {
 		String pathname = pathname(definition);
-		positionsParser.listener(new LoadParserListener());
+		positionsParser.listener(listeners());
 		workspace.positions().addAll(readAndParse(pathname));
 		workspace.console.println(output());
-	}
-
-	private Positions readAndParse(String pathname) {
-		return positionsParser.parse(readLines(pathname));
 	}
 
 	private String pathname(String definition) {
@@ -38,6 +34,14 @@ public class LoadCommand extends BaseCommand {
 
 	private String cleanFrom(String string, String definition) {
 		return definition.replaceAll(string, "");
+	}
+
+	private LoadParserListener listeners() {
+		return new LoadParserListener(new StoreBondDataListener(new StoreOwnerListener()));
+	}
+
+	private Positions readAndParse(String pathname) {
+		return positionsParser.parse(readLines(pathname));
 	}
 
 	private List<String> readLines(String pathname) {
@@ -77,15 +81,23 @@ public class LoadCommand extends BaseCommand {
 		return "	'load:<file>'			- load positions from given file";
 	}
 	
-	private final class LoadParserListener implements OperationListener {
+	private class LoadParserListener implements OperationListener {
+		private final OperationListener nextListener;
+
+		public LoadParserListener(OperationListener nextListener) {
+			this.nextListener = nextListener;
+		}
+
 		public void success(String string, Position position) {
 			counterLoadedPositions++;
 			counterLinesRead++;
+			nextListener.success(string, position);
 		}
 
 		public void failure(String string) {
 			warning(string);
 			counterLinesRead++;
+			nextListener.failure(string);
 		}
 	}
 }

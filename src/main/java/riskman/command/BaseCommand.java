@@ -1,5 +1,6 @@
 package riskman.command;
 
+import static java.text.MessageFormat.format;
 import riskman.app.*;
 
 
@@ -14,6 +15,9 @@ public abstract class BaseCommand implements Command {
 	
 	public void workspace(Workspace workspace) {
 		this.workspace = workspace;
+	}
+	protected void printlnFormatted(String pattern, Object ... data) {
+		println(format(pattern,data));
 	}
 	protected void println(Object... thinks) {
 		for (Object think : thinks) 

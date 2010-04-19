@@ -6,6 +6,8 @@ import static java.text.MessageFormat.*;
 import java.io.*;
 import java.util.*;
 
+import riskman.app.console.*;
+
 public class Tester extends Execute {
 
 	private final List<String> expectedOutput;

@@ -1,4 +1,4 @@
-package riskman.app;
+package riskman.app.console;
 
 import java.util.*;
 

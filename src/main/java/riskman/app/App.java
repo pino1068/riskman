@@ -1,12 +1,14 @@
 package riskman.app;
 
-import static java.text.MessageFormat.*;
+import static java.text.MessageFormat.format;
+import static riskman.app.Dirs.workingDir;
 
-import java.security.*;
+import java.io.File;
+import java.security.InvalidParameterException;
 
+import riskman.app.console.*;
 import riskman.command.*;
-import riskman.position.*;
-import static riskman.app.Dirs.*;
+import riskman.position.Positions;
 
 public class App {
 	private final Console console;
@@ -14,7 +16,31 @@ public class App {
 	private final Workspace workspace;
 
 	public static void main(String args[]) {
-		new App(new ShellConsole()).start();
+		new App(console()).start();
+	}
+
+	private static Console console() {
+		return commands(session(shell()), commandFile());
+	}
+
+	private static Console shell() {
+		return new ShellConsole();
+	}
+
+	private static File commandFile() {
+		return new File("commands_" + System.currentTimeMillis() + ".txt");
+	}
+
+	private static Console commands(Console session, File commandFile) {
+		return new CommandLoggingConsole(session, commandFile);
+	}
+
+	private static Console session(Console console) {
+		return new SessionLoggingConsole(console, sessionFile());
+	}
+
+	private static File sessionFile() {
+		return new File("session_" + System.currentTimeMillis() + ".txt");
 	}
 
 	public App(Console console) {

@@ -1,7 +1,5 @@
 package riskman.location;
 
-
-
 public class Location {
 
 	private final static Locations locations = new Locations();
@@ -25,7 +23,8 @@ public class Location {
 	}
 
 	public boolean isLocatedIn(Area anOther) {
-		if(area==null) return false;
+		if (area == null)
+			return false;
 		return area.equals(anOther);
 	}
 
@@ -38,7 +37,7 @@ public class Location {
 	}
 
 	public boolean isLocatedIn(String[] someAreas) {
-		for (String anArea : someAreas) 
+		for (String anArea : someAreas)
 			if (Area.from(anArea).equals(area()))
 				return true;
 		return false;

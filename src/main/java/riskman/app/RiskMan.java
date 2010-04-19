@@ -26,11 +26,15 @@ public class RiskMan {
 		};
 		Runnable help = new Runnable() {
 			public void run() {
-				System.out.println("riskman COMMAND [ARGS]");
-				System.out.println("The most commonly used riskman commands are:");
-				System.out.println("  batch       execute risk management filter and constraint");
-				System.out.println("  shell       allow user to interact with portfolio using filter and constraint");
-				System.out.println("  tester      compare filter and constraint over an expected output");
+				print("riskman COMMAND [ARGS]");
+				print("The most commonly used riskman commands are:");
+				print("  batch       execute risk management filter and constraint");
+				print("  shell       allow user to interact with portfolio using filter and constraint");
+				print("  tester      compare filter and constraint over an expected output");
+			}
+
+			private void print(String x) {
+				System.out.println(x);
 			}
 		};
 

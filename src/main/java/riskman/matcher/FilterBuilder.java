@@ -40,7 +40,7 @@ public class FilterBuilder {
 	}
 
 	private String cleanUp(String definition) {
-		String result = definition.replaceAll("[ ]*([,:+])[ ]*", "$1");
+		String result = definition.replaceAll("\\s*([,:+])\\s*", "$1");
 		for (MatcherBuilder b : builders)
 			result = b.cleanUp(result);
 		return result;

@@ -5,7 +5,7 @@
 
 	<groupId>riskman</groupId>
 	<artifactId>riskman</artifactId>
-	<version>1.0</version>
+	<version>0.0.23</version>
 	<packaging>jar</packaging>
 
 	<name>Intelligent Risk Management</name>
@@ -49,7 +49,7 @@
 	<repositories />
 	<pluginRepositories />
 	<build>
-                <finalName>riskman</finalName>
+		<finalName>riskman-${version}</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
@@ -62,7 +62,7 @@
 					</execution>
 				</executions>
 				<configuration>
-					<mainClass>ch.siagile.finance.app.RiskMan</mainClass>
+					<mainClass>riskman.app.RiskMan</mainClass>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -72,7 +72,7 @@
 				<configuration>
 					<archive>
 						<manifest>
-							<mainClass>ch.siagile.finance.app.RiskMan</mainClass>
+							<mainClass>riskman.app.RiskMan</mainClass>
 							<addClasspath>true</addClasspath>
 						</manifest>
 					</archive>
