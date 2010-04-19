@@ -10,6 +10,7 @@ public class AccountPositionParser extends BaseInstrumentParser {
 	public Position parsePosition(String string) {
 		return new AccountPosition(name(), balance()).ownedBy(owner());
 	}
+
 	protected Money balance() {
 		return fMoney(BALANCE, CURRENCY);
 	}

@@ -37,4 +37,9 @@ public class Area {
 		return name;
 	}
 
+	public Area or(Area otherArea) {
+		if(null == name || "".equals(name)) return otherArea;
+		return this;
+	}
+
 }

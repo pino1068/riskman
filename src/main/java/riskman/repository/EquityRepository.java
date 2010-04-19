@@ -4,6 +4,7 @@ import java.util.*;
 
 import riskman.*;
 import riskman.instrument.*;
+import riskman.parser.*;
 
 public class EquityRepository {
 

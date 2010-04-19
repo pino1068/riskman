@@ -21,7 +21,7 @@ public class BondTest {
 	public void shouldBondBeLocalted() {
 		Bond bond = Bond.from("EIB 02", "UE");
 
-		assertTrue(bond.isLocated("UE"));
+		assertTrue(bond.isLocatedIn("UE"));
 	}
 
 	@Test 

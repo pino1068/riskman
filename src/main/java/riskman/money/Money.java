@@ -23,13 +23,15 @@ public class Money {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (isNotMoney(obj))		return false;
-		if (isNotCompatible(obj))	return false;
+		if (isNotMoney(obj))
+			return false;
+		if (isNotCompatible(obj))
+			return false;
 		return compareTo(toMoney(obj)) == 0;
 	}
 
 	private int compareTo(Money money) {
-		if(isPraticallyEquals(money))
+		if (isPraticallyEquals(money))
 			return 0;
 		return amount.compareTo(money.amount);
 	}
@@ -59,7 +61,8 @@ public class Money {
 	}
 
 	public Money plus(Money other) {
-		if (isNotCompatible(other)) 	return changeAndSum(other);
+		if (isNotCompatible(other))
+			return changeAndSum(other);
 		return Money.from((amount.add(other.amount)), currency);
 	}
 
@@ -68,7 +71,7 @@ public class Money {
 	}
 
 	private Money change(Money other) {
-		ExchangeRate rate = ExchangeRate.from(Money.from(1, "USD"),Money.from(1.1, "CHF"));
+		ExchangeRate rate = ExchangeRate.from(Money.from(1, "USD"), Money.from(1.1, "CHF"));
 		return rate.change(other);
 	}
 
@@ -117,11 +120,11 @@ public class Money {
 	public static Money CHF(double amount) {
 		return Money.from(BigDecimal.valueOf(amount), "CHF");
 	}
-	
+
 	public static Money USD(double amount) {
 		return Money.from(BigDecimal.valueOf(amount), "USD");
 	}
-	
+
 	public static Money EUR(double amount) {
 		return Money.from(BigDecimal.valueOf(amount), "EUR");
 	}

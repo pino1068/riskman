@@ -4,6 +4,7 @@ import java.util.*;
 
 import riskman.*;
 import riskman.location.*;
+import riskman.parser.*;
 
 public class AreaRepository {
 

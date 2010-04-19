@@ -49,7 +49,7 @@ public class IsLocatedMatcher<T> extends BaseMatcher<T> {
 	}
 
 	private boolean isLocated(Bond bond) {
-		return bond.isLocated(areas);
+		return bond.isLocatedIn(areas);
 	}
 
 	private boolean isLocated(BondPosition position) {
