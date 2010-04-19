@@ -13,7 +13,7 @@ public class AreaRepository {
 			List<String> lines = new TextRepository()
 					.load(getClass().getClassLoader().getResourceAsStream("areas.csv"));
 			for (String line : lines)
-				add(area(line));
+				add(new AreaParser(line).parse());
 		}
 	};
 
@@ -24,32 +24,15 @@ public class AreaRepository {
 		return Area.from("UE");
 	}
 
-	private boolean checkId(Object object, String id) {
-		return identity(object).isIdentifiedBy(id);
-	}
-
 	private static Identity identity(Object object) {
 		return Identities.from(object);
 	}
 
-	private static String id(String line) {
-		return line.split(";")[0];
-	}
 
-	private static Area area(String line) {
-		Area area = Area.from(name(line));
-		identify(area, id(line));
-		return area;
+	private boolean checkId(Object object, String id) {
+		return identity(object).isIdentifiedBy(id);
 	}
-
-	private static void identify(Object object, String id) {
-		identity(object).identifiedBy(id);
-	}
-
-	private static String name(String line) {
-		return line.split(";")[1];
-	}
-
+	
 	public Areas all() {
 		return areas;
 	}

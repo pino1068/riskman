@@ -17,8 +17,8 @@ public class EquityParserTest {
 
 	@Before
 	public void setUp() {
-		importer = new EquityParser();
-		parsedEquity = importer.parse(equity);
+		importer = new EquityParser(equity);
+		parsedEquity = importer.parse();
 	}
 
 	@Test

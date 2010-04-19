@@ -4,19 +4,18 @@ import riskman.instrument.*;
 import riskman.location.*;
 import riskman.repository.*;
 
-public class EquityParser {
+public class EquityParser extends CsvLineParser {
 	
 	private static final int NAME = 2;
 	private static final int ID = 0;
-	protected String[] fields;
+	
 	private EquityAreaRepository areaRepository = new EquityAreaRepository();
 
-	protected void fields(String string) {
-		fields = string.split(";");
+	public EquityParser(String line) {
+		super(line);
 	}
 
-	public Equity parse(String line) {
-		fields(line);
+	public Equity parse() {
 		Equity equity = new Equity(name());
 		parseIdentity(equity);
 		parseArea(equity);
@@ -37,9 +36,5 @@ public class EquityParser {
 
 	private String name() {
 		return f(NAME);
-	}
-
-	private String f(int fieldPosition) {
-		return fields[fieldPosition];
 	}
 }
