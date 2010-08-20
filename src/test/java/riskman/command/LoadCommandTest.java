@@ -54,4 +54,11 @@ public class LoadCommandTest {
 		assertTrue(ownerRepository.contains("pippo2"));
 	}
 	
+	@Test 
+	public void shouldLoadFromRoot() {
+		loadCommand.execute("DBPortfolioGenerale.csv");
+		assertThat(console.output(), containsString(" KO"));
+		assertThat(console.output(), containsString("warning:,,,,,,,,,,,,,,,,,,,,,"));
+	}
+
 }

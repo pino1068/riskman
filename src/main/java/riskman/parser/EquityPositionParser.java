@@ -15,8 +15,8 @@ public class EquityPositionParser extends BaseInstrumentParser {
 		return new EquityPosition(equity(), quantity(), price()).ownedBy(owner());
 	}
 
-	private int quantity() {
-		return fInt(3);
+	private double quantity() {
+		return fDouble(3);
 	}
 	
 	private Money price() {

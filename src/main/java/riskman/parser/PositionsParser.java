@@ -28,7 +28,7 @@ public class PositionsParser {
 			if (parser.recognize(string)) 
 				return parser.parse(string);
 		
-		throw new RuntimeException(format("unable to parse {0}", string));
+		throw new RuntimeException(format("Unrecognized string: {0}", string));
 	}
 
 	public Positions parse(List<String> strings) {
@@ -39,7 +39,7 @@ public class PositionsParser {
 				positions.add(position);
 				listener.success(string, position);
 			} catch (Exception e) {
-				listener.failure(string);
+				listener.failure(e.getMessage());
 			}
 		}
 		return positions;

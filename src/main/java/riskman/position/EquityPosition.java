@@ -7,10 +7,10 @@ import riskman.money.*;
 
 public class EquityPosition extends BasePosition {
 	private final Equity equity;
-	private final int quantity;
+	private final double quantity;
 	private final Money price;
 
-	public EquityPosition(Equity equity, int quantity, Money price) {
+	public EquityPosition(Equity equity, double quantity, Money price) {
 		super(price.times(quantity));
 		this.equity = equity;
 		this.quantity = quantity;

@@ -1,0 +1,164 @@
+<class-diagram version="0.9.86" automaticImage="PNG" icons="true" always-add-relationships="true" generalizations="true" 
+  realizations="true" associations="true" dependencies="true" nesting-relationships="true">  
+  <class corner="BOTTOM_RIGHT" language="java" name="riskman.parser.PositionParser" project="TegaRiskman" 
+    file="/TegaRiskman/src/main/java/riskman/parser/PositionParser.java" binary="false">    
+    <position x="344" y="157" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="riskman.parser.PositionsParser.NoListener" project="TegaRiskman" 
+    file="/TegaRiskman/src/main/java/riskman/parser/PositionsParser.java" binary="false">    
+    <position x="891" y="245" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="riskman.parser.PositionsParser" project="TegaRiskman" 
+    file="/TegaRiskman/src/main/java/riskman/parser/PositionsParser.java" binary="false">    
+    <position x="606" y="94" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <interface corner="BOTTOM_RIGHT" language="java" name="riskman.parser.OperationListener" project="TegaRiskman" 
+    file="/TegaRiskman/src/main/java/riskman/parser/OperationListener.java" binary="false">    
+    <position x="891" y="86" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </interface>  
+  <class corner="BOTTOM_RIGHT" language="java" name="riskman.parser.EquityPositionParser" project="TegaRiskman" 
+    file="/TegaRiskman/src/main/java/riskman/parser/EquityPositionParser.java" binary="false">    
+    <position x="886" y="451" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="riskman.parser.EquityParser" project="TegaRiskman" 
+    file="/TegaRiskman/src/main/java/riskman/parser/EquityParser.java" binary="false">    
+    <position x="122" y="158" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="riskman.parser.CsvLineParser" project="TegaRiskman" 
+    file="/TegaRiskman/src/main/java/riskman/parser/CsvLineParser.java" binary="false">    
+    <position x="122" y="356" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="riskman.parser.BondPositionParser" project="TegaRiskman" 
+    file="/TegaRiskman/src/main/java/riskman/parser/BondPositionParser.java" binary="false">    
+    <position x="344" y="427" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="riskman.parser.BaseInstrumentParser" project="TegaRiskman" 
+    file="/TegaRiskman/src/main/java/riskman/parser/BaseInstrumentParser.java" binary="false">    
+    <position x="607" y="271" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="riskman.parser.AreaParser" project="TegaRiskman" 
+    file="/TegaRiskman/src/main/java/riskman/parser/AreaParser.java" binary="false">    
+    <position x="123" y="527" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="riskman.parser.AccountPositionParser" project="TegaRiskman" 
+    file="/TegaRiskman/src/main/java/riskman/parser/AccountPositionParser.java" binary="false">    
+    <position x="607" y="498" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <generalization>    
+    <source project="TegaRiskman" name="riskman.parser.BondPositionParser" 
+      file="/TegaRiskman/src/main/java/riskman/parser/BondPositionParser.java" binary="false"/>    
+    <target project="TegaRiskman" name="riskman.parser.PositionParser" 
+      file="/TegaRiskman/src/main/java/riskman/parser/PositionParser.java" binary="false"/>  
+  </generalization>  
+  <generalization>    
+    <source project="TegaRiskman" name="riskman.parser.EquityPositionParser" 
+      file="/TegaRiskman/src/main/java/riskman/parser/EquityPositionParser.java" binary="false"/>    
+    <target project="TegaRiskman" name="riskman.parser.BaseInstrumentParser" 
+      file="/TegaRiskman/src/main/java/riskman/parser/BaseInstrumentParser.java" binary="false"/>  
+  </generalization>  
+  <generalization>    
+    <source project="TegaRiskman" name="riskman.parser.BaseInstrumentParser" 
+      file="/TegaRiskman/src/main/java/riskman/parser/BaseInstrumentParser.java" binary="false"/>    
+    <target project="TegaRiskman" name="riskman.parser.PositionParser" 
+      file="/TegaRiskman/src/main/java/riskman/parser/PositionParser.java" binary="false"/>  
+  </generalization>  
+  <association>    
+    <source project="TegaRiskman" name="riskman.parser.PositionsParser" 
+      file="/TegaRiskman/src/main/java/riskman/parser/PositionsParser.java" binary="false" navigable="false">      
+      <attribute name="listener"/>      
+      <multiplicity minimum="0" maximum="1"/>    
+    </source>    
+    <target project="TegaRiskman" name="riskman.parser.OperationListener" 
+      file="/TegaRiskman/src/main/java/riskman/parser/OperationListener.java" binary="false" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization>    
+    <source project="TegaRiskman" name="riskman.parser.AreaParser" 
+      file="/TegaRiskman/src/main/java/riskman/parser/AreaParser.java" binary="false"/>    
+    <target project="TegaRiskman" name="riskman.parser.CsvLineParser" 
+      file="/TegaRiskman/src/main/java/riskman/parser/CsvLineParser.java" binary="false"/>  
+  </generalization>  
+  <nesting>    
+    <source project="TegaRiskman" name="riskman.parser.PositionsParser" 
+      file="/TegaRiskman/src/main/java/riskman/parser/PositionsParser.java" binary="false"/>    
+    <target project="TegaRiskman" name="riskman.parser.PositionsParser.NoListener" 
+      file="/TegaRiskman/src/main/java/riskman/parser/PositionsParser.java" binary="false"/>  
+  </nesting>  
+  <realization>    
+    <source project="TegaRiskman" name="riskman.parser.PositionsParser.NoListener" 
+      file="/TegaRiskman/src/main/java/riskman/parser/PositionsParser.java" binary="false"/>    
+    <target project="TegaRiskman" name="riskman.parser.OperationListener" 
+      file="/TegaRiskman/src/main/java/riskman/parser/OperationListener.java" binary="false"/>  
+  </realization>  
+  <association>    
+    <source project="TegaRiskman" name="riskman.parser.PositionsParser" 
+      file="/TegaRiskman/src/main/java/riskman/parser/PositionsParser.java" binary="false" navigable="false">      
+      <attribute name="parsers"/>      
+      <multiplicity minimum="0" maximum="2147483647"/>    
+    </source>    
+    <target project="TegaRiskman" name="riskman.parser.PositionParser" 
+      file="/TegaRiskman/src/main/java/riskman/parser/PositionParser.java" binary="false" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization>    
+    <source project="TegaRiskman" name="riskman.parser.EquityParser" 
+      file="/TegaRiskman/src/main/java/riskman/parser/EquityParser.java" binary="false"/>    
+    <target project="TegaRiskman" name="riskman.parser.CsvLineParser" 
+      file="/TegaRiskman/src/main/java/riskman/parser/CsvLineParser.java" binary="false"/>  
+  </generalization>  
+  <generalization>    
+    <source project="TegaRiskman" name="riskman.parser.AccountPositionParser" 
+      file="/TegaRiskman/src/main/java/riskman/parser/AccountPositionParser.java" binary="false"/>    
+    <target project="TegaRiskman" name="riskman.parser.BaseInstrumentParser" 
+      file="/TegaRiskman/src/main/java/riskman/parser/BaseInstrumentParser.java" binary="false"/>  
+  </generalization>  
+  <classifier-display autosize="true" package="true" initial-value="false" signature="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true"/>    
+    <operations public="true" package="true" protected="true" private="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

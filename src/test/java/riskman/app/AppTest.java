@@ -164,6 +164,13 @@ public class AppTest {
 		check("20 element(s) found.");
 	}
 
+	@Test
+	public void shouldLoadFromRoot() {
+		console.enter("load:DBPortfolioGenerale.csv");
+		app.start();
+		check("255 positions loaded over 268 lines read.");
+	}
+
 	private void check(String string) {
 		assertThat(console.output(), containsString(string));
 	}

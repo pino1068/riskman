@@ -28,7 +28,7 @@ public abstract class PositionParser {
 	}
 
 	protected String f(int fieldPosition) {
-		if(fieldPosition > fields.length) return "";
+		if(fieldPosition >= fields.length) return "";
 		return fields[fieldPosition];
 	}
 
