@@ -42,7 +42,7 @@ public class LoadCommandTest {
 	public void shouldLoadPortfolioCsvWithComments() {
 		loadCommand.execute("src/test/resources/portfolio-with-unknown-position.csv");
 		assertThat(console.output(), containsString(" KO"));
-		assertThat(console.output(), containsString("warning:,,,,,,,,,,,,,,,,,,,,,"));
+		assertThat(console.output(), containsString("warning:Unrecognized string: ,,,,,,,,,,,,,,,,,,,,,"));
 	}
 	
 	@Test 
@@ -54,11 +54,11 @@ public class LoadCommandTest {
 		assertTrue(ownerRepository.contains("pippo2"));
 	}
 	
-	@Test 
+	@Test
 	public void shouldLoadFromRoot() {
 		loadCommand.execute("DBPortfolioGenerale.csv");
 		assertThat(console.output(), containsString(" KO"));
-		assertThat(console.output(), containsString("warning:,,,,,,,,,,,,,,,,,,,,,"));
+		assertThat(console.output(), containsString("warning:Unrecognized string: pippo10;PS;CHF;500000.0;"));
 	}
 
 }

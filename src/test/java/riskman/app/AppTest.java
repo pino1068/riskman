@@ -168,7 +168,7 @@ public class AppTest {
 	public void shouldLoadFromRoot() {
 		console.enter("load:DBPortfolioGenerale.csv");
 		app.start();
-		check("255 positions loaded over 268 lines read.");
+		check("260 positions loaded over 268 lines read.");
 	}
 
 	private void check(String string) {
