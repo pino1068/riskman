@@ -35,7 +35,7 @@ public class Money {
 	}
 
 	private boolean isPraticallyEquals(Money money) {
-		return amount.subtract(money.amount).doubleValue() < 0.001;
+		return amount.subtract(money.amount).abs().doubleValue() < 0.001;
 	}
 
 	private boolean isNotCompatible(Object obj) {

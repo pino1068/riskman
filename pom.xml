@@ -11,27 +11,7 @@
 	<name>Intelligent Risk Management</name>
 	<description />
 	<url />
-	<inceptionYear>2009</inceptionYear>
-	<organization />
-	<licenses />
-
-	<developers />
-	<contributors />
-
-	<mailingLists />
-
-	<prerequisites />
-
-	<modules />
-
-	<scm />
-	<issueManagement />
-	<ciManagement />
-	<distributionManagement />
-
-	<properties />
-
-	<dependencyManagement />
+	<inceptionYear>2010</inceptionYear>
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
@@ -46,8 +26,6 @@
 		</dependency>
 	</dependencies>
 
-	<repositories />
-	<pluginRepositories />
 	<build>
                 <finalName>riskman</finalName>
 		<plugins>
@@ -100,7 +78,4 @@
 		</plugins>
 	</build>
 
-	<reporting />
-
-	<profiles />
 </project>

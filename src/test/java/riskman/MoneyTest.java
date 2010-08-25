@@ -10,6 +10,9 @@ import riskman.money.*;
 
 public class MoneyTest {
 	
+	private Money CHF100;
+	private Money USD100;
+
 	@Test 
 	public void shouldSumTwoMoney() {
 		Money one = Money.from(1,"CHF");
@@ -42,10 +45,12 @@ public class MoneyTest {
 	
 	@Test 
 	public void shouldSumDifferentCurrenciesUsingDefaultExchangeRate() {
-		Money chf100 = Money.from(100, "CHF");
-		Money usd100 = Money.from(100, "USD");
+		CHF100 = Money.CHF(100);
+		USD100 = Money.USD(100);
 		
-		assertEquals(Money.from(210, "CHF"), chf100.plus(usd100));
+		final Money sum = Money.CHF(210);
+		
+		assertEquals(sum, CHF100.plus(USD100));
 	}
 
 //	@Test 
