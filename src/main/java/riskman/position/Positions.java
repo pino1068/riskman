@@ -21,7 +21,7 @@ public class Positions implements Iterable<Position> {
 	}
 
 	public Money value() {
-		Money totalAmount = Money.from(0, "CHF");
+		Money totalAmount = Money.money(0, "CHF");
 		for (Position position : positions) 
 			totalAmount = totalAmount.plus(position.balance());
 		return totalAmount;

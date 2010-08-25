@@ -12,7 +12,7 @@ public abstract class PositionParser {
 	}
 
 	protected Money fMoney(int quantity2, int currency2) {
-		return Money.from(fDouble(quantity2), f(currency2));
+		return Money.money(fDouble(quantity2), f(currency2));
 	}
 
 	protected String f(int field, String orDefault) {

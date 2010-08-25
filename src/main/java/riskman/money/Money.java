@@ -1,6 +1,7 @@
 package riskman.money;
 
 import static java.text.MessageFormat.*;
+import static riskman.money.ExchangeRates.*;
 
 import java.math.*;
 
@@ -13,7 +14,7 @@ public class Money {
 		this.currency = currency;
 	}
 
-	public static Money from(double amount, String currency) {
+	public static Money money(double amount, String currency) {
 		return from(BigDecimal.valueOf(amount), currency);
 	}
 
@@ -70,9 +71,8 @@ public class Money {
 		return change(other).plus(this);
 	}
 
-	private Money change(Money other) {
-		ExchangeRate rate = ExchangeRate.from(Money.from(1, "USD"), Money.from(1.1, "CHF"));
-		return rate.change(other);
+	public Money change(Money other) {
+		return changeMoney(other, currency);
 	}
 
 	@Override

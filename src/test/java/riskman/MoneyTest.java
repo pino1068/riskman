@@ -12,35 +12,32 @@ public class MoneyTest {
 	
 	private Money CHF100;
 	private Money USD100;
+	
+	@Before
+	public void setUp(){
+		ExchangeRates.add(ExchangeRate.rateFrom(Money.CHF(1),Money.CHF(1)));
+		ExchangeRates.add(ExchangeRate.rateFrom(Money.USD(1),Money.CHF(1.1)));
+		ExchangeRates.add(ExchangeRate.rateFrom(Money.EUR(1),Money.CHF(1.6)));
+	}
 
 	@Test 
 	public void shouldSumTwoMoney() {
-		Money one = Money.from(1,"CHF");
-		Money two = Money.from(2, "CHF");
+		Money one = Money.money(1,"CHF");
+		Money two = Money.money(2, "CHF");
 
 		Money three = one.plus(two);
 
-		assertEquals(Money.from(3, "CHF"), three);
+		assertEquals(Money.money(3, "CHF"), three);
 	}
-	
-//	@Test 
-//	public void shouldConvertUSDInCHF() {
-//		Money dollars = Money.from(100, "USD");
-//		Exchange exchange = exchange();
-//		
-//		Money euros = exchange.change(dollars).to("EUR");
-//		
-//		assertEquals(Money.from(60, "EUR"), euros);
-//	}
 
 	@Test 
-	public void shouldConvertUSDInCHF() {
-		Money dollars = Money.from(100, "USD");
-		ExchangeRate rate = ExchangeRate.from(USD(1),CHF(1.1));
+	public void shouldRateConvertUSDInCHF() {
+		Money dollars = Money.money(100, "USD");
+		ExchangeRate rate = ExchangeRate.rateFrom(USD(1),CHF(1.1));
 		
 		Money francs = rate.change(dollars);
 		
-		assertEquals(Money.from(110, "CHF"), francs);
+		assertEquals(Money.money(110, "CHF"), francs);
 	}
 	
 	@Test 
@@ -52,11 +49,4 @@ public class MoneyTest {
 		
 		assertEquals(sum, CHF100.plus(USD100));
 	}
-
-//	@Test 
-//	public void shouldLoadCurrencyPairs() {
-//		Exchange exchange = Exchange.load();
-//		
-//		assertThat(exchange.rates().size(), is(30));
-//	}
 }
