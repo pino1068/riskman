@@ -71,8 +71,29 @@ public class Money {
 	}
 
 	private Money change(Money other) {
-		ExchangeRate rate = ExchangeRate.from(Money.from(1, "USD"), Money.from(1.1, "CHF"));
-		return rate.change(other);
+		
+		// determine the correct exchange rate to use
+		if (other.currency.equals("USD")) {
+			ExchangeRate rateXXXChf = ExchangeRate.from(Money.from(1, "USD"), Money.from(1.1, "CHF"));
+		//	ExchangeRate rateXXXChf = ExchangeRate.from(Money.from(1, "USD"), Money.from(1.0313, "CHF"));
+			return rateXXXChf.change(other);
+		}
+		
+		if (other.currency.equals("EUR")) {
+			ExchangeRate rateXXXChf = ExchangeRate.from(Money.from(1, "EUR"), Money.from(1.5, "CHF"));
+		//	ExchangeRate rateXXXChf = ExchangeRate.from(Money.from(1, "EUR"), Money.from(1.32171408, "CHF"));
+			return rateXXXChf.change(other);
+		}
+		
+		if (other.currency.equals("JPY")) {
+			ExchangeRate rateXXXChf = ExchangeRate.from(Money.from(1, "JPY"), Money.from(0.01, "CHF"));
+		//	ExchangeRate rateXXXChf = ExchangeRate.from(Money.from(1, "JPY"), Money.from(0.012083186877563, "CHF"));
+			return rateXXXChf.change(other);
+		}
+		
+		// if any one of the previous currencies is the desired currency then return 0 CHF
+		return Money.from(0,"CHF");
+
 	}
 
 	@Override
