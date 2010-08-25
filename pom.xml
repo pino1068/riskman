@@ -5,7 +5,7 @@
 
 	<groupId>riskman</groupId>
 	<artifactId>riskman</artifactId>
-	<version>1.0</version>
+	<version>0.0.23</version>
 	<packaging>jar</packaging>
 
 	<name>Intelligent Risk Management</name>
@@ -27,7 +27,7 @@
 	</dependencies>
 
 	<build>
-                <finalName>riskman</finalName>
+		<finalName>riskman-${version}</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>

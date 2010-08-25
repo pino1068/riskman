@@ -8,7 +8,7 @@ public abstract class PositionParser {
 	protected String[] fields;
 
 	protected void fields(String string) {
-		fields = string.split(",");
+		fields = string.split(";");
 	}
 
 	protected Money fMoney(int quantity2, int currency2) {

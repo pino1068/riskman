@@ -4,6 +4,7 @@ import java.util.*;
 
 import riskman.*;
 import riskman.instrument.*;
+import riskman.parser.*;
 
 public class EquityRepository {
 
@@ -13,7 +14,7 @@ public class EquityRepository {
 			List<String> lines = new TextRepository()
 					.load(getClass().getClassLoader().getResourceAsStream("equities.csv"));
 			for (String line : lines)
-				add(new EquityParser().parse(line));
+				add(new EquityParser(line).parse());
 		}
 	};
 

@@ -8,7 +8,15 @@ import riskman.location.*;
 
 public class EquityAreaRepository {
 
-	private static List<String> lines = new TextRepository().load(EquityAreaRepository.class.getClassLoader().getResourceAsStream("aree-equity.csv"));
+	private static Set<String> lines = new HashSet<String>() {
+		private static final long serialVersionUID = 1L;
+		{
+			List<String> lines = new TextRepository().load(EquityAreaRepository.class.getClassLoader().getResourceAsStream("aree-equity.csv"));
+			for (String line : lines)
+				add(line);
+		}
+	};
+
 	private static AreaRepository areaRepository = new AreaRepository();
 
 	public Area locationOf(Equity equity) {
@@ -27,11 +35,11 @@ public class EquityAreaRepository {
 	}
 
 	private String areaId(String line) {
-		return line.split(",")[2];
+		return line.split(";")[2];
 	}
 
 	private String equityId(String line) {
-		return line.split(",")[1];
+		return line.split(";")[1];
 	}
 
 }

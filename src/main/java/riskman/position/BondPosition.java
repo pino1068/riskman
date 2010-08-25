@@ -29,7 +29,7 @@ public class BondPosition extends Position {
 	}
 
 	public boolean isLocated(String... areas) {
-		return bond.isLocated(areas);
+		return bond.isLocatedIn(areas);
 	}
 	
 	@Override
