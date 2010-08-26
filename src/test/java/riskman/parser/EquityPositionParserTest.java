@@ -84,6 +84,16 @@ public class EquityPositionParserTest {
 	}	
 
 	
+	@Test
+	public void shouldSumTwoEquitiesInEURWithResultInCHF() {
+		position1 = parse(StrPosEUR1);
+		position2 = parse(StrPosEUR2);
+		
+		Positions myPositions = new Positions(position1,position2);
+		
+		assertThat(myPositions.value(), is(equalTo(CHF(1.5*(7200*84.22+6176*41.79)))));
+	}
+
 	@Ignore
 	public void shouldSumTwoEquitiesInEUR() {
 		position1 = parse(StrPosEUR1);
@@ -93,6 +103,8 @@ public class EquityPositionParserTest {
 		
 		assertThat(myPositions.value(), is(equalTo(EUR(7200*84.22+6176*41.79))));
 	}
+
+
 
 	private EquityPosition parse(String string) {
 		return (EquityPosition)importer.parse(string);
