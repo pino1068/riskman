@@ -2,10 +2,15 @@ package riskman.app;
 
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
+import static riskman.money.Money.CHF;
+import static riskman.money.Money.EUR;
+import static riskman.money.Money.USD;
 
 import org.junit.*;
 
 import riskman.app.console.*;
+import riskman.money.ExchangeRate;
+import riskman.money.ExchangeRates;
 
 public class AppTest {
 
@@ -16,6 +21,10 @@ public class AppTest {
 	public void setUp() {
 		console = new BatchConsole();
 		app = new App(console);
+		ExchangeRates.clear();
+		ExchangeRates.add(ExchangeRate.rateFrom(CHF(1),CHF(1)));
+		ExchangeRates.add(ExchangeRate.rateFrom(USD(1),CHF(1.1)));
+		ExchangeRates.add(ExchangeRate.rateFrom(EUR(1),CHF(1.6)));
 	}
 
 	@Test
@@ -151,7 +160,7 @@ public class AppTest {
 		app.start();
 		check("Available bonds:");
 		check("20111130");
-		check("176 element(s) found.");
+		check("184 element(s) found.");
 	}
 	
 	@Test

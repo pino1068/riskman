@@ -1,13 +1,18 @@
 package riskman;
 
 import static org.junit.Assert.*;
-import static riskman.money.Money.money;
+
+import static riskman.money.Money.*;
 
 import org.junit.*;
 
 import riskman.money.*;
 
-
+/**
+ * Exchange
+ * @author claudio
+ *
+ */
 public class MoneyExchangeTest {
 	
 	private Money CHF100 = Money.CHF(100);
@@ -16,23 +21,62 @@ public class MoneyExchangeTest {
 	
 	@Before
 	public void setUp(){
-		ExchangeRates.add(ExchangeRate.rateFrom(Money.CHF(1),Money.CHF(1)));
-		ExchangeRates.add(ExchangeRate.rateFrom(Money.USD(1),Money.CHF(1.1)));
-		ExchangeRates.add(ExchangeRate.rateFrom(Money.EUR(1),Money.CHF(1.6)));
+		ExchangeRates.clear();
+		ExchangeRates.add(ExchangeRate.rateFrom(CHF(1),CHF(1)));
+		ExchangeRates.add(ExchangeRate.rateFrom(USD(1),CHF(1.1)));
+		ExchangeRates.add(ExchangeRate.rateFrom(EUR(1),CHF(1.6)));
 	}
 
 	@Test 
 	public void shouldConvertMoney() {
-		assertEquals(Money.money(110, "CHF"), 	CHF100.change(USD100));
-		assertEquals(Money.money(90.91, "USD"), 	USD100.change(CHF100));
-		assertEquals(Money.money(160, "CHF"), 	CHF100.change(EUR100));
+		assertEquals(money(110, "CHF"), 	CHF100.change(USD100));
+		assertEquals(money(90.91, "USD"), 	USD100.change(CHF100));
+		assertEquals(money(160, "CHF"), 	CHF100.change(EUR100));
 	}
 
-	@Test @Ignore
-	public void shouldSumEURAndUSDCurrenciesUsingDefaultExchangeRate() {
-		Money eur100 = money(100, "EUR");
-		Money usd100 = money(100, "USD");
+	@Test
+	public void shouldSumUsingCrossCurrency() {
+		assertEquals(money(100+100*1.6, "CHF"), CHF100.plus(EUR100));
+		assertEquals(money(100/1.6+100, "EUR"), EUR100.plus(CHF100));
+		assertEquals(money(100+100 *1.6/1.1, "USD"), USD100.plus(EUR100));
+	}
+
+	@Test
+	public void shouldNoUseCrossRate() {
+		ExchangeRates.add(ExchangeRate.rateFrom(EUR(2),USD(3)));
+		assertEquals(money(100+100 *3/2, "USD"), USD100.plus(EUR100));
+	}
+
+	@Test 
+	public void shouldRateConvertUSDInCHF() {
+		Money dollars = money(100, "USD");
+		ExchangeRate rate = ExchangeRate.rateFrom(USD(1),CHF(1.1));
 		
-		assertEquals(money(260, "CHF"), eur100.plus(usd100));
+		Money francs = rate.change(dollars);
+		
+		assertEquals(money(110, "CHF"), francs);
+	}
+	
+	@Test 
+	public void shouldSumDifferentCurrenciesUsingDefaultExchangeRate() {
+		CHF100 = CHF(100);
+		USD100 = USD(100);
+		
+		final Money sum = CHF(210);
+		
+		assertEquals(sum, CHF100.plus(USD100));
+	}
+
+	@Test
+	public void shouldDivideExchangeRates(){
+		ExchangeRate USDCHF = ExchangeRate.rateFrom(USD(3),CHF(3.3));
+		ExchangeRate EURCHF = ExchangeRate.rateFrom(EUR(2),CHF(3.2));
+		
+		ExchangeRate crossUSDEUR = USDCHF.cross(EURCHF);
+
+		assertTrue(crossUSDEUR.canChange("USD"));
+		assertTrue(crossUSDEUR.canChange("EUR"));
+		assertTrue(crossUSDEUR.canChange("USD", "EUR"));
+		assertEquals(money(10* (1.1/1.6), "EUR"), 	crossUSDEUR.change(money(10, "USD")));
 	}
 }

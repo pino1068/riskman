@@ -11,16 +11,6 @@ import riskman.money.*;
 
 public class MoneyTest {
 	
-	private Money CHF100;
-	private Money USD100;
-	
-	@Before
-	public void setUp(){
-		ExchangeRates.add(ExchangeRate.rateFrom(Money.CHF(1),Money.CHF(1)));
-		ExchangeRates.add(ExchangeRate.rateFrom(Money.USD(1),Money.CHF(1.1)));
-		ExchangeRates.add(ExchangeRate.rateFrom(Money.EUR(1),Money.CHF(1.3)));
-	}
-
 	@Test 
 	public void shouldSumTwoMoney() {
 		Money one = Money.money(1,"CHF");
@@ -37,25 +27,5 @@ public class MoneyTest {
 		Money eur10 = money( 10, "EUR");
 		
 		assertEquals(money(130, "EUR"), eur120.plus(eur10));
-	}
-
-	@Test 
-	public void shouldRateConvertUSDInCHF() {
-		Money dollars = money(100, "USD");
-		ExchangeRate rate = ExchangeRate.rateFrom(USD(1),CHF(1.1));
-		
-		Money francs = rate.change(dollars);
-		
-		assertEquals(money(110, "CHF"), francs);
-	}
-	
-	@Test 
-	public void shouldSumDifferentCurrenciesUsingDefaultExchangeRate() {
-		CHF100 = CHF(100);
-		USD100 = USD(100);
-		
-		final Money sum = CHF(210);
-		
-		assertEquals(sum, CHF100.plus(USD100));
 	}
 }
