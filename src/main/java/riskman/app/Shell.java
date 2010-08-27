@@ -22,7 +22,6 @@ public class Shell {
 			try {
 				execute(data, definition);
 			} catch (Exception e) {
-				e.printStackTrace();
 				data.console.println(format("error:{0} {1}", definition, e
 						.getMessage()));
 			}
