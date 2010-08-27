@@ -1,6 +1,7 @@
 package riskman.money;
 
 import static java.text.MessageFormat.*;
+import static riskman.money.ExchangeRates.*;
 
 import java.math.*;
 
@@ -13,7 +14,7 @@ public class Money {
 		this.currency = currency;
 	}
 
-	public static Money from(double amount, String currency) {
+	public static Money money(double amount, String currency) {
 		return from(BigDecimal.valueOf(amount), currency);
 	}
 
@@ -37,7 +38,7 @@ public class Money {
 	}
 
 	private boolean isPraticallyEquals(Money money) {
-		return amount.subtract(money.amount).doubleValue() < 0.001;
+		return amount.subtract(money.amount).abs().doubleValue() < 0.001;
 	}
 
 	private boolean isNotCompatible(Object obj) {
@@ -70,30 +71,8 @@ public class Money {
 		return change(other).plus(this);
 	}
 
-	private Money change(Money other) {
-		
-		// determine the correct exchange rate to use
-		if (other.currency.equals("USD")) {
-			ExchangeRate rateXXXChf = ExchangeRate.from(Money.from(1, "USD"), Money.from(1.1, "CHF"));
-		//	ExchangeRate rateXXXChf = ExchangeRate.from(Money.from(1, "USD"), Money.from(1.0313, "CHF"));
-			return rateXXXChf.change(other);
-		}
-		
-		if (other.currency.equals("EUR")) {
-			ExchangeRate rateXXXChf = ExchangeRate.from(Money.from(1, "EUR"), Money.from(1.5, "CHF"));
-		//	ExchangeRate rateXXXChf = ExchangeRate.from(Money.from(1, "EUR"), Money.from(1.32171408, "CHF"));
-			return rateXXXChf.change(other);
-		}
-		
-		if (other.currency.equals("JPY")) {
-			ExchangeRate rateXXXChf = ExchangeRate.from(Money.from(1, "JPY"), Money.from(0.01, "CHF"));
-		//	ExchangeRate rateXXXChf = ExchangeRate.from(Money.from(1, "JPY"), Money.from(0.012083186877563, "CHF"));
-			return rateXXXChf.change(other);
-		}
-		
-		// if any one of the previous currencies is the desired currency then return 0 CHF
-		return Money.from(0,"CHF");
-
+	public Money change(Money other) {
+		return changeMoney(other, currency);
 	}
 
 	@Override

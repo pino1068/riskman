@@ -63,7 +63,7 @@ public class EquityPositionParserTest {
 
 	@Test  
 	public void shouldParseQuantityWithComma() {
-		assertThat(parse(equityWithQuantityWithComma).balance(),is(EUR(606.384)));
+		assertThat(parse(equityWithQuantityWithComma).balance(),is(EUR(606384)));
 	}
 	
 	@Test(expected=RuntimeException.class)

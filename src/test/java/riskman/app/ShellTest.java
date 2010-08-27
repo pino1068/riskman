@@ -1,6 +1,8 @@
 package riskman.app;
 
 import static riskman.fixtures.Fixtures.*;
+import static riskman.money.ExchangeRate.*;
+
 import static riskman.money.Money.*;
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.*;
@@ -13,6 +15,7 @@ import riskman.app.console.*;
 import riskman.instrument.*;
 import riskman.instrument.rating.*;
 import riskman.location.*;
+import riskman.money.*;
 import riskman.position.*;
 
 import static riskman.app.Dirs.*;
@@ -30,6 +33,7 @@ public class ShellTest {
 		output = "";
 		shell = new Shell();
 		positions = new Positions();
+		ExchangeRates.add(rateFrom(Money.USD(1),Money.CHF(1.1)));
 	}
 	
 	@Test  
