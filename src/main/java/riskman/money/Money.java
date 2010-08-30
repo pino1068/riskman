@@ -129,6 +129,26 @@ public class Money {
 		return Money.from(BigDecimal.valueOf(amount), "EUR");
 	}
 
+	public static Money GBP(double amount) {
+		return Money.from(BigDecimal.valueOf(amount), "GBP");
+	}
+
+	public static Money AUD(double amount) {
+		return Money.from(BigDecimal.valueOf(amount), "AUD");
+	}
+
+	public static Money JPY(double amount) {
+		return Money.from(BigDecimal.valueOf(amount), "JPY");
+	}
+
+	public static Money BRL(double amount) {
+		return Money.from(BigDecimal.valueOf(amount), "BRL");
+	}
+
+	public static Money NZD(double amount) {
+		return Money.from(BigDecimal.valueOf(amount), "NZD");
+	}
+
 	public Money times(Money other) {
 		return times(other.amount);
 	}

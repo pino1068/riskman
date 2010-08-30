@@ -1,5 +1,6 @@
 package riskman.app;
 
+
 import riskman.app.console.*;
 import riskman.position.*;
 
@@ -23,7 +24,7 @@ public class Workspace {
 	}
 
 	public Positions positions() {
-		return current.positions();
+		return current.positions().sortByName();
 	}
 	
 	public void remove() {
@@ -44,5 +45,9 @@ public class Workspace {
 
 	public String workingDir() {
 		return workingDir;
+	}
+
+	public void addAll(Positions positionsToAdd) {
+		current.positions().addAll(positionsToAdd);
 	}
 }

@@ -1,10 +1,12 @@
 package riskman.command;
 
 import static riskman.Some.*;
+import static riskman.money.Money.*;
 import static java.text.MessageFormat.*;
 
 import java.util.*;
 
+import riskman.money.*;
 import riskman.parser.*;
 import riskman.position.*;
 import riskman.repository.*;
@@ -15,12 +17,29 @@ public class LoadCommand extends BaseCommand {
 	private List<String> warnings = new LinkedList<String>();
 	private int counterLoadedPositions = 0;
 	private int counterLinesRead = 0;
-
+	
 	public void execute(String definition) {
+		loadExchangeRates();
+		
 		String pathname = pathname(definition);
 		positionsParser.listener(listeners());
-		workspace.positions().addAll(readAndParse(pathname));
+		workspace.addAll(readAndParse(pathname));
 		workspace.console.println(output());
+	}
+
+	private void loadExchangeRates() {
+		ExchangeRates.clear();
+		ExchangeRates.add(ExchangeRate.rateFrom(CHF(1),		CHF(1)));
+		ExchangeRates.add(ExchangeRate.rateFrom(USD(1),		CHF(1.1)));
+		ExchangeRates.add(ExchangeRate.rateFrom(EUR(1),		CHF(1.3)));
+		ExchangeRates.add(ExchangeRate.rateFrom(GBP(1),		CHF(1.6)));
+		ExchangeRates.add(ExchangeRate.rateFrom(AUD(1),		CHF(0.9)));
+		ExchangeRates.add(ExchangeRate.rateFrom(BRL(1),		CHF(0.6)));
+		ExchangeRates.add(ExchangeRate.rateFrom(NZD(1),		CHF(0.70)));
+		ExchangeRates.add(ExchangeRate.rateFrom(JPY(100.0),	CHF(1.20)));
+		ExchangeRates.add(ExchangeRate.rateFrom(money(1,"CHr"),CHF(1)));
+		ExchangeRates.add(ExchangeRate.rateFrom(money(10,"SEK"),CHF(1.4)));
+		ExchangeRates.add(ExchangeRate.rateFrom(money(1,"CAD"),CHF(0.95)));
 	}
 
 	private String pathname(String definition) {

@@ -68,4 +68,23 @@ public class Positions implements Iterable<Position> {
 	public void addAll(Positions some) {
 		positions.addAll(some.positions);
 	}
+
+	public Positions sortByName() {
+		List<Position> list = new ArrayList<Position>(positions);
+		Collections.sort(list, new ByName());
+		Positions result = new Positions();
+		for (Position position : list) 
+			result.add(position);
+		return result;
+	}
+	
+	private class ByName implements Comparator<Position>{
+
+		public int compare(Position o1, Position o2) {
+			return o1.toString().compareTo(o2.toString());
+		}
+
+		
+	}
+	
 }

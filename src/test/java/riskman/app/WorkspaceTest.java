@@ -1,9 +1,12 @@
 package riskman.app;
 
 import static riskman.fixtures.Fixtures.*;
+
 import static riskman.money.Money.*;
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.*;
+
+import java.util.Iterator;
 
 import org.junit.*;
 
@@ -19,8 +22,8 @@ public class WorkspaceTest {
 	public void setUp() {
 		positions = new Positions();
 		positions.add(equity("ciao", 10, CHF(10)));
-		positions.add(bond(Bond.from("bond1", "CH"), USD(1000), "100%"));
 		positions.add(bond(Bond.from("bond2", "CH"), USD(1000), "100%"));
+		positions.add(bond(Bond.from("bond1", "CH"), USD(1000), "100%"));
 		workspace = new Workspace("", positions, "");
 	}
 
@@ -50,6 +53,18 @@ public class WorkspaceTest {
 		assertThat(workspace.positions().size(), is(3));
 		assertThat(workspace.name(), is(""));
 	}
+	
+	@Test 
+	public void shouldSortPositionsByName() {
+		Iterator<Position> iter = workspace.positions().iterator();
+		final Position next1 = iter.next();
+		final Position next2 = iter.next();
+		final Position next3 = iter.next();
+		
+		assertThat(next1.toString().compareTo(next2.toString()), is(lessThan(0)));
+		assertThat(next2.toString().compareTo(next3.toString()), is(lessThan(0)));
+	}
+	
 
 	private Positions filter(String def) {
 		return positions.select(FilterBuilder.from(def));

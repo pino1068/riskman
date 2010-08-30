@@ -1,18 +1,15 @@
 package riskman;
 
 import static org.junit.Assert.*;
+import static riskman.fixtures.Fixtures.*;
 
 import static riskman.money.Money.*;
 
 import org.junit.*;
 
 import riskman.money.*;
+import riskman.position.*;
 
-/**
- * Exchange
- * @author claudio
- *
- */
 public class MoneyExchangeTest {
 	
 	private Money CHF100 = Money.CHF(100);
@@ -78,5 +75,26 @@ public class MoneyExchangeTest {
 		assertTrue(crossUSDEUR.canChange("EUR"));
 		assertTrue(crossUSDEUR.canChange("USD", "EUR"));
 		assertEquals(money(10* (1.1/1.6), "EUR"), 	crossUSDEUR.change(money(10, "USD")));
+	}
+
+	@Test
+	public void shouldConvertPositionsInCHF(){
+		Position eurPos = account("", EUR(50));
+		Position usdPos = account("pippo", USD(500));
+		Positions allMultiCurrency = new Positions(eurPos, usdPos);
+		
+		Money sum = CHF(0).plus(allMultiCurrency.value());
+		
+		assertEquals(CHF(550+80),sum);
+	}
+
+	@Test(expected=RuntimeException.class)
+	public void shouldBreakWhenNoExchangeRates(){
+		ExchangeRates.clear();
+		Position eurPos = account("", EUR(50));
+		Position usdPos = account("pippo", USD(500));
+		Positions allMultiCurrency = new Positions(eurPos, usdPos);
+		
+		CHF(0).plus(allMultiCurrency.value());
 	}
 }

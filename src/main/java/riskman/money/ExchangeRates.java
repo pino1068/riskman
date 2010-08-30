@@ -1,5 +1,6 @@
 package riskman.money;
 
+import static java.lang.String.*;
 import java.util.*;
 
 public class ExchangeRates {
@@ -30,7 +31,7 @@ public class ExchangeRates {
 		for (ExchangeRate rate : rates) 
 			if(rate.canChange(currency))
 				return rate;
-		return null;
+		throw new RuntimeException(format("In rates: %1$s is missing rate for: %2$s",rates,currency));
 	}
 
 	public static void clear() {

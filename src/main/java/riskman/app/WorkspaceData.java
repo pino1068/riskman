@@ -23,6 +23,7 @@ class WorkspaceData {
 	}
 
 	public Positions positions() {
+//		Collection.sort
 		return positions;
 	}
 
