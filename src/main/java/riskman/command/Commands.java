@@ -42,27 +42,49 @@ public class Commands {
 		return line.split(":")[0];
 	}
 
-	private Class<? extends BaseCommand> findClass(String definition) {
-		for (String name : commands.keySet()) {
-			if (canExecute(definition, name))
+	private Class<? extends BaseCommand> findClass(String string) {
+		final String commandName = commandName(string);
+		if(commandName==null) return NoCommand.class;
+		for (String name : commands.keySet())
+			if (canExecute(commandName, name))
 				return commands.get(name);
-		}
 		return defaultCommand();
 	}
 
+	private String commandName(String string) {
+		String commandName = null;
+		for (String name : commands.keySet())
+			if (name.startsWith(string.split(":")[0].trim()))
+				if (commandName == null)
+					commandName = name;
+				else
+					return null;
+		return commandName==null?string:commandName;
+	}
+
 	private boolean canExecute(String definition, String name) {
-		return definition.startsWith(name);
+		return definition.equals(name);
 	}
 
 	private Class<? extends BaseCommand> defaultCommand() {
 		return FilterCheckCommand.class;
 	}
 
-	public String contentOf(String definition) {
-		for (String name : commands.keySet())
-			if (canExecute(definition, name))
-				return definition.replaceAll(name+"\\s*:\\s*", "").replaceAll("\\s*([,])\\s*", "$1");
-		return definition;
+	public String contentOf(String string) {
+		final String commandName = commandName(string);
+		for (String name : commands.keySet()) {
+			if (canExecute(commandName, name)){
+				return removePrefix(string)
+						.replaceAll("\\s*([,])\\s*", "$1");
+			}
+		}
+		return string;
+	}
+
+	private String removePrefix(String string) {
+		if(!string.contains(":"))
+			return string;
+		return string.substring(string.indexOf(":")).replaceFirst(":", "").trim();
 	}
 
 	private final class LinkedListExtension extends LinkedList<Command> {

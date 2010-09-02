@@ -6,7 +6,11 @@ import java.util.*;
 public class TextRepository {
 
 	public List<String> load(String pathname) {
-		return scan(scanning(new File(pathname)));
+		return load(new File(pathname));
+	}
+
+	public List<String> load(File file) {
+		return scan(scanning(file));
 	}
 
 	public List<String> load(InputStream inputStream) {

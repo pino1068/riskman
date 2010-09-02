@@ -49,6 +49,16 @@ public class AppTest {
 		check("load positions from given file");
 		check("--------------------------");
 	}
+	
+	@Test 
+	public void shouldShortcutHelp() {
+		console.enter("h");
+		app.start();
+		
+		check("Menu: --------------------");
+		check("print this help");
+	}
+	
 
 	@Test
 	public void shouldLoadPositions() {
@@ -59,11 +69,67 @@ public class AppTest {
 	}
 
 	@Test
+	public void shouldShortcutLoadPositions() {
+		console.enter("l:src/test/resources/portfolio1.csv");
+		app.start();
+		check("Enter a command or 'h' for help or 'quit' to exit");
+		check("OK");
+	}
+
+	@Test
+	public void shouldTooShortcut() {
+		console.enter("s:owner");
+		app.start();
+		check("Enter a command or 'h' for help or 'quit' to exit");
+		check("command not found");
+	}
+
+	@Test
 	public void shouldShowPositions() {
 		console.enter("load:src/test/resources/portfolio1.csv");
 		console.enter("positions");
 		app.start();
 		check("OK");
+		check("Actual positions are:");
+		check("pippo2:  Account: EUR-0456-389835-82");
+		check("1 position(s) found!");
+	}
+	
+	@Test 
+	public void shouldShortcut1ShowPositions() {
+		console.enter("load:src/test/resources/portfolio1.csv");
+		console.enter("p");
+		app.start();
+		check("Actual positions are:");
+		check("pippo2:  Account: EUR-0456-389835-82");
+		check("1 position(s) found!");
+	}
+	
+	@Test 
+	public void shouldShortcut2ShowPositions() {
+		console.enter("load:src/test/resources/portfolio1.csv");
+		console.enter("po");
+		app.start();
+		check("Actual positions are:");
+		check("pippo2:  Account: EUR-0456-389835-82");
+		check("1 position(s) found!");
+	}
+	
+	@Test 
+	public void shouldShortcut3ShowPositions() {
+		console.enter("load:src/test/resources/portfolio1.csv");
+		console.enter("pos");
+		app.start();
+		check("Actual positions are:");
+		check("pippo2:  Account: EUR-0456-389835-82");
+		check("1 position(s) found!");
+	}
+	
+	@Test 
+	public void shouldShortcut5ShowPositions() {
+		console.enter("load:src/test/resources/portfolio1.csv");
+		console.enter("posit");
+		app.start();
 		check("Actual positions are:");
 		check("pippo2:  Account: EUR-0456-389835-82");
 		check("1 position(s) found!");
@@ -143,6 +209,16 @@ public class AppTest {
 		check("1 element(s) found.");
 	}
 
+	@Test
+	public void shouldShortcutShowListOwners() {
+		console.enter("load:src/test/resources/portfolio1.csv");
+		console.enter("sh:owners");
+		app.start();
+		check("Available owners:");
+		check("pippo2");
+		check("1 element(s) found.");
+	}
+	
 	@Test
 	public void shouldShowEquities() {
 		console.enter("load:src/test/resources/portfolio1.csv");

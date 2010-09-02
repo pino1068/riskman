@@ -4,6 +4,7 @@ import static riskman.Some.*;
 import static riskman.money.Money.*;
 import static java.text.MessageFormat.*;
 
+import java.io.File;
 import java.util.*;
 
 import riskman.money.*;
@@ -21,9 +22,9 @@ public class LoadCommand extends BaseCommand {
 	public void execute(String definition) {
 		loadExchangeRates();
 		
-		String pathname = pathname(definition);
+		File file = file(definition);
 		positionsParser.listener(listeners());
-		workspace.addAll(readAndParse(pathname));
+		workspace.addAll(readAndParse(file));
 		workspace.console.println(output());
 	}
 
@@ -42,29 +43,31 @@ public class LoadCommand extends BaseCommand {
 		ExchangeRates.add(ExchangeRate.rateFrom(money(1,"CAD"),CHF(0.95)));
 	}
 
-	private String pathname(String definition) {
+	private File file(String definition) {
 		if(commands!=null)
 			definition = commands.contentOf(definition);
 		String dirname = workspace.workingDir();
-		final String filename = cleanFrom("load:", definition);
-		if(dirname==null || dirname.length()==0) return filename;
-		return format("{0}/{1}", dirname, filename);
+		final String filename = cleanUp(definition);
+		if(dirname==null || dirname.length()==0) return new File(filename);
+		return new File(dirname, filename);
 	}
 
-	private String cleanFrom(String string, String definition) {
-		return definition.replaceAll(string, "");
+	private String cleanUp(String definition) {
+		if(definition.contains(":"))
+			return definition.split(":")[1];
+		return definition;
 	}
 
 	private LoadParserListener listeners() {
 		return new LoadParserListener(new StoreBondDataListener(new StoreOwnerListener()));
 	}
 
-	private Positions readAndParse(String pathname) {
-		return positionsParser.parse(readLines(pathname));
+	private Positions readAndParse(File file) {
+		return positionsParser.parse(readLines(file));
 	}
 
-	private List<String> readLines(String pathname) {
-		return new TextRepository().load(pathname);
+	private List<String> readLines(File file) {
+		return new TextRepository().load(file);
 	}
 	
 	private String output() {

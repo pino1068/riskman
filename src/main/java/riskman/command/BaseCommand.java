@@ -19,13 +19,13 @@ public abstract class BaseCommand implements Command {
 	protected void printlnFormatted(String pattern, Object ... data) {
 		println(format(pattern,data));
 	}
-	protected void println(Object... thinks) {
-		for (Object think : thinks) 
+	protected void println(Object... things) {
+		for (Object think : things) 
 			workspace.console.println(think.toString());
 	}
 	
-	protected void print(Object... thinks) {
-		for (Object think : thinks) 
+	protected void print(Object... things) {
+		for (Object think : things) 
 			workspace.console.print(think.toString());
 	}
 

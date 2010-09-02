@@ -1,6 +1,5 @@
 package riskman.app;
 
-import static java.text.MessageFormat.format;
 import static riskman.app.Dirs.workingDir;
 
 import java.io.File;
@@ -84,10 +83,16 @@ public class App {
 		try {
 			command.execute(line);
 		} catch (InvalidParameterException e) {
-			console.println(format("{0} command not found", line));
+			noCommand(line);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	private void noCommand(String line) {
+		final NoCommand noCommand = new NoCommand();
+		noCommand.workspace(workspace);
+		noCommand.execute(line);
 	}
 
 	private Command command(String line) {

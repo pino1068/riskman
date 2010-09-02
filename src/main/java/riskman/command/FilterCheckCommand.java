@@ -10,9 +10,10 @@ import riskman.position.*;
 public class FilterCheckCommand extends CheckCommand {
 
 	public void execute(String definition) {
+		definition = commands.contentOf(definition);
 		if(definition.trim().length()==0)
 			return;
-		boolean success = checkConstraint(definition);
+		boolean success = checkConstraint(definition.trim());
 		if (success)
 			println(format("{0} OK", definition));
 		else
