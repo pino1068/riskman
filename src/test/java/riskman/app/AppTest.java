@@ -279,6 +279,27 @@ public class AppTest {
 		app.start();
 		check("260 positions loaded over 268 lines read.");
 	}
+	
+	@Test 
+	public void shouldrunPositionCommandWhenEmpty() {
+		console.enter("positions");
+		
+		app.start();
+		
+		check("Currently there are no positions available");
+	}
+	
+
+	@Test
+	public void shouldDeletePositions() {
+		console.enter("load:DBPortfolioGenerale.csv");
+		console.enter("delete");
+		console.enter("positions");
+		
+		app.start();
+		
+		check("Currently there are no positions available");
+	}
 
 	private void check(String string) {
 		assertThat(console.output(), containsString(string));

@@ -50,4 +50,10 @@ public class Workspace {
 	public void addAll(Positions positionsToAdd) {
 		current.positions().addAll(positionsToAdd);
 	}
+
+	public Positions clearAll() {
+		final Positions positions = positions();
+		this.current = new WorkspaceData("",new Positions());
+		return positions;
+	}
 }

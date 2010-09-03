@@ -1,14 +1,14 @@
 package riskman.app;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.*;
 import static riskman.fixtures.Fixtures.*;
 import static riskman.money.Money.*;
-import static org.hamcrest.MatcherAssert.*;
-import static org.hamcrest.Matchers.*;
 
 import org.junit.*;
 
-import riskman.*;
-import riskman.instrument.*;
+import riskman.Split;
+import riskman.instrument.Bond;
 import riskman.position.*;
 import riskman.splitter.*;
 
@@ -65,9 +65,9 @@ public class SplitterTest {
 		Split split = splitter.split(positions);
 		
 		assertThat(split.size(), is(3));
-		hasGroup(split, AccountPosition.class);
-		hasGroup(split, BondPosition.class);
-		hasGroup(split, EquityPosition.class);
+		hasGroup(split, "Account");
+		hasGroup(split, "Bond");
+		hasGroup(split, "Equity");
 	}
 	
 	@Test  

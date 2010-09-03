@@ -10,12 +10,25 @@ import riskman.command.*;
 import riskman.position.Positions;
 
 public class App {
-	private final Console console;
+	private Console console;
 	private final Commands commands;
 	private final Workspace workspace;
+	private static String sessionFilename;
+	private static App app;
 
 	public static void main(String args[]) {
-		new App(console()).start();
+		app = new App(console());
+		app.start();
+	}
+	
+	public static void switchReportTo(String filename){
+		app.reportTo(filename);
+	}
+
+	private void reportTo(String filename) {
+		sessionFilename = filename;
+		this.console = console();
+		workspace.console = this.console;
 	}
 
 	private static Console console() {
@@ -27,11 +40,17 @@ public class App {
 	}
 
 	private static File commandFile() {
-		return new File("commands_" + System.currentTimeMillis() + ".txt");
+		return new File("commands_" + filenamePostfix());
 	}
 
-	private static Console commands(Console session, File commandFile) {
-		return new CommandLoggingConsole(session, commandFile);
+	private static String filenamePostfix() {
+		if (sessionFilename == null)
+			sessionFilename = System.currentTimeMillis() + ".txt";
+		return sessionFilename;
+	}
+
+	private static Console commands(Console console, File commandFile) {
+		return new CommandLoggingConsole(console, commandFile);
 	}
 
 	private static Console session(Console console) {
@@ -39,7 +58,7 @@ public class App {
 	}
 
 	private static File sessionFile() {
-		return new File("session_" + System.currentTimeMillis() + ".txt");
+		return new File("session_" + filenamePostfix());
 	}
 
 	public App(Console console) {

@@ -1,6 +1,6 @@
 package riskman.command;
 
-import static java.text.MessageFormat.format;
+import static java.lang.String.format;
 import riskman.app.*;
 
 
