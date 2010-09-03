@@ -2,6 +2,7 @@ package riskman.command;
 
 import java.util.*;
 
+
 import riskman.OwnerRepository;
 import riskman.instrument.rating.MoodyRatings;
 import riskman.location.Areas;
@@ -15,7 +16,7 @@ public class ShowCommand extends BaseCommand {
 
 	public void execute(String definition) {
 		definition = commands.contentOf(definition);
-		printlnFormatted("Available 1%$s:",definition);
+		printlnFormatted("Available %1$s:",definition);
 		if("areas".equals(definition))
 			printAll(Areas.all());
 		if ("owners".equals(definition))
@@ -37,7 +38,7 @@ public class ShowCommand extends BaseCommand {
 			counter++;
 		}
 		println("----------------");
-		printlnFormatted("1%$s element(s) found.",counter);
+		printlnFormatted("%1$s element(s) found.",counter);
 	}
 	
 	private <T> Iterable<String> sort(Iterable<T> values){

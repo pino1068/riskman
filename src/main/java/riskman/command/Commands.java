@@ -16,7 +16,7 @@ public class Commands {
 			put("split", SplitByCommand.class);
 			put("remove", RemoveFilterCommand.class);
 			put("delete", DeleteCommand.class);
-			put("reportTo", ReportToCommand.class);
+			put("recordTo", RecordToCommand.class);
 			put("quit", QuitCommand.class);
 		}
 	};

@@ -33,5 +33,9 @@ public class BatchConsole implements Console{
 			return "quit";
 		return entries.remove(0);
 	}
+	
+	public boolean canRestart() {
+		return false;
+	}
 
 }

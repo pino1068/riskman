@@ -28,5 +28,9 @@ public abstract class FileWritingConsole implements Console{
 		file.println(input);
 		return input;
 	}
+	
 
+	public boolean canRestart() {
+		return delegate.canRestart();
+	}
 }

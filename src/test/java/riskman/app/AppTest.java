@@ -20,7 +20,7 @@ public class AppTest {
 	@Before
 	public void setUp() {
 		console = new BatchConsole();
-		app = new App(console);
+		app = App.create(console);
 		ExchangeRates.clear();
 		ExchangeRates.add(ExchangeRate.rateFrom(CHF(1), CHF(1)));
 		ExchangeRates.add(ExchangeRate.rateFrom(USD(1), CHF(1.1)));
@@ -299,6 +299,16 @@ public class AppTest {
 		app.start();
 		
 		check("Currently there are no positions available");
+	}
+	
+
+	@Test
+	public void shouldRecordToCommand() {
+		console.enter("recordTo:pippo.txt");
+		
+		app.start();
+		
+		check("from now all your commands will be reported to <pippo.txt>");
 	}
 
 	private void check(String string) {

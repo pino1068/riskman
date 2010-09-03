@@ -8,4 +8,6 @@ public interface Console {
 
 	String waitForInput();
 
+	boolean canRestart();
+
 }

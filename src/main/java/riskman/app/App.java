@@ -17,15 +17,22 @@ public class App {
 	private static App app;
 
 	public static void main(String args[]) {
-		app = new App(console());
-		app.start();
+		App.create(console()).start();
 	}
-	
-	public static void switchReportTo(String filename){
+
+	static App create(Console console2) {
+		app = new App(console2);
+		return app;
+	}
+
+	public static void recordTo(String filename) {
 		app.reportTo(filename);
 	}
 
 	private void reportTo(String filename) {
+		if (!console.canRestart())
+			return;
+		System.out.println("recording to..." + filename);
 		sessionFilename = filename;
 		this.console = console();
 		workspace.console = this.console;

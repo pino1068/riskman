@@ -30,4 +30,8 @@ public class ShellConsole implements Console {
 		return result.replace("\n", "");//skip the last <enter>
 	}
 
+	public boolean canRestart() {
+		return true;
+	}
+
 }
