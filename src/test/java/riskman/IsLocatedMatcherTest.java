@@ -17,7 +17,7 @@ public class IsLocatedMatcherTest {
 
 	@Before
 	public void setUp(){
-		bond = Bond.from("name", "UE");
+		bond = Bond.from("2","name", "UE");
 		position = new BondPosition(bond, Money.CHF(100), hundredPercent());
 	}
 	
@@ -49,7 +49,7 @@ public class IsLocatedMatcherTest {
 	}
 
 	private BondPosition bondPositionWithNullArea() {
-		return new BondPosition(Bond.from("name", null), Money.CHF(100), hundredPercent());
+		return new BondPosition(Bond.from("2","name", null), Money.CHF(100), hundredPercent());
 	}
 
 	private Percent hundredPercent() {

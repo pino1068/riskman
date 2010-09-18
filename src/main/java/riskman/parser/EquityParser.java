@@ -18,7 +18,7 @@ public class EquityParser extends CsvLineParser {
 	}
 
 	public Equity parse() {
-		Equity equity = new Equity(name());
+		Equity equity = new Equity(id(),name());
 		parseIdentity(equity);
 		parseArea(equity);
 		return equity;

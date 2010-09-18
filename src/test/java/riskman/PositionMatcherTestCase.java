@@ -97,7 +97,7 @@ public class PositionMatcherTestCase {
 	@Test  
 	public void shouldMatchOnePositionOfBondType() {
 		Matcher<Position> bondMatcher = new IsTypeMatcher<Position>("bond");
-		Position position = bond(Bond.from("IBM bond", "USA"),CHF(1000),"100%");
+		Position position = bond(Bond.from("2","IBM bond", "USA"),CHF(1000),"100%");
 
 		assertThat(position, bondMatcher);
 	}
@@ -106,7 +106,7 @@ public class PositionMatcherTestCase {
 	public void shouldMatchOnePositionOfMultiTypes() {
 		Matcher<Position> bondOrEquity = new IsTypeMatcher<Position>("bond", "equity");
 		Position equity = IBM(CHF(500));
-		Position bond = bond(Bond.from("IBM bond", "USA"),CHF(1000),"100%");
+		Position bond = bond(Bond.from("2","IBM bond", "USA"),CHF(1000),"100%");
 
 		assertThat(equity, bondOrEquity);
 		assertThat(bond, bondOrEquity);
@@ -151,7 +151,7 @@ public class PositionMatcherTestCase {
 	@Test  
 	public void shouldMatchOnBondMatcher() {
 		Matcher<Position> isBond = new IsBondMatcher<Position>();
-		Position position = bond(Bond.from("a name", "anArea"), CHF(100), "100%");
+		Position position = bond(Bond.from("2","a name", "anArea"), CHF(100), "100%");
 
 		assertThat(position, isBond);
 	}
@@ -160,7 +160,7 @@ public class PositionMatcherTestCase {
 	@SuppressWarnings("unchecked")
 	public void shouldMatchOnePositionInUSDANDBond() {
 		Matcher<Position> bondInUSD = allOf(currency("USD"), bondMatcher());
-		Position position = bond(Bond.from("a name", "anArea"), USD(100), "100%");
+		Position position = bond(Bond.from("2","a name", "anArea"), USD(100), "100%");
 
 		assertThat(position, bondInUSD);
 	}

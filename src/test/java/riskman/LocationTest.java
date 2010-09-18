@@ -12,7 +12,7 @@ public class LocationTest {
 	
 	@Test  
 	public void shouldLocateAnEquityUsingString() {
-		Equity equity = new Equity("IBM");
+		Equity equity = new Equity("2","IBM");
 		Location.from(equity).locateIn("USA");
 		
 		Location location = Location.from(equity);
@@ -22,7 +22,7 @@ public class LocationTest {
 
 	@Test  
 	public void shouldLocateAnEquityInAnArea() {
-		Equity equity = new Equity("USA");
+		Equity equity = new Equity("2","USA");
 		Location.from(equity).locateIn(Area.from("USA"));
 		
 		assertThat(Location.from(equity).area(), is(Area.from("USA")));
@@ -30,7 +30,7 @@ public class LocationTest {
 	
 	@Test  
 	public void shouldLocateABondInAnArea() {
-		Bond bond = Bond.from("EIB 02", "UE");
+		Bond bond = Bond.from("2","EIB 02", "UE");
 		
 		assertThat(Location.from(bond).area(), is(Area.from("UE")));
 	}
