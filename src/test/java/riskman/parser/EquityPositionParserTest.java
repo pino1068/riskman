@@ -17,6 +17,8 @@ public class EquityPositionParserTest {
 	private String equity2 = "pippo13;A;CHF;330;827766CH;Siemens N chf;99.3000030517578;98.6;32538;32538;-0.00704937593398602;E;Azioni e simili;32538;22049.4920901733;31978.3783783784;880;1;;SMI.S;;";
 	private String equityWithQuantityWithComma = "pippo53;A;EUR;7200.0;322646EU;ALLIANZ AG;128.47809946695963;84.219999999999999;606384.0;801466.27068672015;-0.3444797179486716;E;Azioni e simili;801466.27068672015;606384.0;777141.73440000007;189;1;;SX5E.STX;;";
 	private String equityWithError = "pippo53;A;EUR;7200.0;322646EU;";
+	private String positionWithSameEquityTradedTwice="pippo53;A;USD;15000.0;933071US;General Electric;19.571500778198242;15.25;228750.0;235909.87500000003;-0.2208057944647861;E;Azioni e simili;235909.87500000003;178487.82771535579;228750.00000000003;500;1;;;;";
+
 	
 	// variables used in shouldSumTwoEquitiesInxxx
 	private String StrPosCHF1 = "pippo53;A;CHF;5000.0;1241051CH;BALOISE HDL N;118.55906066894531;82.5;412500.0;412500.0;-0.30414428442237496;E;Azioni e simili;412500.0;312094.73080592434;399980.60700087267;239;1;;SMI.S;;";
@@ -81,6 +83,14 @@ public class EquityPositionParserTest {
 		Positions myPositions = new Positions(position1,position2);
 		
 		assertThat(myPositions.value(), is(equalTo(CHF(5000*82.5+7000*16.47))));
+	}	
+
+	@Test 
+	public void shouldParseEquityWith2Occurencies() {
+
+		position1 = parse(positionWithSameEquityTradedTwice);
+		
+		assertThat(position1, is(notNullValue()));
 	}	
 
 	

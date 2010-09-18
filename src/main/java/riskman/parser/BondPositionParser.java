@@ -7,6 +7,7 @@ import riskman.position.*;
 
 public class BondPositionParser extends PositionParser {
 
+	private static final int ID = 0;
 	private static final int INSTRUMENTID = 17;
 	private static final int PRICE = 7;
 	private static final int QUANTITY = 3;
@@ -31,7 +32,7 @@ public class BondPositionParser extends PositionParser {
 	}
 
 	private Bond bond() {
-		return Bond.from(f(NAME), "UE");
+		return Bond.from(f(ID),f(NAME), "UE");
 	}
 
 	public boolean recognizePosition(String string) {

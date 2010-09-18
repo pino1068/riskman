@@ -181,7 +181,7 @@ public class ConstraintTest {
 			{
 				add(account("pluto", CHF(10)));
 				add(UBS(CHF(100)));
-				add(bond(Bond.from("GECC", "UE"), CHF(100), "100%"));
+				add(bond(Bond.from("2","GECC", "UE"), CHF(100), "100%"));
 			}
 		};
 

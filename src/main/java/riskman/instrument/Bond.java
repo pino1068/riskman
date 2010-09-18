@@ -8,19 +8,19 @@ public class Bond extends Instrument {
 	private final Rating rating;
 
 	public static Bond from(String name, Rating rating, Area anArea) {
-		return new Bond(name, rating, anArea);
+		return new Bond(name, name, rating, anArea);
 	}
 
 	public static Bond from(String name, Rating rating, String anArea) {
-		return new Bond(name, rating, Area.from(anArea));
+		return new Bond(name,name, rating, Area.from(anArea));
 	}
 
-	public static Bond from(String name, String area) {
-		return new Bond(name, Rating.NotRated(), Area.from(area));
+	public static Bond from(String id, String name, String area) {
+		return new Bond(id,name, Rating.NotRated(), Area.from(area));
 	}
 
-	public Bond(String name, Rating rating, Area area) {
-		super(name);
+	public Bond(String id,String name, Rating rating, Area area) {
+		super(id, name);
 		this.rating = rating;
 		Location.from(this).locateIn(area);
 	}

@@ -6,8 +6,10 @@ import riskman.location.*;
 public abstract class Instrument {
 
 	private final String name;
+	private final String id;
 
-	public Instrument(String name) {
+	public Instrument(String id, String name) {
+		this.id = id;
 		this.name = name;
 	}
 
@@ -15,7 +17,7 @@ public abstract class Instrument {
 
 	@Override
 	public String toString() {
-		return format("{0}", name);
+		return format("{0} / {1}",id, name);
 	}
 
 	@Override
@@ -27,7 +29,7 @@ public abstract class Instrument {
 
 	@Override
 	public int hashCode() {
-		return name.hashCode() * 13 + getClass().hashCode() * 17;
+		return id.hashCode() * 13 + getClass().hashCode() * 17;
 	}
 
 	private Instrument toInstrument(Object obj) {
@@ -44,5 +46,9 @@ public abstract class Instrument {
 
 	public String name() {
 		return name;
+	}
+
+	public String id() {
+		return id;
 	}
 }

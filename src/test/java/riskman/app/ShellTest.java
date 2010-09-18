@@ -64,7 +64,7 @@ public class ShellTest {
 	public void shouldEquityAndBondMin20PercentOK() {
 		def(account("name", CHF(30)));
 		def(equity("IBM", 1, CHF(30)));
-		def(bond(Bond.from("name", "USA"), CHF(40), "100%"));
+		def(bond(Bond.from("2","name", "USA"), CHF(40), "100%"));
 		execute("equity,bond min:20%");
 		assertThat(output, containsString("equity,bond min:20% OK"));
 	}
@@ -74,7 +74,7 @@ public class ShellTest {
 	public void shouldEquityAndBondMax20PercentKO() {
 		def(account("name", CHF(30)));
 		def(equity("IBM", 1, CHF(30)));
-		def(bond(Bond.from("name", "USA"), CHF(40), "100%"));
+		def(bond(Bond.from("2","name", "USA"), CHF(40), "100%"));
 		execute("equity,bond max:69%");
 		assertThat(output, containsString("equity,bond max:69% KO"));
 	}
@@ -91,7 +91,7 @@ public class ShellTest {
 	public void shouldBondMin20PercentOK() {
 		def(account("name", CHF(30)));
 		def(account("name2", CHF(70)));
-		def(bond(Bond.from("name", "USA"), CHF(100), "100%"));
+		def(bond(Bond.from("2","name", "USA"), CHF(100), "100%"));
 		execute("bond min:20%");
 		assertThat(output, containsString("bond min:20% OK"));
 	}
@@ -108,15 +108,15 @@ public class ShellTest {
 	public void shouldAreaInUSAMin20PercentKO() {
 		def(account("name", CHF(30)));
 		def(account("name2", USD(70)));
-		def(bond(Bond.from("name", "USA"), CHF(100), "100%"));
+		def(bond(Bond.from("2","name", "USA"), CHF(100), "100%"));
 		execute("USA min:20%");
 		assertThat(output, containsString("USA min:20% OK"));
 	}
 
 	@Test 
 	public void shouldAreaInUSAorUEMin20PercentKO() {
-		def(bond(Bond.from("name", "USA"), CHF(50), "100%"));
-		def(bond(Bond.from("name", "UE"), CHF(50), "100%"));
+		def(bond(Bond.from("2","name", "USA"), CHF(50), "100%"));
+		def(bond(Bond.from("2","name", "UE"), CHF(50), "100%"));
 		execute("USA,UE min:100%");
 		assertThat(output, containsString("USA,UE min:100% OK"));
 	}

@@ -226,7 +226,7 @@ public class AppTest {
 		app.start();
 		check("Available equities:");
 		check("Philips");
-		check("1 element(s) found.");
+		check("842 element(s) found.");
 	}
 
 	@Test
