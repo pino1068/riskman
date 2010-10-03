@@ -14,4 +14,9 @@ public class CsvLineParser {
 		return fields[fieldPosition];
 	}
 
+	protected double fDouble(int position) {
+		return Double.parseDouble(f(position));
+	}
+
+
 }

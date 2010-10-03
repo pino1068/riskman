@@ -30,17 +30,17 @@ public class LoadCommand extends BaseCommand {
 
 	private void loadExchangeRates() {
 		ExchangeRates.clear();
-		ExchangeRates.add(ExchangeRate.rateFrom(CHF(1),		CHF(1)));
-		ExchangeRates.add(ExchangeRate.rateFrom(USD(1),		CHF(1.1)));
-		ExchangeRates.add(ExchangeRate.rateFrom(EUR(1),		CHF(1.3)));
-		ExchangeRates.add(ExchangeRate.rateFrom(GBP(1),		CHF(1.6)));
-		ExchangeRates.add(ExchangeRate.rateFrom(AUD(1),		CHF(0.9)));
-		ExchangeRates.add(ExchangeRate.rateFrom(BRL(1),		CHF(0.6)));
-		ExchangeRates.add(ExchangeRate.rateFrom(NZD(1),		CHF(0.70)));
-		ExchangeRates.add(ExchangeRate.rateFrom(JPY(100.0),	CHF(1.20)));
-		ExchangeRates.add(ExchangeRate.rateFrom(money(1,"CHr"),CHF(1)));
-		ExchangeRates.add(ExchangeRate.rateFrom(money(10,"SEK"),CHF(1.4)));
-		ExchangeRates.add(ExchangeRate.rateFrom(money(1,"CAD"),CHF(0.95)));
+		ExchangeRates.addRate(ExchangeRate.rateFrom(CHF(1),		CHF(1)));
+		ExchangeRates.addRate(ExchangeRate.rateFrom(USD(1),		CHF(1.1)));
+		ExchangeRates.addRate(ExchangeRate.rateFrom(EUR(1),		CHF(1.3)));
+		ExchangeRates.addRate(ExchangeRate.rateFrom(GBP(1),		CHF(1.6)));
+		ExchangeRates.addRate(ExchangeRate.rateFrom(AUD(1),		CHF(0.9)));
+		ExchangeRates.addRate(ExchangeRate.rateFrom(BRL(1),		CHF(0.6)));
+		ExchangeRates.addRate(ExchangeRate.rateFrom(NZD(1),		CHF(0.70)));
+		ExchangeRates.addRate(ExchangeRate.rateFrom(JPY(100.0),	CHF(1.20)));
+		ExchangeRates.addRate(ExchangeRate.rateFrom(money(1,"CHr"),CHF(1)));
+		ExchangeRates.addRate(ExchangeRate.rateFrom(money(10,"SEK"),CHF(1.4)));
+		ExchangeRates.addRate(ExchangeRate.rateFrom(money(1,"CAD"),CHF(0.95)));
 	}
 
 	private File file(String definition) {

@@ -31,7 +31,7 @@ public class ShellTest {
 		output = "";
 		shell = new Shell();
 		positions = new Positions();
-		ExchangeRates.add(rateFrom(Money.USD(1),Money.CHF(1.1)));
+		ExchangeRates.addRate(rateFrom(Money.USD(1),Money.CHF(1.1)));
 	}
 	
 	@Test  

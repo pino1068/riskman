@@ -19,9 +19,9 @@ public class MoneyExchangeTest {
 	@Before
 	public void setUp(){
 		ExchangeRates.clear();
-		ExchangeRates.add(ExchangeRate.rateFrom(CHF(1),CHF(1)));
-		ExchangeRates.add(ExchangeRate.rateFrom(USD(1),CHF(1.1)));
-		ExchangeRates.add(ExchangeRate.rateFrom(EUR(1),CHF(1.6)));
+		ExchangeRates.addRate(ExchangeRate.rateFrom(CHF(1),CHF(1)));
+		ExchangeRates.addRate(ExchangeRate.rateFrom(USD(1),CHF(1.1)));
+		ExchangeRates.addRate(ExchangeRate.rateFrom(EUR(1),CHF(1.6)));
 	}
 
 	@Test 
@@ -40,7 +40,7 @@ public class MoneyExchangeTest {
 
 	@Test
 	public void shouldNoUseCrossRate() {
-		ExchangeRates.add(ExchangeRate.rateFrom(EUR(2),USD(3)));
+		ExchangeRates.addRate(ExchangeRate.rateFrom(EUR(2),USD(3)));
 		assertEquals(money(100+100 *3/2, "USD"), USD100.plus(EUR100));
 	}
 

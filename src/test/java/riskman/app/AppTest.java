@@ -22,9 +22,9 @@ public class AppTest {
 		console = new BatchConsole();
 		app = App.create(console);
 		ExchangeRates.clear();
-		ExchangeRates.add(ExchangeRate.rateFrom(CHF(1), CHF(1)));
-		ExchangeRates.add(ExchangeRate.rateFrom(USD(1), CHF(1.1)));
-		ExchangeRates.add(ExchangeRate.rateFrom(EUR(1), CHF(1.6)));
+		ExchangeRates.addRate(ExchangeRate.rateFrom(CHF(1), CHF(1)));
+		ExchangeRates.addRate(ExchangeRate.rateFrom(USD(1), CHF(1.1)));
+		ExchangeRates.addRate(ExchangeRate.rateFrom(EUR(1), CHF(1.6)));
 	}
 
 	@Test

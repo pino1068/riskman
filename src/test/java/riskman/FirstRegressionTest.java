@@ -19,7 +19,7 @@ public class FirstRegressionTest {
 	@Before
 	public void setUp() {
 		positions = new Positions();
-		ExchangeRates.add(ExchangeRate.rateFrom(Money.EUR(1),Money.CHF(1.6)));
+		ExchangeRates.addRate(ExchangeRate.rateFrom(Money.EUR(1),Money.CHF(1.6)));
 	}
 
 	@Test 
