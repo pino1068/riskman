@@ -3,7 +3,7 @@ package riskman.money;
 import static java.lang.String.*;
 import java.util.*;
 
-public class ExchangeRates {
+public class ExchangeRates implements Iterable <ExchangeRate> {
 	
 	private static ExchangeRates exchangeRates = new ExchangeRates();
 
@@ -45,6 +45,19 @@ public class ExchangeRates {
 
 	public static void use(ExchangeRates rates) {
 		exchangeRates = rates;
+	}
+
+	public static int size() {
+		return exchangeRates.rates.size();
+	}
+
+	public static ExchangeRates rates() {
+		return exchangeRates;
+	}
+
+	@Override
+	public Iterator<ExchangeRate> iterator() {
+		return rates.iterator();
 	}
 
 }

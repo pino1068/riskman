@@ -25,7 +25,7 @@ public class LoadCommand extends BaseCommand {
 		File file = file(definition);
 		positionsParser.listener(listeners());
 		workspace.addAll(readAndParse(file));
-		workspace.console.println(output());
+		println(output());
 	}
 
 	private void loadExchangeRates() {

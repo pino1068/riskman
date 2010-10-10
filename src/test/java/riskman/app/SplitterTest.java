@@ -88,7 +88,4 @@ public class SplitterTest {
 		assertThat(split.groups(), hasItem((Object)string));
 	}
 
-	private void hasGroup(Split split, Class<? extends Position> class1) {
-		assertThat(split.groups(), hasItem((Object)class1));
-	}
 }

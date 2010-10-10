@@ -17,6 +17,7 @@ public class Commands {
 			put("remove", RemoveFilterCommand.class);
 			put("delete", DeleteCommand.class);
 			put("recordTo", RecordToCommand.class);
+			put("load-exchange-rates", LoadExchangeRatesCommand.class);
 			put("quit", QuitCommand.class);
 		}
 	};
@@ -46,7 +47,8 @@ public class Commands {
 
 	private Class<? extends BaseCommand> findClass(String string) {
 		final String commandName = commandName(string);
-		if(commandName==null) return NoCommand.class;
+		if (commandName == null)
+			return NoCommand.class;
 		for (String name : commands.keySet())
 			if (canExecute(commandName, name))
 				return commands.get(name);
@@ -54,14 +56,18 @@ public class Commands {
 	}
 
 	private String commandName(String string) {
+		String initialString = string.split(":")[0].trim();
 		String commandName = null;
-		for (String name : commands.keySet())
-			if (name.startsWith(string.split(":")[0].trim()))
+		for (String name : commands.keySet()){
+			if(name.equalsIgnoreCase(initialString))
+				return name;
+			if (name.startsWith(initialString))
 				if (commandName == null)
 					commandName = name;
 				else
 					return null;
-		return commandName==null?string:commandName;
+		}
+		return commandName == null ? string : commandName;
 	}
 
 	private boolean canExecute(String definition, String name) {
@@ -75,18 +81,18 @@ public class Commands {
 	public String contentOf(String string) {
 		final String commandName = commandName(string);
 		for (String name : commands.keySet()) {
-			if (canExecute(commandName, name)){
-				return removePrefix(string)
-						.replaceAll("\\s*([,])\\s*", "$1");
+			if (canExecute(commandName, name)) {
+				return removePrefix(string).replaceAll("\\s*([,])\\s*", "$1");
 			}
 		}
 		return string;
 	}
 
 	private String removePrefix(String string) {
-		if(!string.contains(":"))
+		if (!string.contains(":"))
 			return string;
-		return string.substring(string.indexOf(":")).replaceFirst(":", "").trim();
+		return string.substring(string.indexOf(":")).replaceFirst(":", "")
+				.trim();
 	}
 
 	private final class LinkedListExtension extends LinkedList<Command> {

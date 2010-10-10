@@ -18,8 +18,7 @@ public class ExchangeParserTest {
 	
 	@Before
 	public void setUp(){
-		ExchangeRates rates = ExchangeRateParser.load("Cambi_out.csv");
-		ExchangeRates.use(rates);
+		ExchangeRates.use(ExchangeRateParser.load("Cambi_out.csv"));
 	}
 
 	@Test

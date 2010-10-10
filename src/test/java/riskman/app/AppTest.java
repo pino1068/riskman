@@ -1,14 +1,16 @@
 package riskman.app;
 
-import static org.hamcrest.MatcherAssert.*;
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.containsString;
 import static riskman.money.Money.CHF;
 import static riskman.money.Money.EUR;
 import static riskman.money.Money.USD;
 
-import org.junit.*;
+import org.junit.Before;
+import org.junit.Ignore;
+import org.junit.Test;
 
-import riskman.app.console.*;
+import riskman.app.console.BatchConsole;
 import riskman.money.ExchangeRate;
 import riskman.money.ExchangeRates;
 
@@ -63,14 +65,6 @@ public class AppTest {
 	@Test
 	public void shouldLoadPositions() {
 		console.enter("load:src/test/resources/portfolio1.csv");
-		app.start();
-		check("Enter a command or 'h' for help or 'quit' to exit");
-		check("OK");
-	}
-
-	@Test
-	public void shouldShortcutLoadPositions() {
-		console.enter("l:src/test/resources/portfolio1.csv");
 		app.start();
 		check("Enter a command or 'h' for help or 'quit' to exit");
 		check("OK");
@@ -313,5 +307,15 @@ public class AppTest {
 
 	private void check(String string) {
 		assertThat(console.output(), containsString(string));
+	}
+	
+	@Test
+	public void shouldLoadExchangeRatesCommand() {
+		console.enter("load-exchange-rates:Cambi_out.csv");
+		
+		app.start();
+		
+		check("Imported 30 exchange rates:");
+		check("Exchange from 1 EUR to 1.424 CHF");
 	}
 }
