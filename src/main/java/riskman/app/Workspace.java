@@ -1,18 +1,21 @@
 package riskman.app;
 
 
+import org.mortbay.jetty.Server;
+
 import riskman.app.console.*;
-import riskman.position.*;
+import riskman.position.Positions;
 
 public class Workspace {
 
 	public Console console = new BatchConsole();
 	private WorkspaceData current;
 	private String workingDir;
+	public Server server;
 
-	public Workspace(String name, Positions positions, String workingData) {
+	public Workspace(String name, Positions positions, String workingDir) {
 		this.current = new WorkspaceData(name,positions);
-		this.workingDir = workingData;
+		this.workingDir = workingDir;
 	}
 
 	public Workspace(Positions positions, String workingDir) {
@@ -55,5 +58,22 @@ public class Workspace {
 		final Positions positions = positions();
 		this.current = new WorkspaceData("",new Positions());
 		return positions;
+	}
+
+	public void release() {
+		try {
+			if (server != null){
+				server.stop();
+				console.println("...web server stopped!");
+			}
+		} catch (Exception e) {
+			console.println(e.getMessage());
+		}
+	}
+
+	public Workspace copyTo(Console console) {
+		Workspace workspace = new Workspace("web server", current.positions(), workingDir);
+		workspace.console = console;
+		return workspace;
 	}
 }

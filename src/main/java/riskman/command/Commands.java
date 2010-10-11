@@ -17,6 +17,7 @@ public class Commands {
 			put("remove", RemoveFilterCommand.class);
 			put("delete", DeleteCommand.class);
 			put("recordTo", RecordToCommand.class);
+			put("web", WebServerCommand.class);
 			put("load-exchange-rates", LoadExchangeRatesCommand.class);
 			put("quit", QuitCommand.class);
 		}

@@ -24,6 +24,21 @@
 			<artifactId>hamcrest-all</artifactId>
 			<version>1.1</version>
 		</dependency>
+		<dependency>
+			<artifactId>jetty</artifactId>
+			<groupId>jetty</groupId>
+			<version>6.0.2</version>
+		</dependency>
+		<dependency>
+			<artifactId>jetty-util</artifactId>
+			<groupId>org.mortbay.jetty</groupId>
+			<version>6.1.6</version>
+		</dependency>
+		<dependency>
+			<artifactId>servlet-api-2.5</artifactId>
+			<groupId>org.mortbay.jetty</groupId>
+			<version>6.1.6</version>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -63,16 +78,16 @@
 					<target>1.6</target>
 				</configuration>
 			</plugin>
-                        <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>cobertura-maven-plugin</artifactId>
-        <configuration>
-          <instrumentation>
-            <excludes>
-              <exclude>org/hamcrest/**/*.class</exclude>
-            </excludes>
-          </instrumentation>
-        </configuration>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>cobertura-maven-plugin</artifactId>
+				<configuration>
+					<instrumentation>
+						<excludes>
+							<exclude>org/hamcrest/**/*.class</exclude>
+						</excludes>
+					</instrumentation>
+				</configuration>
 
 			</plugin>
 		</plugins>

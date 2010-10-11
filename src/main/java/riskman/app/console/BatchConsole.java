@@ -37,5 +37,8 @@ public class BatchConsole implements Console{
 	public boolean canRestart() {
 		return false;
 	}
+	public void clear() {
+		output = new StringBuffer();
+	}
 
 }

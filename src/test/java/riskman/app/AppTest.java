@@ -318,4 +318,23 @@ public class AppTest {
 		check("Imported 30 exchange rates:");
 		check("Exchange from 1 EUR to 1.424 CHF");
 	}
+	
+	@Test
+	public void shouldStartWebServer() {
+		console.enter("web");
+		
+		app.start();
+		
+		check("web server started on port 8080. Try with http://localhost:8080");
+	}
+	
+	@Test
+	public void shouldStartWebServerTwice() {
+		console.enter("web");
+		console.enter("web");
+		
+		app.start();
+		
+		check("The web server is already running on port 8080...");
+	}
 }

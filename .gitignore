@@ -1,2 +1,5 @@
 target/
 abbinamento.txt
+.classpath
+.project
+.settings/

@@ -5,6 +5,7 @@ package riskman.command;
 public class QuitCommand extends BaseCommand {
 
 	public void execute(String line) {
+		workspace.release();
 		println("");
 		println("It was nice to meet you!");
 		println("");
