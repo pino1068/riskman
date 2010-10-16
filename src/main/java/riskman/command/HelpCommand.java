@@ -16,7 +16,7 @@ public class HelpCommand extends BaseCommand {
 	}
 	
 	public String describe() {
-		return "	'h' or 'help'			- print this help";
+		return "	'help'				- print this help";
 	}
 
 }

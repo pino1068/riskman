@@ -6,7 +6,7 @@ public class RecordToCommand extends BaseCommand {
 
 
 	public String describe() {
-		return "	'recordTo:<filename>'			- will switch the session logging to given file";
+		return "	'recordTo:<filename>'		- will switch the session logging to given file";
 	}
 
 	public void execute(String command) {

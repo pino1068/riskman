@@ -45,7 +45,7 @@ public class AppTest {
 		check("print all positions");
 		check("print positions filtered by given criteria");
 		check("print the splitted groups by given criteria");
-		check("split and check according to criteria and print results, i.e. splitby:owner max:5%");
+		check("split and check according to criteria and print results");
 		check("removes last filter");
 		check("to exit this program");
 		check("load positions from given file");

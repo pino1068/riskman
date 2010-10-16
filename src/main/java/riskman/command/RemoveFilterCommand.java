@@ -3,7 +3,7 @@ package riskman.command;
 public class RemoveFilterCommand extends BaseCommand {
 
 	public String describe() {
-		return "	'r or remove'			- removes last filter";
+		return "	'remove'			- removes last filter";
 	}
 
 	public void execute(String definition) {

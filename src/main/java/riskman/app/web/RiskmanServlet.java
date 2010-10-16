@@ -55,16 +55,16 @@ public class RiskmanServlet implements Servlet {
 			execute(command, line);
 		}
 		arg1.setContentType("text/html");
-		arg1.getOutputStream().println("You asked to run command: " + line);
-		arg1.getOutputStream()
-				.print("<form>" +
-						"<input type=text name=command style='width:300px;hight:20px;background-color: blue;' />" +
-						"<input type=submit />" +
-						"</form>");
+		arg1.getOutputStream().println(
+				"You asked to run command: " + line + "<br />");
 		arg1.getOutputStream().print(
 				"<div id='output' style='border:10px;color:red'>");
 		arg1.getOutputStream().print(console.output());
 		arg1.getOutputStream().print("</div>");
+		arg1.getOutputStream()
+				.print("<form id=command action='#command'>"
+						+ "<input type=text name=command style='width:300px;hight:20px;background-color: blue;' />"
+						+ "<input type=submit />" + "</form>");
 	}
 
 	private void execute(Command command, String line) {

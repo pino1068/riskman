@@ -33,7 +33,8 @@ public class SplitCheckCommand extends CheckCommand {
 	}
 
 	public String describe() {
-		return "	'check:<split>'			- split and check according to criteria and print results, i.e. splitby:owner max:5%";
+		return "	'check:<split>'			- split and check according to criteria and print results," +
+			 "\n					  i.e. splitby:owner max:5%";
 	}
 
 	private final class FormatCheckListener implements SplitCheckListener {

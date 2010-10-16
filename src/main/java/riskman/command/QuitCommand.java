@@ -14,6 +14,6 @@ public class QuitCommand extends BaseCommand {
 	}
 
 	public String describe() {
-		return "\n	'q' or 'quit'			- to exit this program";
+		return "	'quit'				- to exit this program";
 	}
 }

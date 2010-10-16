@@ -15,7 +15,7 @@ public class HTMLConsole implements Console {
 		for (String string : strings) {
 			batchConsole.println("<p class=line >");
 			batchConsole.println(toHtml(string));
-			batchConsole.print("</p><br />");
+			batchConsole.print("</p>");
 		}
 	}
 

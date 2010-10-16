@@ -11,9 +11,11 @@ public class WebServerCommand extends BaseCommand {
 
 	@Override
 	public void execute(String definition) {
+		String content = commands.contentOf(definition);
+		port = Integer.valueOf(content);
 		if (workspace.server != null)
 			printlnFormatted(
-					"The web server is already running on port %1$s...", 8080);
+					"The web server is already running on port %1$s...", port);
 		else
 			try {
 				Server server = new Server(port);
@@ -32,7 +34,7 @@ public class WebServerCommand extends BaseCommand {
 
 	@Override
 	public String describe() {
-		return "	'web:<port>'					- will start the server with given port number, ie. htto://localhost:8080";
+		return "	'web:<port>'			- will start the server at http://localhost:<port>";
 	}
 
 }

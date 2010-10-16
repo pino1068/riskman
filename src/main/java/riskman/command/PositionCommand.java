@@ -20,6 +20,6 @@ public class PositionCommand extends BaseCommand {
 	}
 
 	public String describe() {
-		return "	'p' or 'positions'		- print all positions";
+		return "	'positions'			- print all positions";
 	}
 }

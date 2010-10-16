@@ -5,7 +5,7 @@ import riskman.position.Positions;
 public class DeleteCommand extends BaseCommand {
 
 	public String describe() {
-		return "	'd or delete'			- removes from memory all the positions loaded";
+		return "	'delete'			- removes from memory all the positions loaded";
 	}
 
 	public void execute(String definition) {

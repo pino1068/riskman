@@ -25,7 +25,7 @@ public class LoadExchangeRatesCommand extends BaseCommand {
 
 	@Override
 	public String describe() {
-		return "	'load-exchange-rates:<file>'			- load exchange rates from given file";
+		return "	'load-exchange-rates:<file>'	- load exchange rates from given file";
 	}
 	
 }
