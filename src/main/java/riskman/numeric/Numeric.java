@@ -48,10 +48,10 @@ public class Numeric {
 		return $(0);
 	}
 
-	public Numeric add(Numeric other) {
-		BigDecimal num = numerator.multiply(other.denominator).add(
-				denominator.multiply(other.numerator));
-		BigDecimal denum = other.denominator.multiply(denominator);
+	public Numeric add(Numeric $) {
+		BigDecimal num = numerator.multiply($.denominator).add(
+				denominator.multiply($.numerator));
+		BigDecimal denum = $.denominator.multiply(denominator);
 		return new Numeric(num, denum);
 	}
 
@@ -145,31 +145,31 @@ public class Numeric {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
+	public boolean equals(Object $) {
+		if (this == $)
 			return true;
-		if (obj == null)
+		if ($ == null)
 			return false;
-		if (getClass() != obj.getClass())
+		if (getClass() != $.getClass())
 			return false;
-		Numeric other = (Numeric) obj;
+		Numeric other = (Numeric) $;
 		if (isNotEqualTo(other))
 			return false;
 		return true;
 	}
 
-	private boolean isNotEqualTo(Numeric other) {
+	private boolean isNotEqualTo(Numeric $) {
 		if (isInfinite())
-			return !other.isInfinite();
-		if (other.isInfinite())
+			return !$.isInfinite();
+		if ($.isInfinite())
 			return !isInfinite();
 		if (isZero())
-			return !other.isZero();
-		return !isApproxEqualTo(other);
+			return !$.isZero();
+		return !isApproxEqualTo($);
 	}
 
-	private boolean isApproxEqualTo(Numeric other) {
-		return approximation().equals(other.approximation());
+	private boolean isApproxEqualTo(Numeric $) {
+		return approximation().equals($.approximation());
 	}
 
 	private boolean isZero() {
