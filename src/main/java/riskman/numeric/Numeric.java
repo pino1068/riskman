@@ -91,7 +91,7 @@ public class Numeric {
 	}
 
 	public boolean greaterThan(Numeric $) {
-		return real().compareTo($.real()) > 0;
+		return approximation().compareTo($.approximation()) > 0;
 	}
 
 	public boolean gt(Numeric $) {
@@ -118,7 +118,7 @@ public class Numeric {
 	public String toString() {
 		if (isInfinite())
 			return "infinite oo";
-		return real().toString();
+		return approximation().toString();
 	}
 
 	@Override
@@ -153,14 +153,18 @@ public class Numeric {
 			return !isInfinite();
 		if (isZero())
 			return !other.isZero();
-		return !real().equals(other.real());
+		return !isApproxEqual(other);
+	}
+
+	private boolean isApproxEqual(Numeric other) {
+		return approximation().equals(other.approximation());
 	}
 
 	private boolean isZero() {
 		return BigDecimal.ZERO.equals(numerator) && !isInfinite();
 	}
 
-	private BigDecimal real() {
+	private BigDecimal approximation() {
 		return numerator().divide(denominator(), 5, RoundingMode.UP);
 	}
 
