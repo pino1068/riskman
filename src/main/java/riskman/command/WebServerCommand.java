@@ -12,16 +12,17 @@ public class WebServerCommand extends BaseCommand {
 	@Override
 	public void execute(String definition) {
 		String content = commands.contentOf(definition);
-		port = Integer.valueOf(content);
+		if (workspace.server==null && definition.contains(":") && content != null && content.trim().length() > 0)
+			port = Integer.valueOf(content);
 		if (workspace.server != null)
 			printlnFormatted(
-					"The web server is already running on port %1$s...", port);
+					"The web server is already running on port %1$s...", workspace.server.getConnectors()[0].getPort());
 		else
 			try {
 				Server server = new Server(port);
 				Context root = new Context(server, "/", Context.SESSIONS);
-				root.addServlet(new ServletHolder(new RiskmanServlet(workspace)),
-						"/*");
+				root.addServlet(
+						new ServletHolder(new RiskmanServlet(workspace)), "/*");
 				server.start();
 				printlnFormatted(
 						"web server started on port %1$s. Try with http://localhost:%1$s",

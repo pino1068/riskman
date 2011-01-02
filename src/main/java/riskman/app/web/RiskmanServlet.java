@@ -25,16 +25,7 @@ public class RiskmanServlet implements Servlet {
 	}
 
 	public ServletConfig getServletConfig() {
-		return new GenericServlet() {
-			private static final long serialVersionUID = 1L;
-
-			@Override
-			public void service(ServletRequest arg0, ServletResponse arg1)
-					throws ServletException, IOException {
-				// TODO Auto-generated method stub
-
-			}
-		};
+		return null;
 	}
 
 	public String getServletInfo() {
@@ -44,9 +35,9 @@ public class RiskmanServlet implements Servlet {
 	public void init(ServletConfig arg0) throws ServletException {
 	}
 
-	public void service(ServletRequest arg0, ServletResponse arg1)
+	public void service(ServletRequest request, ServletResponse response)
 			throws ServletException, IOException {
-		String line = arg0.getParameter("command");
+		String line = request.getParameter("command");
 		if (line == null || line.trim().length() == 0)
 			console.println("Welcome in Riskman. How can I help you? type with \"help\" ");
 		else {
@@ -54,14 +45,14 @@ public class RiskmanServlet implements Servlet {
 			Command command = command(line);
 			execute(command, line);
 		}
-		arg1.setContentType("text/html");
-		arg1.getOutputStream().println(
+		response.setContentType("text/html");
+		response.getOutputStream().println(
 				"You asked to run command: " + line + "<br />");
-		arg1.getOutputStream().print(
+		response.getOutputStream().print(
 				"<div id='output' style='border:10px;color:red'>");
-		arg1.getOutputStream().print(console.output());
-		arg1.getOutputStream().print("</div>");
-		arg1.getOutputStream()
+		response.getOutputStream().print(console.output());
+		response.getOutputStream().print("</div>");
+		response.getOutputStream()
 				.print("<form id=command action='#command'>"
 						+ "<input type=text name=command style='width:300px;hight:20px;background-color: blue;' />"
 						+ "<input type=submit />" + "</form>");
