@@ -69,12 +69,16 @@ public class NumericTest {
 	@Test 
 	public void shouldDivide() {
 		assertEquals($(1), $(2).divide($(2)));
+		assertEquals($(2), $(4).divide($(2)));
+		assertEquals($(2), $(4).div($(2)));
 	}
 
 	@Test 
 	public void shouldMultiply() {
 		assertEquals($(4), $(2).multiply($(2)));
 		assertEquals($(6), $(2).multiply($(3)));
+		assertEquals($(6), $(2).mul($(3)));
+		assertEquals($(6), $(2).times(3));
 		assertEquals($infinite(), $(2).multiply($infinite()));
 	}
 

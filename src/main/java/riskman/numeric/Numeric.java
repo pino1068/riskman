@@ -114,6 +114,18 @@ public class Numeric {
 		return lowerThan($) || equals($);
 	}
 
+	public Numeric times(Number num) {
+		return multiply($(num));
+	}
+
+	public Numeric mul(Numeric $) {
+		return multiply($);
+	}
+
+	public Numeric div(Numeric $) {
+		return divide($);
+	}
+
 	@Override
 	public String toString() {
 		if (isInfinite())
