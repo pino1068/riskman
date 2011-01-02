@@ -165,10 +165,10 @@ public class Numeric {
 			return !isInfinite();
 		if (isZero())
 			return !other.isZero();
-		return !isApproxEqual(other);
+		return !isApproxEqualTo(other);
 	}
 
-	private boolean isApproxEqual(Numeric other) {
+	private boolean isApproxEqualTo(Numeric other) {
 		return approximation().equals(other.approximation());
 	}
 
