@@ -147,6 +147,8 @@ public class NumericTest {
 		assertTrue($(2).greaterThan($(1)));
 		assertTrue($(2).greaterThan($(-5)));
 		assertTrue($(2).gt($(-5)));
+		assertFalse($(2).gt($(2)));
+		assertFalse($(-5).gt($(2)));
 	}
 
 	@Test
@@ -154,6 +156,8 @@ public class NumericTest {
 		assertTrue($(1).lowerThan($(2)));
 		assertTrue($(-5).lowerThan($(2)));
 		assertTrue($(-5).lt($(2)));
+		assertFalse($(2).lt($(2)));
+		assertFalse($(2).lt($(-5)));
 	}
 
 	@Test
@@ -162,5 +166,7 @@ public class NumericTest {
 		assertTrue($(2).ge($(2)));
 		assertTrue($(-5).le($(2)));
 		assertTrue($(-5).le($(-5)));
+		assertFalse($(-5).ge($(2)));
+		assertFalse($(2).le($(-5)));
 	}
 }
