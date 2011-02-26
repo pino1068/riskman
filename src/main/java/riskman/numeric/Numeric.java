@@ -1,9 +1,14 @@
 package riskman.numeric;
 
+import static java.lang.Math.max;
+import static java.math.RoundingMode.UP;
+
 import java.math.*;
 
 public class Numeric {
 
+	private static final RoundingMode DEFAULT_ROUNDING_MODE = RoundingMode.UP;
+	private static final int MIN_SCALE = 120;
 	private final BigDecimal numerator;
 	private final BigDecimal denominator;
 
@@ -130,7 +135,11 @@ public class Numeric {
 	public String toString() {
 		if (isInfinite())
 			return "infinite oo";
-		return approximation().toString();
+		final String string = realDivision().toString();
+		String lastZeroRemoved = string.split(".")[1];
+		while(lastZeroRemoved.endsWith("0"))
+			lastZeroRemoved = lastZeroRemoved.substring(0, lastZeroRemoved.length()-1);
+		return string.split(".")[0]+"."+lastZeroRemoved;
 	}
 
 	@Override
@@ -165,11 +174,22 @@ public class Numeric {
 			return !isInfinite();
 		if (isZero())
 			return !$.isZero();
-		return !isApproxEqualTo($);
+		return !isEqualTo($);
 	}
 
-	private boolean isApproxEqualTo(Numeric $) {
-		return approximation().equals($.approximation());
+	private boolean isEqualTo(Numeric $) {
+		return realDivision().compareTo($.realDivision())==0;
+	}
+
+	private BigDecimal realDivision() {
+		return numerator.divide(denominator, maxScale(), UP);
+	}
+
+	private int maxScale() {
+		final int max = max(numerator.scale(), denominator.scale());
+		if (max <= MIN_SCALE)
+			return MIN_SCALE;
+		return max;
 	}
 
 	private boolean isZero() {
@@ -177,7 +197,7 @@ public class Numeric {
 	}
 
 	private BigDecimal approximation() {
-		return numerator().divide(denominator(), 5, RoundingMode.UP);
+		return numerator().divide(denominator(), 5, DEFAULT_ROUNDING_MODE);
 	}
 
 	private BigDecimal numerator() {
@@ -191,6 +211,18 @@ public class Numeric {
 	private BigDecimal scale(BigDecimal value, BigDecimal defaultValue) {
 		if (value == null)
 			return defaultValue;
-		return value.setScale(120, RoundingMode.UP);
+		return scale(value, 120);
+	}
+
+	private BigDecimal scale(BigDecimal value, final int targetScale) {
+		return scaleToLevel(value, max(targetScale, MIN_SCALE));
+	}
+
+	private BigDecimal scaleToLevel(BigDecimal value, final int scaleLevel) {
+		return value.setScale(scaleLevel, DEFAULT_ROUNDING_MODE);
+	}
+
+	public Numeric scaleTo(int targetScale) {
+		return new Numeric(scale(numerator,targetScale),scale(denominator,targetScale));
 	}
 }

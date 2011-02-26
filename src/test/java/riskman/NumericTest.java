@@ -1,9 +1,13 @@
 package riskman;
-import static riskman.numeric.Numeric.*;
 
+import static riskman.numeric.Numeric.*;
 import static junit.framework.Assert.*;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.*;
 
 import org.junit.*;
+
+import riskman.numeric.Numeric;
 
 public class NumericTest {
 	@Test
@@ -44,7 +48,7 @@ public class NumericTest {
 	
 	@Test 
 	public void shouldUseToString() {
-		assertEquals("2.00000", $(2.000).toString());
+		assertEquals("2.0", $(2.000).toString());
 		assertEquals("infinite oo", $(2).divide($(0)).toString());
 	}
 	
@@ -94,7 +98,10 @@ public class NumericTest {
 
 	@Test 
 	public void shouldDevide4By3() {
-		assertEquals($(4.0/3.0), $(4).divide($(3)));
+		assertThat($(4.0/3.0), is(not($(4).divide($(3)))));
+		final Numeric a = $(4.0/3.0).scaleTo(16);
+		final Numeric b = $(4).divide($(3)).scaleTo(16);
+		assertEquals(a, b);
 	}
 
 	@Test 
@@ -131,9 +138,19 @@ public class NumericTest {
 	}
 
 	@Test
-	public void shouldApproximateDividingBigFromSmall() {
+	public void shouldNotIfNotScaled() {
+		assertThat($(0.0000001), is($(0.00000000001).scaleTo(7)));
+		assertThat($(0.0000001).scaleTo(11), is(not($(0.00000000001))));
+	}
+
+	@Test @Ignore
+	public void shouldMatchWhenScale() {
 		assertEquals($(0.0000001), $(0.00000000001));
-		assertEquals($(0.0000001), $(0.00000000001).divide($(99999999999d)));
+	}
+
+	@Test @Ignore
+	public void shouldNotMatchDividingBigFromSmall() {
+		assertThat($(0.0000001), is(not($(0.00000000001).divide($(99999999999d)))));
 	}
 
 	@Test

@@ -2,9 +2,9 @@ package riskman.app.console;
 
 public interface Console {
 
-	void println(String... string);
+	void println(String...strings);
 
-	void print(String... string);
+	void print(String...strings);
 
 	String waitForInput();
 
