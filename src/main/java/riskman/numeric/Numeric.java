@@ -1,12 +1,16 @@
 package riskman.numeric;
 
 import static java.lang.Math.max;
+import static java.math.BigDecimal.ONE;
 import static java.math.RoundingMode.UP;
 
 import java.math.*;
 
 public class Numeric {
 
+	private static final String ZERO_S = "0";
+	private static final String DOT = ".";
+	private static final String DOT_REGEXP = "\\"+DOT;
 	private static final RoundingMode DEFAULT_ROUNDING_MODE = RoundingMode.UP;
 	private static final int MIN_SCALE = 120;
 	private final BigDecimal numerator;
@@ -20,7 +24,7 @@ public class Numeric {
 		this(new BigDecimal(num), new BigDecimal(denom));
 	}
 
-	private Numeric(BigDecimal num, BigDecimal denom) {
+	protected Numeric(BigDecimal num, BigDecimal denom) {
 		this.numerator = num;
 		this.denominator = denom;
 	}
@@ -29,28 +33,28 @@ public class Numeric {
 		return numerator.doubleValue();
 	}
 
-	public static Numeric $(String text) {
+	public static Numeric _(String text) {
 		return new Numeric(text);
 	}
 
-	public static Numeric $(Number i) {
-		return $(i.toString());
+	public static Numeric _(Number i) {
+		return _(i.toString());
 	}
 
-	public static Numeric $infinite() {
-		return new Numeric("1", "0");
+	public static Numeric _infinite() {
+		return new Numeric("1", ZERO_S);
 	}
 
-	public static Numeric $inf() {
-		return new Numeric("1", "0");
+	public static Numeric _inf() {
+		return new Numeric("1", ZERO_S);
 	}
 
-	public static Numeric $one() {
-		return $(1);
+	public static Numeric _one() {
+		return _(1);
 	}
 
-	public static Numeric $zero() {
-		return $(0);
+	public static Numeric _zero() {
+		return _(0);
 	}
 
 	public Numeric add(Numeric $) {
@@ -75,16 +79,16 @@ public class Numeric {
 
 	public Numeric divide(Numeric $) {
 		if (isInfinite() && $.isInfinite())
-			return $one();
+			return _one();
 		if (isZero() && $.isZero())
-			return $one();
+			return _one();
 		BigDecimal num = numerator.multiply($.denominator);
 		BigDecimal denum = denominator.multiply($.numerator);
 		return new Numeric(num, denum);
 	}
 
 	public Numeric negate() {
-		return this.multiply($(-1));
+		return this.multiply(_(-1));
 	}
 
 	public Numeric subtract(Numeric $) {
@@ -120,7 +124,7 @@ public class Numeric {
 	}
 
 	public Numeric times(Number num) {
-		return multiply($(num));
+		return multiply(_(num));
 	}
 
 	public Numeric mul(Numeric $) {
@@ -136,10 +140,28 @@ public class Numeric {
 		if (isInfinite())
 			return "infinite oo";
 		final String string = realDivision().toString();
-		String lastZeroRemoved = string.split(".")[1];
-		while(lastZeroRemoved.endsWith("0"))
-			lastZeroRemoved = lastZeroRemoved.substring(0, lastZeroRemoved.length()-1);
-		return string.split(".")[0]+"."+lastZeroRemoved;
+		return numerator(string) + DOT + decimals(string);
+	}
+
+	private String numerator(final String string) {
+		return string.split(DOT_REGEXP)[0];
+	}
+
+	private String decimals(final String string) {
+		final String[] splitByDOT = string.split(DOT_REGEXP);
+		if(splitByDOT.length<2)
+			return ZERO_S;
+		String lastZeroRemoved = splitByDOT[1];
+		while (lastZeroRemoved.endsWith(ZERO_S))
+			lastZeroRemoved = reduceOfOne(lastZeroRemoved);
+		return lastZeroRemoved.length() == 0 ? ZERO_S
+				: lastZeroRemoved;
+	}
+
+	private String reduceOfOne(String lastZeroRemoved) {
+		lastZeroRemoved = lastZeroRemoved.substring(0,
+				lastZeroRemoved.length() - 1);
+		return lastZeroRemoved;
 	}
 
 	@Override
@@ -178,7 +200,7 @@ public class Numeric {
 	}
 
 	private boolean isEqualTo(Numeric $) {
-		return realDivision().compareTo($.realDivision())==0;
+		return realDivision().compareTo($.realDivision()) == 0;
 	}
 
 	private BigDecimal realDivision() {
@@ -214,15 +236,15 @@ public class Numeric {
 		return scale(value, 120);
 	}
 
-	private BigDecimal scale(BigDecimal value, final int targetScale) {
-		return scaleToLevel(value, max(targetScale, MIN_SCALE));
+	private BigDecimal scale(BigDecimal value, final int level) {
+		return scaleToLevel(value, max(level, MIN_SCALE));
 	}
 
-	private BigDecimal scaleToLevel(BigDecimal value, final int scaleLevel) {
-		return value.setScale(scaleLevel, DEFAULT_ROUNDING_MODE);
+	private BigDecimal scaleToLevel(BigDecimal value, final int level) {
+		return value.setScale(level, DEFAULT_ROUNDING_MODE);
 	}
 
-	public Numeric scaleTo(int targetScale) {
-		return new Numeric(scale(numerator,targetScale),scale(denominator,targetScale));
+	public Numeric scaleTo(int scale) {
+		return new Numeric(numerator.divide(denominator, scale, DEFAULT_ROUNDING_MODE), ONE);
 	}
 }
