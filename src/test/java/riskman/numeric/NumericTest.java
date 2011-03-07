@@ -5,11 +5,43 @@ import static junit.framework.Assert.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
+import java.math.BigDecimal;
+
 import org.junit.*;
 
 import riskman.numeric.Numeric;
 
 public class NumericTest {
+	
+	
+	@Test 
+	public void shouldxxxx() {
+		double a = 4.000000000000000001/3;
+		double b = a*3;
+		
+		assertEquals(4.0, b);
+	}
+	
+	@Test 
+	@Ignore("cause we must round for dividing")
+	public void shouldBigDecimal() {
+		final BigDecimal three = new BigDecimal("3.0");
+		
+		BigDecimal a = new BigDecimal("4.000000000000000001").divide(three);
+		BigDecimal b = a.multiply(three);
+		
+		System.out.println(b);
+		assertEquals(new BigDecimal("4.0"), b);
+	}
+	
+	@Test @Ignore("cause the identity checks are available at compile time")
+	public void shouldDoubleIdenticalExpressions() {
+//		assertTrue(4.0d == 4.0000000000000001d);
+//		assertTrue(12345678901.234567d == 12345678901.2345678d);
+//		assertTrue(12345678901234.5678d == 12345678901234.56789d);
+//		assertTrue(12345678901234567.d == 12345678901234567.8d);
+	}
+
 
 	@Test
 	public void shouldDoublePrintItWrong() {
